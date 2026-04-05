@@ -1,0 +1,1 @@
+/home/cazouvilela/.claude/ORIENTACOES_DESENVOLVIMENTO.md

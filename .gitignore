@@ -1,0 +1,39 @@
+# Dependencias
+node_modules/
+venv/
+__pycache__/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Ambiente local (overrides - NAO confundir com config/.env que E versionado)
+.env
+.env.local
+*.env.local
+
+# Builds
+dist/
+build/
+
+# Backups de producao (dados sensiveis)
+backups/*.sql
+backups/*.sql.gz
+backups/*.dump
+!backups/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Terminal logs (sessoes Claude Code - rotacao automatica 60 dias)
+/terminal_logs/
+
+# Arquivos gerados (outputs: EXE, APK, builds - podem ser grandes)
+arquivos_gerados/*
+!arquivos_gerados/.gitkeep
+
+# Print screens (screenshots Playwright e contexto visual)
+print_screens/*
+!print_screens/.gitkeep

@@ -1,0 +1,1 @@
+/home/cazouvilela/.claude/PADRONIZACAO_ANTHROPIC_COOKBOOK.md

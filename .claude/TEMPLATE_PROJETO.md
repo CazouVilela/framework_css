@@ -1,0 +1,1 @@
+/home/cazouvilela/.claude/TEMPLATE_PROJETO.md

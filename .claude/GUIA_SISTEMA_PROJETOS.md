@@ -1,0 +1,1 @@
+/home/cazouvilela/.claude/GUIA_SISTEMA_PROJETOS.md
