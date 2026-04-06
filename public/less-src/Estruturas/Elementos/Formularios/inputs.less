@@ -1,0 +1,42 @@
+﻿//CAMPOS INPUTS
+    .input {
+        .color(@Preto; 30%);
+        font-weight: normal;
+        
+            @media (min-width: @Res_Desktop) {
+                .padding( 
+                    @PaddingTopInput_Desktop; 
+                    @PaddingRightInput_Desktop; 
+                    @PaddingBottomInput_Desktop; 
+                    @PaddingLeftInput_Desktop; );
+            }
+            
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                .padding( 
+                    @PaddingTopInput_Tablet; 
+                    @PaddingRightInput_Tablet; 
+                    @PaddingBottomInput_Tablet; 
+                    @PaddingLeftInput_Tablet; );
+            }
+            
+            @media (max-width:@Res_Tablet) {
+                .padding( 
+                    @PaddingTopInput_Mobile; 
+                    @PaddingRightInput_Mobile; 
+                    @PaddingBottomInput_Mobile; 
+                    @PaddingLeftInput_Mobile; );
+            }
+    }
+
+        //COR DO PLACEHOLDER DO CAMPOS INPUTS (DEFAULT TEXT)
+            .input::-webkit-input-placeholder,
+            .input:-ms-input-placeholder,
+            .input::-ms-input-placeholder,
+            .input::placeholder
+            {
+                .color(@Preto; 30%);
+            }
+                
+            .input:focus {
+                .color(@Preto; 80%);
+            }

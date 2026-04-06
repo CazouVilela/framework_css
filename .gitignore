@@ -38,3 +38,6 @@ arquivos_gerados/*
 # Print screens (screenshots Playwright e contexto visual)
 print_screens/*
 !print_screens/.gitkeep
+
+# Arquivos auxiliares (ZIP original e extraidos - grandes)
+arquivos_auxiliares/

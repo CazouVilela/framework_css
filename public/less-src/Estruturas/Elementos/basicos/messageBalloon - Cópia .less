@@ -1,0 +1,2415 @@
+﻿
+//PADRAO DE MESSAGE balloon
+.balloon {
+    position:           relative;
+    display:            flex;
+    -webkit-align-items:center;
+    -ms-flex-item-align:center;
+    align-items:        center;
+    z-index:            90;
+}
+
+// DEFINICÕES DE POSICAO balloon
+        @media (min-width: @Res_Desktop) {
+            .balloonPosition-D-Right {
+                .balloon;
+                & *{
+                    position:           absolute;
+                    left:               @EntreColuna_Desktop / 2;
+                    -webkit-transform:  translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    -moz-transform:     translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    -ms-transform:      translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    transform:          translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    
+
+                    &:before {
+                            margin-top:     -@EntreColuna_Desktop / 2;
+                            margin-left:    -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop + 1;
+                            left:           -@EntreColuna_Desktop;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Desktop / 2;
+                            margin-left:    -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                            left:           -@EntreColuna_Desktop + 1px;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:                50%;
+                        border-left:        0;
+                        transform:          scaleX(2);
+                        border-bottom-color:transparent !important;
+                        border-left-color:  transparent !important;
+                        border-top-color:   transparent !important;
+
+                        content:            '';
+                        position:           absolute;
+                        width:              0;
+                        height:             0;
+
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                }
+
+
+            }
+            .balloonPosition-D-Top-Right {
+                .balloon;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & *{
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+                    right:  0px;
+                    left:   auto;
+
+                        bottom: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:  translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:     translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:      translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        transform:          translate(0,@EntreColuna_Desktop) scaleY(0.001);
+
+                    &:before {
+                            right: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+
+                    &:after  {
+                            right: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color:    transparent!important;
+                        border-left-color:      transparent!important;
+                        border-right-color:     transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-D-Bottom-Right {
+                .balloon;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & *{
+                    position:   absolute;
+                    margin-top: 0px!important;
+                    right:  0px;
+                    left:   auto;
+
+                        top: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:      translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:         translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:          translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        transform:              translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+
+                    &:before {
+                            right:          @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:after  {
+                            right:          @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-D-Left {
+                .balloon;
+                position:           absolute;
+
+                & * {
+                    position: absolute;
+
+                        right: @EntreColuna_Desktop / 2;
+                        -webkit-transform:      translate(@EntreColuna_Desktop) scaleX(0.001);
+                        -moz-transform:         translate(@EntreColuna_Desktop) scaleX(0.001);
+                        -ms-transform:          translate(@EntreColuna_Desktop) scaleX(0.001);
+                        transform:              translate(@EntreColuna_Desktop) scaleX(0.001);
+
+                    &:before { 
+                    
+                            margin-top:     -@EntreColuna_Desktop / 2;
+                            margin-right:   -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop + 1;
+                            right:          -@EntreColuna_Desktop;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Desktop / 2;
+                            margin-right:   -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                            right:          -@EntreColuna_Desktop + 1px;
+                    }
+
+
+                    &:before,
+                    &:after {
+                        top:            50%;
+                        border-right:   0;
+                        transform:      scaleX(2);
+                        border-bottom-color:    transparent!important;
+                        border-right-color:     transparent!important;
+                        border-top-color:       transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                
+                }
+            }
+            .balloonPosition-D-Top-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:  translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:     translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:      translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                        transform:          translate(0,@EntreColuna_Desktop) scaleY(0.001);
+
+                    &:before {
+                            left: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:after  {
+                            left: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-D-Bottom-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:      translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:         translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:          translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                        transform:              translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+ 
+
+                    &:before {
+                            left:           @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+                
+                    &:after  {
+                            left:           @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                            margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-D-Top {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:      translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:         translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:          translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                        transform:              translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+
+                    &:before {
+                            margin-left: -@EntreColuna_Desktop / 2;
+                            margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:after  {
+                            margin-left: -@EntreColuna_Desktop / 2;
+                            margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        left:           50%;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color: transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                }
+            
+            }
+            .balloonPosition-D-Bottom {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Desktop * 0.5;
+                        -webkit-transform:      translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                        -moz-transform:         translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                        -ms-transform:          translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                        transform:              translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+
+                    &:before {
+                            margin-left:    -@EntreColuna_Desktop / 2;
+                            margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:after  {
+                            margin-left:    -@EntreColuna_Desktop / 2;
+                            margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:            0;
+                        left:           50%;
+                        border-top:     0!important;
+                        transform:      scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+                }
+            }
+        }
+
+
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            .balloonPosition-T-Right {
+                .balloon;
+                & *{
+                    position: absolute;
+
+                        left: @EntreColuna_Tablet / 2;
+                        -webkit-transform:  translate(-@EntreColuna_Tablet) scaleX(0.001);
+                        -moz-transform:     translate(-@EntreColuna_Tablet) scaleX(0.001);
+                        -ms-transform:      translate(-@EntreColuna_Tablet) scaleX(0.001);
+                        transform:          translate(-@EntreColuna_Tablet) scaleX(0.001);
+
+                    &:before {
+                            margin-top:     -@EntreColuna_Tablet / 2;
+                            margin-left:    -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet + 1;
+                            left:           -@EntreColuna_Tablet;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Tablet / 2;
+                            margin-left:    -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                            left:           -@EntreColuna_Tablet + 1px;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        50%;
+                        border-left:0;
+                        transform:  scaleX(2);
+                        border-bottom-color:transparent !important;
+                        border-left-color:  transparent !important;
+                        border-top-color:   transparent !important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                }
+
+
+            }
+            .balloonPosition-T-Top-Right {
+                .balloon;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & *{
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+                    right:  0px;
+                    left:   auto;
+
+                        bottom: @EntreColuna_Tablet * 0.5;
+                        -webkit-transform:  translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:     translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:      translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        transform:          translate(0,@EntreColuna_Tablet) scaleY(0.001);
+
+                    &:before {
+                            right: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+
+                    &:after  {
+                            right: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color:    transparent!important;
+                        border-left-color:      transparent!important;
+                        border-right-color:     transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-T-Bottom-Right {
+                .balloon;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & *{
+                    position:   absolute;
+                    margin-top: 0px!important;
+                    right:  0px;
+                    left:   auto;
+
+                        top: @EntreColuna_Tablet * 0.5;
+                        -webkit-transform:      translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:         translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:          translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        transform:              translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+
+
+                    &:before {
+                            right:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:after  {
+                            right:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-T-Left {
+                .balloon;
+                position:           absolute;
+
+                & * {
+                    position:               absolute;
+                    right:                  @EntreColuna_Tablet / 2;
+                    -webkit-transform:      translate(@EntreColuna_Tablet) scaleX(0.001);
+                    -moz-transform:         translate(@EntreColuna_Tablet) scaleX(0.001);
+                    -ms-transform:          translate(@EntreColuna_Tablet) scaleX(0.001);
+                    transform:              translate(@EntreColuna_Tablet) scaleX(0.001);
+
+
+                    &:before { 
+                            margin-top:     -@EntreColuna_Tablet / 2;
+                            margin-right:   -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet + 1;
+                            right:          -@EntreColuna_Tablet;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Tablet / 2;
+                            margin-right:   -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                            right:          -@EntreColuna_Tablet + 1px;
+                    }
+
+
+                    &:before,
+                    &:after {
+                        top:                    50%;
+                        border-right:           0;
+                        transform:              scaleX(2);
+                        border-bottom-color:    transparent!important;
+                        border-right-color:     transparent!important;
+                        border-top-color:       transparent!important;
+                        content:                '';
+                        position:               absolute;
+                        width:                  0;
+                        height:                 0;
+                        border:                 @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                
+                }
+            }
+            .balloonPosition-T-Top-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Tablet * 0.5;
+                        -webkit-transform:  translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:     translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:      translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                        transform:          translate(0,@EntreColuna_Tablet) scaleY(0.001);
+
+                    &:before {
+                            left: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:after  {
+                            left: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-T-Bottom-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Tablet * 0.5;
+                        -webkit-transform:      translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:         translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:          translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                        transform:              translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+
+                    &:before {
+                            left:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+                
+                    &:after  {
+                            left:           @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                            margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-T-Top {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Tablet * 0.5;
+                        -webkit-transform:      translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:         translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:          translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                        transform:              translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+
+                    &:before {
+                            margin-left: -@EntreColuna_Tablet / 2;
+                            margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:after  {
+                            margin-left: -@EntreColuna_Tablet / 2;
+                            margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        left:           50%;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color: transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                }
+            
+            }
+            .balloonPosition-T-Bottom {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Tablet * 0.5; 
+                        -webkit-transform:      translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                        -moz-transform:         translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                        -ms-transform:          translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                        transform:              translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+
+                    &:before {
+                            margin-left:    -@EntreColuna_Tablet / 2;
+                            margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:after  {
+                            margin-left:    -@EntreColuna_Tablet / 2;
+                            margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:            0;
+                        left:           50%;
+                        border-top:     0!important;
+                        transform:      scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+                }
+            }
+        }
+
+
+        @media (max-width:@Res_Tablet) {
+            .balloonPosition-M-Right {
+                .balloon;
+                & *{
+                    position: absolute;
+
+                        left: @EntreColuna_Mobile / 2;
+                        -webkit-transform:  translate(-@EntreColuna_Mobile) scaleX(0.001);
+                        -moz-transform:     translate(-@EntreColuna_Mobile) scaleX(0.001);
+                        -ms-transform:      translate(-@EntreColuna_Mobile) scaleX(0.001);
+                        transform:          translate(-@EntreColuna_Mobile) scaleX(0.001);
+
+                    &:before {
+                            margin-top:     -@EntreColuna_Mobile / 2;
+                            margin-left:    -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile + 1;
+                            left:           -@EntreColuna_Mobile;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Mobile / 2;
+                            margin-left:    -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                            left:           -@EntreColuna_Mobile + 1px;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        50%;
+                        border-left:0;
+                        transform:  scaleX(2);
+                        border-bottom-color:transparent !important;
+                        border-left-color:  transparent !important;
+                        border-top-color:   transparent !important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+
+
+            }
+            .balloonPosition-M-Top-Right {
+                .balloon;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+                
+                & *{
+                    position:           absolute;
+                    margin-bottom:      0px!important;
+                    right:              0px;
+                    left:               auto;
+
+                    bottom:             @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Mobile) scaleY(0.001);
+
+                    &:before {
+                            right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-bottom:  -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+
+                    &:after  {
+                            right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-bottom:  -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:                 0;
+                        border-bottom:          0!important;
+                        transform:              scaleY(2);
+                        border-bottom-color:    transparent!important;
+                        border-left-color:      transparent!important;
+                        border-right-color:     transparent!important;
+
+                        content:                '';
+                        position:               absolute;
+                        width:                  0;
+                        height:                 0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-M-Bottom-Right {
+                .balloon;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & *{
+                    position:   absolute;
+                    margin-top: 0px!important;
+                    right:  0px;
+                    left:   auto;
+
+                    top: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+
+
+                    &:before {
+                        right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:     -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:after  {
+                        right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-M-Left {
+                .balloon;
+                position:           absolute;
+
+                & * {
+                    position: absolute;
+
+                        right: @EntreColuna_Mobile / 2;
+                        -webkit-transform:      translate(@EntreColuna_Mobile) scaleX(0.001);
+                        -moz-transform:         translate(@EntreColuna_Mobile) scaleX(0.001);
+                        -ms-transform:          translate(@EntreColuna_Mobile) scaleX(0.001);
+                        transform:              translate(@EntreColuna_Mobile) scaleX(0.001);
+
+
+                    &:before { 
+                            margin-top:     -@EntreColuna_Mobile / 2;
+                            margin-right:   -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile + 1;
+                            right:          -@EntreColuna_Mobile;
+                    }
+
+                    &:after {
+                            margin-top:     -@EntreColuna_Mobile / 2;
+                            margin-right:   -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                            right:          -@EntreColuna_Mobile + 1px;
+                    }
+
+
+                    &:before,
+                    &:after {
+                        top:            50%;
+                        border-right:   0;
+                        transform:      scaleX(2);
+                        border-bottom-color:    transparent!important;
+                        border-right-color:     transparent!important;
+                        border-top-color:       transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                
+                }
+            }
+            .balloonPosition-M-Top-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Mobile * 0.5;
+                        -webkit-transform:  translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                        -moz-transform:     translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                        -ms-transform:      translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                        transform:          translate(0,@EntreColuna_Mobile) scaleY(0.001);
+
+                    &:before {
+                            left: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-bottom: -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:after  {
+                            left: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-bottom: -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+            .balloonPosition-M-Bottom-Left {
+                .balloon;
+                position:           absolute;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Mobile * 0.5;
+                        -webkit-transform:      translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                        -moz-transform:         translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                        -ms-transform:          translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                        transform:              translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+
+
+                    &:before {
+                            left:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-top:    -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                
+                    &:after  {
+                            left:           @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                            margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:        0;
+                        border-top: 0!important;
+                        transform:  scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+
+                }
+            }
+            .balloonPosition-M-Top {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-start;
+                -webkit-align-items:flex-end;
+                -ms-flex-item-align:end;
+                align-items:        flex-end;
+
+                & * {
+                    position:       absolute;
+                    margin-bottom:  0px!important;
+
+                        bottom: @EntreColuna_Mobile * 0.5;
+                        -webkit-transform:      translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                        -moz-transform:         translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                        -ms-transform:          translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                        transform:              translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+
+                    &:before {
+                            margin-left: -@EntreColuna_Mobile / 2;
+                            margin-bottom: -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:after  {
+                            margin-left: -@EntreColuna_Mobile / 2;
+                            margin-bottom: -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        bottom:         0;
+                        left:           50%;
+                        border-bottom:  0!important;
+                        transform:      scaleY(2);
+                        border-bottom-color: transparent!important;
+                        border-left-color: transparent!important;
+                        border-right-color: transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            
+            }
+            .balloonPosition-M-Bottom {
+                .balloon;
+                position:           absolute;
+                left:               50%;
+                align-self:         flex-end;
+                -webkit-align-items:flex-start;
+                -ms-flex-item-align:start;
+                align-items:        flex-start;
+
+                & * {
+                    position:   absolute;
+                    margin-top: 0px!important;
+
+                        top: @EntreColuna_Mobile * 0.5;
+                        -webkit-transform:      translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                        -moz-transform:         translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                        -ms-transform:          translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                        transform:              translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+
+                    &:before {
+                            margin-left:    -@EntreColuna_Mobile / 2;
+                            margin-top:     -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:after  {
+                            margin-left:    -@EntreColuna_Mobile / 2;
+                            margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+
+                    &:before,
+                    &:after {
+                        top:            0;
+                        left:           50%;
+                        border-top:     0!important;
+                        transform:      scaleY(2);
+                        border-left-color:  transparent!important;
+                        border-right-color: transparent!important;
+                        border-top-color:   transparent!important;
+
+                        content:    '';
+                        position:   absolute;
+                        width:      0;
+                        height:     0;
+
+                            border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+        }
+
+        .balloonPosition-All-Right {
+            .balloon;
+            & *{
+                position: absolute;
+
+                @media (min-width: @Res_Desktop) {
+                    left: @EntreColuna_Desktop / 2;
+                    -webkit-transform:  translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    -moz-transform:     translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    -ms-transform:      translate(-@EntreColuna_Desktop) scaleX(0.001);
+                    transform:          translate(-@EntreColuna_Desktop) scaleX(0.001);
+                }
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    left: @EntreColuna_Tablet / 2;
+                    -webkit-transform:  translate(-@EntreColuna_Tablet) scaleX(0.001);
+                    -moz-transform:     translate(-@EntreColuna_Tablet) scaleX(0.001);
+                    -ms-transform:      translate(-@EntreColuna_Tablet) scaleX(0.001);
+                    transform:          translate(-@EntreColuna_Tablet) scaleX(0.001);
+                }
+                @media (max-width:@Res_Tablet) {
+                    left: @EntreColuna_Mobile / 2;
+                    -webkit-transform:  translate(-@EntreColuna_Mobile) scaleX(0.001);
+                    -moz-transform:     translate(-@EntreColuna_Mobile) scaleX(0.001);
+                    -ms-transform:      translate(-@EntreColuna_Mobile) scaleX(0.001);
+                    transform:          translate(-@EntreColuna_Mobile) scaleX(0.001);
+                }
+
+                &:before {
+                    
+
+                    @media (min-width: @Res_Desktop) {
+                        margin-top:     -@EntreColuna_Desktop / 2;
+                        margin-left:    -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop + 1;
+                        left:           -@EntreColuna_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-top:     -@EntreColuna_Tablet / 2;
+                        margin-left:    -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet + 1;
+                        left:           -@EntreColuna_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-top:     -@EntreColuna_Mobile / 2;
+                        margin-left:    -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile + 1;
+                        left:           -@EntreColuna_Mobile;
+                    }
+                }
+
+                &:after {
+                    @media (min-width: @Res_Desktop) {
+                        margin-top:     -@EntreColuna_Desktop / 2;
+                        margin-left:    -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                        left:           -@EntreColuna_Desktop + 1px;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-top:     -@EntreColuna_Tablet / 2;
+                        margin-left:    -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                        left:           -@EntreColuna_Tablet + 1px;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-top:     -@EntreColuna_Mobile / 2;
+                        margin-left:    -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                        left:           -@EntreColuna_Mobile + 1px;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    top:        50%;
+                    border-left:0;
+                    transform:  scaleX(2);
+                    border-bottom-color:transparent !important;
+                    border-left-color:  transparent !important;
+                    border-top-color:   transparent !important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+
+
+        }
+        .balloonPosition-All-Top-Right {
+            .balloon;
+            align-self:         flex-start;
+            -webkit-align-items:flex-end;
+            -ms-flex-item-align:end;
+            align-items:        flex-end;
+
+            & *{
+                position:       absolute;
+                margin-bottom:  0px!important;
+                right:  0px;
+                left:   auto;
+
+                @media (min-width: @Res_Desktop) {
+                    bottom: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    bottom: @EntreColuna_Tablet * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    bottom: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+                &:before {
+                    @media (min-width: @Res_Desktop) {
+                        right: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        right: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        right: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-bottom: -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        right: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        right: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        right: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-bottom: -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    bottom:         0;
+                    border-bottom:  0!important;
+                    transform:      scaleY(2);
+                    border-bottom-color:    transparent!important;
+                    border-left-color:      transparent!important;
+                    border-right-color:     transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+        }
+        .balloonPosition-All-Bottom-Right {
+            .balloon;
+            align-self:         flex-end;
+            -webkit-align-items:flex-start;
+            -ms-flex-item-align:start;
+            align-items:        flex-start;
+
+            & *{
+                position:   absolute;
+                margin-top: 0px!important;
+                right:  0px;
+                left:   auto;
+
+                @media (min-width: @Res_Desktop) {
+                    top: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    top: @EntreColuna_Tablet * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    top: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+                &:before {
+                    @media (min-width: @Res_Desktop) {
+                        right:          @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        right:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:     -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        right:          @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        right:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        right:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    top:        0;
+                    border-top: 0!important;
+                    transform:  scaleY(2);
+                    border-left-color:  transparent!important;
+                    border-right-color: transparent!important;
+                    border-top-color:   transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+
+            }
+        }
+        .balloonPosition-All-Left {
+            .balloon;
+            position:           absolute;
+
+            & * {
+                position: absolute;
+
+                @media (min-width: @Res_Desktop) {
+                    right: @EntreColuna_Desktop / 2;
+                    -webkit-transform:      translate(@EntreColuna_Desktop) scaleX(0.001);
+                    -moz-transform:         translate(@EntreColuna_Desktop) scaleX(0.001);
+                    -ms-transform:          translate(@EntreColuna_Desktop) scaleX(0.001);
+                    transform:              translate(@EntreColuna_Desktop) scaleX(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    right: @EntreColuna_Tablet / 2;
+                    -webkit-transform:      translate(@EntreColuna_Tablet) scaleX(0.001);
+                    -moz-transform:         translate(@EntreColuna_Tablet) scaleX(0.001);
+                    -ms-transform:          translate(@EntreColuna_Tablet) scaleX(0.001);
+                    transform:              translate(@EntreColuna_Tablet) scaleX(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    right: @EntreColuna_Mobile / 2;
+                    -webkit-transform:      translate(@EntreColuna_Mobile) scaleX(0.001);
+                    -moz-transform:         translate(@EntreColuna_Mobile) scaleX(0.001);
+                    -ms-transform:          translate(@EntreColuna_Mobile) scaleX(0.001);
+                    transform:              translate(@EntreColuna_Mobile) scaleX(0.001);
+                }
+
+                
+
+
+                &:before { 
+                    
+                    
+
+                    @media (min-width: @Res_Desktop) {
+                        margin-top:     -@EntreColuna_Desktop / 2;
+                        margin-right:   -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop + 1;
+                        right:          -@EntreColuna_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+
+                        margin-top:     -@EntreColuna_Tablet / 2;
+                        margin-right:   -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet + 1;
+                        right:          -@EntreColuna_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+
+                        margin-top:     -@EntreColuna_Mobile / 2;
+                        margin-right:   -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile + 1;
+                        right:          -@EntreColuna_Mobile;
+                    }
+                }
+
+                &:after {
+                    @media (min-width: @Res_Desktop) {
+                        margin-top:     -@EntreColuna_Desktop / 2;
+                        margin-right:   -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                        right:          -@EntreColuna_Desktop + 1px;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-top:     -@EntreColuna_Tablet / 2;
+                        margin-right:   -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                        right:          -@EntreColuna_Tablet + 1px;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-top:     -@EntreColuna_Mobile / 2;
+                        margin-right:   -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                        right:          -@EntreColuna_Mobile + 1px;
+                    }
+                }
+
+
+                &:before,
+                &:after {
+                    top:            50%;
+                    border-right:   0;
+                    transform:      scaleX(2);
+                    border-bottom-color:    transparent!important;
+                    border-right-color:     transparent!important;
+                    border-top-color:       transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+                
+            }
+        }
+        .balloonPosition-All-Top-Left {
+            .balloon;
+            position:           absolute;
+            align-self:         flex-start;
+            -webkit-align-items:flex-end;
+            -ms-flex-item-align:end;
+            align-items:        flex-end;
+
+            & * {
+                position:       absolute;
+                margin-bottom:  0px!important;
+
+                @media (min-width: @Res_Desktop) {
+                    bottom: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Desktop) scaleY(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    bottom: @EntreColuna_Tablet * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Tablet) scaleY(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    bottom: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:  translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:     translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:      translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                    transform:          translate(0,@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+                &:before {
+                    @media (min-width: @Res_Desktop) {
+                        left: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        left: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        left: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-bottom: -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        left: @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        left: @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        left: @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-bottom: -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    bottom:         0;
+                    border-bottom:  0!important;
+                    transform:      scaleY(2);
+                    border-bottom-color: transparent!important;
+                    border-left-color:  transparent!important;
+                    border-right-color: transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+        }
+        .balloonPosition-All-Bottom-Left {
+            .balloon;
+            position:           absolute;
+            align-self:         flex-end;
+            -webkit-align-items:flex-start;
+            -ms-flex-item-align:start;
+            align-items:        flex-start;
+
+            & * {
+                position:   absolute;
+                margin-top: 0px!important;
+
+                @media (min-width: @Res_Desktop) {
+                    top: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Desktop) scaleY(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    top: @EntreColuna_Tablet * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Tablet) scaleY(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    top: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:      translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:         translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:          translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                    transform:              translate(0,-@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+                
+
+
+                &:before {
+                    @media (min-width: @Res_Desktop) {
+                        left:           @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        left:          @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        left:          @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:    -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+                
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        left:           @EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                        margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        left:           @EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                        margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        left:           @EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                        margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    top:        0;
+                    border-top: 0!important;
+                    transform:  scaleY(2);
+                    border-left-color:  transparent!important;
+                    border-right-color: transparent!important;
+                    border-top-color:   transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+
+            }
+        }
+        .balloonPosition-All-Top {
+            .balloon;
+            position:           absolute;
+            left:               50%;
+            align-self:         flex-start;
+            -webkit-align-items:flex-end;
+            -ms-flex-item-align:end;
+            align-items:        flex-end;
+
+            & * {
+                position:       absolute;
+                margin-bottom:  0px!important;
+
+                @media (min-width: @Res_Desktop) {
+                    bottom: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:      translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:         translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:          translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                    transform:              translate(-50%,@EntreColuna_Desktop) scaleY(0.001);
+                }
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    bottom: @EntreColuna_Tablet * 0.5;
+                    -webkit-transform:      translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:         translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:          translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                    transform:              translate(-50%,@EntreColuna_Tablet) scaleY(0.001);
+                }
+                @media (max-width:@Res_Tablet) {
+                    bottom: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:      translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:         translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:          translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                    transform:              translate(-50%,@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+                &:before {
+                    @media (min-width: @Res_Desktop) {
+                        margin-left: -@EntreColuna_Desktop / 2;
+                        margin-bottom: -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-left: -@EntreColuna_Tablet / 2;
+                        margin-bottom: -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-left: -@EntreColuna_Mobile / 2;
+                        margin-bottom: -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        margin-left: -@EntreColuna_Desktop / 2;
+                        margin-bottom: -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-left: -@EntreColuna_Tablet / 2;
+                        margin-bottom: -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-left: -@EntreColuna_Mobile / 2;
+                        margin-bottom: -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    bottom:         0;
+                    left:           50%;
+                    border-bottom:  0!important;
+                    transform:      scaleY(2);
+                    border-bottom-color: transparent!important;
+                    border-left-color: transparent!important;
+                    border-right-color: transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+            
+        }
+        .balloonPosition-All-Bottom {
+            .balloon;
+            position:           absolute;
+            left:               50%;
+            align-self:         flex-end;
+            -webkit-align-items:flex-start;
+            -ms-flex-item-align:start;
+            align-items:        flex-start;
+
+            & * {
+                position:   absolute;
+                margin-top: 0px!important;
+
+                @media (min-width: @Res_Desktop) {
+                    top: @EntreColuna_Desktop * 0.5;
+                    -webkit-transform:      translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                    -moz-transform:         translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                    -ms-transform:          translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                    transform:              translate(-50%,-@EntreColuna_Desktop) scaleY(0.001);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    top: @EntreColuna_Tablet * 0.5; 
+                    -webkit-transform:      translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                    -moz-transform:         translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                    -ms-transform:          translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                    transform:              translate(-50%,-@EntreColuna_Tablet) scaleY(0.001);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    top: @EntreColuna_Mobile * 0.5;
+                    -webkit-transform:      translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                    -moz-transform:         translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                    -ms-transform:          translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                    transform:              translate(-50%,-@EntreColuna_Mobile) scaleY(0.001);
+                }
+
+
+                
+
+                &:before {
+                   @media (min-width: @Res_Desktop) {
+                        margin-left:    -@EntreColuna_Desktop / 2;
+                        margin-top:     -@EntreColuna_Desktop - @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-left:    -@EntreColuna_Tablet / 2;
+                        margin-top:     -@EntreColuna_Tablet - @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-left:    -@EntreColuna_Mobile / 2;
+                        margin-top:     -@EntreColuna_Mobile - @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:after  {
+                    @media (min-width: @Res_Desktop) {
+                        margin-left:    -@EntreColuna_Desktop / 2;
+                        margin-top:     -@EntreColuna_Desktop + @EspessuraDaBordaMessageballoon_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        margin-left:    -@EntreColuna_Tablet / 2;
+                        margin-top:     -@EntreColuna_Tablet + @EspessuraDaBordaMessageballoon_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        margin-left:    -@EntreColuna_Mobile / 2;
+                        margin-top:     -@EntreColuna_Mobile + @EspessuraDaBordaMessageballoon_Mobile;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    top:            0;
+                    left:           50%;
+                    border-top:     0!important;
+                    transform:      scaleY(2);
+                    border-left-color:  transparent!important;
+                    border-right-color: transparent!important;
+                    border-top-color:   transparent!important;
+
+                    content:    '';
+                    position:   absolute;
+                    width:      0;
+                    height:     0;
+
+                    @media (min-width: @Res_Desktop) {
+                        border: @EntreColuna_Desktop / 2 solid transparent;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        border: @EntreColuna_Tablet / 2 solid transparent;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        border: @EntreColuna_Mobile / 2 solid transparent;
+                    }
+                }
+            }
+        }
+
+
+//DEFINIÇÕES DE TRANSICAO DE balloonS
+    //TRANSPARENCIA INICIAL E VELOCIDADE DA TRANSICAO
+        .balloonPosition-All-Right          *,.balloonPosition-D-Right        *,.balloonPosition-T-Right           *,.balloonPosition-M-Right           *,
+        .balloonPosition-All-Top-Right      *,.balloonPosition-D-Top-Right    *,.balloonPosition-T-Top-Right       *,.balloonPosition-M-Top-Right       *,
+        .balloonPosition-All-Bottom-Right   *,.balloonPosition-D-Bottom-Right *,.balloonPosition-T-Bottom-Right    *,.balloonPosition-M-Bottom-Right    *,
+        .balloonPosition-All-Left           *,.balloonPosition-D-Left         *,.balloonPosition-T-Left            *,.balloonPosition-M-Left            *,
+        .balloonPosition-All-Top-Left       *,.balloonPosition-D-Top-Left     *,.balloonPosition-T-Top-Left        *,.balloonPosition-M-Top-Left        *,
+        .balloonPosition-All-Bottom-Left    *,.balloonPosition-D-Bottom-Left  *,.balloonPosition-T-Bottom-Left     *,.balloonPosition-M-Bottom-Left     *,
+        .balloonPosition-All-Top            *,.balloonPosition-D-Top          *,.balloonPosition-T-Top             *,.balloonPosition-M-Top             *,
+        .balloonPosition-All-Bottom         *,.balloonPosition-D-Bottom       *,.balloonPosition-T-Bottom          *,.balloonPosition-M-Bottom          * {
+            filter:             alpha(opacity=0);
+            -ms-filter:         "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            -moz-opacity:       0;
+            -khtml-opacity:     0;
+            opacity:            0;
+
+            -webkit-transition: all 0.3s ease-in 0.1s;
+            -moz-transition:    all 0.3s ease-in 0.1s;
+            -ms-transition:     all 0.3s ease-in 0.1s;
+            -o-transition:      all 0.3s ease-in 0.1s;
+            transition:         all 0.3s ease-in 0.1s;
+        }
+
+
+
+    //ORIGEM DA TRANSICAO
+        @media (min-width: @Res_Desktop) {
+
+            .balloonPosition-All-Right,  .balloonPosition-D-Right{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   left;
+                    -ms-transform-origin:       left;
+                    -moz-transform-origin:      left;
+                    -o-transform-origin:        left;
+                    transform-origin:           left;
+                }
+            }
+        
+            .balloonPosition-All-Left,   .balloonPosition-D-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   right;
+                    -ms-transform-origin:       right;
+                    -moz-transform-origin:      right;
+                    -o-transform-origin:        right;
+                    transform-origin:           right;
+                }
+            }
+        
+            .balloonPosition-All-Top,        .balloonPosition-D-Top,
+            .balloonPosition-All-Top-Right,  .balloonPosition-D-Top-Right,
+            .balloonPosition-All-Top-Left,   .balloonPosition-D-Top-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   bottom;
+                    -ms-transform-origin:       bottom;
+                    -moz-transform-origin:      bottom;
+                    -o-transform-origin:        bottom;
+                    transform-origin:           bottom;
+                }
+            }
+        
+            .balloonPosition-All-Bottom,         .balloonPosition-D-Bottom,
+            .balloonPosition-All-Bottom-Right,   .balloonPosition-D-Bottom-Right,
+            .balloonPosition-All-Bottom-Left,    .balloonPosition-D-Bottom-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   top;
+                    -ms-transform-origin:       top;
+                    -moz-transform-origin:      top;
+                    -o-transform-origin:        top;
+                    transform-origin:           top;
+                }
+            }
+        }
+        
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            
+            .balloonPosition-All-Right, .balloonPosition-T-Right{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   left;
+                    -ms-transform-origin:       left;
+                    -moz-transform-origin:      left;
+                    -o-transform-origin:        left;
+                    transform-origin:           left;
+                }
+            }
+        
+            .balloonPosition-All-Left, .balloonPosition-T-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   right;
+                    -ms-transform-origin:       right;
+                    -moz-transform-origin:      right;
+                    -o-transform-origin:        right;
+                    transform-origin:           right;
+                }
+            }
+        
+            .balloonPosition-All-Top,        .balloonPosition-T-Top,
+            .balloonPosition-All-Top-Right,  .balloonPosition-T-Top-Right,
+            .balloonPosition-All-Top-Left,   .balloonPosition-T-Top-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   bottom;
+                    -ms-transform-origin:       bottom;
+                    -moz-transform-origin:      bottom;
+                    -o-transform-origin:        bottom;
+                    transform-origin:           bottom;
+                }
+            }
+        
+            .balloonPosition-All-Bottom,         .balloonPosition-T-Bottom,
+            .balloonPosition-All-Bottom-Right,   .balloonPosition-T-Bottom-Right,
+            .balloonPosition-All-Bottom-Left,    .balloonPosition-T-Bottom-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   top;
+                    -ms-transform-origin:       top;
+                    -moz-transform-origin:      top;
+                    -o-transform-origin:        top;
+                    transform-origin:           top;
+                }
+            }
+        }
+
+        @media (max-width:@Res_Tablet) {
+            .balloonPosition-All-Right,  .balloonPosition-M-Right{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   left;
+                    -ms-transform-origin:       left;
+                    -moz-transform-origin:      left;
+                    -o-transform-origin:        left;
+                    transform-origin:           left;
+                }
+            }
+        
+            .balloonPosition-All-Left,   .balloonPosition-M-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   right;
+                    -ms-transform-origin:       right;
+                    -moz-transform-origin:      right;
+                    -o-transform-origin:        right;
+                    transform-origin:           right;
+                }
+            }
+        
+            .balloonPosition-All-Top,        .balloonPosition-M-Top,
+            .balloonPosition-All-Top-Right,  .balloonPosition-M-Top-Right,
+            .balloonPosition-All-Top-Left,   .balloonPosition-M-Top-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   bottom;
+                    -ms-transform-origin:       bottom;
+                    -moz-transform-origin:      bottom;
+                    -o-transform-origin:        bottom;
+                    transform-origin:           bottom;
+                }
+            }
+        
+            .balloonPosition-All-Bottom,         .balloonPosition-M-Bottom,
+            .balloonPosition-All-Bottom-Right,   .balloonPosition-M-Bottom-Right,
+            .balloonPosition-All-Bottom-Left,    .balloonPosition-M-Bottom-Left{
+                & *,
+                & *:before,
+                & *:after{
+                    -webkit-transform-origin:   top;
+                    -ms-transform-origin:       top;
+                    -moz-transform-origin:      top;
+                    -o-transform-origin:        top;
+                    transform-origin:           top;
+                }
+            }
+        }
+
+    //TIPOS DE balloon
+
+    //balloon DE HELP
+    //DEFINIÇÕES ICONE DE HELP
+    .help-icon {
+        position:       relative;
+        font-weight:    normal;
+        color:          @CorFonteNavbar;
+        border-width:   2px;
+        border-style:   solid;
+        border-color:   @CorFonteNavbar;
+        font-family:    @FontFamilyPadrao;
+        cursor:                 help;
+        -webkit-align-items:    center;
+        -ms-flex-item-align:    center;
+        align-items:            center;
+        -webkit-justify-content:center;
+        justify-content:        center;
+        .gradiente(@CorPrimaria; @ProfundidadeCorGradiente:400%;);
+
+        @media (min-width:@Res_Desktop) {
+            margin-left:    (@EntreColuna_Desktop * 0.8) !important;
+            margin-right:   (@EntreColuna_Desktop * 0.8) !important;
+            border-radius:  (@AlturaLinhaNavbar_Desktop * 0.8);
+            width:          (@AlturaLinhaNavbar_Desktop * 0.5);
+            height:         (@AlturaLinhaNavbar_Desktop * 0.5);
+            font-size:      (@TamanhoPadraoTexto_Desktop * 0.8);
+            .sombreamento(Desktop);
+        }
+
+        @media (max-width:@Res_Desktop), or (hover: none) {
+            margin-left:    (@EntreColuna_Tablet * 0.8) !important;
+            margin-right:   (@EntreColuna_Tablet * 0.8) !important;
+            border-radius:  (@AlturaLinhaNavbar_Tablet * 0.8);
+            width:          (@AlturaLinhaNavbar_Tablet * 0.5);
+            height:         (@AlturaLinhaNavbar_Tablet * 0.5);
+            font-size:      (@TamanhoPadraoTexto_Tablet * 0.8);
+            .sombreamento(Tablet);
+        }
+
+        @media (max-width:@Res_Tablet) {
+            margin-left:    (@EntreColuna_Mobile * 0.8) !important;
+            margin-right:   (@EntreColuna_Mobile * 0.8) !important;
+            border-radius:  (@AlturaLinhaNavbar_Mobile * 0.8);
+            width:          (@AlturaLinhaNavbar_Mobile * 0.5);
+            height:         (@AlturaLinhaNavbar_Mobile * 0.5);
+            font-size:      (@TamanhoPadraoTexto_Mobile * 1.0);
+            .sombreamento(Mobile);
+        }
+
+
+        @media (min-width: @Res_Desktop) {
+            & > .balloonPosition-All-Right,      > .balloonPosition-D-Right,
+            > .balloonPosition-All-Top-Right,    > .balloonPosition-D-Top-Right,
+            > .balloonPosition-All-Bottom-Right, > .balloonPosition-D-Bottom-Right {
+                position:   absolute;
+                transform:  translate(@EntreColuna_Desktop + (@EntreColuna_Desktop / 2), 0px);
+            }
+
+            & > .balloonPosition-All-Left,       > .balloonPosition-D-Left,
+            > .balloonPosition-All-Top-Left,     > .balloonPosition-D-Top-Left,
+            > .balloonPosition-All-Bottom-Left,  > .balloonPosition-D-Bottom-Left {
+                position:   absolute;
+                transform:  translate(-@EntreColuna_Desktop - (@EntreColuna_Desktop / 2), 0px);
+            }
+        }
+
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            & > .balloonPosition-All-Right,      > .balloonPosition-T-Right,
+            > .balloonPosition-All-Top-Right,    > .balloonPosition-T-Top-Right,
+            > .balloonPosition-All-Bottom-Right, > .balloonPosition-T-Bottom-Right {
+                position:   absolute;
+                transform:  translate(@EntreColuna_Tablet + (@EntreColuna_Tablet / 2), 0px);
+            }
+
+            & > .balloonPosition-All-Left,       > .balloonPosition-T-Left,
+            > .balloonPosition-All-Top-Left,     > .balloonPosition-T-Top-Left,
+            > .balloonPosition-All-Bottom-Left,  > .balloonPosition-T-Bottom-Left {
+                position:   absolute;
+                transform:  translate(-@EntreColuna_Tablet - (@EntreColuna_Tablet / 2), 0px);
+            }
+        }
+
+        @media (max-width:@Res_Tablet) {
+            & > .balloonPosition-All-Right,      > .balloonPosition-M-Right,
+            > .balloonPosition-All-Top-Right,    > .balloonPosition-M-Top-Right,
+            > .balloonPosition-All-Bottom-Right, > .balloonPosition-M-Bottom-Right {
+                position:   absolute;
+                transform:  translate(@EntreColuna_Mobile + (@EntreColuna_Mobile / 2), 0px);
+            }
+
+            & > .balloonPosition-All-Left,       > .balloonPosition-M-Left,
+            > .balloonPosition-All-Top-Left,     > .balloonPosition-M-Top-Left,
+            > .balloonPosition-All-Bottom-Left,  > .balloonPosition-M-Bottom-Left {
+                position:   absolute;
+                transform:  translate(-@EntreColuna_Mobile - (@EntreColuna_Mobile / 2), 0px);
+            }
+        }
+    }
+
+    //DEFINIÇÕES DO balloon DE HELP
+    .balloonType-Help * {
+        border: solid;
+        font-family: @FontFamilyMessageballoonHelp;
+        font-weight: @FontWeightMessageballoonHelp;
+        .borderColor( @CorBordaMessageballoonHelp; @FadeCorBordaMessageballoonHelp; @SaturacaoCorBordaMessageballoonHelp; @DesaturacaoCorBordaMessageballoonHelp; @ClarificacaoCorBordaMessageballoonHelp; @ObscurecenciaCorBordaMessageballoonHelp;);
+        .backgroundColor( @CorFundoMessageballoonHelp; @FadeCorFundoMessageballoonHelp; @SaturacaoCorFundoMessageballoonHelp; @DesaturacaoCorFundoMessageballoonHelp; @ClarificacaoCorFundoMessageballoonHelp; @ObscurecenciaCorFundoMessageballoonHelp;);
+        .color( @CorFonteMessageballoonHelp; @FadeCorFonteMessageballoonHelp; @SaturacaoCorFonteMessageballoonHelp; @DesaturacaoCorFonteMessageballoonHelp; @ClarificacaoCorFonteMessageballoonHelp; @ObscurecenciaCorFonteMessageballoonHelp;);
+
+        @media (min-width: @Res_Desktop) {
+            border-radius: @RaioBordaMessageballoonHelp_Desktop;
+            padding: @PaddingTopMessageballoonHelp_Desktop @PaddingRightMessageballoonHelp_Desktop @PaddingBottomMessageballoonHelp_Desktop @PaddingLeftMessageballoonHelp_Desktop;
+            border-width: @EspessuraDaBordaMessageballoon_Desktop;
+            font-size: @TamanhoTextoHelp_Desktop * 0.8;
+            .sombreamento(Desktop);
+        }
+
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonHelp_Tablet;
+            padding: @PaddingTopMessageballoonHelp_Tablet @PaddingRightMessageballoonHelp_Tablet @PaddingBottomMessageballoonHelp_Tablet @PaddingLeftMessageballoonHelp_Tablet;
+            border-width: @EspessuraDaBordaMessageballoon_Tablet;
+            font-size: @TamanhoTextoHelp_Tablet * 0.8;
+            .sombreamento(Tablet);
+        }
+
+        @media (max-width:@Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonHelp_Mobile;
+            padding: @PaddingTopMessageballoonHelp_Mobile @PaddingRightMessageballoonHelp_Mobile @PaddingBottomMessageballoonHelp_Mobile @PaddingLeftMessageballoonHelp_Mobile;
+            border-width: @EspessuraDaBordaMessageballoon_Mobile;
+            font-size: @TamanhoTextoHelp_Mobile * 0.8;
+            .sombreamento(Mobile);
+        }
+
+        &:before {
+            .borderColor( @CorBordaMessageballoonHelp; @FadeCorBordaMessageballoonHelp; @SaturacaoCorBordaMessageballoonHelp; @DesaturacaoCorBordaMessageballoonHelp; @ClarificacaoCorBordaMessageballoonHelp; @ObscurecenciaCorBordaMessageballoonHelp;);
+        }
+
+        &:after {
+            .borderColor( @CorFundoMessageballoonHelp; @FadeCorFundoMessageballoonHelp; @SaturacaoCorFundoMessageballoonHelp; @DesaturacaoCorFundoMessageballoonHelp; @ClarificacaoCorFundoMessageballoonHelp; @ObscurecenciaCorFundoMessageballoonHelp;);
+        }
+    }
+
+    //balloon DE ATENCAO
+    //DEFINIÇÕES ICONE DE ATENCAO
+
+    .balloonType-Atencao * {
+        border: solid;
+        font-family: @FontFamilyMessageballoonAtencao;
+        font-weight: @FontWeightMessageballoonAtencao;
+        .borderColor( @CorBordaMessageballoonAtencao; @FadeCorBordaMessageballoonAtencao; @SaturacaoCorBordaMessageballoonAtencao; @DesaturacaoCorBordaMessageballoonAtencao; @ClarificacaoCorBordaMessageballoonAtencao; @ObscurecenciaCorBordaMessageballoonAtencao;);
+        .backgroundColor( @CorFundoMessageballoonAtencao; @FadeCorFundoMessageballoonAtencao; @SaturacaoCorFundoMessageballoonAtencao; @DesaturacaoCorFundoMessageballoonAtencao; @ClarificacaoCorFundoMessageballoonAtencao; @ObscurecenciaCorFundoMessageballoonAtencao;);
+        .color( @CorFonteMessageballoonAtencao; @FadeCorFonteMessageballoonAtencao; @SaturacaoCorFonteMessageballoonAtencao; @DesaturacaoCorFonteMessageballoonAtencao; @ClarificacaoCorFonteMessageballoonAtencao; @ObscurecenciaCorFonteMessageballoonAtencao;);
+
+        @media (min-width: @Res_Desktop) {
+            border-radius: @RaioBordaMessageballoonAtencao_Desktop;
+            padding: @PaddingTopMessageballoonAtencao_Desktop @PaddingRightMessageballoonAtencao_Desktop @PaddingBottomMessageballoonAtencao_Desktop @PaddingLeftMessageballoonAtencao_Desktop;
+            border-width: @EspessuraDaBordaMessageballoon_Desktop;
+            font-size: @TamanhoTextoAtencao_Desktop;
+        }
+
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonAtencao_Tablet;
+            padding: @PaddingTopMessageballoonAtencao_Tablet @PaddingRightMessageballoonAtencao_Tablet @PaddingBottomMessageballoonAtencao_Tablet @PaddingLeftMessageballoonAtencao_Tablet;
+            border-width: @EspessuraDaBordaMessageballoon_Tablet;
+            font-size: @TamanhoTextoAtencao_Tablet;
+        }
+
+        @media (max-width:@Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonAtencao_Mobile;
+            padding: @PaddingTopMessageballoonAtencao_Mobile @PaddingRightMessageballoonAtencao_Mobile @PaddingBottomMessageballoonAtencao_Mobile @PaddingLeftMessageballoonAtencao_Mobile;
+            border-width: @EspessuraDaBordaMessageballoon_Mobile;
+            font-size: @TamanhoTextoAtencao_Mobile;
+        }
+    }
+
+    .balloonType-Atencao *:before {
+        .borderColor( @CorBordaMessageballoonAtencao; @FadeCorBordaMessageballoonAtencao; @SaturacaoCorBordaMessageballoonAtencao; @DesaturacaoCorBordaMessageballoonAtencao; @ClarificacaoCorBordaMessageballoonAtencao; @ObscurecenciaCorBordaMessageballoonAtencao;);
+    }
+
+    .balloonType-Atencao *:after {
+        .borderColor( @CorFundoMessageballoonAtencao; @FadeCorFundoMessageballoonAtencao; @SaturacaoCorFundoMessageballoonAtencao; @DesaturacaoCorFundoMessageballoonAtencao; @ClarificacaoCorFundoMessageballoonAtencao; @ObscurecenciaCorFundoMessageballoonAtencao;);
+    }
+
+    //balloon DE ERRO
+    //DEFINIÇÕES ICONE DE ERRO
+
+    .balloonType-Erro * {
+        border: solid;
+        font-family: @FontFamilyMessageballoonErro;
+        font-weight: @FontWeightMessageballoonErro;
+        .borderColor( @CorBordaMessageballoonErro; @FadeCorBordaMessageballoonErro; @SaturacaoCorBordaMessageballoonErro; @DesaturacaoCorBordaMessageballoonErro; @ClarificacaoCorBordaMessageballoonErro; @ObscurecenciaCorBordaMessageballoonErro;);
+        .backgroundColor( @CorFundoMessageballoonErro; @FadeCorFundoMessageballoonErro; @SaturacaoCorFundoMessageballoonErro; @DesaturacaoCorFundoMessageballoonErro; @ClarificacaoCorFundoMessageballoonErro; @ObscurecenciaCorFundoMessageballoonErro;);
+        .color( @CorFonteMessageballoonErro; @FadeCorFonteMessageballoonErro; @SaturacaoCorFonteMessageballoonErro; @DesaturacaoCorFonteMessageballoonErro; @ClarificacaoCorFonteMessageballoonErro; @ObscurecenciaCorFonteMessageballoonErro;);
+
+        @media (min-width: @Res_Desktop) {
+            border-radius: @RaioBordaMessageballoonErro_Desktop;
+            padding: @PaddingTopMessageballoonErro_Desktop @PaddingRightMessageballoonErro_Desktop @PaddingBottomMessageballoonErro_Desktop @PaddingLeftMessageballoonErro_Desktop;
+            border-width: @EspessuraDaBordaMessageballoon_Desktop;
+            font-size: @TamanhoTextoErro_Desktop;
+        }
+
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonErro_Tablet;
+            padding: @PaddingTopMessageballoonErro_Tablet @PaddingRightMessageballoonErro_Tablet @PaddingBottomMessageballoonErro_Tablet @PaddingLeftMessageballoonErro_Tablet;
+            border-width: @EspessuraDaBordaMessageballoon_Tablet;
+            font-size: @TamanhoTextoErro_Tablet;
+        }
+
+        @media (max-width:@Res_Tablet) {
+            border-radius: @RaioBordaMessageballoonErro_Mobile;
+            padding: @PaddingTopMessageballoonErro_Mobile @PaddingRightMessageballoonErro_Mobile @PaddingBottomMessageballoonErro_Mobile @PaddingLeftMessageballoonErro_Mobile;
+            border-width: @EspessuraDaBordaMessageballoon_Mobile;
+            font-size: @TamanhoTextoErro_Mobile;
+        }
+    }
+
+    .balloonType-Erro *:before {
+        .borderColor( @CorBordaMessageballoonErro; @FadeCorBordaMessageballoonErro; @SaturacaoCorBordaMessageballoonErro; @DesaturacaoCorBordaMessageballoonErro; @ClarificacaoCorBordaMessageballoonErro; @ObscurecenciaCorBordaMessageballoonErro;);
+    }
+
+    .balloonType-Erro *:after {
+        .borderColor( @CorFundoMessageballoonErro; @FadeCorFundoMessageballoonErro; @SaturacaoCorFundoMessageballoonErro; @DesaturacaoCorFundoMessageballoonErro; @ClarificacaoCorFundoMessageballoonErro; @ObscurecenciaCorFundoMessageballoonErro;);
+    }
+
+
+    //INTERAÇÕES balloonS
+    .balloonTrigger:hover ~ .balloonType-Help,
+    .balloonTrigger:hover > .balloonType-Help,
+    .balloonTrigger:focus ~ .balloonType-Help,
+    .balloonTrigger:focus ~ .balloonType-Atencao,
+    .balloonTrigger:focus ~ .balloonType-Erro,
+    .balloonStatus-Ativo {
+
+        & * {
+            -webkit-transform:  translate(0,0);
+            -moz-transform:     translate(0,0);
+            -ms-transform:      translate(0,0);
+            transform:          translate(0,0);
+            filter:             alpha(opacity=95);
+            -ms-filter:         "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+            -moz-opacity:       0.95;
+            -khtml-opacity:     0.95;
+            opacity:            0.95;
+        }
+
+        &.balloonPosition-All-Top *,
+        &.balloonPosition-D-Top *,
+        &.balloonPosition-T-Top *,
+        &.balloonPosition-M-Top *,
+        &.balloonPosition-All-Bottom *,
+        &.balloonPosition-D-Bottom *,
+        &.balloonPosition-T-Bottom *,
+        &.balloonPosition-M-Bottom *{
+            -webkit-transform:  translate(-50%,0) scaleY(1);
+            -moz-transform:     translate(-50%,0) scaleY(1);
+            -ms-transform:      translate(-50%,0) scaleY(1);
+            transform:          translate(-50%,0) scaleY(1);
+        }
+    }
+
+
+
+
+ 

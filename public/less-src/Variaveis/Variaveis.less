@@ -1,0 +1,486 @@
+﻿//BREAKPOINTS
+    @Res_Tablet:                    768px;
+    @Res_Desktop:                   992px;
+
+
+//GRID
+    @SlotsOrdenadores:              30;
+    //DESKTOP
+        @NumeroDecolunas_Desktop:   18;
+        @EntreColuna_Desktop:       12px;
+        @ScrollBar_Desktop:         20px;
+    
+    //TABLET
+        @NumeroDecolunas_Tablet:    12;
+        @EntreColuna_Tablet:        10px;
+        @ScrollBar_Tablet:          20px;
+
+    //MOBILE
+        @NumeroDecolunas_Mobile:    6;
+        @EntreColuna_Mobile:        8px;
+        @ScrollBar_Mobile:          1px;
+
+    //LINHAS
+        @AlturaLinhaPadrao_Mobile:  36px;
+        @AlturaLinhaPadrao_Tablet:  40px;
+        @AlturaLinhaPadrao_Desktop: 46px;
+
+//PADROES
+    //PADDING
+        @PaddingTop_Desktop:        4px;
+        @PaddingRight_Desktop:      6px;
+        @PaddingBottom_Desktop:     4px;
+        @PaddingLeft_Desktop:       6px;
+
+        @PaddingTop_Tablet:         3px;
+        @PaddingRight_Tablet:       5px;
+        @PaddingBottom_Tablet:      3px;
+        @PaddingLeft_Tablet:        5px;
+
+        @PaddingTop_Mobile:         1px;
+        @PaddingRight_Mobile:       4px;
+        @PaddingBottom_Mobile:      1px;
+        @PaddingLeft_Mobile:        4px;
+
+    //BORDAS
+        @PercentualFadeDaBorda_Padrao:          100%;
+        @PercentualSaturacaoDaBorda_Padrao:     0%;
+        @PercentualDesaturacaoDaBorda_Padrao:   0%;
+        @PercentualClarificacaoDaBorda_Padrao:  0%;
+        @PercentualObscurecenciaDaBorda_Padrao: 0%;
+        @EstiloDaBorda_Padrao:                  solid;
+        
+        @RaioBordaEsquerdaSuperior_Desktop:     5px;
+        @RaioBordaDireitaSuperior_Desktop:      5px;
+        @RaioBordaDireitaInferior_Desktop:      5px;
+        @RaioBordaEsquerdaInferior_Desktop:     5px;
+        @EspessuraDaBorda_Desktop:              1px;
+        
+        @RaioBordaEsquerdaSuperior_Tablet:      4px;
+        @RaioBordaDireitaSuperior_Tablet:       4px;
+        @RaioBordaDireitaInferior_Tablet:       4px;
+        @RaioBordaEsquerdaInferior_Tablet:      4px;
+        @EspessuraDaBorda_Tablet:               1px;
+
+        @RaioBordaEsquerdaSuperior_Mobile:      3px;
+        @RaioBordaDireitaSuperior_Mobile:       3px;
+        @RaioBordaDireitaInferior_Mobile:       3px;
+        @RaioBordaEsquerdaInferior_Mobile:      3px;
+        @EspessuraDaBorda_Mobile:               1px;
+
+//FONTES
+    @FontFamilyPadrao: Raleway, sans-serif, Arial, Helvetica;
+    @FontWeightPadrao: normal;
+
+    @TamanhoPadraoTexto_Desktop:    16px;
+    @TamanhoPadraoTexto_Tablet:     14px;
+    @TamanhoPadraoTexto_Mobile:     12px;
+
+//CORES
+    //CORES BASICAS
+        @Preto:                     rgb(0,0,0);
+        @Branco:                    rgb(255,255,255);
+
+    //PALETA DE CORES
+        @CorPrimaria:               rgb( 0,188,212);
+        /*@CorPrimaria:               rgb( 51, 178, 204);*/
+        /*@CorSecundaria:             rgb( 255,127,80);*/
+        @CorSecundaria:             rgb( 135,35,0);
+        
+        /*@CorSecundaria:             rgb( 140, 18, 18);*/
+        @CorTercearia:              rgb(204, 204, 204);
+
+        @CorAtencao:                rgb(251, 140,   0);
+        @CorNegacao:                rgb(204,  77,  51);
+        @CorPositivacao:            rgb( 51, 204, 154);
+
+    //EFEITOS DE CORES
+        @PercentualFade_Padrao:             100%;
+        @PercentualSaturacao_Padrao:        0%;
+        @PercentualDesaturacao_Padrao:      0%;
+        @PercentualClarificacao_Padrao:     0%;
+        @PercentualObscurecencia_Padrao:    0%;
+
+        //GRADIENTE
+            @CorGradiente:                              rgb(51, 51, 51);
+            @PercentualFadeGradiente_Padrao:            100%;
+            @PercentualSaturacaoGradiente_Padrao:       0%;
+            @PercentualDesaturacaoGradiente_Padrao:     0%;
+            @PercentualClarificacaoGradiente_Padrao:    0%;
+            @PercentualObscurecenciaGradiente_Padrao:   0%;
+            @ProfundidadeCorGradiente_Padrao:           170%;
+
+        //PATTERN
+             @AnguloPattern_Padrao: 45deg;
+             @Faixa1Pattern_Padrao: 4px;
+             @Faixa2Pattern_Padrao: 4px;
+
+    //CORES DAS FONTES        
+        @CorFontePadrao:    rgb(0,0,0);
+
+    //SOMBREAMENTO
+        @CorSombreamento_Padrao:                        @Preto;
+        @PercentualFadeDoSombreamento_Padrao:           50%;
+        @PercentualSaturacaoDoSombreamento_Padrao:      0%;
+        @PercentualDesaturacaoDoSombreamento_Padrao:    0%;
+        @PercentualClarificacaoDoSombreamento_Padrao:   0%;
+        @PercentualObscurecenciaDoSombreamento_Padrao:  0%;
+    
+        
+        @SombraHorizontal_Desktop:                      2px;
+        @SombraVertical_Desktop:                        2px;
+        @BlurSombra_Desktop:                            3px;
+        @SpreadSombra_Desktop:                          0px;
+        @MarginBottomSombra_Desktop:                    5px;
+
+        @SombraHorizontal_Tablet:                       1px;
+        @SombraVertical_Tablet:                         1px;
+        @BlurSombra_Tablet:                             2px;
+        @SpreadSombra_Tablet:                           0px;
+        @MarginBottomSombra_Tablet:                     4px;
+
+        @SombraHorizontal_Mobile:                       1px;
+        @SombraVertical_Mobile:                         1px;
+        @BlurSombra_Mobile:                             1px;
+        @SpreadSombra_Mobile:                           0px;
+        @MarginBottomSombra_Mobile:                     3px;
+
+    //COR DAS BORDAS
+        @CorDaBorda_Padrao: @Preto;
+
+//NAVBAR
+    //LINHAS NAVBAR
+        @AlturaLinhaNavbar_Desktop: 48px;
+        @AlturaLinhaNavbar_Tablet:  42px;
+        @AlturaLinhaNavbar_Mobile:  36px;
+
+    //MARGENS NAVBAR
+        @MargemSuperiorNavbar_Desktop:10px;
+        @MargemSuperiorNavbar_Tablet: 8px;
+        @MargemSuperiorNavbar_Mobile: 0px;
+
+        @MargemInferiorNavbar_Desktop:12px;
+        @MargemInferiorNavbar_Tablet: 10px;
+        @MargemInferiorNavbar_Mobile: 3px;
+
+    //FONTES NAVBAR
+        @FontFamilyNavbar:      Raleway, sans-serif, Arial, Helvetica;
+        @FontWeightNavbar:      bold;
+        @FontWeightNavbarSub:   normal;
+
+        @TamanhoTextoNavbar_Desktop:    20px;
+        @TamanhoTextoNavbar_Tablet:     18px;
+        @TamanhoTextoNavbar_Mobile:     16px;
+
+        @TamanhoTextoSubNavbar_Desktop: 16px;
+        @TamanhoTextoSubNavbar_Tablet:  14px;
+        @TamanhoTextoSubNavbar_Mobile:  12px;
+
+        @CorFonteNavbar: rgb(255, 255, 255);
+
+    //TRANSIÇÕES MENUS
+        @VelocidadeTransicaoItemMenu:   0.5s;
+        @TipoTransicaoItemMenu:         ease;
+    
+        //SUBMENU
+            @PaddingBottomSubmenu_Desktop:  5px;
+            @PaddingBottomSubmenu_Tablet:   4px;
+            @PaddingBottomSubmenu_Mobile:   0px;
+            
+
+        //MENUITEM
+            //PADDING MENUITEM
+                @PaddingTopMenuItem_Desktop:        0px;
+                @PaddingRightMenuItem_Desktop:      10px;
+                @PaddingBottomMenuItem_Desktop:     0px;
+                @PaddingLeftMenuItem_Desktop:       10px;
+
+                @PaddingTopMenuItem_Tablet:         0px;
+                @PaddingRightMenuItem_Tablet:       9px;
+                @PaddingBottomMenuItem_Tablet:      0px;
+                @PaddingLeftMenuItem_Tablet:        9px;
+
+                @PaddingTopMenuItem_Mobile:         0px;
+                @PaddingRightMenuItem_Mobile:       8px;
+                @PaddingBottomMenuItem_Mobile:      0px;
+                @PaddingLeftMenuItem_Mobile:        8px;
+
+                
+
+                @MinimaLinhatituloSubMenuItem_Desktop:  40px;
+                @MinimaLinhatituloSubMenuItem_Tablet:   35px;
+                @MinimaLinhatituloSubMenuItem_Mobile:   30px;
+
+            //ICONE MENUITEM
+                @CorIconeMenuitem: @CorFonteNavbar;
+
+                
+                @TamanhoIconeMenuitem_Desktop:  (@TamanhoTextoNavbar_Desktop - 3px);
+                @TamanhoIconeMenuitem_Tablet:   (@TamanhoTextoNavbar_Tablet - 2.5px);
+                @TamanhoIconeMenuitem_Mobile:   (@TamanhoTextoNavbar_Mobile - 2px);
+                
+
+    //MENU HAMBURGUER
+        //PADDING MENU HAMBURGUER
+            @PaddingTop_Hamburger:          0px;
+            @PaddingRight_Hamburger:        (@AlturaLinhaNavbar_Mobile / 6);
+            @PaddingBottom_Hamburger:       0px;
+            @PaddingLeft_Hamburger:         (@AlturaLinhaNavbar_Mobile / 6);
+        
+        //LINHAS MENU HAMBURGUER
+            @LinesHamburger_Height:         @AlturaLinhaNavbar_Mobile;
+            @LinesHamburger_Width:          ((@AlturaLinhaNavbar_Mobile / 3) * 2);
+            @LinesHamburger_Espessura:      (@AlturaLinhaNavbar_Mobile / 20);
+            @LinesHamburger_Espassamento:   (@AlturaLinhaNavbar_Mobile / 6);
+
+        //COR MENU HAMBURGUER
+            @PercentualObscurecencia_BotaoHamburger: 20%;
+
+    
+//FORMULARIOS
+    //ITENS DO FORM
+        //MARGIN ITENS DO FORM
+            @margemTop_ItemForm_Desktop:    3px;
+            @margemRight_ItemForm_Desktop:  0px;            
+            @margemBottom_ItemForm_Desktop: 3px;
+            @margemLeft_ItemForm_Desktop:   0px;    
+            
+            @margemTop_ItemForm_Tablet:     2px;
+            @margemRight_ItemForm_Tablet:   0px;
+            @margemBottom_ItemForm_Tablet:  2px;
+            @margemLeft_ItemForm_Tablet:    0px;
+            
+            @margemTop_ItemForm_Mobile:     1px;
+            @margemRight_ItemForm_Mobile:   0px;
+            @margemBottom_ItemForm_Mobile:  1px;
+            @margemLeft_ItemForm_Mobile:    0px;
+
+
+        //WIDTH ITENS DO FORM
+            @WidthItemForm_Desktop:     ~"calc(100% - (@{margemLeft_ItemForm_Desktop} + @{margemRight_ItemForm_Desktop}))";    
+            @WidthItemForm_Mobile:      ~"calc(100% - (@{margemLeft_ItemForm_Mobile} + @{margemRight_ItemForm_Mobile}))";
+            @WidthItemForm_Tablet:      ~"calc(100% - (@{margemLeft_ItemForm_Tablet} + @{margemRight_ItemForm_Tablet}))";
+            
+
+        //HEIGHT ITENS DO FORM
+            @HeightItemForm_Desktop:    (@AlturaLinhaPadrao_Desktop - (@margemTop_ItemForm_Desktop + @margemBottom_ItemForm_Desktop));
+            @HeightItemForm_Tablet:     (@AlturaLinhaPadrao_Tablet - (@margemTop_ItemForm_Tablet + @margemBottom_ItemForm_Tablet));
+            @HeightItemForm_Mobile:     (@AlturaLinhaPadrao_Mobile - (@margemTop_ItemForm_Mobile + @margemBottom_ItemForm_Mobile));
+        //INPUTS
+            //PADDING INPUT
+            @PaddingTopInput_Desktop:        0px;
+                @PaddingRightInput_Desktop:      @PaddingRight_Desktop;
+                @PaddingBottomInput_Desktop:     0px;
+                @PaddingLeftInput_Desktop:       @PaddingLeft_Desktop;    
+
+                @PaddingTopInput_Tablet:         0px;
+                @PaddingRightInput_Tablet:       @PaddingRight_Tablet;
+                @PaddingBottomInput_Tablet:      0px;
+                @PaddingLeftInput_Tablet:        @PaddingLeft_Tablet;
+
+                @PaddingTopInput_Mobile:         0px;
+                @PaddingRightInput_Mobile:       @PaddingRight_Mobile;
+                @PaddingBottomInput_Mobile:      0px;
+                @PaddingLeftInput_Mobile:        @PaddingLeft_Mobile;
+
+                //PADDING INPUT COM ICONE
+                    @PaddingTopInputIcone_Desktop:        0px;
+                    @PaddingRightInputIcone_Desktop:      @PaddingRightInput_Desktop;
+                    @PaddingBottomInputIcone_Desktop:     0px;
+                    @PaddingLeftInputIcone_Desktop:       (2 * @PaddingLeftInput_Desktop + @tamanhoIcone_Desktop);    
+
+                    @PaddingTopInputIcone_Tablet:         0px;
+                    @PaddingRightInputIcone_Tablet:       @PaddingRightInput_Tablet;
+                    @PaddingBottomInputIcone_Tablet:      0px;
+                    @PaddingLeftInputIcone_Tablet:        (2 * @PaddingLeftInput_Tablet + @tamanhoIcone_Desktop);
+
+                    @PaddingTopInputIcone_Mobile:         0px;
+                    @PaddingRightInputIcone_Mobile:       @PaddingRightInput_Mobile;
+                    @PaddingBottomInputIcone_Mobile:      0px;
+                    @PaddingLeftInputIcone_Mobile:        (2 * @PaddingLeftInput_Mobile + @tamanhoIcone_Desktop);
+
+
+        //ICONES
+            //TAMANHO
+                @tamanhoIcone_Desktop:  (@HeightItemForm_Desktop - ((@margemTop_ItemForm_Desktop + @margemBottom_ItemForm_Desktop + (@EspessuraDaBorda_Desktop * 2)) * 2));
+                @tamanhoIcone_Tablet:   (@HeightItemForm_Tablet - ((@margemTop_ItemForm_Tablet + @margemBottom_ItemForm_Tablet + (@EspessuraDaBorda_Tablet * 2)) * 2));    
+                @tamanhoIcone_Mobile:   (@HeightItemForm_Mobile - ((@margemTop_ItemForm_Mobile + @margemBottom_ItemForm_Mobile + (@EspessuraDaBorda_Mobile * 2)) * 2));
+            
+            //TOP POSITION ICONES NOS INPUTS 
+                @topIcone_Desktop:  (@AlturaLinhaPadrao_Desktop / 2 - @tamanhoIcone_Desktop / 2);
+                @topIcone_Tablet:   (@AlturaLinhaPadrao_Tablet / 2 - @tamanhoIcone_Tablet / 2);
+                @topIcone_Mobile:  (@AlturaLinhaPadrao_Mobile / 2 - @tamanhoIcone_Mobile / 2);
+
+
+//MESSAGE balloon
+    //ESPESSURA DA BORDA
+        @EspessuraDaBordaMessageballoon_Desktop:1px;
+        @EspessuraDaBordaMessageballoon_Tablet: 1px;
+        @EspessuraDaBordaMessageballoon_Mobile: 1px;
+
+
+
+    //MESSAGE-HELP
+        //BORDAS    
+            //BORDAS ARREDONDADAS
+                @RaioBordaMessageballoonHelp_Desktop:5px;    
+                @RaioBordaMessageballoonHelp_Tablet: 4px;
+                @RaioBordaMessageballoonHelp_Mobile: 3px;
+                
+
+        //PADDING
+            @PaddingTopMessageballoonHelp_Desktop:   4px;
+            @PaddingRightMessageballoonHelp_Desktop: 6px;
+            @PaddingBottomMessageballoonHelp_Desktop:4px;
+            @PaddingLeftMessageballoonHelp_Desktop:  6px;    
+        
+            @PaddingTopMessageballoonHelp_Tablet:    3px;
+            @PaddingRightMessageballoonHelp_Tablet:  5px;
+            @PaddingBottomMessageballoonHelp_Tablet: 3px;
+            @PaddingLeftMessageballoonHelp_Tablet:   5px;
+
+            @PaddingTopMessageballoonHelp_Mobile:    1px;
+            @PaddingRightMessageballoonHelp_Mobile:  4px;
+            @PaddingBottomMessageballoonHelp_Mobile: 1px;
+            @PaddingLeftMessageballoonHelp_Mobile:   4px;    
+
+        //CORES
+            @CorBordaMessageballoonHelp:             @Preto;
+            @FadeCorBordaMessageballoonHelp:         100%;
+            @SaturacaoCorBordaMessageballoonHelp:    0%;
+            @DesaturacaoCorBordaMessageballoonHelp:  0%;
+            @ClarificacaoCorBordaMessageballoonHelp: 30%;
+            @ObscurecenciaCorBordaMessageballoonHelp:0%;
+
+            @CorFundoMessageballoonHelp:             @CorTercearia;
+            @FadeCorFundoMessageballoonHelp:         99%;
+            @SaturacaoCorFundoMessageballoonHelp:    0%;
+            @DesaturacaoCorFundoMessageballoonHelp:  0%;
+            @ClarificacaoCorFundoMessageballoonHelp: 0%;
+            @ObscurecenciaCorFundoMessageballoonHelp:0%;
+
+            @CorFonteMessageballoonHelp:             @CorFontePadrao;
+            @FadeCorFonteMessageballoonHelp:         100%;
+            @SaturacaoCorFonteMessageballoonHelp:    0%;
+            @DesaturacaoCorFonteMessageballoonHelp:  0%;
+            @ClarificacaoCorFonteMessageballoonHelp: 30%;
+            @ObscurecenciaCorFonteMessageballoonHelp:0%;
+
+
+        //FONTE
+            @FontFamilyMessageballoonHelp:       @FontFamilyPadrao;
+            @FontWeightMessageballoonHelp:       @FontWeightPadrao;
+
+            @TamanhoTextoHelp_Desktop:          @TamanhoPadraoTexto_Desktop;
+            @TamanhoTextoHelp_Tablet:           @TamanhoPadraoTexto_Tablet;
+            @TamanhoTextoHelp_Mobile:           @TamanhoPadraoTexto_Mobile;
+
+
+    //MESSAGE-ATENCAO
+        //BORDAS    
+            //BORDAS ARREDONDADAS
+                @RaioBordaMessageballoonAtencao_Desktop:5px;    
+                @RaioBordaMessageballoonAtencao_Tablet: 4px;
+                @RaioBordaMessageballoonAtencao_Mobile: 3px;
+                
+
+        //PADDING
+            @PaddingTopMessageballoonAtencao_Desktop:   4px;
+            @PaddingRightMessageballoonAtencao_Desktop: 6px;
+            @PaddingBottomMessageballoonAtencao_Desktop:4px;
+            @PaddingLeftMessageballoonAtencao_Desktop:  6px;    
+        
+            @PaddingTopMessageballoonAtencao_Tablet:    3px;
+            @PaddingRightMessageballoonAtencao_Tablet:  5px;
+            @PaddingBottomMessageballoonAtencao_Tablet: 3px;
+            @PaddingLeftMessageballoonAtencao_Tablet:   5px;
+
+            @PaddingTopMessageballoonAtencao_Mobile:    1px;
+            @PaddingRightMessageballoonAtencao_Mobile:  4px;
+            @PaddingBottomMessageballoonAtencao_Mobile: 1px;
+            @PaddingLeftMessageballoonAtencao_Mobile:   4px;    
+
+        //CORES          
+            @CorBordaMessageballoonAtencao:             @Preto;
+            @FadeCorBordaMessageballoonAtencao:         100%;
+            @SaturacaoCorBordaMessageballoonAtencao:    0%;
+            @DesaturacaoCorBordaMessageballoonAtencao:  0%;
+            @ClarificacaoCorBordaMessageballoonAtencao: 0%;
+            @ObscurecenciaCorBordaMessageballoonAtencao:0%;
+
+            @CorFundoMessageballoonAtencao:             @CorAtencao;
+            @FadeCorFundoMessageballoonAtencao:         99%;
+            @SaturacaoCorFundoMessageballoonAtencao:    0%;
+            @DesaturacaoCorFundoMessageballoonAtencao:  0%;
+            @ClarificacaoCorFundoMessageballoonAtencao: 0%;
+            @ObscurecenciaCorFundoMessageballoonAtencao:0%;
+
+            @CorFonteMessageballoonAtencao:             @CorFontePadrao;
+            @FadeCorFonteMessageballoonAtencao:         100%;
+            @SaturacaoCorFonteMessageballoonAtencao:    0%;
+            @DesaturacaoCorFonteMessageballoonAtencao:  0%;
+            @ClarificacaoCorFonteMessageballoonAtencao: 0%;
+            @ObscurecenciaCorFonteMessageballoonAtencao:0%;
+
+        //FONTE
+            @FontFamilyMessageballoonAtencao:       @FontFamilyPadrao;
+            @FontWeightMessageballoonAtencao:       @FontWeightPadrao;
+
+            @TamanhoTextoAtencao_Desktop:          @TamanhoPadraoTexto_Desktop;
+            @TamanhoTextoAtencao_Tablet:           @TamanhoPadraoTexto_Tablet;
+            @TamanhoTextoAtencao_Mobile:           @TamanhoPadraoTexto_Mobile;
+
+    //MESSAGE-ERRO
+        //BORDAS    
+            //BORDAS ARREDONDADAS
+                @RaioBordaMessageballoonErro_Desktop:5px;    
+                @RaioBordaMessageballoonErro_Tablet: 4px;
+                @RaioBordaMessageballoonErro_Mobile: 3px;
+                
+
+        //PADDING
+            @PaddingTopMessageballoonErro_Desktop:   4px;
+            @PaddingRightMessageballoonErro_Desktop: 6px;
+            @PaddingBottomMessageballoonErro_Desktop:4px;
+            @PaddingLeftMessageballoonErro_Desktop:  6px;    
+        
+            @PaddingTopMessageballoonErro_Tablet:    3px;
+            @PaddingRightMessageballoonErro_Tablet:  5px;
+            @PaddingBottomMessageballoonErro_Tablet: 3px;
+            @PaddingLeftMessageballoonErro_Tablet:   5px;
+
+            @PaddingTopMessageballoonErro_Mobile:    1px;
+            @PaddingRightMessageballoonErro_Mobile:  4px;
+            @PaddingBottomMessageballoonErro_Mobile: 1px;
+            @PaddingLeftMessageballoonErro_Mobile:   4px;    
+
+        //CORES
+            @CorBordaMessageballoonErro:             @Preto;
+            @FadeCorBordaMessageballoonErro:         100%;
+            @SaturacaoCorBordaMessageballoonErro:    0%;
+            @DesaturacaoCorBordaMessageballoonErro:  0%;
+            @ClarificacaoCorBordaMessageballoonErro: 0%;
+            @ObscurecenciaCorBordaMessageballoonErro:0%;
+
+            @CorFundoMessageballoonErro:             @CorNegacao;
+            @FadeCorFundoMessageballoonErro:         99%;
+            @SaturacaoCorFundoMessageballoonErro:    0%;
+            @DesaturacaoCorFundoMessageballoonErro:  0%;
+            @ClarificacaoCorFundoMessageballoonErro: 0%;
+            @ObscurecenciaCorFundoMessageballoonErro:0%;
+
+            @CorFonteMessageballoonErro:             @CorFontePadrao;
+            @FadeCorFonteMessageballoonErro:         100%;
+            @SaturacaoCorFonteMessageballoonErro:    0%;
+            @DesaturacaoCorFonteMessageballoonErro:  0%;
+            @ClarificacaoCorFonteMessageballoonErro: 0%;
+            @ObscurecenciaCorFonteMessageballoonErro:0%;
+            
+
+        //FONTE
+            @FontFamilyMessageballoonErro:       @FontFamilyPadrao;
+            @FontWeightMessageballoonErro:       @FontWeightPadrao;
+
+            @TamanhoTextoErro_Desktop:          @TamanhoPadraoTexto_Desktop;
+            @TamanhoTextoErro_Tablet:           @TamanhoPadraoTexto_Tablet;
+            @TamanhoTextoErro_Mobile:           @TamanhoPadraoTexto_Mobile;

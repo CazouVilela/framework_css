@@ -1,0 +1,1167 @@
+﻿//NAVBAR
+//  INSTRUÇÕES DE USO
+    // CLASSES A SEREM APLICADAS NOS ELEMENTOS
+        //      Menu                  : Linha da grid container de toda a Menu
+        //      menusContainer          : Container para os menus
+        //      menu                    : Menu superior esquerdo
+        //      menuSecundario          : Menu secundário direito
+        //      subMenu                 : Bloco de SubMenu com efeito de Flyout (primário e secundário)
+
+        //      hamburgerCheckbox       : Checkbox para funcionamento do Hamburger
+        //      hamburgerDisplayButton  : Display do hamburger
+        //      hamburgerDisplayLines   : Linhas do Hamburger
+
+
+        //      menuItem                : Itens de menu ativos
+        //      menuItemInativo         : Itens de menu inativos
+        //      menuItemtitulo          : Itens de menu ativo mas NÃO CLICÁVEL
+
+        //      paginaAtual             : Item de menu destacado como página atual
+
+        //      subMenuItem             : Itens ativos do SubMenu
+        //      subMenuItemInativo      : Itens inativos do SubMenu
+//      subMenuItemtitulo       : Itens ativos do SubMenu NÃO CLICÁVEL.hamburgerDisplayButton
+
+    // ESTRUTURA DO HTML DA Menu
+
+    //  <div class="LinhaNoGrid Menu">
+    //      <input type="checkbox" class="HamburgerCheckbox" id="Hamburger1"/>
+    //      <div class="HamburgerDisplayButton">
+    //          <label for="Hamburger1" class="HamburgerDisplayLines">
+    //              <span></span>
+    //              <span></span>
+    //              <span></span>
+    //          </label>
+    //      </div>
+    //      <div class="menusContainer">
+    //          <XXX class="menu MenuSecundario L-XXXXX">
+    //              <YYY class="menuItem|MenuItemInativo|MenuItemtitulo PaginaAtual">
+    //                  <ZZZ class="subMenu">
+    //                      <AAA class="subMenuItem|subMenuItemInativo|subMenuItemtitulo">
+    //                      </AAA>
+    //                  </ZZZ>
+    //              </YYY>
+    //          </XXX>
+    //      </div>
+    //  </div>
+
+
+
+
+
+
+
+
+
+    //CHECKBOX OCULTOS (Controle estado do hamburger)
+                .hamburgerCheckbox{
+                    & when (@breakpoint = 'all') {
+                        display: none;
+                    }
+                }
+
+            //BOTÃO HAMBURGUER
+                    .hamburgerDisplayButton{
+                        & when (@breakpoint = 'Desktop') {
+                            &.show_D{
+                                position:   relative;
+                                height:     @AlturaLinhaMenu_Desktop;
+                                width:      @AlturaLinhaMenu_Desktop;
+                                .padding(HamburgerDesktop);
+                            }
+                        }
+
+                        & when (@breakpoint = 'Tablet') {
+                            &.show_T{
+                                position:   relative;
+                                height:     @AlturaLinhaMenu_Tablet;
+                                width:      @AlturaLinhaMenu_Tablet;
+                                .padding(HamburgerTablet);
+                            }
+                        }
+
+                        & when (@breakpoint = 'Mobile') {
+                            &.show_M{
+                                position:   relative;
+                                height:     @AlturaLinhaMenu_Mobile;
+                                width:      @AlturaLinhaMenu_Mobile;
+                                .padding(HamburgerMobile);
+                            }
+                        }
+                    }
+            
+                        .hamburgerDisplayButton_N1{
+                            & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                .backgroundColor(BotaoHamburger);
+                            }
+                        }
+
+
+                        .hamburgerDisplayButton_N2{
+                            & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                .backgroundColor(@CorPrimaria;100%; 0%;0%;0%;15%;);
+                                transform: scale(0.6);
+                            }
+                        }
+
+                        
+                        .hamburgerDisplayButton_N3{
+                            & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                .backgroundColor(@CorPrimaria;100%; 0%;0%;0%;10%;);
+                                transform: scale(0.5);
+                            }
+                        }
+
+                        .hamburgerDisplayButton_N4{
+                            & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                .backgroundColor(@CorPrimaria;100%; 0%;0%;5%;0%;);
+                                transform: scale(0.4);
+                            }
+                        }
+
+
+                        .hamburgerDisplayButton_N2,
+                        .hamburgerDisplayButton_N3,
+                        .hamburgerDisplayButton_N4,
+                        .semSubMenuDisplayButton_N2,
+                        .semSubMenuDisplayButton_N3,
+                        .semSubMenuDisplayButton_N4,
+                        .semSubMenuDisplayButton_Final{
+                            & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                order:      1;  
+                                
+                                
+                                
+                                    & when (@breakpoint = 'Tablet') {
+                                        border-radius:  @RaioBordaEsquerdaSuperior_Tablet @RaioBordaDireitaSuperior_Tablet @RaioBordaDireitaInferior_Tablet @RaioBordaEsquerdaInferior_Tablet;
+                                    }
+
+                                    & when (@breakpoint = 'Mobile') {
+                                        border-radius:  @RaioBordaEsquerdaSuperior_Mobile @RaioBordaDireitaSuperior_Mobile @RaioBordaDireitaInferior_Mobile @RaioBordaEsquerdaInferior_Mobile;
+                                    }
+                            }
+                        }
+
+                        .semSubMenuDisplayButton_N2,
+                        .semSubMenuDisplayButton_N3,
+                        .semSubMenuDisplayButton_N4,
+                        .semSubMenuDisplayButton_Final{
+
+                        }
+                    
+
+                    //LINHAS DENTRO DO BOTÃO HAMBURGUER
+                            .hamburgerDisplayLines_N1,
+                            .hamburgerDisplayLines_N2,
+                            .hamburgerDisplayLines_N3,
+                            .hamburgerDisplayLines_N4{
+                                & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile')  {
+                                    position:           absolute;
+                                    vertical-align:     middle;
+                                }
+
+                                    & span {
+                                        & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                            position:           absolute;
+                                            left:               0px;
+                                            width:              100%;
+                                            background:         @Branco;
+                                            transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                        }
+
+                                            & when (@breakpoint = 'Tablet') {
+                                                height:             @LinesHamburger_Espessura_Tablet;
+                                                border-radius:      @LinesHamburger_Espessura_Tablet;
+                                            }
+
+                                            & when (@breakpoint = 'Mobile') {
+                                                height:             @LinesHamburger_Espessura_Mobile;
+                                                border-radius:      @LinesHamburger_Espessura_Mobile;
+                                            }
+
+                                                &:nth-child(1) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 2) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+                    
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 2) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+
+                                                &:nth-child(2) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 3) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 3) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+
+                                                &:nth-child(3) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 4) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 4) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+                                    }
+                            }
+
+
+                                .hamburgerDisplayLines_N1 {
+                                    & when (@breakpoint = 'Tablet') {
+                                        height:         @LinesHamburger_Height_Tablet;
+                                        width:          @LinesHamburger_Width_Tablet;
+                                    }
+
+                                    & when (@breakpoint = 'Mobile') {
+                                        height:         @LinesHamburger_Height_Mobile;
+                                        width:          @LinesHamburger_Width_Mobile;
+                                    }
+                                        
+                                        & span {
+
+
+                                            & when (@breakpoint = 'Tablet') {
+                                                height:             @LinesHamburger_Espessura_Tablet;
+                                                border-radius:      @LinesHamburger_Espessura_Tablet;
+                                            }
+
+                                            & when (@breakpoint = 'Mobile') {
+                                                height:             @LinesHamburger_Espessura_Mobile;
+                                                border-radius:      @LinesHamburger_Espessura_Mobile;
+                                            }
+
+
+                                           
+                                                &:nth-child(1) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 2) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+                    
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 2) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+
+                                                &:nth-child(2) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 3) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 3) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+
+                                                &:nth-child(3) {
+                                                    & when (@breakpoint = 'Tablet') {
+                                                        top: (((@AlturaLinhaMenu_Tablet / 6) * 4) - @LinesHamburger_Espessura_Tablet);
+                                                    }
+
+                                                    & when (@breakpoint = 'Mobile') {
+                                                        top: (((@AlturaLinhaMenu_Mobile / 6) * 4) - @LinesHamburger_Espessura_Mobile);
+                                                    }
+                                                }
+                                        }
+                                }
+
+
+                                .hamburgerDisplayLines_N2,
+                                .hamburgerDisplayLines_N3,
+                                .hamburgerDisplayLines_N4{
+                                    & when (@breakpoint = 'Tablet') {
+                                        height:         @LinesHamburger_Height_Tablet ;
+                                        width:          @LinesHamburger_Width_Tablet ;
+                                    }
+
+                                    & when (@breakpoint = 'Mobile') {
+                                        height:         @LinesHamburger_Height_Mobile ;
+                                        width:          @LinesHamburger_Width_Mobile ;
+                                    }
+                    
+                                        & span {
+
+                                            & when (@breakpoint = 'Tablet') {
+                                                height:             @LinesHamburger_Espessura_Tablet * 2;
+                                                /*border-radius:      @LinesHamburger_Espessura_Tablet;*/
+                                            }
+
+                                            & when (@breakpoint = 'Mobile') {
+                                                height:             @LinesHamburger_Espessura_Mobile * 2;
+                                                /*border-radius:      @LinesHamburger_Espessura_Mobile;*/
+                                            }
+
+                                                &:nth-child(1) {
+                                                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                                        top: 45%;
+                                                    }
+                                                }
+
+                                                &:nth-child(2) {
+                                                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                                        top: 45%;
+                                                        transform:  rotate(90deg);
+                                                    }
+                                                }
+                                        }
+                                }
+
+
+
+                            //ANIMAÇÃO DAS LINHAS DO BOTÃO HAMBURGUER
+                                    .hamburgerCheckbox_N1:checked ~ .hamburgerDisplayButton_N1 > .hamburgerDisplayLines_N1 span {
+                                        & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                            top: 50%;
+
+                                            &:nth-child(1), &:nth-child(2)  {
+                                                transform:  rotate(45deg);
+                                            }
+
+                                            &:nth-child(3) {
+                                                transform:  rotate(-45deg);
+                                            }
+                                        }
+                                    }
+
+                                    .hamburgerCheckbox_N2:checked ~ .hamburgerDisplayButton_N2 > .hamburgerDisplayLines_N2 span:nth-child(2),
+                                    .hamburgerCheckbox_N3:checked ~ .hamburgerDisplayButton_N3 > .hamburgerDisplayLines_N3 span:nth-child(2),
+                                    .hamburgerCheckbox_N4:checked ~ .hamburgerDisplayButton_N4 > .hamburgerDisplayLines_N4 span:nth-child(2){
+                                        & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                                            transform:          rotate(0deg);
+                                        }
+                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MENU HAMBURGUER
+    .hamburgerCheckbox {
+        & when (@breakpoint = 'all') {
+            display: none;
+        }
+    }
+    //MENU HAMBURGUER MOBILE
+            
+                .hamburgerDisplayButton {
+                    & when (@breakpoint = 'all') {
+                        position:           relative;
+                        top:                0px;
+                        right:              0px;
+                        float:              right;
+                        left:               inherit;
+                    }
+
+                        & when (@breakpoint = 'Desktop') {
+                            height:             @AlturaLinhaMenu_Desktop;
+                            width:              @AlturaLinhaMenu_Desktop;
+                            .backgroundColor(BotaoHamburger);
+                            .padding(HamburgerDesktop);
+                        }
+
+                        & when (@breakpoint = 'Tablet') {
+                            padding-left:   (@PaddingLeftMenuItem_Tablet / 2) !important;
+                            padding-right:  (@PaddingRightMenuItem_Tablet / 2) !important;
+                        }
+
+                        & when (@breakpoint = 'Mobile') {
+                            padding-left:   (@PaddingLeftMenuItem_Mobile / 2) !important;
+                            padding-right:  (@PaddingRightMenuItem_Mobile / 2) !important;
+                        }
+                }
+
+                .hamburgerDisplayLines {
+                    & when (@breakpoint = 'Mobile') {
+                        position:           absolute;
+                        height:             @LinesHamburger_Height;
+                        width:              @LinesHamburger_Width;
+                        vertical-align:     middle;
+                    }
+                }
+
+                    .hamburgerDisplayLines span {
+                        & when (@breakpoint = 'Mobile') {
+                            width:              100%;
+                            background:         @Branco;
+                            position:           absolute;
+                            left:               0px;
+                            height:             @LinesHamburger_Espessura;
+                            border-radius:      @LinesHamburger_Espessura;
+                            transition:         all @VelocidadeTransicaoMenu @TipoTransicaoMenu 0s;
+                        }
+                    }
+
+                        .hamburgerDisplayLines span:nth-child(1) {
+                            & when (@breakpoint = 'Mobile') {
+                                top: (((@AlturaLinhaMenu_Mobile / 6) * 2) - @LinesHamburger_Espessura);
+                            }
+                        }
+
+                        .hamburgerDisplayLines span:nth-child(2) {
+                            & when (@breakpoint = 'Mobile') {
+                                top: (((@AlturaLinhaMenu_Mobile / 6) * 3) - @LinesHamburger_Espessura);
+                            }
+                        }
+
+                        .hamburgerDisplayLines span:nth-child(3) {
+                            & when (@breakpoint = 'Mobile') {
+                                top: (((@AlturaLinhaMenu_Mobile / 6) * 4) - @LinesHamburger_Espessura);
+                            }
+                        }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span {
+                                & when (@breakpoint = 'Mobile') {
+                                    top: 50%;
+                                }
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(1) {
+                                & when (@breakpoint = 'Mobile') {
+                                    transform:  rotate(45deg);
+                                }
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(2) {
+                                & when (@breakpoint = 'Mobile') {
+                                    transform:  rotate(45deg);
+                                }
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(3) {
+                                & when (@breakpoint = 'Mobile') {
+                                    transform:  rotate(-45deg);
+                                }
+                            }
+
+                .hamburgerCheckbox:checked ~ .menusContainer {
+                    & when (@breakpoint = 'Mobile') {
+                        transform:  scaleY(1);
+                    }
+                }
+            
+
+// CONTAINER GERAL
+    .menusContainer {
+        & when (@breakpoint = 'all') {
+            flex-flow:  row wrap;
+            width:      100%;
+            z-index:    10000;
+        }
+    
+        // CONTAINER GERAL MOBILE
+            & when (@breakpoint = 'Mobile') {
+                display:                    inline-block!important;
+                transform:                  scaleY(0);
+                transform-origin:           top;
+                transition:                 all @VelocidadeTransicaoMenu @TipoTransicaoMenu 0s;
+            }
+    }
+
+// CONTAINER BOTOES SUBMENU
+    .containerExternoBotoesSubmenu{
+        & when (@breakpoint = 'all') {
+            display:    flex!important;
+            flex-flow:  row nowrap!important;
+        }
+        
+            & when (@breakpoint = 'Desktop') {
+                padding-left:   (@PaddingLeftMenuItem_Desktop / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Desktop / 2) !important;
+            }
+
+            & when (@breakpoint = 'Tablet') {
+                padding-left:   (@PaddingLeftMenuItem_Tablet / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Tablet / 2) !important;
+            }
+
+            & when (@breakpoint = 'Mobile') {
+                padding-left:   (@PaddingLeftMenuItem_Mobile / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Mobile / 2) !important;
+            }
+    }
+
+    .containerInternoBotoesSubmenu {
+            & when (@breakpoint = 'Desktop') {
+                padding-left:               (@PaddingLeftMenuItem_Desktop / 2) !important;
+                padding-right:              (@PaddingRightMenuItem_Desktop / 2) !important;
+                width:                      100%;
+                -webkit-justify-content:    center;
+                justify-content:            center;
+                display:                    flex;
+            }
+
+            & when (@breakpoint = 'Tablet') {
+                padding-left:   (@PaddingLeftMenuItem_Tablet / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Tablet / 2) !important;
+                width: 100%;
+            }
+
+            & when (@breakpoint = 'Mobile') {
+                padding-left:   (@PaddingLeftMenuItem_Mobile / 2) !important;
+                padding-right:  (@PaddingLeftMenuItem_Mobile / 2) !important;
+                width: 100%;
+            }
+    }
+
+
+//NAVBAR
+    .navbar {
+        /*display: flex !important;*/
+
+            & when (@breakpoint = 'Desktop') {
+                margin-top:     @MargemSuperiorMenu_Desktop;
+                margin-bottom:  @MargemInferiorMenu_Desktop;
+            }
+
+            & when (@breakpoint = 'Tablet') {
+                margin-top:     @MargemSuperiorMenu_Tablet;
+                margin-bottom:  @MargemInferiorMenu_Tablet;
+            }
+            
+            & when (@breakpoint = 'Mobile') {
+                /*display:        block;*/
+                width:          100%;
+                padding:        0 0 0 0 !important;
+                height:         @AlturaLinhaMenu_Mobile;
+                line-height:    @AlturaLinhaMenu_Mobile;
+                margin-top:     @MargemSuperiorMenu_Mobile;
+                margin-bottom:  @MargemInferiorMenu_Mobile;
+                margin-left:    0px !important;
+                margin-right:   0px !important;
+                -webkit-justify-content:center;
+                justify-content: flex-end;
+                .gradiente(@CorPrimaria;@CorGradiente);
+            }
+    }
+
+// MENU
+    .menuPrincipal,.menuSecundario {
+        & when (@breakpoint = 'all') {
+            /*display:                -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex;*/
+            -webkit-flex-direction: row;
+            -ms-flex-direction:     row;
+            flex-direction:         row;
+            -webkit-flex-wrap:      nowrap;
+            -ms-flex-wrap:          nowrap;
+            flex-wrap:              nowrap;
+            -webkit-align-items:    center;
+            -ms-flex-item-align:    center;
+            align-items:            center;
+            .gradiente(@CorPrimaria;@CorGradiente);
+            /*.bordaArredondada(Menu);*/
+        }
+
+            & when (@breakpoint = 'Desktop') {
+                padding:        0 (@PaddingRightMenuItem_Desktop * 1.5) 0 (@PaddingLeftMenuItem_Desktop * 1.5) !important;
+                .sombreamento(Desktop);
+                .bordaArredondada(Desktop);
+                    
+            }
+
+            & when (@breakpoint = 'Tablet') {
+                padding:        0 (@PaddingRightMenuItem_Tablet * 1.5) 0 (@PaddingLeftMenuItem_Tablet * 1.5) !important;
+                .sombreamento(Tablet);
+                .bordaArredondada(Tablet);
+                    
+            }
+
+            & when (@breakpoint = 'Mobile') {
+                display:        inline-block!important;
+                padding:        0 0 0 0 !important;
+                width:          100%;
+                margin-left:    0px !important;
+                margin-right:   0px !important;
+                .sombreamento(Remover);
+                .bordaArredondada(Remover);
+                
+            }
+    }
+
+        // ITENS DE MENU
+            .menuItem {
+                & when (@breakpoint = 'all') {
+                    /*display:              block;*/
+                    position:               relative;
+                    /*justify-content:      flex-start;*/
+                    float:                  left;
+                    list-style:             none;
+                    text-align:             center;
+                    -webkit-align-items:    center;
+                    -ms-flex-item-align:    center;
+                    align-items:            center;
+                    font-family:        @FontFamilyNavbar;
+                    color:              @CorFonteNavbar;
+                    font-weight:        @FontWeightNavbar;
+                    -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                    -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                    -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                    transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+
+                    &:hover {
+                        .backgroundColor( @CorPrimaria);
+
+                        &  .subMenu {
+                            & when (@breakpoint = 'Desktop') {
+                                transform: scaleY(1);
+                            }
+                        }
+                    }
+                }
+            
+                    & when (@breakpoint = 'Desktop') {
+                        height:         @AlturaLinhaMenu_Desktop;
+                        line-height:    @AlturaLinhaMenu_Desktop;
+                        font-size:      @TamanhoTextoMenu_Desktop;
+                        .padding(
+                            @PaddingTopMenuItem_Desktop; 
+                            @PaddingRightMenuItem_Desktop; 
+                            @PaddingBottomMenuItem_Desktop; 
+                            @PaddingLeftMenuItem_Desktop;);
+                    }
+
+                     & when (@breakpoint = 'Tablet') {
+                        height:         @AlturaLinhaMenu_Tablet;
+                        line-height:    @AlturaLinhaMenu_Tablet;
+                        font-size:      @TamanhoTextoMenu_Tablet;
+                        .padding(
+                            @PaddingTopMenuItem_Tablet;
+                            @PaddingRightMenuItem_Tablet;
+                            @PaddingBottomMenuItem_Tablet;
+                            @PaddingLeftMenuItem_Tablet;);
+                    }
+
+                     & when (@breakpoint = 'Mobile') {
+                        height:             @AlturaLinhaMenu_Mobile;
+                        line-height:        @AlturaLinhaMenu_Mobile;
+                        font-size:          @TamanhoTextoMenu_Mobile;
+                        float:              none;
+                        /*justify-content:    flex-end;*/
+                        text-align:         right;
+                        .padding(
+                            @PaddingTopMenuItem_Mobile;
+                            @PaddingRightMenuItem_Mobile;
+                            @PaddingBottomMenuItem_Mobile;
+                            @PaddingLeftMenuItem_Mobile;);
+                    }
+            }
+
+
+
+                .menuItem.paginaAtual {
+                    & when (@breakpoint = 'all') {
+                        .gradiente(@CorPrimaria;@CorGradiente;@PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; 5%);
+                    
+                        &:hover {
+                            background-image:none;
+                            .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                        }
+
+                    }
+                }
+
+
+                .menuItem.Inativo{
+                    & when (@breakpoint = 'all') {
+                        .color(@Preto;30%);
+                        text-decoration:none;
+                        cursor:         default;
+                        .gradiente( @CorPrimaria; @CorGradiente; @PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; @PercentualClarificacaoGradiente_Padrao; 5%);
+
+                        &:hover {
+                            background-color: initial!important;
+                        }
+
+                    }
+                }
+
+
+                .menuItem a {
+                    & when (@breakpoint = 'all') {
+                        /*display:            block;*/
+                        width:              100%;
+                        color:              @CorFonteMenu;
+                        text-decoration:    none;
+                        .padding(Remover)
+                    }
+                }
+
+                    .menuItem.Inativo a {
+                        & when (@breakpoint = 'all') {
+                            .color(@Preto;30%);
+                            text-decoration:none;
+                            cursor:         default;
+                        }
+                    }
+
+                .menuItem img {
+                    & when (@breakpoint = 'all') {
+                        vertical-align: text-bottom;
+                    }
+                }
+
+                .menuItem .iconMenu svg {
+                    & when (@breakpoint = 'all') {
+                        fill: @CorIconeMenuitem;
+                    }
+                        
+                        & when (@breakpoint = 'Desktop') {
+                            height: (@TamanhoTextoMenu_Desktop - 3px);
+                        }
+
+                        & when (@breakpoint = 'Tablet') {
+                            height: (@TamanhoTextoMenu_Tablet - 2px);
+                        }
+
+                        & when (@breakpoint = 'Mobile') {
+                            height: (@TamanhoTextoMenu_Mobile - 1px);
+                        }
+                }
+
+    // SUBMENU (FLYOUT)
+        .subMenu {
+            & when (@breakpoint = 'all') {
+                /*display:                -webkit-flex;
+                display:                -ms-flexbox;
+                display:                flex;*/
+                -webkit-flex-direction: column;
+                -ms-flex-direction:     column;
+                flex-direction:         column;
+                position:               absolute;
+                left:                   0px;
+                float:                  left;        
+                min-width:              max-content!important;
+                min-width:              500px;
+                overflow:               hidden;           
+                width:                  100%;
+                color:                  @CorFonteMenu;
+                -webkit-align-items:    center;
+                -ms-flex-item-align:    center;
+                align-items:            center;
+                -webkit-transform:          scaleY(0);
+                -ms-transform:              scaleY(0);
+                -moz-transform:             scaleY(0);
+                -o-transform:               scaleY(0);
+                transform:                  scaleY(0);
+                -webkit-transform-origin:   top;
+                -ms-transform-origin:       top;
+                -moz-transform-origin:      top;
+                -o-transform-origin:        top;
+                transform-origin:           top;
+                -webkit-transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -moz-transition:            all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -o-transition:              all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                transition:                 all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                .backgroundColor( @CorPrimaria);
+                .margin(Remover);
+            }
+
+                & when (@breakpoint = 'Desktop') {
+                    top:            @AlturaLinhaMenu_Desktop;
+                    border-width:   0px !important;
+                    .bordaArredondada(Desktop);
+                    .bordaArredondada(Inferior);
+                    .sombreamento(Desktop);
+                }
+
+                & when (@breakpoint = 'Tablet') {
+                    top:            @AlturaLinhaMenu_Tablet;
+                    border-width:   0px !important;
+                    .bordaArredondada(Tablet);
+                    .bordaArredondada(Inferior);
+                    .sombreamento(Tablet);
+                }
+
+                & when (@breakpoint = 'Mobile') {
+                        .sombreamento(Remover);
+                }
+        }
+
+        .submenuNaoDinamico {
+            & when (@breakpoint = 'all') {
+                font-weight:    @FontWeightMenu !important;
+                .backgroundColor(@CorPrimaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+            }
+        }
+
+           .submenuNaoDinamico a {
+                & when (@breakpoint = 'all') {
+                    .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%) !important;
+                }
+            }
+
+
+                // ITENS DE SUBMENU |  SUBMENU (FLYOUT)
+                        .subMenuItem {
+                            & when (@breakpoint = 'all') {
+                                /*display:            block;*/
+                                /*-webkit-justify-content:    flex-start;
+                                justify-content:            flex-start;*/
+                                -webkit-align-items:        center;
+                                -ms-flex-item-align:        center;
+                                align-items:                center;
+                                position:           relative;
+                                left:               0px;
+                                float:              left;
+                                list-style:         none;
+                                text-align:         left;
+                            
+                                width:              100%;
+                                font-family:        @FontFamilyNavbar;
+                                font-weight:        @FontWeightbNavbar;
+                                color:              @CorFonteNavbar;
+                                -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+
+                                mar
+                                &:hover {
+                                    .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                }
+                            }
+
+                            & when (@breakpoint = 'Desktop') {
+                                height:         @AlturaLinhaMenu_Desktop;
+                                line-height:    @AlturaLinhaMenu_Desktop;
+                                padding-left:   @PaddingLeftMenuItem_Desktop ;
+                                padding-right:  @PaddingRightMenuItem_Desktop ;
+                                font-size:      @TamanhoTextoSubMenu_Desktop;
+                            }
+
+                            & when (@breakpoint = 'Tablet') {
+                                height:         @AlturaLinhaMenu_Tablet;
+                                line-height:    @AlturaLinhaMenu_Tablet;
+                                padding-left:   @PaddingLeftMenuItem_Tablet ;
+                                padding-right:  @PaddingRightMenuItem_Tablet ;
+                                font-size:      @TamanhoTextoSubMenu_Tablet;
+                            }
+
+                            & when (@breakpoint = 'Mobile') {
+                                height:         @AlturaLinhaMenu_Mobile;
+                                line-height:    @AlturaLinhaMenu_Mobile;
+                                padding-left:   @PaddingLeftMenuItem_Mobile ;
+                                padding-right:  @PaddingRightMenuItem_Mobile ;
+                            }        
+                        }
+                            
+                            .subMenuItem.tituloSubMenuItem {
+                                & when (@breakpoint = 'all') {
+                                    font-weight:    @FontWeightMenu;
+                                    overflow:       hidden;
+                                    text-transform: uppercase;
+                                    -webkit-justify-content:center!important;
+                                    justify-content:center!important;
+                                    cursor:         default;
+                                    .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                    .backgroundColor(@CorPrimaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; 15%);
+                                }
+                                
+                                    & when (@breakpoint = 'Desktop') {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Desktop ;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Desktop ;
+                                    }
+                            
+                                    & when (@breakpoint = 'Tablet') {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Tablet ;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Tablet ;
+                                    }
+                                    
+                                    & when (@breakpoint = 'Mobile') {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Mobile !important;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Mobile !important;
+                                    }
+                                }
+ 
+                                .subMenuItem.tituloSubMenuItem:before,
+                                .subMenuItem.tituloSubMenuItem::before,
+                                .subMenuItem.tituloSubMenuItem:after,
+                                .subMenuItem.tituloSubMenuItem::after{
+                                    & when (@breakpoint = 'all') {
+                                        content:        "";
+                                        /*display:        inline-block;*/
+                                        height:         1px;
+                                        position:       relative;
+                                        vertical-align: middle;
+                                        width:          50%;
+                                        .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                        .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                    }
+                                }
+                                .subMenuItem.tituloSubMenuItem:before,
+                                .subMenuItem.tituloSubMenuItem::before{
+                                    & when (@breakpoint = 'all') {
+                                        right:          10px;
+                                        margin-left:    -50%;
+                                    }
+                                }
+                                .subMenuItem.tituloSubMenuItem:after,
+                                .subMenuItem.tituloSubMenuItem::after{
+                                    & when (@breakpoint = 'all') {
+                                        left:           10px;
+                                        margin-right:   -50%;
+                                    }
+                                }
+
+                                .subMenuItem.paginaAtual{
+                                    & when (@breakpoint = 'all') {
+                                        .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+
+
+                                        &:hover{
+                                            .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                        }
+                                    }
+                                }
+                                    
+
+                                .subMenuItem.Inativo {
+                                    & when (@breakpoint = 'all') {
+                                        text-decoration:    none!important;
+                                        cursor:             default!important;
+                                        .color(@Preto;30%);
+                                        .backgroundColorPattern(
+                                            @CorPrimaria;
+                                            @CorPrimaria;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            10%; 
+                                            30%;  
+                                            @PercentualObscurecencia_Padrao;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            10%; 
+                                            25%;  
+                                            @PercentualObscurecencia_Padrao
+                                        );
+                                    
+                                        
+                                        &:hover {
+                                            .backgroundColorPattern(
+                                                @CorPrimaria;
+                                                @CorPrimaria;
+                                                @PercentualFade_Padrao; 
+                                                @PercentualSaturacao_Padrao; 
+                                                @PercentualDesaturacao_Padrao; 
+                                                20%;  
+                                                @PercentualObscurecencia_Padrao;
+                                                @PercentualFade_Padrao; 
+                                                @PercentualSaturacao_Padrao; 
+                                                @PercentualDesaturacao_Padrao; 
+                                                15%;  
+                                                @PercentualObscurecencia_Padrao
+                                            );
+                                        }
+                                        
+                                    }
+                    
+                                }
+                                    
+                     
+                            .subMenuItem a {
+                                & when (@breakpoint = 'all') {
+                                    display:            block!important;
+                                    width:              100%;
+                                    color:              @CorFonteMenu;
+                                    text-decoration:    none;
+                                    cursor:             pointer;
+                                    -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                    -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                    -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                    transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                    .padding(Remover)
+                                }
+                            }
+                                .subMenuItem.Inativo a{
+                                    & when (@breakpoint = 'all') {
+                                        text-decoration:    none!important;
+                                        cursor:             default!important;
+                                        .color(@Preto;30%);
+                                    }
+                                }
+                    
+
+    //Menu SECUNDÁRIA
+            .menuSecundario {
+                & when (@breakpoint = 'all') {
+                    .gradiente(@CorSecundaria);
+                }
+            }
+
+        //MENU ITEM Menu SECUNDÁRIA
+                .menuSecundario .menuItem {
+                    & when (@breakpoint = 'all') {
+                        left:       inherit;
+                        float:      right;
+                        width:      100%;
+                    
+                        &:hover {
+                            .backgroundColor(@CorSecundaria);
+                        }
+                        
+                    }
+                }
+                    
+
+
+                .menuSecundario .menuItem.paginaAtual {
+                    & when (@breakpoint = 'all') {
+                        .gradiente(@CorSecundaria;@CorGradiente;@PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; 5%);
+
+                        &:hover {
+                            background-image: none;
+                            .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                        }
+
+                    }
+                }
+                    
+
+
+                .menuSecundario .menuItem.Inativo{
+                    & when (@breakpoint = 'all') {
+                        .gradiente( @CorSecundaria; @CorGradiente; @PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; @PercentualClarificacaoGradiente_Padrao; 5%);
+                    }
+                }
+
+
+            //SUBMENU Menu SECUNDÁRIA
+                    .menuSecundario .subMenu {
+                        & when (@breakpoint = 'all') {
+                            //width:  100%;
+                            left:   inherit;
+                            right:  0px;
+                            float:  right;
+                            .backgroundColor(@CorSecundaria);
+                        }
+                    }
+
+                    .menuSecundario .submenuNaoDinamico {
+                        & when (@breakpoint = 'all') {
+                            font-weight:    @FontWeightMenu !important;
+                            .backgroundColor(@CorSecundaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                        }
+                    }
+
+                       .menuSecundario .submenuNaoDinamico a {
+                           & when (@breakpoint = 'all') {
+                                .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%) !important;
+                           }
+                        }
+
+                //SUBMENU ITEM Menu SECUNDÁRIA
+                        .menuSecundario .subMenuItem {
+                            & when (@breakpoint = 'all') {
+                                left:       inherit;
+                                right:      0px;
+                                float:      right;
+                                text-align: right;
+                                /*.backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);*/
+
+                                &:hover {
+                                    .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                }
+                            }
+                        }
+                            
+
+
+                        .menuSecundario .subMenuItem.tituloSubMenuItem{
+                            & when (@breakpoint = 'all') {
+                                .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                .backgroundColor(@CorSecundaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; 15%);
+                            }
+                        }
+
+                            .menuSecundario .subMenuItem.tituloSubMenuItem:before,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem::before,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem:after,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem::after {
+                                & when (@breakpoint = 'all') {
+                                    .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                    .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                }
+                            }
+
+
+                            .menuSecundario .subMenuItem.paginaAtual{
+                                & when (@breakpoint = 'all') {
+                                    .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+
+
+                                    &:hover{
+                                        .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                    }
+                                }
+                            }
+                                    
+
+                                .menuSecundario .subMenuItem.inativo {
+                                    & when (@breakpoint = 'all') {
+                                        text-decoration:    none!important;
+                                        cursor:             default!important;
+                                        .color(@Preto;30%);
+
+                                        .gradiente( @CorPrimaria; @CorGradiente; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 5%);
+                                        .backgroundColorPattern(
+                                            @CorSecundaria;
+                                            @CorSecundaria;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            10%; 
+                                            30%;  
+                                            @PercentualObscurecencia_Padrao;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            10%; 
+                                            25%;  
+                                            @PercentualObscurecencia_Padrao
+                                        );
+
+
+                                        &:hover {
+                                            .backgroundColorPattern(
+                                                @CorSecundaria;
+                                                @CorSecundaria;
+                                                @PercentualFade_Padrao; 
+                                                @PercentualSaturacao_Padrao; 
+                                                @PercentualDesaturacao_Padrao; 
+                                                20%;  
+                                                @PercentualObscurecencia_Padrao;
+                                                @PercentualFade_Padrao; 
+                                                @PercentualSaturacao_Padrao; 
+                                                @PercentualDesaturacao_Padrao; 
+                                                15%;  
+                                                @PercentualObscurecencia_Padrao
+                                            );
+                                        }
+
+                                    }
+                    
+                                }
+
+            
+                                                                    

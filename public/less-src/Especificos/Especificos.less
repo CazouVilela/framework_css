@@ -1,0 +1,108 @@
+﻿
+//SUBMENUS TAMANHOS MINIMOS
+
+    //SUBMENUS DESKTOP
+        @media (min-width: @Res_Desktop) {
+
+            #menuSecundario_acesso_SubMenu {
+                min-width: 430px;
+            }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem:hover {
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);
+                }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover{
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 5%; 0%);
+                }
+        }
+
+    //SUBMENUS TABLET
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+
+            #menuSecundario_acesso_SubMenu {
+                min-width: 0px;
+            }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem:hover {
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);
+                }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover{
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 5%; 0%);
+                }
+        }
+
+    //SUBMENUS MOBILE
+        @media (max-width:@Res_Tablet) {
+
+
+            #menuSecundario_acesso_SubMenu {
+                min-width: 0px;
+            }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem:hover {
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);
+                }
+
+                #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover{
+                    .backgroundColor(@CorSecundaria; 100%; 0%; 0%; 5%; 0%);
+                }
+        }
+
+
+
+
+// BOTAO ENTRAR NA NAVBAR SECUNDARIA
+        .btEntrar {
+            .borderColor(@Preto;70%);
+            .color(@Branco);
+            .gradiente(@CorSecundaria)
+        }
+
+        .btEntrar:hover {
+            .gradiente(@CorSecundaria;@CorGradiente;100%;0%;0%;30%;0%;100%;0%;0%;0%;90%)
+        }
+
+// BOTAO ESQUECI SENHA NA NAVBAR SECUNDARIA
+        .esqueciSenha {
+            border-style:           none;
+            text-decoration:        underline;
+            font-weight:            normal;
+            display:                -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex;
+            -webkit-justify-content:center;
+            justify-content:        center;
+            -webkit-align-items:    center;
+            -ms-flex-item-align:    center;
+            align-items:            center;
+            text-align:             center;
+        }
+
+        #IDMenu_Secundario_IDitem_acesso_IDsubItem_criarConta{
+            border-style:           none;
+            text-decoration:        underline;
+            font-weight:            @FontWeightNavbar;
+            display:                -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex;
+            -webkit-justify-content:center;
+            justify-content:        center;
+            -webkit-align-items:    center;
+            -ms-flex-item-align:    center;
+            align-items:            center;
+            text-align:             center;
+
+                    @media (min-width: @Res_Desktop) {
+                        font-size:      @TamanhoTextoNavbar_Desktop;
+                    }
+
+                     @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        font-size:      @TamanhoTextoNavbar_Tablet;
+                    }
+
+                     @media (max-width:@Res_Tablet) {
+                        font-size:          @TamanhoTextoNavbar_Mobile;
+                    }
+        }

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framework CSS Padrao - Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/framework.css">
+    <link rel="stylesheet" href="/css/paleta.css">
+    <style>
+        div { display: flex; box-sizing: border-box; }
+        body { font-family: Raleway, sans-serif; margin: 0; padding: 0; background: #fafafa; }
+        .pagina { flex-direction: column; width: 100%; overflow-x: hidden; }
+
+        .showcase-nav {
+            display: flex; position: sticky; top: 0; z-index: 99999; width: 100%;
+            background: #1a1a2e; padding: 10px 20px;
+            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+        }
+        .showcase-nav a { color: #e0e0e0; text-decoration: none; padding: 6px 14px; border-radius: 4px; font-size: 13px; transition: background 0.2s; }
+        .showcase-nav a:hover { background: rgba(255,255,255,0.1); }
+        .showcase-nav .brand { color: #00bcd4; font-weight: 700; font-size: 16px; }
+        .showcase-nav .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+        .showcase-nav .editor-btn { background: #00bcd4; color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; }
+
+        .section { padding: 20px 0; flex-direction: column; width: 100%; }
+        .section-title { font-size: 22px; font-weight: 700; color: #1a1a2e; border-bottom: 3px solid #00bcd4; padding-bottom: 8px; margin: 0 6px 16px 6px; }
+        .section-desc { color: #555; font-size: 14px; margin: 0 6px 12px 6px; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; white-space: pre; margin: 8px 0; flex-direction: column; }
+        .demo-label { background: #e8e8e8; color: #333; padding: 4px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; margin: 6px 6px 4px 6px; align-self: flex-start; }
+        .code-block { margin-left: 6px; margin-right: 6px; }
+        .panel { text-align: center; min-height: 30px; align-items: center; justify-content: center; }
+        .grid-demo .panel { background-color: rgba(0,188,212,0.15); border: 1px solid rgba(0,188,212,0.3); font-size: 12px; }
+    </style>
+    <script src="/js/messageBalloons.js" defer></script>
+</head>
+<body>
+<div class="pagina">
+
+    <!-- Navigation -->
+    <div class="showcase-nav">
+        <span class="brand">Framework CSS Padrao</span>
+        <div class="nav-links">
+            <a href="#grid">Grid</a>
+            <a href="#responsivo">Responsivo</a>
+            <a href="#deslocamento">Offset</a>
+            <a href="#ordenacao">Ordem</a>
+            <a href="#containers">Containers</a>
+            <a href="#panels">Panels</a>
+            <a href="#cores">Cores</a>
+            <a href="#paleta">Paleta</a>
+            <a href="#formularios">Forms</a>
+            <a href="#botoes">Botoes</a>
+            <a href="#navbar">Navbar</a>
+            <a href="#passos">Passos</a>
+            <a href="#balloons">Balloons</a>
+            <a href="#modal">Modal</a>
+            <a href="#social">Social</a>
+            <a href="#textos">Textos</a>
+            <a href="#icones">Icones</a>
+        </div>
+        <a href="/editor.html" class="editor-btn">Editor de Variaveis</a>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- GRID - 12 COLUNAS                         -->
+    <!-- ========================================= -->
+    <div class="section" id="grid">
+        <div class="section-title">Sistema de Grid (12 Colunas)</div>
+        <div class="section-desc">Formato: <code>D{n}T{n}M{n}</code> — Desktop (12 cols), Tablet (12 cols), Mobile (6 cols). Valor 0 = oculto no breakpoint.</div>
+
+        <span class="demo-label">12 colunas unitarias - D1T1M1</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D1T1M1">1</div><div class="panel D1T1M1">2</div><div class="panel D1T1M1">3</div>
+            <div class="panel D1T1M1">4</div><div class="panel D1T1M1">5</div><div class="panel D1T1M1">6</div>
+            <div class="panel D1T1M1">7</div><div class="panel D1T1M1">8</div><div class="panel D1T1M1">9</div>
+            <div class="panel D1T1M1">10</div><div class="panel D1T1M1">11</div><div class="panel D1T1M1">12</div>
+        </div>
+
+        <span class="demo-label">Full width - D12T12M6</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D12T12M6">D12T12M6 — Largura total</div>
+        </div>
+
+        <span class="demo-label">Metade - D6T6M3</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D6T6M3">D6T6M3</div>
+            <div class="panel D6T6M3">D6T6M3</div>
+        </div>
+
+        <span class="demo-label">Tercos - D4T4M2</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D4T4M2">D4T4M2</div>
+            <div class="panel D4T4M2">D4T4M2</div>
+            <div class="panel D4T4M2">D4T4M2</div>
+        </div>
+
+        <span class="demo-label">Quartos - D3T3M3</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D3T3M3">D3</div>
+            <div class="panel D3T3M3">D3</div>
+            <div class="panel D3T3M3">D3</div>
+            <div class="panel D3T3M3">D3</div>
+        </div>
+
+        <span class="demo-label">Colunas mistas - D8+D4, D3+D6+D3</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D8T8M4">D8 (2/3)</div>
+            <div class="panel D4T4M2">D4 (1/3)</div>
+        </div>
+        <div class="linhaDoGrid grid-demo" style="margin-top:4px">
+            <div class="panel D3T3M1">D3</div>
+            <div class="panel D6T6M4">D6 (centro)</div>
+            <div class="panel D3T3M1">D3</div>
+        </div>
+
+        <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D8T8M4"&gt;2/3 da largura&lt;/div&gt;
+    &lt;div class="panel D4T4M2"&gt;1/3 da largura&lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- RESPONSIVO - OCULTAR COLUNAS              -->
+    <!-- ========================================= -->
+    <div class="section" id="responsivo">
+        <div class="section-title">Visibilidade Responsiva</div>
+        <div class="section-desc">Use <code>T0</code> ou <code>M0</code> para ocultar em tablet/mobile. <code>D0</code> oculta em desktop.</div>
+
+        <span class="demo-label">Colunas ocultas progressivamente</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D1T1M1">1</div><div class="panel D1T1M1">2</div><div class="panel D1T1M1">3</div>
+            <div class="panel D1T1M1">4</div><div class="panel D1T1M1">5</div><div class="panel D1T1M1">6</div>
+            <div class="panel D1T1M0" style="opacity:0.7">7 (M0)</div>
+            <div class="panel D1T1M0" style="opacity:0.7">8 (M0)</div>
+            <div class="panel D1T1M0" style="opacity:0.7">9 (M0)</div>
+            <div class="panel D1T0M0" style="opacity:0.5">10 (T0)</div>
+            <div class="panel D1T0M0" style="opacity:0.5">11 (T0)</div>
+            <div class="panel D1T0M0" style="opacity:0.5">12 (T0)</div>
+        </div>
+
+        <span class="demo-label">Sidebar visivel apenas em Desktop (D4T0M0)</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D4T0M0" style="background:rgba(135,35,0,0.15)">Sidebar (D4T0M0)</div>
+            <div class="panel D8T12M6">Conteudo principal</div>
+        </div>
+
+        <span class="demo-label">Colunas duplas em Desktop, simples em mobile</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D2T2M6">D2T2M6</div>
+            <div class="panel D2T2M6">D2T2M6</div>
+            <div class="panel D2T2M6">D2T2M6</div>
+            <div class="panel D2T2M6">D2T2M6</div>
+            <div class="panel D2T2M6">D2T2M6</div>
+            <div class="panel D2T2M6">D2T2M6</div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- DESLOCAMENTO (OFFSET)                     -->
+    <!-- ========================================= -->
+    <div class="section" id="deslocamento">
+        <div class="section-title">Deslocamento (Offset)</div>
+        <div class="section-desc">Classes <code>desloc-D{n}T{n}M{n}</code> empurram o elemento horizontalmente, criando espacamento ou centralizacao.</div>
+
+        <span class="demo-label">Offset de 1 coluna - desloc-D1T1M1</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D4T4M2 desloc-D1T1M1">desloc-D1</div>
+            <div class="panel D4T4M2">Normal</div>
+        </div>
+
+        <span class="demo-label">Offset de 3 colunas - desloc-D3T2M1</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D6T8M4 desloc-D3T2M1">Centralizado com offset</div>
+        </div>
+
+        <span class="demo-label">Dois elementos com offsets diferentes</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D3T4M2 desloc-D1T1M0">Offset D1</div>
+            <div class="panel D3T4M2 desloc-D2T1M0">Offset D2</div>
+        </div>
+
+        <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D6T8M4 desloc-D3T2M1"&gt;Centralizado&lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ORDENACAO                                 -->
+    <!-- ========================================= -->
+    <div class="section" id="ordenacao">
+        <div class="section-title">Ordenacao (item-N)</div>
+        <div class="section-desc">Classes <code>item-1</code> a <code>item-30</code> reordenam elementos via flex order, sem alterar o HTML.</div>
+
+        <span class="demo-label">HTML: A(item-3), B(item-1), C(item-2)</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D4T4M2 item-3" style="background:rgba(204,77,51,0.2)">A (item-3) → 3o</div>
+            <div class="panel D4T4M2 item-1" style="background:rgba(51,204,154,0.2)">B (item-1) → 1o</div>
+            <div class="panel D4T4M2 item-2" style="background:rgba(0,188,212,0.2)">C (item-2) → 2o</div>
+        </div>
+
+        <div class="code-block">&lt;div class="panel D4T4M2 item-3"&gt;Aparece 3o&lt;/div&gt;
+&lt;div class="panel D4T4M2 item-1"&gt;Aparece 1o&lt;/div&gt;
+&lt;div class="panel D4T4M2 item-2"&gt;Aparece 2o&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- CONTAINERS (COLUNA + LINHA)               -->
+    <!-- ========================================= -->
+    <div class="section" id="containers">
+        <div class="section-title">Containers (Coluna e Linha)</div>
+        <div class="section-desc"><code>.containerEmColuna</code> empilha verticalmente. <code>.containerEmLinha</code> distribui horizontalmente dentro de uma coluna. <code>.nowrap</code> / <code>.D-nowrap</code> / <code>.T-nowrap</code> / <code>.M-nowrap</code> impedem quebra de linha.</div>
+
+        <span class="demo-label">Duas colunas: esquerda com sub-items em coluna, direita com sub-items em linha</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel containerEmColuna D6T6M3">
+                <div class="panel">Coluna item 1</div>
+                <div class="panel">Coluna item 2</div>
+                <div class="panel">Coluna item 3</div>
+                <div class="panel">Coluna item 4</div>
+            </div>
+            <div class="containerEmColuna D6T6M3">
+                <div class="panel">Item topo</div>
+                <div class="containerEmLinha">
+                    <div class="panel D4T4M3">Linha 1</div>
+                    <div class="panel D4T4M3">Linha 2</div>
+                    <div class="panel D4T4M3">Linha 3</div>
+                </div>
+                <div class="panel">Item base</div>
+            </div>
+        </div>
+
+        <span class="demo-label">containerEmLinha com nowrap — itens NAO quebram linha</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="containerEmColuna D12T12M6">
+                <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
+                    <div class="panel D4T4M2">No wrap 1</div>
+                    <div class="panel D4T4M2">No wrap 2</div>
+                    <div class="panel D4T4M2">No wrap 3</div>
+                </div>
+            </div>
+        </div>
+
+        <span class="demo-label">Layout complexo: sidebar + conteudo com sub-grid</span>
+        <div class="linhaDoGrid grid-demo">
+            <div class="panel D1T1M1">S1</div>
+            <div class="panel D1T1M0">S2</div>
+            <div class="panel D1T0M0">S3</div>
+            <div class="D3T3M2 containerEmColuna">
+                <div class="panel">Sub 1</div>
+                <div class="panel">Sub 2</div>
+                <div class="panel">Sub 3</div>
+            </div>
+            <div class="panel D1T1M1">M1</div>
+            <div class="panel D1T1M0">M2</div>
+            <div class="panel D1T0M0">M3</div>
+            <div class="D3T3M2 containerEmColuna">
+                <div class="panel">Sub A</div>
+                <div class="panel">Sub B</div>
+                <div class="panel">Sub C</div>
+            </div>
+        </div>
+
+        <div class="code-block">&lt;div class="panel containerEmColuna D6T6M3"&gt;
+    &lt;div class="panel"&gt;Vertical 1&lt;/div&gt;
+    &lt;div class="containerEmLinha D-nowrap"&gt;
+        &lt;div class="panel D4T4M2"&gt;Horizontal&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PANELS                                    -->
+    <!-- ========================================= -->
+    <div class="section" id="panels">
+        <div class="section-title">Panels</div>
+        <div class="section-desc">Classe <code>.panel</code> aplica sombra, borda arredondada e padding responsivos. Variantes: <code>.arredondadaSuperior</code>, <code>.arredondadaInferior</code>.</div>
+
+        <div class="linhaDoGrid">
+            <div class="panel D4T4M2">Panel padrao</div>
+            <div class="panel D4T4M2 arredondadaSuperior">arredondadaSuperior</div>
+            <div class="panel D4T4M2 arredondadaInferior">arredondadaInferior</div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- CORES                                     -->
+    <!-- ========================================= -->
+    <div class="section" id="cores">
+        <div class="section-title">Cores</div>
+        <div class="section-desc">Classes de background: <code>.primaria</code>, <code>.secundaria</code>, <code>.terciaria</code>, <code>.corAtencao</code>, <code>.corNegacao</code>, <code>.corPositivacao</code></div>
+
+        <div class="linhaDoGrid">
+            <div class="D4T4M3 containerEmColuna" style="gap:4px">
+                <div class="primaria" style="padding:12px;color:#fff">Primaria rgb(0,188,212)</div>
+                <div class="secundaria" style="padding:12px;color:#fff">Secundaria rgb(135,35,0)</div>
+                <div class="terciaria" style="padding:12px">Terciaria rgb(204,204,204)</div>
+            </div>
+            <div class="D4T4M3 containerEmColuna" style="gap:4px">
+                <div class="corAtencao" style="padding:12px">Atencao rgb(251,140,0)</div>
+                <div class="corNegacao" style="padding:12px;color:#fff">Negacao rgb(204,77,51)</div>
+                <div class="corPositivacao" style="padding:12px;color:#fff">Positivacao rgb(51,204,154)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PALETA                                    -->
+    <!-- ========================================= -->
+    <div class="section" id="paleta">
+        <div class="section-title">Paleta de Cores</div>
+        <div class="section-desc">5 eixos de variacao da cor primaria, 10 niveis cada: Fade (1-N), Saturacao (2-N), Desaturacao (3-N), Clarificacao (4-N), Obscurecencia (5-N)</div>
+
+        <span class="demo-label">Fade (paleta-1-1 a 1-10)</span>
+        <div class="linhaDoGrid">
+            <div class="panel paleta-1-1 D1T1M1" style="font-size:10px">100%</div>
+            <div class="panel paleta-1-2 D1T1M1" style="font-size:10px">90%</div>
+            <div class="panel paleta-1-3 D1T1M1" style="font-size:10px">80%</div>
+            <div class="panel paleta-1-4 D1T1M1" style="font-size:10px">70%</div>
+            <div class="panel paleta-1-5 D1T1M1" style="font-size:10px">60%</div>
+            <div class="panel paleta-1-6 D1T1M1" style="font-size:10px">50%</div>
+            <div class="panel paleta-1-7 D1T1M1" style="font-size:10px">40%</div>
+            <div class="panel paleta-1-8 D1T1M1" style="font-size:10px">30%</div>
+            <div class="panel paleta-1-9 D1T1M1" style="font-size:10px">20%</div>
+            <div class="panel paleta-1-10 D1T1M1" style="font-size:10px">10%</div>
+        </div>
+        <span class="demo-label">Saturacao (paleta-2-1 a 2-10)</span>
+        <div class="linhaDoGrid">
+            <div class="panel paleta-2-1 D1T1M1" style="font-size:10px">10%</div>
+            <div class="panel paleta-2-3 D1T1M1" style="font-size:10px">30%</div>
+            <div class="panel paleta-2-5 D1T1M1" style="font-size:10px">50%</div>
+            <div class="panel paleta-2-7 D1T1M1" style="font-size:10px">70%</div>
+            <div class="panel paleta-2-10 D1T1M1" style="font-size:10px">100%</div>
+        </div>
+        <span class="demo-label">Desaturacao (paleta-3-1 a 3-10)</span>
+        <div class="linhaDoGrid">
+            <div class="panel paleta-3-1 D1T1M1" style="font-size:10px">10%</div>
+            <div class="panel paleta-3-3 D1T1M1" style="font-size:10px">30%</div>
+            <div class="panel paleta-3-5 D1T1M1" style="font-size:10px">50%</div>
+            <div class="panel paleta-3-7 D1T1M1" style="font-size:10px">70%</div>
+            <div class="panel paleta-3-10 D1T1M1" style="font-size:10px">100%</div>
+        </div>
+        <span class="demo-label">Clarificacao (paleta-4-1 a 4-10)</span>
+        <div class="linhaDoGrid">
+            <div class="panel paleta-4-1 D1T1M1" style="font-size:10px">10%</div>
+            <div class="panel paleta-4-3 D1T1M1" style="font-size:10px">30%</div>
+            <div class="panel paleta-4-5 D1T1M1" style="font-size:10px">50%</div>
+            <div class="panel paleta-4-7 D1T1M1" style="font-size:10px">70%</div>
+            <div class="panel paleta-4-10 D1T1M1" style="font-size:10px">100%</div>
+        </div>
+        <span class="demo-label">Obscurecencia (paleta-5-1 a 5-10)</span>
+        <div class="linhaDoGrid">
+            <div class="panel paleta-5-1 D1T1M1" style="font-size:10px">10%</div>
+            <div class="panel paleta-5-3 D1T1M1" style="font-size:10px">30%</div>
+            <div class="panel paleta-5-5 D1T1M1" style="font-size:10px">50%</div>
+            <div class="panel paleta-5-7 D1T1M1" style="font-size:10px">70%</div>
+            <div class="panel paleta-5-10 D1T1M1" style="font-size:10px">100%</div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- FORMULARIOS                               -->
+    <!-- ========================================= -->
+    <div class="section" id="formularios">
+        <div class="section-title">Formularios</div>
+        <div class="section-desc">Classes: <code>.itemForm</code> (dimensoes), <code>.input</code> (cores/placeholder), <code>.containerItemFormComIcone</code> (icone SVG dentro), <code>.tituloForm</code> (barra de titulo com gradiente)</div>
+
+        <div class="linhaDoGrid">
+            <div class="D8T10M6 containerEmColuna desloc-D2T1M0">
+                <div class="tituloForm arredondadaSuperior">Dados de Acesso</div>
+                <div class="panel containerEmColuna arredondadaInferior">
+                    <div class="containerItemFormComIcone">
+                        <input type="text" class="itemForm input" placeholder="E-mail">
+                        <img src="/icones/mail.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
+                    </div>
+                    <div class="containerItemFormComIcone">
+                        <input type="password" class="itemForm input" placeholder="Senha">
+                        <img src="/icones/lock.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
+                    </div>
+                    <div class="containerItemFormComIcone">
+                        <input type="text" class="itemForm input" placeholder="Nome completo">
+                        <img src="/icones/user.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
+                    </div>
+                    <input type="text" class="itemForm input" placeholder="Campo sem icone">
+                </div>
+            </div>
+        </div>
+        <div class="code-block">&lt;div class="tituloForm arredondadaSuperior"&gt;Titulo&lt;/div&gt;
+&lt;div class="panel containerEmColuna arredondadaInferior"&gt;
+    &lt;div class="containerItemFormComIcone"&gt;
+        &lt;input class="itemForm input" placeholder="E-mail"&gt;
+        &lt;!-- SVG icone inline (mail.svg) --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- BOTOES                                    -->
+    <!-- ========================================= -->
+    <div class="section" id="botoes">
+        <div class="section-title">Botoes</div>
+        <div class="section-desc">Classe <code>.bt</code> aplica cor de fundo terciaria, cor de texto preta e hover com gradiente.</div>
+
+        <div class="linhaDoGrid">
+            <div class="D4T6M3 containerEmColuna" style="gap:6px">
+                <input type="button" class="itemForm bt" value="Botao Padrao (.bt)">
+                <input type="button" class="itemForm bt" value="Outro Botao">
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- NAVBAR                                    -->
+    <!-- ========================================= -->
+    <div class="section" id="navbar">
+        <div class="section-title">Navbar</div>
+        <div class="section-desc">Estrutura: <code>.navbar</code> &gt; <code>.hamburgerCheckbox</code> + <code>.hamburgerDisplayButton</code> + <code>.menusContainer</code> &gt; <code>.menu</code>/<code>.menuSecundario</code> &gt; <code>.menuItem</code>/<code>.menuItemInativo</code>/<code>.menuItemtitulo</code> &gt; <code>.subMenu</code> &gt; <code>.subMenuItem</code></div>
+
+        <div class="linhaDoGrid navbar" style="position:relative;z-index:100">
+            <input type="checkbox" class="hamburgerCheckbox" id="showcaseHamburger">
+            <div class="hamburgerDisplayButton">
+                <label for="showcaseHamburger" class="hamburgerDisplayLines">
+                    <span></span><span></span><span></span>
+                </label>
+            </div>
+            <div class="menusContainer">
+                <div class="menu">
+                    <div class="menuItem paginaAtual"><a href="#" style="color:inherit;text-decoration:none">Home</a></div>
+                    <div class="menuItem">
+                        <a href="#" style="color:inherit;text-decoration:none">Produtos</a>
+                        <div class="subMenu">
+                            <div class="subMenuItemtitulo">Categorias</div>
+                            <div class="subMenuItem"><a href="#" style="color:inherit;text-decoration:none">Produto A</a></div>
+                            <div class="subMenuItem"><a href="#" style="color:inherit;text-decoration:none">Produto B</a></div>
+                            <div class="subMenuItemInativo">Indisponivel</div>
+                        </div>
+                    </div>
+                    <div class="menuItem"><a href="#" style="color:inherit;text-decoration:none">Contato</a></div>
+                    <div class="menuItemInativo">Desabilitado</div>
+                </div>
+                <div class="menu menuSecundario">
+                    <div class="menuItem"><a href="#" style="color:inherit;text-decoration:none">Login</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="code-block">&lt;div class="linhaDoGrid navbar"&gt;
+    &lt;input type="checkbox" class="hamburgerCheckbox" id="h1"&gt;
+    &lt;div class="hamburgerDisplayButton"&gt;
+        &lt;label for="h1" class="hamburgerDisplayLines"&gt;
+            &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class="menusContainer"&gt;
+        &lt;div class="menu"&gt;
+            &lt;div class="menuItem paginaAtual"&gt;Home&lt;/div&gt;
+            &lt;div class="menuItem"&gt;Produtos
+                &lt;div class="subMenu"&gt;
+                    &lt;div class="subMenuItemtitulo"&gt;Categorias&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;Produto A&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="menu menuSecundario"&gt;
+            &lt;div class="menuItem"&gt;Login&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PASSOS (WIZARD)                           -->
+    <!-- ========================================= -->
+    <div class="section" id="passos">
+        <div class="section-title">Passos (Wizard)</div>
+        <div class="section-desc">Container <code>.passos</code>. Cada passo e um div filho. Variantes: <code>.passoCompleto</code> (check), <code>.passoFuturo</code> (cinza).</div>
+
+        <div class="linhaDoGrid">
+            <div class="D8T10M6 desloc-D2T1M0 containerEmLinha passos">
+                <p>Etapas do cadastro</p>
+                <div class="passoCompleto">
+                    <div>1</div>
+                    <div><img src="/icones/check.svg" style="width:150%;height:150%;position:absolute;left:5%;top:-20%;display:block"></div>
+                </div>
+                <div>
+                    <div>2</div>
+                    <div></div>
+                </div>
+                <div class="passoFuturo">
+                    <div>3</div>
+                    <div></div>
+                </div>
+                <div class="passoFuturo">
+                    <div>4</div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- MESSAGE BALLOONS                          -->
+    <!-- ========================================= -->
+    <div class="section" id="balloons">
+        <div class="section-title">Message Balloons</div>
+        <div class="section-desc">Tipos: <code>balloonType-Help</code>, <code>balloonType-Atencao</code>, <code>balloonType-Erro</code>. Posicoes: <code>balloonPosition-All-{Left|Right|Top|Bottom|TopLeft|TopRight|BottomLeft|BottomRight}</code>. Trigger: <code>.balloonTrigger</code> (JS clique)</div>
+
+        <div class="linhaDoGrid">
+            <div class="D8T10M6 containerEmColuna desloc-D2T1M0" style="gap:10px">
+                <span class="demo-label">Clique nos elementos abaixo</span>
+                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
+                    Help Balloon (direita)
+                    <div class="balloonPosition-All-Right balloonType-Help D3T3M2">Esta e uma mensagem de ajuda que aparece ao clicar.</div>
+                </div>
+                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
+                    Atencao Balloon (abaixo)
+                    <div class="balloonPosition-All-Bottom balloonType-Atencao D4T4M4">Atencao! Verifique os dados antes de prosseguir.</div>
+                </div>
+                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
+                    Erro Balloon (esquerda)
+                    <div class="balloonPosition-All-Left balloonType-Erro D4T4M4">Erro! Campo obrigatorio nao preenchido.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- MODAL                                     -->
+    <!-- ========================================= -->
+    <div class="section" id="modal">
+        <div class="section-title">Modal</div>
+        <div class="section-desc">Classes: <code>.modalBackground</code> (overlay escuro), <code>.modalBox</code> (caixa branca centralizada), <code>.modalLoader</code> (indicador de loading)</div>
+
+        <button onclick="document.getElementById('demoModal').style.display='flex'" style="padding:10px 20px;background:#00bcd4;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;width:fit-content">Abrir Modal</button>
+        <div id="demoModal" style="display:none;position:fixed;z-index:50000;height:100vh;width:100vw;top:0;left:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center" onclick="this.style.display='none'">
+            <div style="background:#fff;padding:40px;border-radius:8px;text-align:center;flex-direction:column;gap:10px;max-width:400px" onclick="event.stopPropagation()">
+                <h2 style="margin:0">Modal Box</h2>
+                <p>Conteudo do modal usando .modalBox</p>
+                <button onclick="document.getElementById('demoModal').style.display='none'" style="padding:8px 16px;background:#cc4d33;color:#fff;border:none;border-radius:4px;cursor:pointer">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SOCIAL LOGIN (UserControls)               -->
+    <!-- ========================================= -->
+    <div class="section" id="social">
+        <div class="section-title">Login Social (UserControls)</div>
+        <div class="section-desc">Componentes de UserControls: <code>.containerbtFacebook</code>, <code>.containerbtGoogle</code>, <code>.LoginMenu</code> com submenu de login contendo inputs + botoes sociais</div>
+
+        <span class="demo-label">Botoes de Login Social</span>
+        <div class="linhaDoGrid">
+            <div class="D4T6M6 containerEmColuna" style="gap:6px">
+                <div class="containerItemFormComIcone containerbtFacebook" style="position:relative;min-width:200px;cursor:pointer">
+                    <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
+                    <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center">Login com Facebook</div>
+                </div>
+                <div class="containerItemFormComIcone containerbtGoogle" style="position:relative;min-width:200px;cursor:pointer">
+                    <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
+                    <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.54)">Login com Google</div>
+                </div>
+            </div>
+        </div>
+
+        <span class="demo-label">Menu Login Completo (UserControl LoginMenu.ascx)</span>
+        <div class="linhaDoGrid">
+            <div class="D6T8M6 containerEmColuna panel desloc-D3T2M0">
+                <div class="tituloForm arredondadaSuperior">Login via social</div>
+                <div class="containerEmLinha" style="gap:6px;padding:8px">
+                    <div class="containerItemFormComIcone containerbtFacebook" style="position:relative;min-width:140px;cursor:pointer;flex:1">
+                        <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
+                        <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;font-size:12px">Facebook</div>
+                    </div>
+                    <div class="containerItemFormComIcone containerbtGoogle" style="position:relative;min-width:140px;cursor:pointer;flex:1">
+                        <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
+                        <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.54);font-size:12px">Google</div>
+                    </div>
+                </div>
+                <div style="padding:4px 8px;font-weight:600;font-size:13px;color:#666">Login via email e senha</div>
+                <div class="containerItemFormComIcone" style="padding:0 8px">
+                    <input type="text" class="itemForm input" placeholder="E-mail" style="width:100%">
+                    <img src="/icones/mail.svg" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);height:18px;width:18px;opacity:0.3;display:block">
+                </div>
+                <div class="containerItemFormComIcone" style="padding:0 8px">
+                    <input type="password" class="itemForm input" placeholder="Senha" style="width:100%">
+                    <img src="/icones/lock.svg" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);height:18px;width:18px;opacity:0.3;display:block">
+                </div>
+                <div class="containerEmLinha" style="gap:6px;padding:8px">
+                    <div style="flex:1;font-size:12px;color:#00bcd4;cursor:pointer;display:flex;align-items:center">Esqueci minha senha</div>
+                    <input type="button" class="itemForm bt" value="Entrar" style="flex:0 0 auto;width:auto;padding:0 20px">
+                </div>
+                <div style="padding:4px 8px 12px;font-size:12px;color:#00bcd4;cursor:pointer">Criar nova conta</div>
+            </div>
+        </div>
+
+        <div class="code-block">&lt;!-- UserControl: LoginMenu.ascx --&gt;
+&lt;div class="menuItem"&gt;
+    Login
+    &lt;div class="subMenu"&gt;
+        &lt;div class="subMenuItem containerExternoBotoesSubmenu"&gt;
+            &lt;div class="containerbtFacebook"&gt;...&lt;/div&gt;
+            &lt;div class="containerbtGoogle"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="subMenuItem"&gt;
+            &lt;div class="containerItemFormComIcone"&gt;
+                &lt;input class="itemForm input" placeholder="E-mail"&gt;
+                &lt;!-- mail.svg --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- TEXTOS POR BREAKPOINT                     -->
+    <!-- ========================================= -->
+    <div class="section" id="textos">
+        <div class="section-title">Textos por Breakpoint</div>
+        <div class="section-desc">Classes <code>.spanDesktop</code>, <code>.spanTablet</code>, <code>.spanMobile</code> exibem texto diferente conforme a resolucao.</div>
+
+        <div class="linhaDoGrid">
+            <div class="panel D12T12M6">
+                Voce esta vendo:
+                <span class="spanDesktop" style="font-weight:700;color:#00bcd4"> DESKTOP (>992px)</span>
+                <span class="spanTablet" style="font-weight:700;color:#fb8c00"> TABLET (768-992px)</span>
+                <span class="spanMobile" style="font-weight:700;color:#cc4d33"> MOBILE (&lt;768px)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ICONES SVG                                -->
+    <!-- ========================================= -->
+    <div class="section" id="icones">
+        <div class="section-title">Icones SVG</div>
+        <div class="section-desc">80 icones SVG disponiveis em <code>/icones/{nome}.svg</code></div>
+        <div id="iconsGrid" class="linhaDoGrid" style="gap:4px;flex-wrap:wrap"></div>
+    </div>
+
+    <div style="padding:40px;text-align:center;color:#999;font-size:12px;flex-direction:column;align-items:center">
+        <p>Framework CSS Padrao - Showcase e Documentacao</p>
+    </div>
+
+    <script>
+    // Load icons grid
+    fetch('/api/icons')
+        .then(r => r.json())
+        .then(icons => {
+            const grid = document.getElementById('iconsGrid');
+            icons.forEach(icon => {
+                const div = document.createElement('div');
+                div.style.cssText = 'display:flex;flex-direction:column;align-items:center;padding:8px;background:#fff;border:1px solid #eee;border-radius:4px;min-width:70px;gap:4px';
+                div.innerHTML = '<img src="/icones/' + icon + '.svg" style="width:24px;height:24px;display:block"><small style="font-size:9px;color:#666">' + icon + '</small>';
+                grid.appendChild(div);
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

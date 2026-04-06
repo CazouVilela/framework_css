@@ -1,0 +1,58 @@
+﻿//LINHA TITULO PARA FORMULARIOS
+    .tituloForm {
+        color:              @CorFonteNavbar;
+        font-family:        @FontFamilyNavbar;
+        display:            flex;
+        -webkit-align-items:center;
+        -ms-flex-item-align:center;
+        align-items:        center;
+        -webkit-justify-content:center;
+        justify-content:    center;
+        position:           relative;
+        border-width:       0px !important;
+        .bordaArredondada(Superior);
+        .gradiente(@CorPrimaria;@CorGradiente);
+
+            @media (min-width: @Res_Desktop) {
+                font-size: (@TamanhoTextoNavbar_Desktop * 0.8);
+                height:    (@AlturaLinhaNavbar_Desktop * 0.8);
+                top:        @EspessuraDaBorda_Desktop;
+                .bordaArredondada(Desktop);
+                .sombreamento(
+                    @SombraHorizontal_Desktop; 
+                    @SombraVertical: 0px; 
+                    @BlurSombra_Desktop; 
+                    @SpreadSombra_Desktop; 
+                    @Margin-botton: 0px;
+                );
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                font-size: (@TamanhoTextoNavbar_Tablet * 0.8);
+                height:    (@AlturaLinhaNavbar_Tablet * 0.8);
+                top:        @EspessuraDaBorda_Tablet;
+                .bordaArredondada(Tablet);
+                .sombreamento(
+                    @SombraHorizontal_Tablet; 
+                    0px; 
+                    @BlurSombra_Tablet; 
+                    @SpreadSombra_Tablet; 
+                    0px;
+                );
+            }
+
+            @media (max-width:@Res_Tablet) {
+                font-size: (@TamanhoTextoNavbar_Mobile * 0.8);
+                height:    (@AlturaLinhaNavbar_Mobile * 0.8);
+                top:        @EspessuraDaBorda_Mobile;
+                .bordaArredondada(Mobile);
+                .sombreamento(
+                    @SombraHorizontal_Mobile; 
+                    0px; 
+                    @BlurSombra_Mobile; 
+                    @SpreadSombra_Mobile; 
+                    0px;
+                );
+            
+            }
+    }

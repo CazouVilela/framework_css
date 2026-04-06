@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 503.95 501">
+  <defs>
+    <style>
+      .backgroundBicoballoon{fill:none;}
+      .bordaBicoballoon{
+        fill:none;
+        stroke: purple;
+        stroke-width: 5px;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <title>bicoballoon</title>
+
+  <g id="contorno">
+    <path class="bordaBicoballoon" d="M1209.5,289.52s2,127-192,196c-143,55-308.45,53.51-308.45,53.51s166.45-2.51,306.45,53.49c162,67,191,151,194,197h0" transform="translate(-709.05 -289.39)"/>
+  </g>
+</svg>

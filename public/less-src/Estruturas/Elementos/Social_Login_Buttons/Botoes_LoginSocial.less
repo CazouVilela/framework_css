@@ -1,0 +1,248 @@
+﻿    /*
+        <div class="containerItemFormComIcone containerbtFacebook">
+            <asp:Button class="itemForm bt" runat="server" Text="" />
+            <div>Login com Facebook</div>
+            <!--#include virtual="~/App_Themes/icones/facebookbutton.svg"-->
+        </div>
+    */
+
+
+
+//BOTAO FACEBOOK
+    //Conteiner FACEBOOK
+            .containerbtFacebook {
+                min-width:          200px;
+                background-color:   #4267b2;
+                color:              white;
+            }
+
+            //Conteiner FACEBOOK
+                //Conteiner FACEBOOK DESKTOP
+                        @media (min-width: @Res_Desktop) {
+                            .containerbtFacebook {
+                                /*top:    (@margemTop_ItemForm_Desktop + @EspessuraDaBorda_Desktop);*/
+                                height: (@AlturaLinhaPadrao_Desktop - @margemTop_ItemForm_Desktop - (@EspessuraDaBorda_Desktop * 2) - @margemBottom_ItemForm_Desktop);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+                //Conteiner FACEBOOK TABLET
+                        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                            .containerbtFacebook {
+                                /*top:    (@margemTop_ItemForm_Tablet + @EspessuraDaBorda_Tablet);*/
+                                height: (@AlturaLinhaPadrao_Tablet - @margemTop_ItemForm_Tablet - (@EspessuraDaBorda_Tablet * 2) - @margemBottom_ItemForm_Tablet);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+                //Conteiner FACEBOOK MOBILE
+                        @media (max-width:@Res_Tablet) {
+                            .containerbtFacebook {
+                                /*top:    (@margemTop_ItemForm_Mobile + @EspessuraDaBorda_Mobile);*/
+                                height: (@AlturaLinhaPadrao_Mobile - @margemTop_ItemForm_Mobile - (@EspessuraDaBorda_Mobile * 2) - @margemBottom_ItemForm_Mobile);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+        
+        //Conteiner FACEBOOK BOTÃO
+                .containerbtFacebook input {
+                    background-color:   transparent;
+                    border-width:       0px;
+                    position:           relative;
+                    width:              100%;
+                    height:             100%;
+                    z-index:            2000;
+                    .margin(Remover);
+
+                }
+
+                    .containerbtFacebook input:hover {
+                        background-image: none !important;
+                    }
+
+        //Conteiner FACEBOOK TEXTO
+                .containerbtFacebook div {
+                    /*display:            -webkit-flex;
+                    display:            -ms-flexbox;
+                    display:            flex;*/
+                    /*-webkit-align-items:center;
+                    -ms-flex-item-align:center;
+                    align-items:        center;
+                    -webkit-justify-content:center;
+                    justify-content:    center;*/
+                    position:           absolute;
+                    top:                0px;
+                    height:             100%;
+                    width:              100%;
+                    -webkit-align-items: center;
+                    -ms-flex-item-align: center;
+                    align-items:                center;
+                    -webkit-justify-content:    center;
+                    justify-content:            center;
+                }
+
+                //ICONE SVG dentro do conteiner FACEBOOK
+                        .containerbtFacebook svg path {
+                            .color(@Branco);
+                        }
+
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner FACEBOOK DESKTOP
+                            @media (min-width: @Res_Desktop) {
+                                .containerbtFacebook div {
+                                    margin-left: ((@tamanhoIcone_Desktop / 2) + (@PaddingLeftInput_Desktop / 2));
+                                }
+                
+                                .containerbtFacebook svg {
+                                    left:   @PaddingLeftInput_Desktop;
+                                    top:    (@topIcone_Desktop / 2);
+                                    width:  @tamanhoIcone_Desktop;
+                                }
+                            }
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner FACEBOOK TABLET
+                            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                                .containerbtFacebook div {
+                                    margin-left: ((@tamanhoIcone_Tablet / 2) + (@PaddingLeftInput_Tablet / 2));
+                                }
+
+                                .containerbtFacebook svg {
+                                    left:   @PaddingLeftInput_Tablet;
+                                    top:    (@topIcone_Tablet / 2);
+                                    width:  @tamanhoIcone_Tablet;
+                                }
+                            }
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner FACEBOOK MOBILE
+                            @media (max-width:@Res_Tablet) {
+                                .containerbtFacebook div {
+                                    margin-left: ((@tamanhoIcone_Mobile / 2) + (@PaddingLeftInput_Mobile / 2));
+                                }
+
+                                .containerbtFacebook svg {
+                                    left:   @PaddingLeftInput_Mobile;
+                                    top:    (@topIcone_Mobile / 2);
+                                    width:  @tamanhoIcone_Mobile;
+                                }
+                            }
+
+//BOTAO GOOGLE
+    //Conteiner GOOGLE
+            .containerbtGoogle {
+                min-width:          200px;
+                background-color:   white;
+                color:              rgba(0,0,0,0.54);             
+            }
+
+            //Conteiner GOOGLE
+                //Conteiner GOOGLE DESKTOP
+                        @media (min-width: @Res_Desktop) {
+                            .containerbtGoogle {
+                                /*top:    (@margemTop_ItemForm_Desktop + @EspessuraDaBorda_Desktop);*/
+                                height: (@AlturaLinhaPadrao_Desktop - @margemTop_ItemForm_Desktop - (@EspessuraDaBorda_Desktop * 2) - @margemBottom_ItemForm_Desktop);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+                //Conteiner GOOGLE TABLET
+                        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                            .containerbtGoogle {
+                                /*top:    (@margemTop_ItemForm_Tablet + @EspessuraDaBorda_Tablet);*/
+                                height: (@AlturaLinhaPadrao_Tablet - @margemTop_ItemForm_Tablet - (@EspessuraDaBorda_Tablet * 2) - @margemBottom_ItemForm_Tablet);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+                //Conteiner GOOGLE MOBILE
+                        @media (max-width:@Res_Tablet) {
+                            .containerbtGoogle {
+                                /*top:    (@margemTop_ItemForm_Mobile + @EspessuraDaBorda_Mobile);*/
+                                height: (@AlturaLinhaPadrao_Mobile - @margemTop_ItemForm_Mobile - (@EspessuraDaBorda_Mobile * 2) - @margemBottom_ItemForm_Mobile);
+                                .bordaArredondada(Desktop);
+                            }
+                        }
+
+
+        //Conteiner GOOGLE BOTÃO
+                .containerbtGoogle input {
+                    background-color:   transparent;
+                    border-width:       0px;
+                    position:           relative;
+                    width:              100%;
+                    height:             100%;
+                    z-index:            2000;
+                    .margin(Remover);
+
+                }
+
+                    .containerbtGoogle input:hover {
+                        background-image: none !important;
+                    }
+
+        //Conteiner GOOGLE TEXTO BOTAO
+                .containerbtGoogle div {
+                    /*display:            -webkit-flex;
+                    display:            -ms-flexbox;
+                    display:            flex;*/
+                    /*-webkit-align-items:center;
+                    -ms-flex-item-align:center;
+                    align-items:        center;
+                    -webkit-justify-content:center;
+                    justify-content:    center;*/
+                    position:           absolute;
+                    top:                0px;
+                    height:             100%;
+                    width:              100%;
+                    -webkit-align-items: center;
+                    -ms-flex-item-align: center;
+                    align-items:                center;
+                    -webkit-justify-content:    center;
+                    justify-content:            center;
+                }
+
+                //ICONE SVG dentro do conteiner GOOGLE
+                        .containerbtGoogle svg path:nth-of-type(1) {
+                            fill: #FBBC05 !important;
+                        }
+                        .containerbtGoogle svg path:nth-of-type(2) {
+                            fill: #EA4335 !important;
+                        }
+                        .containerbtGoogle svg path:nth-of-type(3) {
+                            fill: #34A853 !important;
+                        }
+                        .containerbtGoogle svg path:nth-of-type(4) {
+                            fill: #4285F4 !important;
+                        }
+
+
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE DESKTOP
+                            @media (min-width: @Res_Desktop) {
+                                .containerbtGoogle div {
+                                    margin-left: ((@tamanhoIcone_Desktop / 2) + (@PaddingLeftInput_Desktop / 2));
+                                }
+
+                                .containerbtGoogle svg {
+                                    left:   @PaddingLeftInput_Desktop;
+                                    top:    (@topIcone_Desktop / 2);
+                                    width:  @tamanhoIcone_Desktop;
+                                }
+                            }
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE TABLET
+                            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                                .containerbtGoogle div {
+                                    margin-left: ((@tamanhoIcone_Tablet / 2) + @PaddingLeftInput_Tablet);
+                                }
+
+                                .containerbtGoogle svg {
+                                    left:   @PaddingLeftInput_Tablet;
+                                    top:    (@topIcone_Tablet / 2);
+                                    width:  @tamanhoIcone_Tablet;
+                                }
+                            }
+                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE MOBILE
+                            @media (max-width:@Res_Tablet) {
+                                .containerbtGoogle div {
+                                    margin-left: (@tamanhoIcone_Mobile / 2) + @PaddingLeftInput_Mobile;
+                                }
+
+                                .containerbtGoogle svg {
+                                    left:   @PaddingLeftInput_Mobile;
+                                    top:    (@topIcone_Mobile / 2);
+                                    width:  @tamanhoIcone_Mobile;
+                                }
+                            }
+        
+            

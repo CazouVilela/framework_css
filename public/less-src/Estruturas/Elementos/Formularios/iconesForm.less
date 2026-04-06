@@ -1,0 +1,72 @@
+﻿//ITEM FORM COM ICONES // Todos os elemntos com ícone
+    //CONTAINER ITEM FORM COM ICONES 
+        .containerItemFormComIcone {
+            width:      100%;
+            position:   relative;
+
+            -webkit-align-items:center;
+            -ms-flex-item-align:center;
+            align-items:        center;
+
+        }
+
+
+        //ICONE SVG DENTRO DO CONTAINER
+            .containerItemFormComIcone svg {
+                position:   absolute;
+
+                    @media (min-width: @Res_Desktop) {
+                        left:   @PaddingLeftInput_Desktop;
+                        top:    @topIcone_Desktop;
+                        height: @tamanhoIcone_Desktop;
+                    }
+
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        left:   @PaddingLeftInput_Tablet;
+                        top:    @topIcone_Tablet;
+                        height: @tamanhoIcone_Tablet;
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        left:   @PaddingLeftInput_Mobile;
+                        top:    @topIcone_Mobile;
+                        height: @tamanhoIcone_Mobile;
+                    }
+            }
+                
+            //PATH DO ICONE SVG DENTRO DO CONTAINER
+                    .containerItemFormComIcone svg path {
+                        .color(@Preto; 30%);
+                    }
+
+
+
+        //INPUT COM ICONES DENTRO DO CONTAINER
+            .containerItemFormComIcone input {
+                    @media (min-width: @Res_Desktop) {
+                        .padding( 
+                            @PaddingTopInputIcone_Desktop; 
+                            @PaddingRightInputIcone_Desktop; 
+                            @PaddingBottomInputIcone_Desktop; 
+                            @PaddingLeftInputIcone_Desktop; 
+                        );
+                    }
+                            
+                    @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        .padding( 
+                            @PaddingTopInputIcone_Tablet; 
+                            @PaddingRightInputIcone_Tablet; 
+                            @PaddingBottomInputIcone_Tablet; 
+                            @PaddingLeftInputIcone_Tablet; 
+                        );
+                    }
+
+                    @media (max-width:@Res_Tablet) {
+                        .padding(
+                            @PaddingTopInputIcone_Mobile; 
+                            @PaddingRightInputIcone_Mobile; 
+                            @PaddingBottomInputIcone_Mobile; 
+                            @PaddingLeftInputIcone_Mobile; 
+                        );
+                    }
+            }

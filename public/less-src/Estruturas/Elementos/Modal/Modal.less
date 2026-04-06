@@ -1,0 +1,51 @@
+﻿
+.modalBackground {
+    & when (@breakpoint = 'all') {
+        position: fixed;
+        z-index: 50000;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        .backgroundColor(@Preto; 60%; 0%; 0%; 0%; 0%;);
+    }
+}
+
+
+
+
+.modalBox {
+    & when (@breakpoint = 'all') {
+        background-color: @Branco;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        /*    left: 50%;*/
+        transform: translate(0%, -50%);
+        font-size: x-large;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.modalLoader {
+
+
+    & when (@breakpoint = 'Desktop') {
+        height: @TamanhoPadraoTexto_Desktop;
+        width: @TamanhoPadraoTexto_Desktop;
+    }
+
+    & when (@breakpoint = 'Tablet') {
+        height: @TamanhoPadraoTexto_Tablet;
+        width: @TamanhoPadraoTexto_Tablet;
+    }
+
+    & when (@breakpoint = 'Mobile') {
+        height: @TamanhoPadraoTexto_Mobile;
+        width: @TamanhoPadraoTexto_Mobile;
+    }
+}

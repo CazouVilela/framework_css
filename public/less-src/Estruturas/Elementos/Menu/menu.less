@@ -1,0 +1,63 @@
+﻿//CHECKBOX OCULTOS (Controle estado do hamburger)
+        .hamburgerCheckbox{
+            & when (@breakpoint = 'all') {
+                display: none;
+            }
+        }
+
+    //BOTÃO HAMBURGUER
+                & when (@breakpoint = 'Desktop') {
+                    & .hamburgerDisplayButton_D{
+                        position:   relative;
+                        height:     @AlturaLinhaMenu_Desktop;
+                        width:      @AlturaLinhaMenu_Desktop;
+                        .padding(HamburgerDesktop);
+                    }
+                }
+
+                & when (@breakpoint = 'Tablet') {
+                    & .hamburgerDisplayButton_T{
+                        position:   relative;
+                        height:     @AlturaLinhaMenu_Tablet;
+                        width:      @AlturaLinhaMenu_Tablet;
+                        .padding(HamburgerTablet);
+                    }
+                }
+
+                & when (@breakpoint = 'Mobile') {
+                    & .hamburgerDisplayButton_M{
+                        position:   relative;
+                        height:     @AlturaLinhaMenu_Mobile;
+                        width:      @AlturaLinhaMenu_Mobile;
+                        .padding(HamburgerMobile);
+                    }
+                }
+
+
+
+                .hamburgerDisplayButton_N1 {
+                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                        .backgroundColor(BotaoHamburger);
+                    }
+                }
+
+                .hamburgerDisplayButton_N2 {
+                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                        .backgroundColor(@CorPrimaria;100%; 0%;0%;0%;15%;);
+                        transform: scale(0.6);
+                    }
+                }
+
+                .hamburgerDisplayButton_N3 {
+                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                        .backgroundColor(@CorPrimaria;100%; 0%;0%;0%;10%;);
+                        transform: scale(0.5);
+                    }
+                }
+
+                .hamburgerDisplayButton_N4 {
+                    & when (@breakpoint = 'Tablet') or (@breakpoint = 'Mobile') {
+                        .backgroundColor(@CorPrimaria;100%; 0%;0%;5%;0%;);
+                        transform: scale(0.4);
+                    }
+                }

@@ -1,0 +1,24 @@
+{
+  "name": "framework_css",
+  "version": "1.0.0",
+  "description": "[Descricao do projeto]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CazouVilela/framework_css.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CazouVilela/framework_css/issues"
+  },
+  "homepage": "https://github.com/CazouVilela/framework_css#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "less": "^4.6.4"
+  }
+}

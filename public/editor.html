@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Variaveis - Framework CSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Raleway, sans-serif; display: flex; height: 100vh; overflow: hidden; background: #f0f0f0; }
+
+        /* ===== SIDEBAR EDITOR ===== */
+        .editor-sidebar {
+            width: 380px; min-width: 380px; background: #1a1a2e; color: #e0e0e0;
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .editor-header {
+            padding: 16px; background: #16213e; border-bottom: 1px solid #0f3460;
+        }
+        .editor-header h1 { font-size: 16px; color: #00bcd4; margin-bottom: 8px; }
+        .editor-header .actions {
+            display: flex; gap: 6px; flex-wrap: wrap;
+        }
+        .editor-header .actions button {
+            padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer;
+            font-size: 12px; font-weight: 600; font-family: Raleway;
+        }
+        .btn-compile { background: #00bcd4; color: #fff; }
+        .btn-compile:hover { background: #00acc1; }
+        .btn-export { background: #4caf50; color: #fff; }
+        .btn-export:hover { background: #43a047; }
+        .btn-reset { background: #ff5722; color: #fff; }
+        .btn-reset:hover { background: #e64a19; }
+        .btn-back { background: transparent; color: #aaa; border: 1px solid #444 !important; }
+        .btn-back:hover { color: #fff; border-color: #666 !important; }
+
+        .editor-search {
+            padding: 8px 16px; border-bottom: 1px solid #0f3460;
+        }
+        .editor-search input {
+            width: 100%; padding: 8px 12px; background: #16213e; border: 1px solid #0f3460;
+            color: #e0e0e0; border-radius: 4px; font-size: 13px; font-family: Raleway;
+        }
+        .editor-search input::placeholder { color: #666; }
+        .editor-search input:focus { outline: none; border-color: #00bcd4; }
+
+        .editor-vars {
+            flex: 1; overflow-y: auto; padding: 8px;
+        }
+        .var-category {
+            margin-bottom: 4px;
+        }
+        .var-category-header {
+            padding: 8px 12px; background: #16213e; border-radius: 4px;
+            font-size: 12px; font-weight: 700; color: #00bcd4; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            user-select: none;
+        }
+        .var-category-header:hover { background: #1a2744; }
+        .var-category-header .arrow { transition: transform 0.2s; }
+        .var-category-header.collapsed .arrow { transform: rotate(-90deg); }
+        .var-category-body { padding: 4px 0; }
+        .var-category-body.hidden { display: none; }
+
+        .var-item {
+            display: flex; align-items: center; padding: 4px 8px; gap: 6px;
+            border-radius: 3px;
+        }
+        .var-item:hover { background: rgba(255,255,255,0.03); }
+        .var-name {
+            font-size: 11px; color: #aaa; min-width: 140px; font-family: 'Courier New', monospace;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .var-input {
+            flex: 1; padding: 4px 8px; background: #0d1b2a; border: 1px solid #1a3050;
+            color: #e0e0e0; border-radius: 3px; font-size: 12px; font-family: 'Courier New', monospace;
+        }
+        .var-input:focus { outline: none; border-color: #00bcd4; }
+        .var-input.modified { border-color: #fb8c00; background: #1a1500; }
+        .var-color-preview {
+            width: 24px; height: 24px; border-radius: 3px; border: 1px solid #333;
+            cursor: pointer; flex-shrink: 0;
+        }
+
+        /* ===== STATUS BAR ===== */
+        .status-bar {
+            padding: 8px 16px; background: #0d1b2a; border-top: 1px solid #0f3460;
+            font-size: 11px; color: #666; display: flex; justify-content: space-between;
+        }
+        .status-bar .modified-count { color: #fb8c00; }
+        .status-bar .compile-status { color: #4caf50; }
+        .status-bar .compile-error { color: #ff5722; }
+
+        /* ===== PREVIEW ===== */
+        .preview-area {
+            flex: 1; display: flex; flex-direction: column; overflow: hidden;
+        }
+        .preview-toolbar {
+            display: flex; align-items: center; padding: 8px 16px; gap: 8px;
+            background: #fff; border-bottom: 1px solid #ddd;
+        }
+        .preview-toolbar button {
+            padding: 4px 10px; border: 1px solid #ddd; background: #fff;
+            border-radius: 3px; cursor: pointer; font-size: 12px; font-family: Raleway;
+        }
+        .preview-toolbar button.active { background: #00bcd4; color: #fff; border-color: #00bcd4; }
+        .preview-toolbar .size-label { font-size: 11px; color: #999; margin-left: auto; }
+        .preview-frame-container {
+            flex: 1; display: flex; align-items: flex-start; justify-content: center;
+            overflow: auto; padding: 16px; background: #e8e8e8;
+        }
+        .preview-frame {
+            background: #fff; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: width 0.3s ease;
+        }
+        .preview-frame iframe {
+            width: 100%; height: 100%; border: none;
+        }
+
+        /* ===== EXPORT MODAL ===== */
+        .export-modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 99999; align-items: center; justify-content: center;
+        }
+        .export-modal-overlay.active { display: flex; }
+        .export-modal {
+            background: #fff; border-radius: 8px; padding: 24px; width: 500px; max-width: 90vw;
+        }
+        .export-modal h2 { margin-bottom: 12px; color: #1a1a2e; }
+        .export-modal label { display: block; margin-bottom: 4px; font-size: 13px; color: #555; }
+        .export-modal input[type="text"] {
+            width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;
+            margin-bottom: 12px; font-family: Raleway;
+        }
+        .export-modal textarea {
+            width: 100%; height: 200px; font-family: 'Courier New', monospace;
+            font-size: 12px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;
+            resize: vertical; margin-bottom: 12px;
+        }
+        .export-modal .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .export-modal .modal-actions button {
+            padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;
+            font-family: Raleway; font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <div class="editor-sidebar">
+        <div class="editor-header">
+            <h1>Editor de Variaveis</h1>
+            <div class="actions">
+                <button class="btn-compile" onclick="compileCSS()">Compilar LESS</button>
+                <button class="btn-export" onclick="showExportModal()">Exportar Config</button>
+                <button class="btn-reset" onclick="resetAll()">Resetar</button>
+                <a href="/" style="text-decoration:none"><button class="btn-back">Voltar</button></a>
+            </div>
+        </div>
+        <div class="editor-search">
+            <input type="text" id="searchInput" placeholder="Buscar variavel..." oninput="filterVariables(this.value)">
+        </div>
+        <div class="editor-vars" id="varsContainer"></div>
+        <div class="status-bar">
+            <span id="modifiedCount" class="modified-count">0 alteradas</span>
+            <span id="compileStatus" class="compile-status">Pronto</span>
+        </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-area">
+        <div class="preview-toolbar">
+            <button onclick="setPreviewSize('100%', this)" class="active">Desktop</button>
+            <button onclick="setPreviewSize('768px', this)">Tablet</button>
+            <button onclick="setPreviewSize('375px', this)">Mobile</button>
+            <span class="size-label" id="sizeLabel">100%</span>
+        </div>
+        <div class="preview-frame-container">
+            <div class="preview-frame" id="previewFrame" style="width:100%;height:100%">
+                <iframe id="previewIframe" src="/"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPORT MODAL -->
+    <div class="export-modal-overlay" id="exportModal">
+        <div class="export-modal">
+            <h2>Exportar Configuracao</h2>
+            <label>Nome do projeto:</label>
+            <input type="text" id="exportProjectName" value="meu_projeto" placeholder="nome_do_projeto">
+            <label>Variaveis LESS (copie ou baixe):</label>
+            <textarea id="exportContent" readonly></textarea>
+            <div class="modal-actions">
+                <button style="background:#e0e0e0" onclick="closeExportModal()">Fechar</button>
+                <button style="background:#2196f3;color:#fff" onclick="copyExport()">Copiar</button>
+                <button style="background:#4caf50;color:#fff" onclick="downloadExport()">Baixar .less</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    let allVariables = [];
+    let modifiedVars = {};
+    let originalValues = {};
+
+    // Load variables
+    async function loadVariables() {
+        const res = await fetch('/api/variables');
+        allVariables = await res.json();
+        allVariables.forEach(v => originalValues[v.name] = v.value);
+        renderVariables(allVariables);
+    }
+
+    function renderVariables(vars) {
+        const container = document.getElementById('varsContainer');
+        container.innerHTML = '';
+
+        // Group by category
+        const groups = {};
+        vars.forEach(v => {
+            if (!groups[v.category]) groups[v.category] = [];
+            groups[v.category].push(v);
+        });
+
+        for (const [cat, items] of Object.entries(groups)) {
+            const catDiv = document.createElement('div');
+            catDiv.className = 'var-category';
+
+            const header = document.createElement('div');
+            header.className = 'var-category-header';
+            header.innerHTML = `<span>${cat} (${items.length})</span><span class="arrow">&#9660;</span>`;
+            header.onclick = () => {
+                header.classList.toggle('collapsed');
+                body.classList.toggle('hidden');
+            };
+
+            const body = document.createElement('div');
+            body.className = 'var-category-body';
+
+            items.forEach(v => {
+                const row = document.createElement('div');
+                row.className = 'var-item';
+                row.dataset.varname = v.name;
+
+                let inputHtml = '';
+                const currentVal = modifiedVars[v.name] || v.value;
+
+                if (v.type === 'color') {
+                    const hexColor = rgbToHex(v.value);
+                    inputHtml = `
+                        <span class="var-name" title="@${v.name}">@${v.name}</span>
+                        <input type="color" class="var-color-preview" value="${hexColor}"
+                            onchange="updateColorVar('${v.name}', this.value, this.parentNode.querySelector('.var-input'))">
+                        <input type="text" class="var-input ${modifiedVars[v.name] ? 'modified' : ''}"
+                            value="${currentVal}" data-var="${v.name}" data-original="${v.value}"
+                            onchange="onVarChange('${v.name}', this.value, this)">
+                    `;
+                } else {
+                    inputHtml = `
+                        <span class="var-name" title="@${v.name}">@${v.name}</span>
+                        <input type="text" class="var-input ${modifiedVars[v.name] ? 'modified' : ''}"
+                            value="${currentVal}" data-var="${v.name}" data-original="${v.value}"
+                            onchange="onVarChange('${v.name}', this.value, this)">
+                    `;
+                }
+
+                row.innerHTML = inputHtml;
+                body.appendChild(row);
+            });
+
+            catDiv.appendChild(header);
+            catDiv.appendChild(body);
+            container.appendChild(catDiv);
+        }
+    }
+
+    function rgbToHex(rgb) {
+        const match = rgb.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+        if (!match) return '#000000';
+        const r = parseInt(match[1]).toString(16).padStart(2, '0');
+        const g = parseInt(match[2]).toString(16).padStart(2, '0');
+        const b = parseInt(match[3]).toString(16).padStart(2, '0');
+        return `#${r}${g}${b}`;
+    }
+
+    function hexToRgb(hex) {
+        const r = parseInt(hex.substr(1, 2), 16);
+        const g = parseInt(hex.substr(3, 2), 16);
+        const b = parseInt(hex.substr(5, 2), 16);
+        return `rgb(${r},${g},${b})`;
+    }
+
+    function updateColorVar(name, hexValue, textInput) {
+        const rgbValue = hexToRgb(hexValue);
+        textInput.value = rgbValue;
+        onVarChange(name, rgbValue, textInput);
+    }
+
+    function onVarChange(name, value, input) {
+        if (value === originalValues[name]) {
+            delete modifiedVars[name];
+            input.classList.remove('modified');
+        } else {
+            modifiedVars[name] = value;
+            input.classList.add('modified');
+        }
+        updateModifiedCount();
+    }
+
+    function updateModifiedCount() {
+        const count = Object.keys(modifiedVars).length;
+        document.getElementById('modifiedCount').textContent = `${count} alterada${count !== 1 ? 's' : ''}`;
+    }
+
+    function filterVariables(query) {
+        const items = document.querySelectorAll('.var-item');
+        const q = query.toLowerCase();
+        items.forEach(item => {
+            const name = item.dataset.varname.toLowerCase();
+            item.style.display = name.includes(q) ? 'flex' : 'none';
+        });
+        // Show categories that have visible items
+        document.querySelectorAll('.var-category').forEach(cat => {
+            const visible = cat.querySelectorAll('.var-item[style*="flex"], .var-item:not([style])');
+            const hasVisible = Array.from(cat.querySelectorAll('.var-item')).some(i => i.style.display !== 'none');
+            cat.style.display = hasVisible ? 'block' : 'none';
+        });
+    }
+
+    async function compileCSS() {
+        const status = document.getElementById('compileStatus');
+        status.textContent = 'Compilando...';
+        status.className = '';
+
+        try {
+            const res = await fetch('/api/compile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ variables: modifiedVars })
+            });
+            const data = await res.json();
+
+            if (data.error) {
+                status.textContent = 'Erro!';
+                status.className = 'compile-error';
+                alert('Erro de compilacao LESS:\n\n' + data.error);
+                return;
+            }
+
+            // Inject CSS into iframe
+            const iframe = document.getElementById('previewIframe');
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            let styleEl = iframeDoc.getElementById('custom-framework-css');
+            if (!styleEl) {
+                styleEl = iframeDoc.createElement('style');
+                styleEl.id = 'custom-framework-css';
+                iframeDoc.head.appendChild(styleEl);
+            }
+            styleEl.textContent = data.css;
+
+            status.textContent = 'Compilado!';
+            status.className = 'compile-status';
+        } catch (err) {
+            status.textContent = 'Erro!';
+            status.className = 'compile-error';
+            alert('Erro: ' + err.message);
+        }
+    }
+
+    function resetAll() {
+        modifiedVars = {};
+        loadVariables();
+        const iframe = document.getElementById('previewIframe');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const styleEl = iframeDoc.getElementById('custom-framework-css');
+        if (styleEl) styleEl.remove();
+        document.getElementById('compileStatus').textContent = 'Resetado';
+    }
+
+    function setPreviewSize(size, btn) {
+        document.getElementById('previewFrame').style.width = size;
+        document.getElementById('sizeLabel').textContent = size;
+        document.querySelectorAll('.preview-toolbar button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    function showExportModal() {
+        const projectName = document.getElementById('exportProjectName').value || 'meu_projeto';
+        let content = `// ============================================\n`;
+        content += `// Configuracao de Variaveis - ${projectName}\n`;
+        content += `// Framework CSS Padrao\n`;
+        content += `// Gerado em: ${new Date().toISOString()}\n`;
+        content += `// ============================================\n\n`;
+        content += `// Importe ESTE arquivo ANTES do framework.less\n`;
+        content += `// @import "variaveis-${projectName}.less";\n`;
+        content += `// @import "framework.less";\n\n`;
+
+        for (const [name, value] of Object.entries(modifiedVars)) {
+            content += `@${name}: ${value};\n`;
+        }
+
+        document.getElementById('exportContent').value = content;
+        document.getElementById('exportModal').classList.add('active');
+    }
+
+    function closeExportModal() {
+        document.getElementById('exportModal').classList.remove('active');
+    }
+
+    function copyExport() {
+        const textarea = document.getElementById('exportContent');
+        textarea.select();
+        document.execCommand('copy');
+        alert('Copiado!');
+    }
+
+    function downloadExport() {
+        const content = document.getElementById('exportContent').value;
+        const projectName = document.getElementById('exportProjectName').value || 'meu_projeto';
+        const blob = new Blob([content], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `variaveis-${projectName}.less`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+
+    // Init
+    loadVariables();
+    </script>
+</body>
+</html>

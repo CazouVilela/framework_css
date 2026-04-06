@@ -1,0 +1,773 @@
+﻿//NAVBAR
+//  INSTRUÇÕES DE USO
+    // CLASSES A SEREM APLICADAS NOS ELEMENTOS
+        //      navBar                  : Linha da grid container de toda a NavBar
+        //      menusContainer          : Container para os menus
+        //      menu                    : Menu superior esquerdo
+        //      menuSecundario          : Menu secundário direito
+        //      subMenu                 : Bloco de SubMenu com efeito de Flyout (primário e secundário)
+
+        //      hamburgerCheckbox       : Checkbox para funcionamento do Hamburger
+        //      hamburgerDisplayButton  : Display do hamburger
+        //      hamburgerDisplayLines   : Linhas do Hamburger
+
+
+        //      menuItem                : Itens de menu ativos
+        //      menuItemInativo         : Itens de menu inativos
+        //      menuItemtitulo          : Itens de menu ativo mas NÃO CLICÁVEL
+
+        //      paginaAtual             : Item de menu destacado como página atual
+
+        //      subMenuItem             : Itens ativos do SubMenu
+        //      subMenuItemInativo      : Itens inativos do SubMenu
+//      subMenuItemtitulo       : Itens ativos do SubMenu NÃO CLICÁVEL.hamburgerDisplayButton
+
+    // ESTRUTURA DO HTML DA NAVBAR
+
+    //  <div class="LinhaNoGrid NavBar">
+    //      <input type="checkbox" class="HamburgerCheckbox" id="Hamburger1"/>
+    //      <div class="HamburgerDisplayButton">
+    //          <label for="Hamburger1" class="HamburgerDisplayLines">
+    //              <span></span>
+    //              <span></span>
+    //              <span></span>
+    //          </label>
+    //      </div>
+    //      <div class="menusContainer">
+    //          <XXX class="menu MenuSecundario L-XXXXX">
+    //              <YYY class="menuItem|MenuItemInativo|MenuItemtitulo PaginaAtual">
+    //                  <ZZZ class="subMenu">
+    //                      <AAA class="subMenuItem|subMenuItemInativo|subMenuItemtitulo">
+    //                      </AAA>
+    //                  </ZZZ>
+    //              </YYY>
+    //          </XXX>
+    //      </div>
+    //  </div>
+
+
+
+//MENU HAMBURGUER
+    .hamburgerCheckbox {
+        display: none;
+    }
+    //MENU HAMBURGUER MOBILE
+            @media (max-width:@Res_Tablet) {
+                .hamburgerDisplayButton {
+                    /*display:            block;*/
+                    position:           relative;
+                    top:                0px;
+                    right:              0px;
+                    float:              right;
+                    left:               inherit;
+                    //z-index:            5000;
+                    height:             @AlturaLinhaNavbar_Mobile;
+                    width:              @AlturaLinhaNavbar_Mobile;
+                    .backgroundColor(BotaoHamburger);
+                    .padding(Hamburger);
+                }
+
+                .hamburgerDisplayLines {
+                    /*display:            inline-block;*/
+                    position:           absolute;
+                    height:             @LinesHamburger_Height;
+                    width:              @LinesHamburger_Width;
+                    vertical-align:     middle;
+                }
+
+                    .hamburgerDisplayLines span {
+                        /*display:            block;*/
+                        width:              100%;
+                        background:         @Branco;
+                        position:           absolute;
+                        left:               0px;
+                        height:             @LinesHamburger_Espessura;
+                        border-radius:      @LinesHamburger_Espessura;
+                        -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                        -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                        -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                        transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                    }
+
+                        .hamburgerDisplayLines span:nth-child(1) {
+                            top: (((@AlturaLinhaNavbar_Mobile / 6) * 2) - @LinesHamburger_Espessura);
+                        }
+
+                        .hamburgerDisplayLines span:nth-child(2) {
+                            top: (((@AlturaLinhaNavbar_Mobile / 6) * 3) - @LinesHamburger_Espessura);
+                        }
+
+                        .hamburgerDisplayLines span:nth-child(3) {
+                            top: (((@AlturaLinhaNavbar_Mobile / 6) * 4) - @LinesHamburger_Espessura);
+                        }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span {
+                                top: 50%;
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(1) {
+                                -webkit-transform:  rotate(45deg);
+                                -ms-transform:      rotate(45deg);
+                                -moz-transform:     rotate(45deg);
+                                -o-transform:       rotate(45deg);
+                                transform:          rotate(45deg);
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(2) {
+                                -webkit-transform:  rotate(45deg);
+                                -ms-transform:      rotate(45deg);
+                                -moz-transform:     rotate(45deg);
+                                -o-transform:       rotate(45deg);
+                                transform:          rotate(45deg);
+                            }
+
+                            .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span:nth-child(3) {
+                                -webkit-transform:  rotate(-45deg);
+                                -ms-transform:      rotate(-45deg);
+                                -moz-transform:     rotate(-45deg);
+                                -o-transform:       rotate(-45deg);
+                                transform:          rotate(-45deg);
+                            }
+
+                .hamburgerCheckbox:checked ~ .menusContainer {
+                    -webkit-transform:  scaleY(1);
+                    -ms-transform:      scaleY(1);
+                    -moz-transform:     scaleY(1);
+                    -o-transform:       scaleY(1);
+                    transform:          scaleY(1);
+                }
+            }
+
+// CONTAINER GERAL
+    .menusContainer {
+        /*display:                -webkit-flex;
+        display:                -ms-flexbox;
+        display:                flex;*/
+        /*-webkit-justify-content:flex-start!important;
+        justify-content:        flex-start!important;*/
+        -webkit-flex-direction: row;
+        -ms-flex-direction:     row;
+        flex-direction:         row;
+        -webkit-flex-wrap:      nowrap;
+        -ms-flex-wrap:          nowrap;
+        flex-wrap:              nowrap;
+        width:                  100%;
+        z-index: 10000;
+    
+        // CONTAINER GERAL MOBILE
+            @media (max-width:@Res_Tablet) {
+                display:                    inline-block!important;
+                -webkit-transform:          scaleY(0);
+                -ms-transform:              scaleY(0);
+                -moz-transform:             scaleY(0);
+                -o-transform:               scaleY(0);
+                transform:                  scaleY(0);
+                -webkit-transform-origin:   top;
+                -ms-transform-origin:       top;
+                -moz-transform-origin:      top;
+                -o-transform-origin:        top;
+                transform-origin:           top;
+                -webkit-transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -moz-transition:            all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -o-transition:              all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                transition:                 all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            }
+    }
+
+// CONTAINER BOTOES SUBMENU
+    .containerExternoBotoesSubmenu{
+        display:                -webkit-flex!important;
+        display:                -ms-flexbox!important;
+        display:                flex!important;
+        -webkit-flex-direction: row!important;
+        -ms-flex-direction:     row!important;
+        flex-direction:         row!important;
+        -webkit-flex-wrap:      nowrap!important;
+        -ms-flex-wrap:          nowrap!important;
+        flex-wrap:              nowrap!important;
+        
+            @media (min-width: @Res_Desktop) {
+                padding-left:   (@PaddingLeftMenuItem_Desktop / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Desktop / 2) !important;
+            }
+
+            @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                padding-left:   (@PaddingLeftMenuItem_Tablet / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Tablet / 2) !important;
+            }
+
+            @media (max-width:@Res_Tablet) {
+                padding-left:   (@PaddingLeftMenuItem_Mobile / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Mobile / 2) !important;
+            }
+    }
+
+    .containerInternoBotoesSubmenu {
+            @media (min-width: @Res_Desktop) {
+                padding-left:               (@PaddingLeftMenuItem_Desktop / 2) !important;
+                padding-right:              (@PaddingRightMenuItem_Desktop / 2) !important;
+                width:                      100%;
+                -webkit-justify-content:    center;
+                justify-content:            center;
+                display:                    flex;
+            }
+
+            @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                padding-left:   (@PaddingLeftMenuItem_Tablet / 2) !important;
+                padding-right:  (@PaddingRightMenuItem_Tablet / 2) !important;
+                width: 100%;
+            }
+
+            @media (max-width:@Res_Tablet) {
+                padding-left:   (@PaddingLeftMenuItem_Mobile / 2) !important;
+                padding-right:  (@PaddingLeftMenuItem_Mobile / 2) !important;
+                width: 100%;
+            }
+    }
+
+
+//NAVBAR
+    .navbar {
+        /*display: flex !important;*/
+
+            @media (min-width: @Res_Desktop) {
+                margin-top:     @MargemSuperiorNavbar_Desktop;
+                margin-bottom:  @MargemInferiorNavbar_Desktop;
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                margin-top:     @MargemSuperiorNavbar_Tablet;
+                margin-bottom:  @MargemInferiorNavbar_Tablet;
+            }
+            
+            @media (max-width:@Res_Tablet) {
+                /*display:        block;*/
+                width:          100%;
+                padding:        0 0 0 0 !important;
+                height:         @AlturaLinhaNavbar_Mobile;
+                line-height:    @AlturaLinhaNavbar_Mobile;
+                margin-top:     @MargemSuperiorNavbar_Mobile;
+                margin-bottom:  @MargemInferiorNavbar_Mobile;
+                margin-left:    0px !important;
+                margin-right:   0px !important;
+                -webkit-justify-content:center;
+                justify-content: flex-end;
+                .gradiente(@CorPrimaria;@CorGradiente);
+            }
+    }
+
+// MENU
+    .menuPrincipal,.menuSecundario {
+        /*display:                -webkit-flex;
+        display:                -ms-flexbox;
+        display:                flex;*/
+        -webkit-flex-direction: row;
+        -ms-flex-direction:     row;
+        flex-direction:         row;
+        -webkit-flex-wrap:      nowrap;
+        -ms-flex-wrap:          nowrap;
+        flex-wrap:              nowrap;
+        -webkit-align-items:    center;
+        -ms-flex-item-align:    center;
+        align-items:            center;
+        .gradiente(@CorPrimaria;@CorGradiente);
+        .bordaArredondada(Menu);
+
+            @media (min-width: @Res_Desktop) {
+                padding:        0 (@PaddingRightMenuItem_Desktop * 1.5) 0 (@PaddingLeftMenuItem_Desktop * 1.5) !important;
+                .sombreamento(Desktop);
+                .bordaArredondada(Desktop);
+                    
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                padding:        0 (@PaddingRightMenuItem_Tablet * 1.5) 0 (@PaddingLeftMenuItem_Tablet * 1.5) !important;
+                .sombreamento(Tablet);
+                .bordaArredondada(Tablet);
+                    
+            }
+
+            @media (max-width:@Res_Tablet) {
+                display:        inline-block!important;
+                padding:        0 0 0 0 !important;
+                width:          100%;
+                margin-left:    0px !important;
+                margin-right:   0px !important;
+                .sombreamento(Remover);
+                .bordaArredondada(Remover);
+                
+            }
+    }
+
+        // ITENS DE MENU
+            .menuItem {
+                /*display:            block;*/
+                position:           relative;
+                /*justify-content:    flex-start;*/
+                float:              left;
+                list-style:         none;
+                text-align:         center;
+                -webkit-align-items:        center;
+                -ms-flex-item-align:        center;
+                align-items:                center;
+                font-family:        @FontFamilyNavbar;
+                color:              @CorFonteNavbar;
+                font-weight:        @FontWeightNavbar;
+                -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            
+                    @media (min-width: @Res_Desktop) {
+                        height:         @AlturaLinhaNavbar_Desktop;
+                        line-height:    @AlturaLinhaNavbar_Desktop;
+                        font-size:      @TamanhoTextoNavbar_Desktop;
+                        .padding(
+                            @PaddingTopMenuItem_Desktop; 
+                            @PaddingRightMenuItem_Desktop; 
+                            @PaddingBottomMenuItem_Desktop; 
+                            @PaddingLeftMenuItem_Desktop;);
+                    }
+
+                     @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                        height:         @AlturaLinhaNavbar_Tablet;
+                        line-height:    @AlturaLinhaNavbar_Tablet;
+                        font-size:      @TamanhoTextoNavbar_Tablet;
+                        .padding(
+                            @PaddingTopMenuItem_Tablet;
+                            @PaddingRightMenuItem_Tablet;
+                            @PaddingBottomMenuItem_Tablet;
+                            @PaddingLeftMenuItem_Tablet;);
+                    }
+
+                     @media (max-width:@Res_Tablet) {
+                        height:             @AlturaLinhaNavbar_Mobile;
+                        line-height:        @AlturaLinhaNavbar_Mobile;
+                        font-size:          @TamanhoTextoNavbar_Mobile;
+                        float:              none;
+                        /*justify-content:    flex-end;*/
+                        text-align:         right;
+                        .padding(
+                            @PaddingTopMenuItem_Mobile;
+                            @PaddingRightMenuItem_Mobile;
+                            @PaddingBottomMenuItem_Mobile;
+                            @PaddingLeftMenuItem_Mobile;);
+                    }
+            }
+
+                .menuItem:hover {
+                    .backgroundColor( @CorPrimaria);
+                }
+
+                    .menuItem:hover .subMenu {
+                            @media (min-width: @Res_Desktop) {
+                                transform: scaleY(1);
+                            }
+                    }
+
+                .menuItem.paginaAtual {
+                    .gradiente(@CorPrimaria;@CorGradiente;@PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; 5%);
+                }
+                    .menuItem.paginaAtual:hover {
+                        background-image:none;
+                        .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                    }
+
+                .menuItem.Inativo{
+                    .color(@Preto;30%);
+                    text-decoration:none;
+                    cursor:         default;
+                    .gradiente( @CorPrimaria; @CorGradiente; @PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; @PercentualClarificacaoGradiente_Padrao; 5%);
+                }
+
+                    .menuItem.Inativo:hover {
+                        background-color: initial!important;
+                    }
+
+                .menuItem a {
+                    /*display:            block;*/
+                    width:              100%;
+                    color:              @CorFonteNavbar;
+                    text-decoration:    none;
+                    .padding(Remover)
+                }
+
+                    .menuItem.Inativo a {
+                        .color(@Preto;30%);
+                        text-decoration:none;
+                        cursor:         default;
+                    }
+
+                .menuItem img {
+                    vertical-align: text-bottom;
+                }
+
+                .menuItem .iconMenu svg {
+                    fill: @CorIconeMenuitem;
+                        
+                        @media (min-width: @Res_Desktop) {
+                            height: (@TamanhoTextoNavbar_Desktop - 3px);
+                        }
+
+                        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                            height: (@TamanhoTextoNavbar_Tablet - 2px);
+                        }
+
+                        @media (max-width:@Res_Tablet) {
+                            height: (@TamanhoTextoNavbar_Mobile - 1px);
+                        }
+                }
+
+    // SUBMENU (FLYOUT)
+        .subMenu {
+            /*display:                -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex;*/
+            -webkit-flex-direction: column;
+            -ms-flex-direction:     column;
+            flex-direction:         column;
+            position:               absolute;
+            left:                   0px;
+            float:                  left;        
+            min-width:              max-content!important;
+            min-width:              500px;
+            overflow:               hidden;           
+            width:                  100%;
+            color:                  @CorFonteNavbar;
+            -webkit-align-items:    center;
+            -ms-flex-item-align:    center;
+            align-items:            center;
+            -webkit-transform:          scaleY(0);
+            -ms-transform:              scaleY(0);
+            -moz-transform:             scaleY(0);
+            -o-transform:               scaleY(0);
+            transform:                  scaleY(0);
+            -webkit-transform-origin:   top;
+            -ms-transform-origin:       top;
+            -moz-transform-origin:      top;
+            -o-transform-origin:        top;
+            transform-origin:           top;
+            -webkit-transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            -moz-transition:            all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            -o-transition:              all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            transition:                 all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+            .backgroundColor( @CorPrimaria);
+            .margin(Remover);
+
+                @media (min-width: @Res_Desktop) {
+                    top:            @AlturaLinhaNavbar_Desktop;
+                    border-width:   0px !important;
+                    .bordaArredondada(Desktop);
+                    .bordaArredondada(Inferior);
+                    .sombreamento(Desktop);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    top:            @AlturaLinhaNavbar_Tablet;
+                    border-width:   0px !important;
+                    .bordaArredondada(Tablet);
+                    .bordaArredondada(Inferior);
+                    .sombreamento(Tablet);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                        .sombreamento(Remover);
+                }
+        }
+
+        .submenuNaoDinamico {
+            font-weight:    @FontWeightNavbar !important;
+            .backgroundColor(@CorPrimaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+        }
+
+           .submenuNaoDinamico a {
+                .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%) !important;
+            }
+
+
+                // ITENS DE SUBMENU |  SUBMENU (FLYOUT)
+                        .subMenuItem {
+                            /*display:            block;*/
+                            /*-webkit-justify-content:    flex-start;
+                            justify-content:            flex-start;*/
+                            -webkit-align-items:        center;
+                            -ms-flex-item-align:        center;
+                            align-items:                center;
+                            position:           relative;
+                            left:               0px;
+                            float:              left;
+                            list-style:         none;
+                            text-align:         left;
+                            
+                            width:              100%;
+                            font-family:        @FontFamilyNavbar;
+                            font-weight:        @FontWeightNavbarSub;
+                            color:              @CorFonteNavbar;
+                            -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                            -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                            -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                            transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+
+                            @media (min-width: @Res_Desktop) {
+                                height:         @AlturaLinhaNavbar_Desktop;
+                                line-height:    @AlturaLinhaNavbar_Desktop;
+                                padding-left:   @PaddingLeftMenuItem_Desktop ;
+                                padding-right:  @PaddingRightMenuItem_Desktop ;
+                                font-size:      @TamanhoTextoSubNavbar_Desktop;
+                            }
+
+                            @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                                height:         @AlturaLinhaNavbar_Tablet;
+                                line-height:    @AlturaLinhaNavbar_Tablet;
+                                padding-left:   @PaddingLeftMenuItem_Tablet ;
+                                padding-right:  @PaddingRightMenuItem_Tablet ;
+                                font-size:      @TamanhoTextoSubNavbar_Tablet;
+                            }
+
+                            @media (max-width:@Res_Tablet) {
+                                height:         @AlturaLinhaNavbar_Mobile;
+                                line-height:    @AlturaLinhaNavbar_Mobile;
+                                padding-left:   @PaddingLeftMenuItem_Mobile ;
+                                padding-right:  @PaddingRightMenuItem_Mobile ;
+                            }        
+                        }
+                            .subMenuItem:hover {
+                                .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                            }
+
+                            .subMenuItem.tituloSubMenuItem {
+                                font-weight:    @FontWeightNavbar;
+                                overflow:       hidden;
+                                text-transform: uppercase;
+                                -webkit-justify-content:center!important;
+                                justify-content:center!important;
+                                cursor:         default;
+                                .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                .backgroundColor(@CorPrimaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; 15%);
+                                
+                                    @media (min-width: @Res_Desktop) {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Desktop ;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Desktop ;
+                                    }
+                            
+                                    @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Tablet ;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Tablet ;
+                                    }
+                                    
+                                    @media (max-width:@Res_Tablet) {
+                                        padding-right:  @MinimaLinhatituloSubMenuItem_Mobile !important;
+                                        padding-left:   @MinimaLinhatituloSubMenuItem_Mobile !important;
+                                    }
+                                }
+ 
+                                .subMenuItem.tituloSubMenuItem:before,
+                                .subMenuItem.tituloSubMenuItem::before,
+                                .subMenuItem.tituloSubMenuItem:after,
+                                .subMenuItem.tituloSubMenuItem::after{
+                                    content:        "";
+                                    /*display:        inline-block;*/
+                                    height:         1px;
+                                    position:       relative;
+                                    vertical-align: middle;
+                                    width:          50%;
+                                    .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                    .color(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                }
+                                .subMenuItem.tituloSubMenuItem:before,
+                                .subMenuItem.tituloSubMenuItem::before{
+                                    right:          10px;
+                                    margin-left:    -50%;
+                                }
+                                .subMenuItem.tituloSubMenuItem:after,
+                                .subMenuItem.tituloSubMenuItem::after{
+                                    left:           10px;
+                                    margin-right:   -50%;
+                                }
+
+                                .subMenuItem.paginaAtual{
+                                    .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                                }
+                                    .subMenuItem.paginaAtual:hover{
+                                        .backgroundColor(@CorPrimaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                    }
+
+                                .subMenuItem.Inativo {
+                                    text-decoration:    none!important;
+                                    cursor:             default!important;
+                                    .color(@Preto;30%);
+                                    .backgroundColorPattern(
+                                        @CorPrimaria;
+                                        @CorPrimaria;
+                                        @PercentualFade_Padrao; 
+                                        @PercentualSaturacao_Padrao; 
+                                        10%; 
+                                        30%;  
+                                        @PercentualObscurecencia_Padrao;
+                                        @PercentualFade_Padrao; 
+                                        @PercentualSaturacao_Padrao; 
+                                        10%; 
+                                        25%;  
+                                        @PercentualObscurecencia_Padrao
+                                    );
+                    
+                                }
+                                    .subMenuItem.Inativo:hover {
+                                        .backgroundColorPattern(
+                                            @CorPrimaria;
+                                            @CorPrimaria;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            @PercentualDesaturacao_Padrao; 
+                                            20%;  
+                                            @PercentualObscurecencia_Padrao;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            @PercentualDesaturacao_Padrao; 
+                                            15%;  
+                                            @PercentualObscurecencia_Padrao
+                                        );
+                                    }
+                     
+                            .subMenuItem a {
+                                display:            block!important;
+                                width:              100%;
+                                color:              @CorFonteNavbar;
+                                text-decoration:    none;
+                                cursor:             pointer;
+                                -webkit-transition: all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                -moz-transition:    all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                -o-transition:      all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                transition:         all @VelocidadeTransicaoItemMenu @TipoTransicaoItemMenu 0s;
+                                .padding(Remover)
+                            }
+                                .subMenuItem.Inativo a{
+                                    text-decoration:    none!important;
+                                    cursor:             default!important;
+                                    .color(@Preto;30%);
+                                }
+                    
+
+    //NAVBAR SECUNDÁRIA
+            .menuSecundario {
+                .gradiente(@CorSecundaria);
+            }
+
+        //MENU ITEM NAVBAR SECUNDÁRIA
+                .menuSecundario .menuItem {
+                    left:       inherit;
+                    float:      right;
+                    width:      100%;
+                }
+                    .menuSecundario .menuItem:hover {
+                        .backgroundColor(@CorSecundaria);
+                    }
+
+
+                .menuSecundario .menuItem.paginaAtual {
+                    .gradiente(@CorSecundaria;@CorGradiente;@PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; 5%);
+                }
+                    .menuSecundario .menuItem.paginaAtual:hover {
+                        background-image: none;
+                        .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                    }
+
+
+                .menuSecundario .menuItem.Inativo{
+                    .gradiente( @CorSecundaria; @CorGradiente; @PercentualFadeGradiente_Padrao; @PercentualSaturacaoGradiente_Padrao; @PercentualDesaturacaoGradiente_Padrao; @PercentualClarificacaoGradiente_Padrao; 5%);
+                }
+
+
+            //SUBMENU NAVBAR SECUNDÁRIA
+                    .menuSecundario .subMenu {
+                        //width:  100%;
+                        left:   inherit;
+                        right:  0px;
+                        float:  right;
+                        .backgroundColor(@CorSecundaria);
+                    }
+
+                    .menuSecundario .submenuNaoDinamico {
+                        font-weight:    @FontWeightNavbar !important;
+                        .backgroundColor(@CorSecundaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                    }
+
+                       .menuSecundario .submenuNaoDinamico a {
+                            .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%) !important;
+                        }
+
+                //SUBMENU ITEM NAVBAR SECUNDÁRIA
+                        .menuSecundario .subMenuItem {
+                            left:       inherit;
+                            right:      0px;
+                            float:      right;
+                            text-align: right;
+                            /*.backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);*/
+                        }
+                            .menuSecundario .subMenuItem:hover {
+                                .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                            }
+
+
+                        .menuSecundario .subMenuItem.tituloSubMenuItem{
+                            .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                            .backgroundColor(@CorSecundaria;@PercentualFade_Padrao; @PercentualSaturacao_Padrao; 15%);
+                        }
+
+                            .menuSecundario .subMenuItem.tituloSubMenuItem:before,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem::before,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem:after,
+                            .menuSecundario .subMenuItem.tituloSubMenuItem::after {
+                                .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                                .color(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 15%);
+                            }
+
+
+                            .menuSecundario .subMenuItem.paginaAtual{
+                                    .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 3%);
+                                }
+                                    .menuSecundario .subMenuItem.paginaAtual:hover{
+                                        .backgroundColor(@CorSecundaria; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; 5%);
+                                    }
+
+                                .menuSecundario .subMenuItem.inativo {
+                                    text-decoration:    none!important;
+                                    cursor:             default!important;
+                                    .color(@Preto;30%);
+
+                                    .gradiente( @CorPrimaria; @CorGradiente; @PercentualFade_Padrao; @PercentualSaturacao_Padrao; @PercentualDesaturacao_Padrao; @PercentualClarificacao_Padrao; 5%);
+                                    .backgroundColorPattern(
+                                        @CorSecundaria;
+                                        @CorSecundaria;
+                                        @PercentualFade_Padrao; 
+                                        @PercentualSaturacao_Padrao; 
+                                        10%; 
+                                        30%;  
+                                        @PercentualObscurecencia_Padrao;
+                                        @PercentualFade_Padrao; 
+                                        @PercentualSaturacao_Padrao; 
+                                        10%; 
+                                        25%;  
+                                        @PercentualObscurecencia_Padrao
+                                    );
+                    
+                                }
+                                    .menuSecundario .subMenuItem.inativo:hover {
+                                        .backgroundColorPattern(
+                                            @CorSecundaria;
+                                            @CorSecundaria;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            @PercentualDesaturacao_Padrao; 
+                                            20%;  
+                                            @PercentualObscurecencia_Padrao;
+                                            @PercentualFade_Padrao; 
+                                            @PercentualSaturacao_Padrao; 
+                                            @PercentualDesaturacao_Padrao; 
+                                            15%;  
+                                            @PercentualObscurecencia_Padrao
+                                        );
+                                    }
+
+            
+                                                                    

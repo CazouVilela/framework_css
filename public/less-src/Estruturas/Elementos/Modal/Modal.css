@@ -1,0 +1,1 @@
+.modalBackground{position:fixed;z-index:50000;height:100vh;width:100vw;top:0;left:0;background-color:#000;filter:alpha(opacity=60);opacity:.6;-moz-opacity:.8}.modalPopup{background-color:#fff;border-width:3px;border-style:solid;border-color:#000;padding-top:10px;padding-left:10px;width:300px;height:140px}

@@ -1,0 +1,55 @@
+﻿
+/*<div class="containerItemFormComIcone">
+    <asp:TextBox ID="passwordTXT" CssClass="itemForm input " placeholder="Senha" TextMode="Password" runat="server" autocomplete="off"></asp:TextBox>
+    <!--#include virtual="~/App_Themes/icones/lock.svg"-->
+</div>*/
+
+
+
+//ITEM FORM // Todos os elementos de formulário
+        .itemForm {
+            .borderColor(@Preto;70%);
+
+                @media (min-width: @Res_Desktop) {
+                    .bordaArredondada(Desktop);
+                    .padding(Desktop);
+                    width:          @WidthItemForm_Desktop;
+                    height:         @HeightItemForm_Desktop;
+                    margin-left:    @margemLeft_ItemForm_Desktop;
+                    margin-right:   @margemRight_ItemForm_Desktop;
+                    margin-bottom:  @margemBottom_ItemForm_Desktop;
+                    margin-top:     @margemTop_ItemForm_Desktop;
+                }       
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    .bordaArredondada(Tablet);
+                    .padding(Tablet);
+                    width:          @WidthItemForm_Tablet;
+                    height:         @HeightItemForm_Tablet;
+                    margin-left:    @margemLeft_ItemForm_Tablet;
+                    margin-right:   @margemRight_ItemForm_Tablet;
+                    margin-bottom:  @margemBottom_ItemForm_Tablet;
+                    margin-top:     @margemTop_ItemForm_Tablet;
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    .bordaArredondada(Mobile);
+                    .padding(Mobile);
+                    width:          @WidthItemForm_Mobile;
+                    height:         @HeightItemForm_Mobile;
+                    margin-left:    @margemLeft_ItemForm_Mobile;
+                    margin-right:   @margemRight_ItemForm_Mobile;
+                    margin-bottom:  @margemBottom_ItemForm_Mobile;
+                    margin-top:     @margemTop_ItemForm_Mobile;
+                }
+
+        }
+
+
+                    
+
+
+
+    
+
+                    

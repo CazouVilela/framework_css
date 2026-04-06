@@ -1,0 +1,589 @@
+# Guia de Implantacao do Framework CSS LESS
+
+**Versao:** 2026-04-05
+
+Este guia descreve como integrar o framework CSS LESS em novos projetos web.
+
+---
+
+## Sumario
+
+1. [Pre-requisitos](#1-pre-requisitos)
+2. [Arquivos Necessarios](#2-arquivos-necessarios)
+3. [Estrutura de Pastas Recomendada](#3-estrutura-de-pastas-recomendada)
+4. [Passo a Passo de Integracao](#4-passo-a-passo-de-integracao)
+5. [Inclusao no HTML](#5-inclusao-no-html)
+6. [Customizacao via Variaveis](#6-customizacao-via-variaveis)
+7. [Compilacao LESS](#7-compilacao-less)
+8. [Exemplos de Implementacao](#8-exemplos-de-implementacao)
+9. [Dependencias](#9-dependencias)
+10. [Notas Importantes](#10-notas-importantes)
+
+---
+
+## 1. Pre-requisitos
+
+- **Compilador LESS:** O framework usa LESS como preprocessador CSS. Voce precisa de:
+  - `lessc` (CLI) via npm: `npm install -g less`
+  - Ou plugin de compilacao LESS no seu editor/bundler (Webpack, Vite, Gulp, etc.)
+  - Ou compilacao server-side (como o dotless do ASP.NET original)
+
+- **Fonte Raleway:** O framework usa Raleway como fonte padrao. Inclua via Google Fonts:
+  ```html
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  ```
+
+---
+
+## 2. Arquivos Necessarios
+
+### Essenciais (minimo para funcionar)
+
+| Arquivo | Proposito |
+|---------|-----------|
+| `LESS/framework.less` | Arquivo principal que importa tudo |
+| `LESS/normalize.less` | Reset CSS com customizacoes do framework |
+| `LESS/Variaveis/Variaveis.less` | Todas as variaveis |
+| `LESS/Variaveis/Mixing.less` | Todos os mixins |
+| `LESS/Estruturas/Grid/grid.less` | Sistema de grid |
+| `LESS/Estruturas/Elementos/basicos/panels.less` | Componente panel |
+| `LESS/Estruturas/Elementos/basicos/textos_especificos_por_breakpoint.less` | Textos responsivos |
+| `LESS/Estruturas/Elementos/basicos/bordas.less` | Classes de borda |
+| `LESS/Estruturas/Elementos/basicos/messageBalloon.less` | Sistema de balloons |
+| `LESS/Estruturas/Elementos/basicos/paleta.less` | Classes de cores |
+| `LESS/Estruturas/Elementos/Formularios/elementosTotais.less` | Base de formularios |
+| `LESS/Estruturas/Elementos/Formularios/iconesForm.less` | Icones em inputs |
+| `LESS/Estruturas/Elementos/Formularios/titulos.less` | Titulos de formulario |
+| `LESS/Estruturas/Elementos/Formularios/passos.less` | Wizard/steps |
+| `LESS/Estruturas/Elementos/Formularios/inputs.less` | Estilos de input |
+| `LESS/Estruturas/Elementos/Formularios/botoes.less` | Estilos de botao |
+| `LESS/Estruturas/Elementos/NavBars/Navbar.less` | Navbar completa |
+| `LESS/Estruturas/Elementos/Social_Login_Buttons/Botoes_LoginSocial.less` | Login social |
+
+### Opcionais
+
+| Arquivo | Proposito | Quando incluir |
+|---------|-----------|---------------|
+| `LESS/Especificos/Especificos.less` | Estilos da aplicacao demo | Substituir pelo seu proprio arquivo de estilos especificos |
+| `JS/messageBalloons.js` | Controle de balloons | Apenas se usar o sistema de balloons |
+| `icones/*.svg` | Biblioteca de icones | Copiar os que precisar |
+
+### NAO copiar
+
+| Arquivo | Motivo |
+|---------|--------|
+| `LESS/Variaveis/breakpoints.less` | Redundante (ja esta em Variaveis.less) |
+| `LESS/Estruturas/Grid/grid_OLD.less` | Versao antiga com guards |
+| `LESS/Estruturas/Elementos/Menu/menu.less` | Versao com guards (usar NavBars/Navbar.less) |
+| `LESS/Estruturas/Elementos/Menu/Navbar.less` | Versao com guards (usar NavBars/Navbar.less) |
+| `LESS/Estruturas/Elementos/alertType/alertType.less` | Versao com guards |
+| `LESS/Estruturas/Elementos/Modal/Modal.less` | Versao com guards |
+| `css/*.css` | Arquivos compilados antigos (recompilar) |
+
+---
+
+## 3. Estrutura de Pastas Recomendada
+
+```
+seu-projeto/
+  src/
+    styles/
+      framework/
+        framework.less              <-- Arquivo principal
+        normalize.less
+        Variaveis/
+          Variaveis.less
+          Mixing.less
+        Estruturas/
+          Grid/
+            grid.less
+          Elementos/
+            basicos/
+              panels.less
+              textos_especificos_por_breakpoint.less
+              bordas.less
+              messageBalloon.less
+              paleta.less
+            Formularios/
+              elementosTotais.less
+              iconesForm.less
+              titulos.less
+              passos.less
+              inputs.less
+              botoes.less
+            NavBars/
+              Navbar.less
+            Social_Login_Buttons/
+              Botoes_LoginSocial.less
+        Especificos/
+          Especificos.less          <-- Substituir pelo seu
+      custom/
+        variaveis-override.less     <-- Suas customizacoes de variaveis
+        estilos-projeto.less        <-- Seus estilos adicionais
+    js/
+      messageBalloons.js            <-- Se usar balloons
+    assets/
+      icones/                       <-- SVGs necessarios
+  dist/
+    css/
+      normalize.css                 <-- Compilado
+      framework.css                 <-- Compilado
+```
+
+---
+
+## 4. Passo a Passo de Integracao
+
+### Passo 1: Copiar os Arquivos
+
+Copie toda a estrutura LESS listada na secao 2 para o seu projeto, mantendo a hierarquia de pastas.
+
+### Passo 2: Criar Arquivo de Override de Variaveis (Opcional)
+
+Se precisar customizar cores, tamanhos ou breakpoints, crie um arquivo que redefina as variaveis ANTES de importar o framework:
+
+```less
+// variaveis-override.less
+@CorPrimaria: rgb(33, 150, 243);    // Azul Material
+@CorSecundaria: rgb(255, 87, 34);   // Laranja profundo
+@Res_Tablet: 600px;                  // Breakpoint tablet menor
+@Res_Desktop: 1024px;                // Breakpoint desktop maior
+```
+
+### Passo 3: Criar Arquivo Principal do Projeto
+
+```less
+// main.less
+@import "variaveis-override.less";   // Suas variaveis (sobrescreve as padroes)
+@import "framework/framework.less";  // Framework completo
+@import "estilos-projeto.less";      // Seus estilos adicionais
+```
+
+**Importante:** As variaveis LESS usam escopo lazy, ou seja, a ULTIMA definicao vence. Mas como `framework.less` importa `Variaveis.less` que define as variaveis, voce precisa editar `Variaveis.less` diretamente OU importar seu override DEPOIS de `Variaveis.less` mas ANTES dos componentes. A forma mais simples e editar `Variaveis.less` diretamente.
+
+### Passo 4: Substituir Especificos.less
+
+O arquivo `Especificos/Especificos.less` contem estilos especificos da aplicacao demo. Substitua seu conteudo pelos estilos especificos do seu projeto ou esvazie-o.
+
+### Passo 5: Compilar
+
+```bash
+# Compilar normalize
+lessc src/styles/framework/normalize.less dist/css/normalize.css
+
+# Compilar framework
+lessc src/styles/main.less dist/css/framework.css
+
+# Ou com minificacao
+lessc --clean-css src/styles/main.less dist/css/framework.min.css
+```
+
+### Passo 6: Incluir no HTML
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/framework.css">
+</head>
+<body>
+    <!-- Seu conteudo -->
+    <script src="js/messageBalloons.js"></script> <!-- Se usar balloons -->
+</body>
+</html>
+```
+
+---
+
+## 5. Inclusao no HTML
+
+### Ordem dos CSS
+
+1. **normalize.css** (PRIMEIRO - reset e configuracao base flex)
+2. **framework.css** (SEGUNDO - todos os componentes)
+3. **seus-estilos.css** (TERCEIRO - customizacoes adicionais)
+
+A ordem e importante porque `normalize.less` define `div { display: flex; }` que e prerequisito para todo o sistema de grid.
+
+### Meta Viewport
+
+O framework e responsivo e requer a meta viewport:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+### Icones SVG
+
+No projeto original, icones SVG sao incluidos via Server Side Includes (SSI):
+```html
+<!--#include virtual="~/App_Themes/icones/mail.svg"-->
+```
+
+Em projetos modernos, use uma das alternativas:
+
+**Inline SVG (recomendado para icones em inputs):**
+```html
+<div class="containerItemFormComIcone">
+    <input type="text" class="itemForm input" placeholder="E-mail">
+    <svg viewBox="0 0 24 24"><!-- conteudo do SVG --></svg>
+</div>
+```
+
+**Tag img:**
+```html
+<img src="icones/mail.svg" alt="Email">
+```
+
+**CSS background-image:**
+```css
+.icon-mail {
+    background-image: url('icones/mail.svg');
+}
+```
+
+---
+
+## 6. Customizacao via Variaveis
+
+### Cores
+
+Para mudar o esquema de cores, edite em `Variaveis.less`:
+
+```less
+// Cores principais
+@CorPrimaria:      rgb(33, 150, 243);   // Azul
+@CorSecundaria:    rgb(255, 87, 34);    // Laranja
+@CorTercearia:     rgb(238, 238, 238);  // Cinza claro
+
+// Cores semanticas
+@CorAtencao:       rgb(255, 193, 7);    // Amarelo
+@CorNegacao:       rgb(244, 67, 54);    // Vermelho
+@CorPositivacao:   rgb(76, 175, 80);    // Verde
+
+// Cor do gradiente (escurece elementos)
+@CorGradiente:     rgb(33, 33, 33);
+
+// Cor do texto
+@CorFontePadrao:   rgb(33, 33, 33);
+```
+
+### Grid
+
+Para alterar o numero de colunas ou gutters:
+
+```less
+// Breakpoints
+@Res_Tablet:  768px;
+@Res_Desktop: 1200px;   // Desktop a partir de 1200px
+
+// Colunas
+@NumeroDecolunas_Desktop: 12;  // Grid de 12 colunas
+@NumeroDecolunas_Tablet:  8;
+@NumeroDecolunas_Mobile:  4;
+
+// Gutters
+@EntreColuna_Desktop: 16px;
+@EntreColuna_Tablet:  12px;
+@EntreColuna_Mobile:  8px;
+```
+
+**ATENCAO:** Alterar o numero de colunas afeta TODAS as classes geradas. Se mudar de 18 para 12, as classes `D13T...` a `D18T...` nao existirao mais.
+
+### Fontes
+
+```less
+@FontFamilyPadrao:  'Inter', sans-serif;
+@FontFamilyNavbar:  'Inter', sans-serif;
+
+@TamanhoPadraoTexto_Desktop: 16px;
+@TamanhoPadraoTexto_Tablet:  14px;
+@TamanhoPadraoTexto_Mobile:  13px;
+```
+
+### Bordas
+
+```less
+// Raio uniforme
+@RaioBordaEsquerdaSuperior_Desktop:  8px;
+@RaioBordaDireitaSuperior_Desktop:   8px;
+@RaioBordaDireitaInferior_Desktop:   8px;
+@RaioBordaEsquerdaInferior_Desktop:  8px;
+```
+
+### Sombras
+
+```less
+// Desativar sombras
+@SombraHorizontal_Desktop: 0px;
+@SombraVertical_Desktop:   0px;
+@BlurSombra_Desktop:       0px;
+// ... idem para Tablet e Mobile
+```
+
+---
+
+## 7. Compilacao LESS
+
+### Via linha de comando (lessc)
+
+```bash
+npm install -g less
+lessc framework.less framework.css
+```
+
+### Via Webpack
+
+```javascript
+// webpack.config.js
+module.exports = {
+    module: {
+        rules: [{
+            test: /\.less$/,
+            use: ['style-loader', 'css-loader', 'less-loader']
+        }]
+    }
+};
+```
+
+### Via Vite
+
+```javascript
+// vite.config.js
+export default {
+    css: {
+        preprocessorOptions: {
+            less: {}
+        }
+    }
+};
+```
+
+### Via Gulp
+
+```javascript
+const gulp = require('gulp');
+const less = require('gulp-less');
+
+gulp.task('less', function() {
+    return gulp.src('src/styles/framework.less')
+        .pipe(less())
+        .pipe(gulp.dest('dist/css'));
+});
+```
+
+---
+
+## 8. Exemplos de Implementacao
+
+### Layout Basico com Sidebar
+
+```html
+<div class="linhaDoGrid">
+    <!-- Sidebar: 4 colunas desktop, 3 tablet, oculta mobile -->
+    <div class="D4T3M0 containerEmColuna">
+        <div class="panel">Menu lateral</div>
+        <div class="panel">Widget 1</div>
+        <div class="panel">Widget 2</div>
+    </div>
+    
+    <!-- Conteudo principal: 14 colunas desktop, 9 tablet, total mobile -->
+    <div class="D14T9M6 containerEmColuna">
+        <div class="tituloForm arredondadaSuperior">Titulo da Pagina</div>
+        <div class="panel arredondadaInferior containerEmColuna">
+            <p>Conteudo aqui</p>
+        </div>
+    </div>
+</div>
+```
+
+### Formulario Completo
+
+```html
+<!-- Titulo -->
+<div class="D12T10M6 desloc-D3T1M0 tituloForm arredondadaSuperior">
+    Cadastro
+</div>
+
+<!-- Corpo do formulario -->
+<div class="linhaDoGrid">
+    <div class="panel D12T10M6 desloc-D3T1M0 containerEmColuna arredondadaInferior">
+        
+        <!-- Campo com icone -->
+        <div class="containerItemFormComIcone">
+            <input type="email" class="itemForm input" placeholder="E-mail">
+            <svg><!-- mail.svg inline --></svg>
+        </div>
+        
+        <!-- Campo com icone e balloon de ajuda -->
+        <div class="containerHelpIcon">
+            <div class="containerItemFormComIcone">
+                <input type="password" class="itemForm input balloonTrigger" placeholder="Senha">
+                <svg><!-- lock.svg inline --></svg>
+                <div class="balloonPosition-All-Right balloonType-Help D3T2M1">
+                    A senha deve ter pelo menos 8 caracteres.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botao -->
+        <input type="submit" class="itemForm bt btEntrar" value="Cadastrar">
+    </div>
+</div>
+```
+
+### Grid de Cards
+
+```html
+<div class="linhaDoGrid">
+    <div class="panel D6T4M3 containerEmColuna">
+        <div class="tituloForm">Card 1</div>
+        <p>Descricao do card 1</p>
+    </div>
+    <div class="panel D6T4M3 containerEmColuna">
+        <div class="tituloForm">Card 2</div>
+        <p>Descricao do card 2</p>
+    </div>
+    <div class="panel D6T4M3 containerEmColuna">
+        <div class="tituloForm">Card 3</div>
+        <p>Descricao do card 3</p>
+    </div>
+</div>
+```
+
+### Navbar Minima
+
+```html
+<div class="linhaDoGrid navbar">
+    <input type="checkbox" class="hamburgerCheckbox" id="Hamburger1"/>
+    <div class="hamburgerDisplayButton">
+        <label for="Hamburger1" class="hamburgerDisplayLines">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+    <div class="menusContainer">
+        <div class="menuPrincipal D12T8M6">
+            <div class="menuItem">
+                <a href="/">Home</a>
+            </div>
+            <div class="menuItem paginaAtual">
+                <a href="/sobre">Sobre</a>
+            </div>
+            <div class="menuItem">
+                <a href="/contato">Contato</a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+### Wizard de Passos
+
+```html
+<div class="D12T10M6 desloc-D3T1M0 containerEmLinha passos">
+    <p>Etapas do cadastro</p>
+    
+    <!-- Passo concluido -->
+    <div class="passoCompleto">
+        <div>1</div>
+        <div><svg><!-- check.svg --></svg></div>
+    </div>
+    
+    <!-- Passo atual -->
+    <div>
+        <div>2</div>
+        <div><svg><!-- check.svg --></svg></div>
+    </div>
+    
+    <!-- Passo futuro -->
+    <div class="passoFuturo">
+        <div>3</div>
+        <div><svg><!-- check.svg --></svg></div>
+    </div>
+</div>
+```
+
+### Textos Responsivos
+
+```html
+<div class="linhaDoGrid">
+    <div class="D18T12M6">
+        <span class="spanDesktop">Bem-vindo ao sistema de gerenciamento completo</span>
+        <span class="spanTablet">Bem-vindo ao sistema</span>
+        <span class="spanMobile">Bem-vindo</span>
+    </div>
+</div>
+```
+
+---
+
+## 9. Dependencias
+
+### Obrigatorias
+
+| Dependencia | Versao | Proposito |
+|------------|--------|-----------|
+| Compilador LESS | >= 3.0 | Compilar os arquivos .less para .css |
+
+### Recomendadas
+
+| Dependencia | Proposito |
+|------------|-----------|
+| Google Fonts (Raleway) | Fonte padrao do framework |
+| messageBalloons.js | Interatividade dos balloons (apenas se usar) |
+
+### Sem dependencias externas de:
+
+- jQuery
+- Bootstrap
+- Qualquer outro framework CSS
+- JavaScript (exceto para balloons)
+
+---
+
+## 10. Notas Importantes
+
+### O normalize.less define divs como flex
+
+A customizacao mais importante do normalize e:
+```css
+div { display: flex; justify-content: flex-start; align-items: flex-start; }
+```
+
+Isso significa que **todas as divs do seu projeto serao flex containers**. Se isso causar problemas em partes do seu codigo que esperam `display: block`, voce precisara:
+- Adicionar `display: block` explicitamente nesses elementos, OU
+- Remover essa regra do normalize e adicionar `.flex` como classe utilitaria
+
+### Classes de grid usam nomes sem prefixo
+
+As classes de grid (`D6T4M2`) nao tem prefixo como `.col-` do Bootstrap. Isso pode causar conflitos se voce combinar com outros frameworks. Considere adicionar um prefixo se necessario.
+
+### O sistema de grid e baseado em viewport width (vw)
+
+As larguras sao calculadas com `100vw`, nao com porcentagens do container pai. Isso significa que `.linhaDoGrid` deve ser sempre um container de largura total. Para sub-grids dentro de colunas, use `.containerEmLinha`.
+
+### Scrollbar e compensada
+
+O grid compensa a largura da scrollbar (`@ScrollBar_Desktop: 20px`). Se seu design usa `overflow: hidden` no body (sem scrollbar), ajuste `@ScrollBar_Desktop` e `@ScrollBar_Tablet` para `0px`.
+
+### Typo no gradiente Mozilla
+
+O mixin `.gradiente()` tem um typo no prefixo Mozilla: `-moz-linear-linear-gradient` (duplo "linear"). Corrija para `-moz-linear-gradient` se precisar de suporte a Firefox antigo.
+
+### Deteccao de tablet via hover: none
+
+O media query de tablet inclui `(hover: none)` para detectar dispositivos touch. Isso pode capturar dispositivos inesperados. Se isso for um problema, remova a parte `, or (hover: none)` das media queries.
+
+### Arquivo Especificos.less e projeto-especifico
+
+O arquivo `Especificos/Especificos.less` contem estilos da aplicacao demo (menus especificos, botao entrar, etc.). Ele e importado pelo framework.less. Ao integrar em um novo projeto:
+1. Esvazie o conteudo do arquivo, OU
+2. Substitua pelo seus estilos especificos, OU
+3. Remova o `@import` do `framework.less`
+
+Nao o delete sem remover o import, senao a compilacao falhara.

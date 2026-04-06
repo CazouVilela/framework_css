@@ -1,0 +1,447 @@
+﻿    /*<div class="linha">
+        <div class="Cols-D1T1M1">Teste bloco1</div>
+    </div>
+
+    <div class="linha">
+        <div class="panel Cols-D1T0M0 Desloc-D3T0M0">T1</div>
+    </div>
+
+    <div class="Cols-D3T2M0 containerEmColuna">
+        <div class="item-2">DIV 1</div>
+        <div class="item-1">DIV 2</div>
+        <div class="item-3">DIV 3</div>
+    </div>*/
+
+//GRID
+    //LINHA
+        .linhaDoGrid {
+            /*display:              -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex;*/
+            -webkit-justify-content:flex-start!important;
+            justify-content:        flex-start!important;
+            -webkit-flex-direction: row;
+            -ms-flex-direction:     row;
+            flex-direction:         row;
+            -webkit-flex-wrap:      wrap;
+            -ms-flex-wrap:          wrap;
+            flex-wrap:              wrap;
+
+
+                -webkit-align-items:        normal;
+                -ms-flex-item-align:        normal;
+                align-items:                normal;
+
+
+                @media (min-width: @Res_Desktop) {
+                    width: ~"calc(100vw - @{ScrollBar_Desktop} + 3px)";
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    width: ~"calc(100vw - @{ScrollBar_Tablet})";
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    width: ~"calc(100vw - @{ScrollBar_Mobile})";
+                }
+        }
+
+            .linhaDoGrid div{
+
+            }
+
+
+    //SUB-CONTEÚDOS EM COLUNAS DENTRO DO BLOCO CONTEÚDO 
+        .containerEmColuna{
+            /*display:                -webkit-flex;
+            display:                -ms-flexbox;
+            display:                flex !important;*/
+            -webkit-flex-direction: column !important;
+            -ms-flex-direction:     column !important;   
+            flex-direction:         column !important;
+            -moz-box-sizing:        border-box;
+            -webkit-box-sizing:     border-box;
+            box-sizing:             border-box;
+        }
+
+            .containerEmColuna * {
+                margin-left:    0px !important;
+                margin-right:   0px !important;
+            }
+
+            
+    //SUB-CONTEÚDOS EM LINHAS DENTRO DO BLOCO CONTEÚDO 
+            .containerEmLinha {
+                
+                -webkit-flex-direction: row!important;
+                -ms-flex-direction:     row!important;
+                flex-direction:         row!important;
+                -webkit-flex-wrap:      wrap;
+                -ms-flex-wrap:          wrap;
+                flex-wrap:              wrap;
+                -moz-box-sizing:        border-box;
+                -webkit-box-sizing:     border-box;
+                box-sizing:             border-box;
+
+                @media (min-width: @Res_Desktop) {
+                    margin-left:    -(@EntreColuna_Desktop / 2 + 0.25)!important;
+                    margin-right:   -(@EntreColuna_Desktop / 2 + 0.25)!important;
+
+                    /*.D-nowrap{
+                        -webkit-flex-wrap:  nowrap;
+                        -ms-flex-wrap:      nowrap;
+                        flex-wrap:          nowrap;
+                    }*/
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    margin-left:    -(@EntreColuna_Desktop / 2 + 0.25)!important;
+                    margin-right:   -(@EntreColuna_Desktop / 2 + 0.25)!important;
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    margin-left:    -(@EntreColuna_Desktop / 2 + 0.25)!important;
+                    margin-right:   -(@EntreColuna_Desktop / 2 + 0.25)!important;
+                }
+            }
+
+                
+            .containerEmLinha * {
+                    
+                @media (min-width: @Res_Desktop) {
+                    margin-left:    (@EntreColuna_Desktop / 2)!important;
+                    margin-right:   (@EntreColuna_Desktop / 2)!important;
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    margin-left:    (@EntreColuna_Desktop / 2)!important;
+                    margin-right:   (@EntreColuna_Desktop / 2)!important;
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    margin-left:    (@EntreColuna_Desktop / 2)!important;
+                    margin-right:   (@EntreColuna_Desktop / 2)!important;
+                }
+            }
+
+
+            .nowrap{
+                -webkit-flex-wrap:  nowrap;
+                -ms-flex-wrap:      nowrap;
+                flex-wrap:          nowrap;
+            }
+                @media (min-width: @Res_Desktop) {
+                    .D-nowrap{
+                        -webkit-flex-wrap:  nowrap;
+                        -ms-flex-wrap:      nowrap;
+                        flex-wrap:          nowrap;
+                    }
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    .T-nowrap {
+                        -webkit-flex-wrap:  nowrap;
+                        -ms-flex-wrap:      nowrap;
+                        flex-wrap:          nowrap;
+                    }
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    .M-nowrap {
+                        -webkit-flex-wrap:  nowrap;
+                        -ms-flex-wrap:      nowrap;
+                        flex-wrap:          nowrap;
+                    }
+                }
+
+    //ORDENADOR DO ITEM DENTRO DA GRID
+            //Função para criação das classes ordenadoras
+                .ordenadores(@n, @i: 1) when (@i =< @n){
+                    .item-@{i} {
+                        -webkit-order: @i;
+                        -ms-flex-order: @i;
+                        order: @i;}
+                    .ordenadores(@n, (@i + 1))
+                }
+
+            //Chamada da função para criação das classes ordenadoras
+                .ordenadores(@SlotsOrdenadores);
+
+
+
+
+    //COLUNAS DOS CONTEÚDOS
+        //*******************************************//
+        //****CLASSES A SEREM APLICADAS NO ELEMENTO *//
+        //**** Cols-DnTnMn (n = número de colunas ******//
+        //**** Desloc-DnTnMn (n = merge da  coluna)***//
+        //*******************************************//
+
+
+            //COLUNAS DOS CONTEÚDOS VARIAÇÕES DE BREAKPOINT//
+                //COLUNAS DOS CONTEÚDOS PARA DESKTOP
+                    @media (min-width: @Res_Desktop) {
+                        
+                        //CRIAR COLUNAS DOS CONTEÚDS DESKTOP   
+                            //Chamada da função 1 (Loop Desktop) para criação das classes de colunas de conteúdos para desktop
+                                .DColumnsDesk(@NumeroDecolunas_Desktop, @NumeroDecolunas_Tablet, @NumeroDecolunas_Mobile);
+                            
+                                    //Função para criação das classes de colunas de conteúdo para desktop QUANDO > 0
+                                        .DColumnsDesk(@DDesk, @TDesk, @MDesk) when (@DDesk > 0) {
+
+                                            //Chamada da função 2 (Loop Tablet) para criação das classes de colunas de conteúdos para desktop
+                                                .DColumnsTablet(@DDesk, @TDesk, @MDesk);
+                                                
+                                                    //Função 2 para criação das classes de colunas de conteúdo para desktop quando > 0
+                                                        .DColumnsTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 0) {
+                                                        
+                                                            //Chamada da função 3 (Loop Mobile) para criação das classes de colunas de conteúdos para desktop
+                                                                .DColumnsMobile(@DTablet, @TTablet, @MTablet);
+                                                                
+                                                                    //Função 3 para criação das classes de colunas de conteúdo para desktop quando > 0
+                                                                        .DColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display:        block;
+                                                                                width:          ~"calc((((100vw - @{ScrollBar_Desktop})) / @{NumeroDecolunas_Desktop}) * @{DDesk} - @{EntreColuna_Desktop})";
+                                                                                margin-left:    (@EntreColuna_Desktop / 2);
+                                                                                margin-right:   (@EntreColuna_Desktop / 2);
+                                                                            }
+                                                                            .DColumnsMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .DColumnsTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .DColumnsDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+
+
+
+                                    //Função para criação das classes de colunas de conteúdo para desktop QUANDO DESKTOP  = 0 (display:none)
+                                        .DColumnsDesk(@DDesk, @TDesk, @MDesk) when (@DDesk = 0) {
+                                        
+                                            //Chamada da função 2 (Loop Tablet) para criação das classes de colunas de conteúdos para desktop
+                                                .DColumnsTablet(@DDesk, @TDesk, @MDesk);
+                                                
+                                                    //Função 2 para criação das classes de colunas de conteúdo para desktop QUANDO DESKTOP = 0 (display:none)
+                                                        .DColumnsTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 0) {
+                                                               
+                                                            //Chamada da função 3 (Loop Mobile) para criação das classes de colunas de conteúdos para desktop
+                                                                .DColumnsMobile(@DTablet, @TTablet, @MTablet);
+                                                                
+                                                                    //Função 3 para criação das classes de colunas de conteúdo para desktop QUANDO DESKTOP = 0 (display:none)
+                                                                        .DColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display:none !important;
+                                                                            }
+                                                                            .DColumnsMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .DColumnsTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .DColumnsDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+
+                        
+
+
+
+                        //DESLOCAMENTO DE COLUNAS DE CONTEÚDO DESKTOP
+                            //Chamada da função 1 (Desktop) para criação das classes de deslocamento de colunas para desktop
+                                .DOffSetDesk((@NumeroDecolunas_Desktop - 1),(@NumeroDecolunas_Tablet - 1), (@NumeroDecolunas_Mobile - 1));
+                            
+                                    //Função 1 (Desktop) para criação das classes de delocamento de colunas para desktop
+                                        .DOffSetDesk(@DDesk, @TDesk, @MDesk) when (@DDesk >= 1) {
+                                            
+                                            //Chamada da função 2 (Tablet) para criação das classes de deslocamento de colunas para desktop
+                                                .DOffSetTablet(@DDesk, @TDesk, @MDesk);
+
+                                                    //Função 2 (Tablet) para criação das classes de delocamento de colunas para desktop
+                                                        .DOffSetTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 0) {
+                                                            
+                                                            //Chamada da função 3 (Mobile) para criação das classes de deslocamento de colunas para desktop
+                                                                .DOffSetMobile(@DTablet, @TTablet, @MTablet);
+
+                                                                    //Função 3 (Mobile) para criação das classes de delocamento de colunas para desktop
+                                                                        .DOffSetMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .desloc-D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                margin-left: ~"calc((((100vw - @{ScrollBar_Desktop}) - (@{EntreColuna_Desktop} / 2)) / @{NumeroDecolunas_Desktop}) * @{DDesk} + (@{EntreColuna_Desktop} / 2))"
+                                                                            }
+                                                                            .DOffSetMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .DOffSetTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .DOffSetDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+                    }
+
+
+
+
+                //COLUNAS DOS CONTEÚDOS PARA TABLET
+                    @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                        
+                        //CRIAR COLUNAS DOS CONTEÚDOS TABLET    
+                            //Chamada da função 1 (Loop Desktop) para criação das classes de colunas de conteúdos para tablet
+                                .TColumnsDesk(@NumeroDecolunas_Desktop, @NumeroDecolunas_Tablet, @NumeroDecolunas_Mobile);
+
+                                    //Função 1 (Loop Desktop) para criação das classes de colunas de conteúdo para tablet
+                                        .TColumnsDesk(@DDesk, @TDesk, @MDesk) when (@DDesk >= 0) {
+                                        
+                                             //Chamada da função 2 (Loop Tablet) para criação das classes de colunas de conteúdos para tablet   
+                                                .TColumnsTablet(@DDesk, @TDesk, @MDesk);
+
+                                                    //Função 2 (Loop Tablet) para criação das classes de colunas de conteúdo para tablet QUANDO TABLET  > 0
+                                                        .TColumnsTablet(@DTablet, @TTablet, @MTablet) when (@TTablet > 0) {
+                                                
+                                                            //Chamada da função 3 (Loop Mobile) para criação das classes de colunas de conteúdos para tablet QUANDO TABLET  > 0
+                                                                .TColumnsMobile(@DTablet, @TTablet, @MTablet);
+
+                                                                    //Função 3 (Loop Mobile) para criação das classes de colunas de conteúdo para tablet QUANDO TABLET  > 0
+                                                                        .TColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display:        block;
+                                                                                width:          ~"calc((((100vw - @{ScrollBar_Tablet}) - (@{EntreColuna_Tablet} / 2)) / @{NumeroDecolunas_Tablet}) * @{TTablet} - @{EntreColuna_Tablet})";
+                                                                                margin-left:    (@EntreColuna_Tablet / 2);
+                                                                                margin-right:   (@EntreColuna_Tablet / 2);
+                                                                            }
+                                                                            .TColumnsMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .TColumnsTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+
+
+
+                                                    //Função 2 (Loop Tablet) para criação das classes de colunas de conteúdo para tablet QUANDO TABLET = 0 (display:none)
+                                                        .TColumnsTablet(@DTablet, @TTablet, @MTablet) when (@TTablet = 0) {
+                                                
+                                                            //Chamada da função 3 (Loop Mobile) para criação das classes de colunas de conteúdos para tablet QUANDO TABLET  = 0 (display:none)
+                                                                .TColumnsMobile(@DTablet, @TTablet, @MTablet);
+                                                        
+                                                                    //Função 3 (Loop Mobile) para criação das classes de colunas de conteúdo para tablet QUANDO TABLET  = 0 (display:none)
+                                                                        .TColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display: none !important;
+                                                                            }
+                                                                            .TColumnsMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .TColumnsTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .TColumnsDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+
+
+    
+
+
+                        //DESLOCAMENTO DE COLUNAS DE CONTEÚDO TABLET
+                            //Chamada da função 1 (Desktop) para criação das classes de deslocamento de colunas para tablet
+                                .TOffSetDesk((@NumeroDecolunas_Desktop - 1),(@NumeroDecolunas_Tablet - 1), (@NumeroDecolunas_Mobile - 1));
+                            
+                                    //Função 1 (Desktop) para criação das classes de delocamento de colunas para tablet
+                                        .TOffSetDesk(@DDesk, @TDesk, @MDesk) when (@DDesk >= 0) {
+                                            
+                                            //Chamada da função 2 (Tablet) para criação das classes de deslocamento de colunas para tablet
+                                                .TOffSetTablet(@DDesk, @TDesk, @MDesk);
+
+                                                    //Função 2 (Tablet) para criação das classes de delocamento de colunas para tablet
+                                                        .TOffSetTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 1) {
+
+                                                            //Chamada da função 3 (Mobile) para criação das classes de deslocamento de colunas para tablet       
+                                                                .TOffSetMobile(@DTablet, @TTablet, @MTablet);
+
+                                                                    //Função 3 (Mobile) para criação das classes de delocamento de colunas para tablet
+                                                                        .TOffSetMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 0) {
+                                                                            .desloc-D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                margin-left: ~"calc((((100vw - @{ScrollBar_Tablet}) - (@{EntreColuna_Tablet} / 2)) / @{NumeroDecolunas_Tablet}) * @{TTablet} + (@{EntreColuna_Tablet} / 2))"
+                                                                            }
+                                                                            .TOffSetMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .TOffSetTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .TOffSetDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+                    }
+
+    
+
+
+
+
+
+
+
+                    
+                //COLUNAS DOS CONTEÚDOS PARA MOBILE
+                    @media (max-width:@Res_Tablet) {
+
+                        //CRIAR COLUNAS DOS CONTEÚDOS MOBILE
+                            //Chamada da função 1 (Loop Desktop) para criação das classes de colunas de conteúdos para mobile
+                                .MColumnsDesk(@NumeroDecolunas_Desktop, @NumeroDecolunas_Tablet, @NumeroDecolunas_Mobile);
+                            
+                                    //Função para criação das classes de colunas de conteúdo para mobile
+                                        .MColumnsDesk(@DDesk, @TDesk, @MDesk) when (@DDesk >= 0) {
+
+                                            //Chamada da função 2 (Loop Tablet) para criação das classes de colunas de conteúdos para mobile
+                                                .MColumnsTablet(@DDesk, @TDesk, @MDesk);
+                                                
+                                                    //Função 2 para criação das classes de colunas de conteúdo para mobile
+                                                        .MColumnsTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 0) {
+                                                        
+                                                            //Chamada da função 3 (Loop Mobile) para criação das classes de colunas de conteúdos para mobile
+                                                                .MColumnsMobile(@DTablet, @TTablet, @MTablet);
+                                                                
+                                                                    //Função 3 para criação das classes de colunas de conteúdo para mobile QUANDO MOBILE  > 0
+                                                                        .MColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile > 0 ) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display:        block;
+                                                                                width:          ~"calc((((100vw - @{ScrollBar_Mobile}) - (@{EntreColuna_Mobile} / 2)) / @{NumeroDecolunas_Mobile}) * @{MMobile} - @{EntreColuna_Mobile})";
+                                                                                margin-left:    (@EntreColuna_Mobile / 2);
+                                                                                margin-right:   (@EntreColuna_Mobile / 2);
+                                                                            }
+                                                                            .MColumnsMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+
+                                                                    //Função 3 para criação das classes de colunas de conteúdo para mobile QUANDO MOBILE  = 0 (display:none)
+                                                                        .MColumnsMobile(@DMobile, @TMobile, @MMobile) when (@MMobile = 0) {
+                                                                            .D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                display: none!important;
+                                                                            }
+                                                                            .MColumnsMobile(@DMobile, @TMobile, (@MMobile - 1))
+                                                                        }
+                                                            .MColumnsTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .MColumnsDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }
+
+
+
+                        
+                        //DESLOCAMENTO DE COLUNAS DE CONTEÚDO MOBILE
+                            //Chamada da função 1 (Desktop) para criação das classes de deslocamento de colunas para mobile
+                                .MOffsetDesk((@NumeroDecolunas_Desktop - 1),(@NumeroDecolunas_Tablet - 1), (@NumeroDecolunas_Mobile - 1));
+                                    
+                                    //Função 1 (Desktop) para criação das classes de delocamento de colunas para mobile
+                                        .MOffsetDesk(@DDesk, @TDesk, @MDesk) when (@DDesk >= 0) {
+                                    
+                                            //Chamada da função 2 (Tablet) para criação das classes de deslocamento de colunas para tablet
+                                                .MOffsetTablet(@DDesk, @TDesk, @MDesk);
+
+                                                    //Função 2 (Tablet) para criação das classes de delocamento de colunas para tablet
+                                                        .MOffsetTablet(@DTablet, @TTablet, @MTablet) when (@TTablet >= 0) {
+                                                            
+                                                            //Chamada da função 3 (Mobile) para criação das classes de deslocamento de colunas para tablet
+                                                                .MOffsetMobile(@DTablet, @TTablet, @MTablet);
+
+                                                                    //Função 3 (Mobile) para criação das classes de delocamento de colunas para tablet
+                                                                        .MOffsetMobile(@DMobile, @TMobile, @MMobile) when (@MMobile >= 1) {
+                                                                            .desloc-D@{DMobile}T@{TMobile}M@{MMobile} {
+                                                                                margin-left: ~"calc((((100vw - @{ScrollBar_Mobile}) - (@{EntreColuna_Mobile} / 2)) / @{NumeroDecolunas_Mobile}) * @{MMobile} + (@{EntreColuna_Mobile} / 2))"
+                                                                            }
+
+                                                                            .MOffsetMobile(@DMobile, @TMobile, (@MMobile - 1));
+                                                                        }
+                                                            .MOffsetTablet(@DTablet, (@TTablet - 1), @MTablet);
+                                                        }
+                                            .MOffsetDesk((@DDesk - 1), @TDesk, @MDesk);
+                                        }                        
+                    }
+
+

@@ -1,0 +1,479 @@
+﻿//PADDING
+    .padding( 
+            @PaddingTop; 
+            @PaddingRight; 
+            @PaddingBottom; 
+            @PaddingLeft;
+        ) when (default()) 
+            {
+                padding: @PaddingTop @PaddingRight @PaddingBottom @PaddingLeft;
+            }
+
+        .padding(Mobile) {
+                @PaddingTop:    @PaddingTop_Mobile;
+                @PaddingRight:  @PaddingRight_Mobile;
+                @PaddingBottom: @PaddingBottom_Mobile;
+                @PaddingLeft:   @PaddingLeft_Mobile;
+
+                    padding: @PaddingTop @PaddingRight @PaddingBottom @PaddingLeft;
+                }
+        .padding(Tablet){
+                @PaddingTop:    @PaddingTop_Tablet;
+                @PaddingRight:  @PaddingRight_Tablet;
+                @PaddingBottom: @PaddingBottom_Tablet;
+                @PaddingLeft:   @PaddingLeft_Tablet;
+
+                    padding: @PaddingTop @PaddingRight @PaddingBottom @PaddingLeft;
+                }
+        .padding(Desktop){    
+                @PaddingTop:    @PaddingTop_Desktop;
+                @PaddingRight:  @PaddingRight_Desktop;
+                @PaddingBottom: @PaddingBottom_Desktop;
+                @PaddingLeft:   @PaddingLeft_Desktop;
+
+                    padding: @PaddingTop @PaddingRight @PaddingBottom @PaddingLeft;
+                }
+        .padding(Hamburger) {
+                @PaddingTop:    @PaddingTop_Hamburger;
+                @PaddingRight:  @PaddingRight_Hamburger;
+                @PaddingBottom: @PaddingBottom_Hamburger;
+                @PaddingLeft:   @PaddingLeft_Hamburger;
+
+                    padding: @PaddingTop @PaddingRight @PaddingBottom @PaddingLeft;
+                }
+        .padding(Remover) {
+                    padding: 0px 0px 0px 0px!important;
+                }
+
+
+//COR VARIANTE
+    .corVariante( 
+            @Cor; 
+            @PercentualFade:            @PercentualFade_Padrao; 
+            @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia:   @PercentualObscurecencia_Padrao
+        ) when (default()) 
+            {
+                @CorVariante: darken(lighten(desaturate(saturate(fade(@Cor, @PercentualFade),@PercentualSaturacao),@PercentualDesaturacao), @PercentualClarificacao), @PercentualObscurecencia);
+            }
+
+    .corVariante2(
+            @Cor; 
+            @Cor2; 
+            @PercentualFade:            @PercentualFade_Padrao; 
+            @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+            @PercentualFade2:           @PercentualFade_Padrao; 
+            @PercentualSaturacao2:      @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao2:    @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao2:   @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia2:  @PercentualObscurecencia_Padrao;
+        ) when (default())
+            {
+                @CorVariante:   darken(lighten(desaturate(saturate(fade(@Cor, @PercentualFade),@PercentualSaturacao),@PercentualDesaturacao), @PercentualClarificacao), @PercentualObscurecencia);
+                @CorVariante2:  darken(lighten(desaturate(saturate(fade(@Cor2, @PercentualFade2),@PercentualSaturacao2),@PercentualDesaturacao2), @PercentualClarificacao2), @PercentualObscurecencia2);
+            }
+
+//COLOR (FILL AND COLOR)
+    .color(
+            @Cor; 
+            @PercentualFade:            @PercentualFade_Padrao; 
+            @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+        ) when (default())
+            {
+                .corVariante(@Cor; @PercentualFade; @PercentualSaturacao;@PercentualDesaturacao;@PercentualClarificacao; @PercentualObscurecencia);
+                color:  @CorVariante;
+                fill:   @CorVariante;
+
+            }
+
+
+
+    
+
+//BACKGROUND-COLOR
+   .backgroundColor(
+            @Cor; 
+            @PercentualFade:            @PercentualFade_Padrao; 
+            @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+        ) when (default()) 
+            {
+                .corVariante(@Cor; @PercentualFade; @PercentualSaturacao;@PercentualDesaturacao;@PercentualClarificacao; @PercentualObscurecencia);
+                background-color: @CorVariante;
+            }
+
+        .backgroundColor(BotaoHamburger){
+                    @Cor:                       @CorPrimaria; 
+                    @PercentualFade:            @PercentualFade_Padrao; 
+                    @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+                    @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+                    @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+                    @PercentualObscurecencia:   @PercentualObscurecencia_BotaoHamburger;
+
+                    .corVariante(@Cor; @PercentualFade; @PercentualSaturacao;@PercentualDesaturacao;@PercentualClarificacao; @PercentualObscurecencia);
+
+                        background-color: @CorVariante;
+                }
+
+            .backgroundColorPattern(
+                    @Cor1;
+                    @Cor2;
+                    @PercentualFadeCor1:            @PercentualFade_Padrao;
+                    @PercentualSaturacaoCor1:       @PercentualSaturacao_Padrao;
+                    @PercentualDesaturacaoCor1:     @PercentualDesaturacao_Padrao;
+                    @PercentualClarificacaoCor1:    @PercentualClarificacao_Padrao;
+                    @PercentualObscurecenciaCor1:   @PercentualObscurecencia_Padrao;
+                            
+                    @PercentualFadeCor2:            @PercentualFade_Padrao;
+                    @PercentualSaturacaoCor2:       @PercentualSaturacao_Padrao;
+                    @PercentualDesaturacaoCor2:     @PercentualDesaturacao_Padrao;
+                    @PercentualClarificacaoCor2:    @PercentualClarificacao_Padrao;
+                    @PercentualObscurecenciaCor2:   @PercentualObscurecencia_Padrao;
+
+                    @AnguloPattern:                 @AnguloPattern_Padrao;
+                    @Faixa1Pattern:                 @Faixa1Pattern_Padrao;
+                    @Faixa2Pattern:                 @Faixa2Pattern_Padrao;
+                ) {
+                    
+                        .corVariante2(
+                            @Cor1;
+                            @Cor2;
+                            
+                            @PercentualFadeCor1;
+                            @PercentualSaturacaoCor1;
+                            @PercentualDesaturacaoCor1;
+                            @PercentualClarificacaoCor1;
+                            @PercentualObscurecenciaCor1;
+                            
+                            @PercentualFadeCor2;
+                            @PercentualSaturacaoCor2;
+                            @PercentualDesaturacaoCor2;
+                            @PercentualClarificacaoCor2;
+                            @PercentualObscurecenciaCor2;
+                        );
+
+                        
+                        background: repeating-linear-gradient(@AnguloPattern, @CorVariante, @CorVariante @Faixa1Pattern, @CorVariante2 @Faixa1Pattern, @CorVariante2 (@Faixa1Pattern + @Faixa2Pattern))
+                    }
+
+//BORDER COLOR
+    .borderColor( 
+            @Cor; 
+            @PercentualFade:            @PercentualFade_Padrao; 
+            @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+            @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+            @PercentualClarificacao:    @PercentualClarificacao_Padrao; 
+            @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+        ) when (default()) 
+            {
+                .corVariante(@Cor; @PercentualFade; @PercentualSaturacao; @PercentualDesaturacao; @PercentualClarificacao; @PercentualObscurecencia;);
+                border-color: @CorVariante;
+            }
+
+//GRADIENTE
+    .gradiente( 
+            @CorBase;
+            @CorDoGradiente:                        @CorGradiente;
+    
+            @PercentualFadeCorBase:                 @PercentualFade_Padrao;
+            @PercentualSaturacaoCorBase:            @PercentualSaturacao_Padrao;
+            @PercentualDesaturacaoCorBase:          @PercentualDesaturacao_Padrao;
+            @PercentualClarificacaoCorBase:         @PercentualClarificacao_Padrao;
+            @PercentualObscurecenciaCorBase:        @PercentualObscurecencia_Padrao;
+            
+            @PercentualFadeDoGradiente:             @PercentualFadeGradiente_Padrao;
+            @PercentualSaturacaoDoGradiente:        @PercentualSaturacaoGradiente_Padrao;
+            @PercentualDesaturacaoDoGradiente:      @PercentualDesaturacaoGradiente_Padrao;
+            @PercentualClarificacaoDoGradiente:     @PercentualClarificacaoGradiente_Padrao;
+            @PercentualObscurecenciaDoGradiente:    @PercentualObscurecenciaGradiente_Padrao;
+
+            @ProfundidadeCorGradiente:              @ProfundidadeCorGradiente_Padrao;
+        ) when (default())
+            {
+                .corVariante2(
+                    @CorBase;
+                    @CorDoGradiente;
+                            
+                    @PercentualFadeCorBase;
+                    @PercentualSaturacaoCorBase;
+                    @PercentualDesaturacaoCorBase;
+                    @PercentualClarificacaoCorBase;
+                    @PercentualObscurecenciaCorBase;
+                            
+                    @PercentualFadeDoGradiente;
+                    @PercentualSaturacaoDoGradiente;
+                    @PercentualDesaturacaoDoGradiente;
+                    @PercentualClarificacaoDoGradiente;
+                    @PercentualObscurecenciaDoGradiente
+                );
+
+                background-image: -moz-linear-linear-gradient(to bottom, @CorVariante, @CorVariante2 @ProfundidadeCorGradiente);
+                background-image: -webkit-linear-gradient(to bottom, @CorVariante, @CorVariante2 @ProfundidadeCorGradiente);
+                background-image: -o-linear-gradient(to bottom, @CorVariante, @CorVariante2 @ProfundidadeCorGradiente);
+                background-image: linear-gradient(to bottom, @CorVariante, @CorVariante2 @ProfundidadeCorGradiente);
+            }
+
+
+//SOMBREAMENTO
+    .sombreamento(
+            @SombraHorizontal; 
+            @SombraVertical; 
+            @BlurSombra; 
+            @SpreadSombra; 
+            @Margin-botton;
+            @CorSombreamento:                       @CorSombreamento_Padrao; 
+            @PercentualFadeDoSombreamento:          @PercentualFadeDoSombreamento_Padrao; 
+            @PercentualSaturacaoDoSombreamento:     @PercentualSaturacaoDoSombreamento_Padrao;
+            @PercentualDesaturacaoDoSombreamento:   @PercentualDesaturacaoDoSombreamento_Padrao;
+            @PercentualClarificacaoDoSombreamento:  @PercentualClarificacaoDoSombreamento_Padrao; 
+            @PercentualObscurecenciaDoSombreamento: @PercentualObscurecenciaDoSombreamento_Padrao;
+        ) when (default()) 
+            {
+                .corVariante(@CorSombreamento;@PercentualFadeDoSombreamento;@PercentualSaturacaoDoSombreamento;@PercentualDesaturacaoDoSombreamento;@PercentualClarificacaoDoSombreamento;@PercentualObscurecenciaDoSombreamento);
+                
+                -webkit-box-shadow: @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                -moz-box-shadow:    @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                box-shadow:         @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                margin-bottom:      @Margin-botton;
+            }
+
+        .sombreamento(Mobile){  
+                @SombraHorizontal:                      @SombraHorizontal_Mobile;
+                @SombraVertical:                        @SombraVertical_Mobile;
+                @BlurSombra:                            @BlurSombra_Mobile;
+                @SpreadSombra:                          @SpreadSombra_Mobile;
+                @Margin-botton:                         @MarginBottomSombra_Mobile;
+
+                @CorSombreamento:                       @CorSombreamento_Padrao;
+                @PercentualFadeDoSombreamento:          @PercentualFadeDoSombreamento_Padrao;
+                @PercentualSaturacaoDoSombreamento:     @PercentualSaturacaoDoSombreamento_Padrao;
+                @PercentualDesaturacaoDoSombreamento:   @PercentualDesaturacaoDoSombreamento_Padrao;
+                @PercentualClarificacaoDoSombreamento:  @PercentualClarificacaoDoSombreamento_Padrao;
+                @PercentualObscurecenciaDoSombreamento: @PercentualObscurecenciaDoSombreamento_Padrao;
+
+                .corVariante(@CorSombreamento;@PercentualFadeDoSombreamento;@PercentualSaturacaoDoSombreamento;@PercentualDesaturacaoDoSombreamento;@PercentualClarificacaoDoSombreamento;@PercentualObscurecenciaDoSombreamento);
+
+                    -webkit-box-shadow: @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    -moz-box-shadow:    @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    box-shadow:         @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    margin-bottom:      @Margin-botton;
+                }
+        .sombreamento(Tablet){  
+                @SombraHorizontal:                      @SombraHorizontal_Tablet;
+                @SombraVertical:                        @SombraVertical_Tablet;
+                @BlurSombra:                            @BlurSombra_Tablet;
+                @SpreadSombra:                          @SpreadSombra_Tablet;
+                @Margin-botton:                         @MarginBottomSombra_Tablet;
+
+                @CorSombreamento:                       @CorSombreamento_Padrao;
+                @PercentualFadeDoSombreamento:          @PercentualFadeDoSombreamento_Padrao;
+                @PercentualSaturacaoDoSombreamento:     @PercentualSaturacaoDoSombreamento_Padrao;
+                @PercentualDesaturacaoDoSombreamento:   @PercentualDesaturacaoDoSombreamento_Padrao;
+                @PercentualClarificacaoDoSombreamento:  @PercentualClarificacaoDoSombreamento_Padrao;
+                @PercentualObscurecenciaDoSombreamento: @PercentualObscurecenciaDoSombreamento_Padrao;
+
+                .corVariante(@CorSombreamento;@PercentualFadeDoSombreamento;@PercentualSaturacaoDoSombreamento;@PercentualDesaturacaoDoSombreamento;@PercentualClarificacaoDoSombreamento;@PercentualObscurecenciaDoSombreamento);
+
+                    -webkit-box-shadow: @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    -moz-box-shadow:    @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    box-shadow:         @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    margin-bottom:      @Margin-botton;
+                }
+        .sombreamento(Desktop){ 
+                @SombraHorizontal:                      @SombraHorizontal_Desktop;
+                @SombraVertical:                        @SombraVertical_Desktop;
+                @BlurSombra:                            @BlurSombra_Desktop;
+                @SpreadSombra:                          @SpreadSombra_Desktop;
+                @Margin-botton:                         @MarginBottomSombra_Desktop;
+
+                @CorSombreamento:                       @CorSombreamento_Padrao;
+                @PercentualFadeDoSombreamento:          @PercentualFadeDoSombreamento_Padrao;
+                @PercentualSaturacaoDoSombreamento:     @PercentualSaturacaoDoSombreamento_Padrao;
+                @PercentualDesaturacaoDoSombreamento:   @PercentualDesaturacaoDoSombreamento_Padrao;
+                @PercentualClarificacaoDoSombreamento:  @PercentualClarificacaoDoSombreamento_Padrao;
+                @PercentualObscurecenciaDoSombreamento: @PercentualObscurecenciaDoSombreamento_Padrao;
+
+                .corVariante(@CorSombreamento;@PercentualFadeDoSombreamento;@PercentualSaturacaoDoSombreamento;@PercentualDesaturacaoDoSombreamento;@PercentualClarificacaoDoSombreamento;@PercentualObscurecenciaDoSombreamento);
+
+                    -webkit-box-shadow: @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    -moz-box-shadow:    @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    box-shadow:         @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    margin-bottom:      @Margin-botton;
+                }
+        .sombreamento(Remover){
+                @SombraHorizontal:                      0px;
+                @SombraVertical:                        0px;
+                @BlurSombra:                            0px;
+                @SpreadSombra:                          0px;
+                @Margin-botton:                         0px;
+
+                @CorSombreamento:                       @CorSombreamento_Padrao;
+                @PercentualFadeDoSombreamento:          0px;
+                @PercentualSaturacaoDoSombreamento:     0px;
+                @PercentualDesaturacaoDoSombreamento:   0px;
+                @PercentualClarificacaoDoSombreamento:  0px;
+                @PercentualObscurecenciaDoSombreamento: 0px;
+
+                .corVariante(@CorSombreamento;@PercentualFadeDoSombreamento;@PercentualSaturacaoDoSombreamento;@PercentualDesaturacaoDoSombreamento;@PercentualClarificacaoDoSombreamento;@PercentualObscurecenciaDoSombreamento);
+
+                    -webkit-box-shadow: @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    -moz-box-shadow:    @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    box-shadow:         @SombraHorizontal @SombraVertical @BlurSombra @SpreadSombra @CorVariante;
+                    margin-bottom:      @Margin-botton;
+                }
+        
+
+
+//BORDAS ARREDONDADAS
+    .bordaArredondada(  
+            @CorDaBorda:                        @CorDaBorda_Padrao;
+            @PercentualFadeDaBorda:             @PercentualFadeDaBorda_Padrao;
+            @PercentualSaturacaoDaBorda:        @PercentualSaturacaoDaBorda_Padrao;
+            @PercentualDesaturacaoDaBorda:      @PercentualDesaturacaoDaBorda_Padrao;
+            @PercentualClarificacaoDaBorda:     @PercentualClarificacaoDaBorda_Padrao;
+            @PercentualObscurecenciaDaBorda:    @PercentualObscurecenciaDaBorda_Padrao;
+            @EstiloDaBorda:                     @EstiloDaBorda_Padrao;
+
+            @RaioBordaEsquerdaSuperior; 
+            @RaioBordaDireitaSuperior; 
+            @RaioBordaDireitaInferior; 
+            @RaioBordaEsquerdaInferior;
+            
+            @EspessuraDaBorda; 
+            
+            )
+        when (default()) 
+            {
+                .corVariante(@CorDaBorda;@PercentualFadeDaBorda;@PercentualSaturacaoDaBorda;@PercentualDesaturacaoDaBorda;@PercentualClarificacaoDaBorda;@PercentualObscurecenciaDaBorda);
+                
+                -webkit-border-radius:  @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                -moz-border-radius:     @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                border-radius:          @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                border-width:           @EspessuraDaBorda;
+                border-style:           @EstiloDaBorda;
+                border-color:           @CorVariante;
+            }
+
+        .bordaArredondada(Mobile){
+                @CorDaBorda:                        @CorDaBorda_Padrao;
+                @PercentualFadeDaBorda:             @PercentualFadeDaBorda_Padrao;
+                @PercentualSaturacaoDaBorda:        @PercentualSaturacaoDaBorda_Padrao;
+                @PercentualDesaturacaoDaBorda:      @PercentualDesaturacaoDaBorda_Padrao;
+                @PercentualClarificacaoDaBorda:     @PercentualClarificacaoDaBorda_Padrao;
+                @PercentualObscurecenciaDaBorda:    @PercentualObscurecenciaDaBorda_Padrao;
+                @EstiloDaBorda:                     @EstiloDaBorda_Padrao;
+
+                @RaioBordaEsquerdaSuperior:         @RaioBordaEsquerdaSuperior_Mobile;
+                @RaioBordaDireitaSuperior:          @RaioBordaDireitaSuperior_Mobile;
+                @RaioBordaDireitaInferior:          @RaioBordaDireitaInferior_Mobile;
+                @RaioBordaEsquerdaInferior:         @RaioBordaEsquerdaInferior_Mobile;
+                
+                @EspessuraDaBorda:                  @EspessuraDaBorda_Mobile;
+                                                
+
+                .corVariante(@CorDaBorda;@PercentualFadeDaBorda;@PercentualSaturacaoDaBorda;@PercentualDesaturacaoDaBorda;@PercentualClarificacaoDaBorda;@PercentualObscurecenciaDaBorda);
+
+                    -webkit-border-radius:  @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    -moz-border-radius:     @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-radius:          @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-width:           @EspessuraDaBorda;
+                    border-style:           @EstiloDaBorda;
+                    border-color:           @CorVariante;
+                }
+        .bordaArredondada(Tablet){  
+                @CorDaBorda:                        @CorDaBorda_Padrao;
+                @PercentualFadeDaBorda:             @PercentualFadeDaBorda_Padrao;
+                @PercentualSaturacaoDaBorda:        @PercentualSaturacaoDaBorda_Padrao;
+                @PercentualDesaturacaoDaBorda:      @PercentualDesaturacaoDaBorda_Padrao;
+                @PercentualClarificacaoDaBorda:     @PercentualClarificacaoDaBorda_Padrao;
+                @PercentualObscurecenciaDaBorda:    @PercentualObscurecenciaDaBorda_Padrao;
+                @EstiloDaBorda:                     @EstiloDaBorda_Padrao;
+
+                @RaioBordaEsquerdaSuperior:         @RaioBordaEsquerdaSuperior_Tablet;
+                @RaioBordaDireitaSuperior:          @RaioBordaDireitaSuperior_Tablet;
+                @RaioBordaDireitaInferior:          @RaioBordaDireitaInferior_Tablet;
+                @RaioBordaEsquerdaInferior:         @RaioBordaEsquerdaInferior_Tablet;
+                
+                @EspessuraDaBorda:                  @EspessuraDaBorda_Tablet;                               
+
+                .corVariante(@CorDaBorda;@PercentualFadeDaBorda;@PercentualSaturacaoDaBorda;@PercentualDesaturacaoDaBorda;@PercentualClarificacaoDaBorda;@PercentualObscurecenciaDaBorda);
+
+                    -webkit-border-radius:  @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    -moz-border-radius:     @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-radius:          @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-width:           @EspessuraDaBorda;
+                    border-style:           @EstiloDaBorda;
+                    border-color:           @CorVariante;
+                }
+        .bordaArredondada(Desktop){ 
+                @CorDaBorda:                        @CorDaBorda_Padrao;
+                @PercentualFadeDaBorda:             @PercentualFadeDaBorda_Padrao;
+                @PercentualSaturacaoDaBorda:        @PercentualSaturacaoDaBorda_Padrao;
+                @PercentualDesaturacaoDaBorda:      @PercentualDesaturacaoDaBorda_Padrao;
+                @PercentualClarificacaoDaBorda:     @PercentualClarificacaoDaBorda_Padrao;
+                @PercentualObscurecenciaDaBorda:    @PercentualObscurecenciaDaBorda_Padrao;
+                @EstiloDaBorda:                     @EstiloDaBorda_Padrao;
+
+                @RaioBordaEsquerdaSuperior:         @RaioBordaEsquerdaSuperior_Desktop;
+                @RaioBordaDireitaSuperior:          @RaioBordaDireitaSuperior_Desktop;
+                @RaioBordaDireitaInferior:          @RaioBordaDireitaInferior_Desktop;
+                @RaioBordaEsquerdaInferior:         @RaioBordaEsquerdaInferior_Desktop;
+                
+                @EspessuraDaBorda:                  @EspessuraDaBorda_Desktop;
+                                        
+                .corVariante(@CorDaBorda;@PercentualFadeDaBorda;@PercentualSaturacaoDaBorda;@PercentualDesaturacaoDaBorda;@PercentualClarificacaoDaBorda;@PercentualObscurecenciaDaBorda);
+
+                    -webkit-border-radius:  @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    -moz-border-radius:     @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-radius:          @RaioBordaEsquerdaSuperior @RaioBordaDireitaSuperior @RaioBordaDireitaInferior @RaioBordaEsquerdaInferior;
+                    border-width:           @EspessuraDaBorda;
+                    border-style:           @EstiloDaBorda;
+                    border-color:           @CorVariante;
+                }
+        .bordaArredondada(Remover){ 
+                    -webkit-border-radius:  0px 0px 0px 0px;
+                    -moz-border-radius:     0px 0px 0px 0px;
+                    border-radius:          0px 0px 0px 0px;
+                    border-width:           0px;
+                }
+        .bordaArredondada(Menu) {
+            border-width: 0px!important;
+        }
+        .bordaArredondada(Inferior) {
+            -webkit-border-top-left-radius: 0px!important;
+            -moz-border-radius-topleft:     0px!important;
+            border-top-left-radius:         0px!important;
+
+            -webkit-border-top-right-radius:0px!important;
+            -moz-border-radius-topright:    0px!important;
+            border-top-right-radius:        0px!important;
+        }
+        
+        .bordaArredondada(Superior) {
+            -webkit-border-bottom-left-radius: 0px!important;
+            -moz-border-radius-bottomleft:     0px!important;
+            border-bottom-left-radius:         0px!important;
+
+            -webkit-border-bottom-right-radius:0px!important;
+            -moz-border-radius-bottomright:    0px!important;
+            border-bottom-right-radius:        0px!important;
+
+        }
+
+// MARGENS
+    .margin(Remover) {
+        margin-top:     0px;
+        margin-left:    0px;
+        margin-right:   0px;
+        margin-bottom:  0px;
+    }  
