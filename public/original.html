@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/messageBalloons.js"></script>
+    <link href="css/normalize.css" rel="stylesheet" />
+    <link href="css/framework.css" rel="stylesheet" />
+    <style>div{display:flex;box-sizing:border-box}</style>
+</head>
+<body>
+
+    <!-- ================================================ -->
+    <!-- NAVBAR (replica de UserControls/Navbars/Navbar_Html.ascx) -->
+    <!-- ================================================ -->
+    <div class="linhaDoGrid navbar">
+        <input type="checkbox" class="hamburgerCheckbox" id="Hamburger1"/>
+        <div class="hamburgerDisplayButton">
+            <label for="Hamburger1" class="hamburgerDisplayLines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+
+        <div class="menusContainer">
+
+            <div class="menu D9T5M2">
+
+                <div class="menuItem">
+                    <a href="#">
+                        <span class="iconMenu" data-icon="home"></span>
+                        Home
+                    </a>
+                </div>
+
+                <div class="menuItem">
+                    Jobs
+                    <div class="subMenu">
+                        <div class="subMenuItem titulo">Ultimos jobs acessados</div>
+                        <div class="subMenuItem"><a href="#">Job 1</a></div>
+                        <div class="subMenuItem"><a href="#">Job 2</a></div>
+                        <div class="subMenuItem paginaAtual"><a href="#">Job 3</a></div>
+                        <div class="subMenuItem"><a href="#">Job 4</a></div>
+                        <div class="subMenuItem inativo"><a href="#">Job 5</a></div>
+                        <div class="subMenuItem"><a href="#">Job 6</a></div>
+                    </div>
+                </div>
+
+                <div class="menuItem inativo">Timesheet</div>
+                <div class="menuItem inativo">Financeiro</div>
+                <div class="menuItem inativo">Admin</div>
+            </div>
+
+            <div class="menu menuSecundario D3T1M1">
+
+                <div class="menuItem">
+                    <a href="#">Meus Dados</a>
+
+                    <div class="subMenu">
+                        <div class="subMenuItem titulo">Login via social</div>
+
+                        <div class="subMenuItem containerExternoBotoesSubmenu">
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="containerItemFormComIcone containerbtFacebook">
+                                    <input type="button" class="itemForm bt" value="" />
+                                    <div>Login com Facebook</div>
+                                    <span data-icon="facebookbutton"></span>
+                                </div>
+                            </div>
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="containerItemFormComIcone containerbtGoogle">
+                                    <input type="button" class="itemForm bt" value="" />
+                                    <div>Login com Google</div>
+                                    <span data-icon="googlebutton"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subMenuItem titulo">Login via email e senha</div>
+
+                        <div class="subMenuItem">
+                            <div class="containerItemFormComIcone">
+                                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                                <span data-icon="mail"></span>
+                            </div>
+                        </div>
+                        <div class="subMenuItem">
+                            <div class="containerItemFormComIcone">
+                                <input type="password" class="itemForm input" placeholder="Password" autocomplete="off" />
+                                <span data-icon="lock"></span>
+                            </div>
+                        </div>
+
+                        <div class="subMenuItem containerExternoBotoesSubmenu">
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="itemForm esqueciSenha">
+                                    <a href="#">Esqueci minha senha</a>
+                                </div>
+                            </div>
+                            <div class="containerInternoBotoesSubmenu">
+                                <input type="button" class="itemForm bt btEntrar" value="entrar" />
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <a href="#">Criar nova conta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================================================ -->
+    <!-- MODELOS FRAMEWORK (replica de ModelosFramework.aspx) -->
+    <!-- ================================================ -->
+
+    <div class="linhaDoGrid">
+        <div class="panel D18T12M6">
+            <b>Configuracoes do GRID:</b><br />
+            - Desktop - 18 Colunas<br />
+            - Tablet - 12 Colunas<br />
+            - Mobile - 6 Colunas
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>18 colunas em todas as resolucoes - (D1T1M1)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M1">6</div>
+        <div class="panel D1T1M1">7</div>
+        <div class="panel D1T1M1">8</div>
+        <div class="panel D1T1M1">9</div>
+        <div class="panel D1T1M1">10</div>
+        <div class="panel D1T1M1">11</div>
+        <div class="panel D1T1M1">12</div>
+        <div class="panel D1T1M1">13</div>
+        <div class="panel D1T1M1">14</div>
+        <div class="panel D1T1M1">15</div>
+        <div class="panel D1T1M1">16</div>
+        <div class="panel D1T1M1">17</div>
+        <div class="panel D1T1M1">18</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Ocultar colunas excedentes - (D1T0M0)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M1">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T1M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D1T0M0">18</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Colunas Duplas - (D2T2M2)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D2T2M2">panel Duplo 1</div>
+        <div class="panel D2T2M2">panel Duplo 2</div>
+        <div class="panel D2T2M2">panel Duplo 3</div>
+        <div class="panel D2T2M0">panel Duplo 4</div>
+        <div class="panel D2T2M0">panel Duplo 5</div>
+        <div class="panel D2T2M0">panel Duplo 6</div>
+        <div class="panel D2T0M0">panel Duplo 7</div>
+        <div class="panel D2T0M0">panel Duplo 8</div>
+        <div class="panel D2T0M0">panel Duplo 9</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Pulando a primeira coluna - (desloc-D1T1M1)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1 desloc-D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M0">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T0M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D0T0M0">18</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Pulando a segunda coluna - na segunda (desloc-D1T1M1)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1 desloc-D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M0">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T0M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D0T0M0">18</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Trocando a ordem - (item-1   item-2   item-3)</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D6T4M2 item-2">1</div>
+        <div class="panel D6T4M2 item-3">2</div>
+        <div class="panel D6T4M2 item-1">3</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Coluna</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel containerEmColuna D9T6M3">
+            <div class="panel">Col1 1</div>
+            <div class="panel">Col1 2</div>
+            <div class="panel">Col1 3</div>
+            <div class="panel">Col1 4</div>
+            <div class="panel">Col1 5</div>
+            <div class="panel">Col1 6</div>
+            <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
+                <div class="panel D9T6M3">Col1 7 no wrap</div>
+                <div class="panel D9T6M3">Col1 8 no wrap</div>
+                <div class="panel D9T6M3">Col1 9 no wrap</div>
+            </div>
+        </div>
+        <div class="containerEmColuna D9T6M3">
+            <div class="panel ">Col2 1</div>
+            <div class="containerEmLinha">
+                <div class="panel D3T6M3">Col2 2 wrap</div>
+                <div class="panel D3T6M3">Col2 3 wrap</div>
+                <div class="panel D3T6M3">Col2 4 wrap</div>
+            </div>
+            <div class="panel ">Col2 5</div>
+            <div class="panel ">Col2 6</div>
+            <div class="panel ">Col2 7</div>
+            <div class="panel ">Col2 8</div>
+            <div class="panel ">Col2 9</div>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="D3T2M1 containerEmColuna">
+            <div class="panel D3T2M1">DIV 1</div>
+            <div class="panel D3T2M1">DIV 2</div>
+            <div class="panel D3T2M1">DIV 3</div>
+        </div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="D3T2M1 containerEmColuna">
+            <div class="panel D3T2M1">DIV 1</div>
+            <div class="panel D3T2M1">DIV 2</div>
+            <div class="panel D3T2M1">DIV 3</div>
+        </div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Cores</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="D6T3M2 containerEmColuna">
+            <div class="primaria">Cor primaria</div>
+            <div class="secundaria">Cor secundaria</div>
+            <div class="terciaria">Cor terciaria</div>
+        </div>
+
+        <div class="D6T3M2 containerEmColuna">
+            <div class="D12T6M2 corNegacao">Cor Negacao</div>
+            <div class="D12T6M2 corAtencao">Cor Atencao</div>
+            <div class="D12T6M2 corPositivacao">Cor Positivacao</div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Campos de formulario</b>
+        </div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="D6T3M2 containerEmColuna">
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                <span data-icon="user"></span>
+            </div>
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                <span data-icon="user"></span>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="linhaDoGrid">
+        <div class="D18T12M6">
+            <b>Formulario com balloons</b>
+        </div>
+    </div>
+
+    <div class="D12T10M6 desloc-D3T1M0 containerEmLinha passos">
+        <p>Passos para criacao de usuario</p>
+        <div class="passoCompleto">
+            <div>1</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+
+        <div class="balloonTrigger">
+            <div>2</div>
+            <div><span data-icon="check"></span></div>
+            <div class="balloonPosition-All-Right balloonType-Help D3T1M1">Whatevs</div>
+        </div>
+
+        <div class="passoFuturo">
+            <div>3</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+
+        <div class="passoFuturo">
+            <div>4</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+    </div>
+
+
+    <div class="D12T10M6 desloc-D3T1M0 tituloForm arredondadaSuperior">Dados para acesso</div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D12T10M6 desloc-D3T1M0 containerEmColuna arredondadaInferior">
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Left balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Left balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-BottomLeft balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-BottomLeft balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Bottom balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Bottom balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-BottomRight balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-BottomRight balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Right balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Right balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-TopRight balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-TopRight balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Top balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Top balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-TopLeft balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-TopLeft balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+
+    <!-- ================================================ -->
+    <!-- PALETA (replica de Paleta.aspx)                  -->
+    <!-- ================================================ -->
+
+    <div class="linhaDoGrid">
+        <div class="panel paleta-1-1 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-2 D1T1M1">Fade 90%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-3 D1T1M1">Fade 80%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-4 D1T1M1">Fade 70%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-5 D1T1M1">Fade 60%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-6 D1T1M1">Fade 50%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-7 D1T1M1">Fade 40%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-8 D1T1M1">Fade 30%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-9 D1T1M1">Fade 20%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-1-10 D1T1M1">Fade 10%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel paleta-2-1 D1T1M1">Fade 100%<br />Saturacao 10%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-2 D1T1M1">Fade 100%<br />Saturacao 20%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-3 D1T1M1">Fade 100%<br />Saturacao 30%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-4 D1T1M1">Fade 100%<br />Saturacao 40%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-5 D1T1M1">Fade 100%<br />Saturacao 50%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-6 D1T1M1">Fade 100%<br />Saturacao 60%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-7 D1T1M1">Fade 100%<br />Saturacao 70%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-8 D1T1M1">Fade 100%<br />Saturacao 80%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-9 D1T1M1">Fade 100%<br />Saturacao 90%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-2-10 D1T1M1">Fade 100%<br />Saturacao 100%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel paleta-3-1 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 10%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-2 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 20%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-3 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 30%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-4 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 40%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-5 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 50%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-6 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 60%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-7 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 70%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-8 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 80%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-9 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 90%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-3-10 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 100%<br />Clarificacao 0%<br />Obscurecencia 0%</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel paleta-4-1 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 10%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-2 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 20%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-3 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 30%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-4 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 40%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-5 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 50%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-6 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 60%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-7 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 70%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-8 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 80%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-9 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 90%<br />Obscurecencia 0%</div>
+        <div class="panel paleta-4-10 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 100%<br />Obscurecencia 0%</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel paleta-5-1 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 10%</div>
+        <div class="panel paleta-5-2 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 20%</div>
+        <div class="panel paleta-5-3 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 30%</div>
+        <div class="panel paleta-5-4 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 40%</div>
+        <div class="panel paleta-5-5 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 50%</div>
+        <div class="panel paleta-5-6 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 60%</div>
+        <div class="panel paleta-5-7 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 70%</div>
+        <div class="panel paleta-5-8 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 80%</div>
+        <div class="panel paleta-5-9 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 90%</div>
+        <div class="panel paleta-5-10 D1T1M1">Fade 100%<br />Saturacao 0%<br />Desaturacao 0%<br />Clarificacao 0%<br />Obscurecencia 100%</div>
+    </div>
+
+
+    <!-- Inject SVG icons where data-icon is used -->
+    <script>
+    document.querySelectorAll('[data-icon]').forEach(function(el) {
+        var icon = el.getAttribute('data-icon');
+        fetch('/icones/' + icon + '.svg')
+            .then(function(r) { return r.text(); })
+            .then(function(svg) { el.innerHTML = svg; });
+    });
+    </script>
+
+</body>
+</html>
