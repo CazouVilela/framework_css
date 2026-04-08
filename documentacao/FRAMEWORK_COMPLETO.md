@@ -515,6 +515,121 @@ Container de linha principal. Define:
 </div>
 ```
 
+##### Regras Criticas de Uso (OBRIGATORIO)
+
+> **IMPORTANTE**: Estas regras sao inegociaveis. Violar qualquer uma delas quebra o
+> layout do framework, gera scroll horizontal indesejado ou rompe a responsividade.
+
+**1. `.linhaDoGrid` e o container MACRO de uma linha do layout**
+
+Cada elemento `.linhaDoGrid` representa **uma linha** dentro do layout da pagina. Dentro
+dele ficam organizados os demais elementos que compoem aquela linha. A classe define:
+
+- Largura total disponivel para a linha (`100vw - scrollbar`)
+- As margens/gutters corretos para cada viewport (Desktop/Tablet/Mobile)
+- A base do flex row wrap onde as colunas `D{n}T{n}M{n}` sao posicionadas
+
+**2. PROIBIDO aninhar `.linhaDoGrid` dentro de outro `.linhaDoGrid` (ERRO CRITICO)**
+
+NUNCA coloque um elemento `.linhaDoGrid` dentro de outro `.linhaDoGrid`. Isso e
+considerado erro de uso do framework e deve ser evitado em qualquer situacao.
+
+**Por que isso quebra**: a classe `.linhaDoGrid` define `width: calc(100vw - scrollbar)`,
+ou seja, ocupa **toda a largura da viewport**, nao do container pai. Aninhar gera:
+
+- O filho tenta ocupar 100vw dentro de um container que ja tem margens/paddings
+- Estouro horizontal do layout
+- Aparecimento de scroll lateral indesejado
+- Calculos de coluna (`D{n}T{n}M{n}`) sobrepostos e incorretos
+
+**Como evitar**: quando precisar de subdivisoes dentro de uma coluna, use
+`.containerEmColuna` (subcontainer vertical dentro da mesma linha) ou `.containerEmLinha`
+(sub-grid dentro de uma coluna — ja aplica as margens negativas compensatorias).
+
+```html
+<!-- ERRADO: aninhamento proibido -->
+<div class="linhaDoGrid">
+    <div class="linhaDoGrid">   <!-- NAO FAZER: estoura 100vw -->
+        <div class="panel D6T4M2">...</div>
+    </div>
+</div>
+
+<!-- CORRETO: usar containerEmColuna como subcontainer -->
+<div class="linhaDoGrid">
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+</div>
+```
+
+**3. Elementos podem ser filhos DIRETOS de `.linhaDoGrid`**
+
+A forma mais simples de uso e colocar os elementos de layout diretamente como filhos
+da linha, ja com suas classes de coluna `D{n}T{n}M{n}`:
+
+```html
+<div class="linhaDoGrid">
+    <div class="panel D18T12M6">
+        <b>Configuracoes do GRID:</b><br>
+        - Desktop - 18 Colunas<br>
+        - Tablet - 12 Colunas<br>
+        - Mobile - 6 Colunas
+    </div>
+</div>
+```
+
+**4. Ou podem ser agrupados em subcontainers (`.containerEmColuna`)**
+
+Dentro da mesma `.linhaDoGrid` e permitido misturar elementos diretos com
+subcontainers `.containerEmColuna`. O subcontainer tambem recebe sua classe de coluna
+e define um agrupamento vertical:
+
+```html
+<div class="linhaDoGrid">
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+</div>
+```
+
+Neste exemplo, a mesma linha mistura paineis diretos (que consomem uma coluna cada)
+com dois agrupamentos verticais `.containerEmColuna` (cada um ocupando `D3T2M1` da linha
+e contendo tres paineis empilhados verticalmente).
+
+**Resumo das regras**:
+
+| Regra | O que fazer | O que nao fazer |
+|-------|-------------|-----------------|
+| 1 | Usar `.linhaDoGrid` como container macro de cada linha | Tratar `.linhaDoGrid` como grid generico ou aninhado |
+| 2 | Aninhar subdivisoes com `.containerEmColuna` / `.containerEmLinha` | **Aninhar `.linhaDoGrid` dentro de outro `.linhaDoGrid`** (ERRO) |
+| 3 | Filhos diretos com `D{n}T{n}M{n}` | Omitir a classe de coluna nos filhos |
+| 4 | Agrupar em subcontainer quando precisar empilhar | Usar divs genericas sem classe de coluna |
+
 #### `.containerEmColuna`
 
 Transforma o layout interno de um elemento para coluna vertical.

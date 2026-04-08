@@ -95,6 +95,46 @@ framework_css/
 - Mixins: .padding(), .corVariante(), .color(), .backgroundColor(), .borderColor(), .gradiente(), .sombreamento(), .bordaArredondada(), .margin()
 - Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile
 
+### Regras Criticas de Uso do Grid (OBRIGATORIO em TODO projeto que usar o framework)
+
+Documentacao completa:
+- [FRAMEWORK_COMPLETO.md - Secao Regras Criticas de Uso](../documentacao/FRAMEWORK_COMPLETO.md#linhaDoGrid)
+- [GUIA_IMPLANTACAO.md - Secao 8. Regras de Aplicacao do Grid](../documentacao/GUIA_IMPLANTACAO.md#8-regras-de-aplicacao-do-grid-obrigatorio)
+
+**Resumo das regras (estao detalhadas nos docs acima)**:
+
+1. **`.linhaDoGrid` e o container MACRO de UMA linha do layout**. Define o espaco total
+   disponivel como largura para aquela linha (`calc(100vw - scrollbar)`), ja com as
+   margens/gutters para cada viewport. E o container base onde as colunas `D{n}T{n}M{n}`
+   sao posicionadas via flex row wrap.
+
+2. **PROIBIDO aninhar `.linhaDoGrid` dentro de outro `.linhaDoGrid`**. E considerado
+   **ERRO CRITICO de uso**. Como a classe define `width: calc(100vw - scrollbar)`, aninhar
+   faz o filho estourar a largura e gera scroll lateral indesejado. Quando precisar de
+   subdivisoes, usar `.containerEmColuna` (vertical) ou `.containerEmLinha` (sub-grid com
+   margens negativas compensatorias).
+
+3. **Elementos de layout podem ser filhos diretos de `.linhaDoGrid`** com suas classes
+   `D{n}T{n}M{n}`, OU agrupados em subcontainers `.containerEmColuna` (que tambem recebem
+   classe de coluna). **As duas formas podem ser misturadas livremente** dentro da mesma
+   `.linhaDoGrid`.
+
+**Exemplo de uso correto (mistura de filhos diretos + subcontainers)**:
+```html
+<div class="linhaDoGrid">
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+
+    <div class="panel D1T1M1">T1</div>
+</div>
+```
+
 <!-- CHAPTER: 4 Configuracoes -->
 
 ## Configuracoes
@@ -112,6 +152,33 @@ framework_css/
 - **Compilacao LESS lenta**: O CSS gerado tem ~1.2MB devido ao grid programatico com 3 loops aninhados (Desktop x Tablet x Mobile). Isso e normal.
 - **Cloudflare 404**: O tunnel usa remote config via API. Editar config.yml local NAO basta — precisa atualizar via API (`PUT /accounts/{id}/cfd_tunnel/{id}/configurations`).
 - **Bug mixin .gradiente()**: Typo no original: `-moz-linear-linear-gradient` (duplicado). Nao afeta funcionamento pois browsers modernos usam `linear-gradient` sem prefixo.
+- **Bug LESS divisao sem parenteses (RESOLVIDO 2026-04-08)**: LESS 4+ usa `math: parens-division` por padrao, deixando expressoes como `@var / 2` literais ("12px / 2") no CSS final, gerando regras invalidas. **Sintoma**: triangulos dos balloons (`border: @EntreColuna_Desktop / 2 solid transparent`) com `border-width: 0px`. **Fix**: `server.js` usa `math: 'always'` em `less.render()`, e o `framework.css` estatico foi recompilado com a mesma opcao. Aplicar essa opcao em qualquer recompilacao manual.
+- **Bug seletor com espaco antes de pseudo-elemento (RESOLVIDO 2026-04-08)**: `.balloonType-Atencao :before` (com espaco) era interpretado como combinador descendente, mirando `*::before` em filhos. **Sintoma**: balloon Atencao e Erro sem triangulo (Help funcionava porque usava `&:before` no LESS). **Fix**: removidos espacos em `messageBalloon.less:1550, 1554, 1591, 1595` (`.balloonType-Atencao:before`, `.balloonType-Erro:before`, etc.).
+- **Bug `text-align` no `.menuItem` (RESOLVIDO 2026-04-08)**: `normalize.less` aplica `div { display: flex; justify-content: flex-start; align-items: flex-start; }` globalmente. Isso transforma `.menuItem` em flex container, e `text-align` deixa de afetar o alinhamento do conteudo (texto direto ou `<a>`), ignorando `@AlinhamentoTextoMenuItem_*`. **Fix**: adicionado `display: block` em `.menuItem` (`Navbar.less:303`) para sobrescrever o normalize global. SubMenu funciona porque o `<a>` interno tem `display: block !important; width: 100%` e herda `text-align`.
+- **Override do showcase (`frameworkCssOverrides`)**: O `public/js/frameworkOverrides.js` armazena CSS compilado no `localStorage` e injeta em uma `<style id="custom-framework-css">` ao carregar `index.html`/`editor.html`. Isso significa que mudancas no `framework.css` estatico podem nao aparecer enquanto houver override antigo no navegador do usuario. Solucao: clicar em "Limpar" no showcase ou clicar em "Compilar LESS" no editor (regenera com o LESS atual).
+
+## Showcase (`public/index.html`)
+
+Cada `linhaDoGrid` demonstrativa segue o padrao:
+
+```
+<span class="demo-label">Titulo curto da demo</span>
+<div class="linhaDoGrid">...HTML real do componente...</div>
+<div class="description-block">
+  Explicacao das classes utilizadas, efeitos esperados e regras gerais
+</div>
+<div class="code-block">HTML do bloco acima, com ... para linhas repetidas</div>
+```
+
+22 trios `linhaDoGrid + description-block + code-block` cobrem: Grid (configuracao base, 18 cols, ocultar, duplas), Offset (1a e 2a col), Ordenacao, Containers (column/linha), Cores semanticas, Forms (campos com icone, formulario completo), Balloons (3 tipos + 8 posicoes), Navbar, Paleta (Fade/Saturacao/Desaturacao/Clarificacao/Obscurecencia), Textos por breakpoint, Icones SVG.
+
+Estilo `.description-block`: fundo amarelo claro, borda lateral ciano. Classes referenciadas em `<strong>` ou `<code>` ganham fonte monospace e cor ciano para destaque. Estrutura: `<span class="desc-title">` para titulo + `<ul><li>` para itens.
+
+Secao de balloons (`#balloons`) tem estrutura padronizada para que o triangulo aponte corretamente:
+- Wrapper externo: `containerHelpIcon D6T4M2`
+- Wrapper interno: `containerItemFormComIcone` (`position: relative`)
+- Balao como filho direto, com `D3T2M1` (largura fixa)
+- Para help-icons isolados (8 posicoes): `D2T1M1` em wrapper + `help-icon balloonTrigger` interno
 
 <!-- CHAPTER: 6 Proximas Features -->
 
@@ -134,6 +201,6 @@ framework_css/
 
 ---
 
-**Ultima Atualizacao**: 2026-04-05
+**Ultima Atualizacao**: 2026-04-08
 **Versao**: 1.0.0
 **Status**: Em producao

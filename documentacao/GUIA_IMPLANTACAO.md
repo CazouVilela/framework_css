@@ -15,9 +15,10 @@ Este guia descreve como integrar o framework CSS LESS em novos projetos web.
 5. [Inclusao no HTML](#5-inclusao-no-html)
 6. [Customizacao via Variaveis](#6-customizacao-via-variaveis)
 7. [Compilacao LESS](#7-compilacao-less)
-8. [Exemplos de Implementacao](#8-exemplos-de-implementacao)
-9. [Dependencias](#9-dependencias)
-10. [Notas Importantes](#10-notas-importantes)
+8. [Regras de Aplicacao do Grid (OBRIGATORIO)](#8-regras-de-aplicacao-do-grid-obrigatorio)
+9. [Exemplos de Implementacao](#9-exemplos-de-implementacao)
+10. [Dependencias](#10-dependencias)
+11. [Notas Importantes](#11-notas-importantes)
 
 ---
 
@@ -377,7 +378,146 @@ gulp.task('less', function() {
 
 ---
 
-## 8. Exemplos de Implementacao
+## 8. Regras de Aplicacao do Grid (OBRIGATORIO)
+
+> **LEIA ANTES DE IMPLEMENTAR QUALQUER LAYOUT**. Estas regras se aplicam a TODOS os
+> projetos que usam o framework CSS. Violar qualquer uma delas quebra o layout,
+> gera scroll horizontal indesejado ou rompe a responsividade.
+
+### 8.1. `.linhaDoGrid` = container macro de UMA linha do layout
+
+Cada elemento `.linhaDoGrid` representa **uma linha** dentro do layout da pagina.
+Dentro dele ficam organizados os elementos que compoem aquela linha. A classe
+define:
+
+- **Largura total** disponivel para a linha: `calc(100vw - scrollbar)`
+- **Margens/gutters** corretos para cada viewport (Desktop/Tablet/Mobile)
+- Base do **flex row wrap** onde as colunas `D{n}T{n}M{n}` sao posicionadas
+
+Uma pagina tipica e composta por varias `.linhaDoGrid` sequenciais, uma para cada
+"faixa horizontal" do layout.
+
+### 8.2. PROIBIDO aninhar `.linhaDoGrid` dentro de outro `.linhaDoGrid`
+
+**ESTA E A REGRA MAIS IMPORTANTE DO FRAMEWORK**.
+
+NUNCA coloque um elemento `.linhaDoGrid` dentro de outro `.linhaDoGrid`. Isso e
+considerado **erro de uso** e deve ser evitado em qualquer situacao.
+
+**Por que isso quebra o layout**: a classe `.linhaDoGrid` define
+`width: calc(100vw - scrollbar)` — ou seja, ocupa **toda a largura da viewport**,
+nao a largura do container pai. Aninhar gera:
+
+1. O filho tenta ocupar 100vw dentro de um container que ja tem margens/paddings
+2. **Estouro horizontal** do layout
+3. **Scroll lateral indesejado** na pagina
+4. Calculos de coluna `D{n}T{n}M{n}` sobrepostos e incorretos
+5. Perda da responsividade em Tablet e Mobile
+
+**Como evitar**: quando precisar de subdivisoes dentro de uma coluna, use:
+
+- `.containerEmColuna` — subcontainer vertical dentro da mesma linha
+- `.containerEmLinha` — sub-grid dentro de uma coluna, ja aplica margens negativas compensatorias
+
+```html
+<!-- ERRADO: aninhamento proibido — quebra o layout -->
+<div class="linhaDoGrid">
+    <div class="linhaDoGrid">       <!-- NAO FAZER -->
+        <div class="panel D6T4M2">...</div>
+    </div>
+</div>
+
+<!-- CORRETO: subcontainer vertical dentro da mesma linha -->
+<div class="linhaDoGrid">
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+</div>
+```
+
+### 8.3. Formas permitidas de aplicar elementos dentro de `.linhaDoGrid`
+
+Dentro de `.linhaDoGrid` os elementos podem ser organizados de duas formas, e essas
+formas podem ser **misturadas** livremente na mesma linha:
+
+#### Forma A — Elementos como filhos DIRETOS da linha
+
+A forma mais simples: o elemento de layout e filho direto da `.linhaDoGrid`, ja com
+sua classe de coluna `D{n}T{n}M{n}`.
+
+```html
+<div class="linhaDoGrid">
+    <div class="panel D18T12M6">
+        <b>Configuracoes do GRID:</b><br>
+        - Desktop - 18 Colunas<br>
+        - Tablet - 12 Colunas<br>
+        - Mobile - 6 Colunas
+    </div>
+</div>
+```
+
+#### Forma B — Elementos agrupados em `.containerEmColuna`
+
+Quando precisar empilhar varios elementos verticalmente dentro de uma faixa da linha,
+use um subcontainer `.containerEmColuna`. Ele tambem recebe sua classe de coluna
+`D{n}T{n}M{n}` (definindo a largura do grupo) e contem os elementos empilhados.
+
+#### Forma C — Mistura de elementos diretos + subcontainers na mesma linha
+
+E **permitido e incentivado** misturar as duas formas dentro de uma mesma `.linhaDoGrid`.
+Os filhos diretos e os `.containerEmColuna` ficam lado a lado conforme suas classes de
+coluna, respeitando o total de colunas do grid.
+
+```html
+<div class="linhaDoGrid">
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+
+    <div class="D3T2M1 containerEmColuna">
+        <div class="panel D3T2M1">DIV 1</div>
+        <div class="panel D3T2M1">DIV 2</div>
+        <div class="panel D3T2M1">DIV 3</div>
+    </div>
+
+    <div class="panel D1T1M1">T1</div>
+    <div class="panel D1T1M0">T1</div>
+    <div class="panel D1T0M0">T1</div>
+</div>
+```
+
+Na estrutura acima, a mesma linha mistura paineis diretos (cada um consumindo uma
+coluna por breakpoint) com dois agrupamentos verticais `.containerEmColuna` (cada um
+ocupando `D3T2M1` da linha, com tres paineis empilhados verticalmente dentro).
+
+### 8.4. Resumo das regras
+
+| # | Regra | O que fazer | O que NAO fazer |
+|---|-------|-------------|-----------------|
+| 1 | Container macro | Usar `.linhaDoGrid` como container de cada linha | Tratar como grid generico |
+| 2 | Aninhamento | Usar `.containerEmColuna` / `.containerEmLinha` para subdividir | **Aninhar `.linhaDoGrid` dentro de outro `.linhaDoGrid`** (ERRO CRITICO) |
+| 3 | Elementos diretos | Filhos diretos com classe `D{n}T{n}M{n}` | Omitir classe de coluna |
+| 4 | Subcontainers | Agrupar elementos verticais com `.containerEmColuna` | Usar divs genericas sem classe |
+| 5 | Mistura na linha | Misturar livremente filhos diretos + subcontainers | Criar nova `.linhaDoGrid` para agrupar |
+
+---
+
+## 9. Exemplos de Implementacao
 
 ### Layout Basico com Sidebar
 
@@ -467,7 +607,7 @@ gulp.task('less', function() {
         </label>
     </div>
     <div class="menusContainer">
-        <div class="menuPrincipal D12T8M6">
+        <div class="menu menuPrincipal D12T9M6">
             <div class="menuItem">
                 <a href="/">Home</a>
             </div>
@@ -522,7 +662,7 @@ gulp.task('less', function() {
 
 ---
 
-## 9. Dependencias
+## 10. Dependencias
 
 ### Obrigatorias
 
@@ -546,7 +686,7 @@ gulp.task('less', function() {
 
 ---
 
-## 10. Notas Importantes
+## 11. Notas Importantes
 
 ### O normalize.less define divs como flex
 

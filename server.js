@@ -94,7 +94,12 @@ app.post('/api/compile', async (req, res) => {
 
     const output = await less.render(frameworkLess, {
       paths: [LESS_SRC],
-      compress: false
+      compress: false,
+      // math: 'always' processa todas as divisoes (ex: @{var} / 2 -> 6px).
+      // Sem isto, o LESS 4+ usa parens-division e divisoes sem parenteses
+      // sao deixadas literais (ex: "12px / 2"), gerando CSS invalido.
+      // Bug afetava o triangulo dos balloons (border-width zerado).
+      math: 'always'
     });
 
     res.json({ css: output.css });

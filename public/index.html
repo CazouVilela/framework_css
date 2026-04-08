@@ -11,650 +11,1432 @@
     <style>
         div { display: flex; box-sizing: border-box; }
         body { font-family: Raleway, sans-serif; margin: 0; padding: 0; background: #fafafa; }
-        .pagina { flex-direction: column; width: 100%; overflow-x: hidden; }
 
         .showcase-nav {
-            display: flex; position: sticky; top: 0; z-index: 99999; width: 100%;
-            background: #1a1a2e; padding: 10px 20px;
-            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+            display: flex; position: sticky; top: 0; z-index: 99999;
+            background: #1a1a2e; padding: 8px 12px;
+            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
         }
-        .showcase-nav a { color: #e0e0e0; text-decoration: none; padding: 6px 14px; border-radius: 4px; font-size: 13px; transition: background 0.2s; }
+        .showcase-nav a { color: #e0e0e0; text-decoration: none; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
         .showcase-nav a:hover { background: rgba(255,255,255,0.1); }
-        .showcase-nav .brand { color: #00bcd4; font-weight: 700; font-size: 16px; }
-        .showcase-nav .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
-        .showcase-nav .editor-btn { background: #00bcd4; color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: 600; }
+        .showcase-nav .brand { color: #00bcd4; font-weight: 700; font-size: 15px; }
+        .showcase-nav .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+        .showcase-nav .editor-btn { background: #00bcd4; color: #fff; padding: 6px 14px; border-radius: 4px; font-weight: 600; font-size: 12px; border: none; cursor: pointer; font-family: Raleway; }
+        .showcase-nav .editor-btn:hover { background: #00acc1; }
+        .showcase-nav .nav-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .showcase-nav .custom-badge {
+            display: none; background: #fb8c00; color: #fff; padding: 4px 10px;
+            border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .showcase-nav .custom-badge.active { display: inline-block; }
+        .showcase-nav .btn-clear {
+            display: none; background: #ff5722; color: #fff; padding: 6px 12px;
+            border: none; border-radius: 4px; font-weight: 600; font-size: 12px;
+            cursor: pointer; font-family: Raleway;
+        }
+        .showcase-nav .btn-clear:hover { background: #e64a19; }
+        .showcase-nav .btn-clear.active { display: inline-block; }
 
-        .section { padding: 20px 0; flex-direction: column; width: 100%; }
-        .section-title { font-size: 22px; font-weight: 700; color: #1a1a2e; border-bottom: 3px solid #00bcd4; padding-bottom: 8px; margin: 0 6px 16px 6px; }
-        .section-desc { color: #555; font-size: 14px; margin: 0 6px 12px 6px; }
-        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; white-space: pre; margin: 8px 0; flex-direction: column; }
-        .demo-label { background: #e8e8e8; color: #333; padding: 4px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; margin: 6px 6px 4px 6px; align-self: flex-start; }
-        .code-block { margin-left: 6px; margin-right: 6px; }
-        .panel { text-align: center; min-height: 30px; align-items: center; justify-content: center; }
-        .grid-demo .panel { background-color: rgba(0,188,212,0.15); border: 1px solid rgba(0,188,212,0.3); font-size: 12px; }
+        .section-header {
+            flex-direction: column; margin: 20px 6px 8px 6px;
+        }
+        .section-title {
+            font-size: 20px; font-weight: 700; color: #1a1a2e;
+            border-bottom: 3px solid #00bcd4; padding-bottom: 6px; margin-bottom: 6px;
+        }
+        .section-desc { color: #555; font-size: 13px; margin-bottom: 4px; }
+        .demo-label {
+            background: #e8e8e8; color: #333; padding: 3px 8px; border-radius: 3px;
+            font-size: 11px; font-weight: 600; margin: 10px 6px 4px 6px; align-self: flex-start;
+        }
+        .code-block {
+            background: #1e1e1e; color: #d4d4d4; padding: 10px; border-radius: 5px;
+            font-family: 'Courier New', monospace; font-size: 11px;
+            overflow-x: auto; white-space: pre; margin: 6px 6px; flex-direction: column;
+        }
+        .description-block {
+            background: #fffbe6; color: #333; padding: 10px 14px; border-radius: 5px;
+            border-left: 4px solid #00bcd4; font-size: 12px; line-height: 1.55;
+            margin: 6px 6px; flex-direction: column; align-self: stretch;
+        }
+        .description-block strong, .description-block code {
+            color: #00838f; font-weight: 700; font-family: 'Courier New', monospace;
+            background: rgba(0, 188, 212, 0.08); padding: 1px 4px; border-radius: 3px;
+        }
+        .description-block .desc-title {
+            font-weight: 700; color: #1a1a2e; margin-bottom: 4px; display: block;
+        }
+        .description-block ul { margin: 4px 0 0 0; padding-left: 18px; }
+        .description-block li { margin: 2px 0; }
     </style>
     <script src="/js/messageBalloons.js" defer></script>
+    <script src="/js/frameworkOverrides.js"></script>
 </head>
 <body>
-<div class="pagina">
 
-    <!-- Navigation -->
+    <!-- ===== BARRA DE NAVEGACAO ===== -->
     <div class="showcase-nav">
         <span class="brand">Framework CSS Padrao</span>
         <div class="nav-links">
             <a href="#grid">Grid</a>
-            <a href="#responsivo">Responsivo</a>
-            <a href="#deslocamento">Offset</a>
-            <a href="#ordenacao">Ordem</a>
+            <a href="#ocultar">Ocultar</a>
+            <a href="#duplas">Duplas</a>
+            <a href="#offset">Offset</a>
+            <a href="#ordem">Ordem</a>
             <a href="#containers">Containers</a>
-            <a href="#panels">Panels</a>
             <a href="#cores">Cores</a>
-            <a href="#paleta">Paleta</a>
-            <a href="#formularios">Forms</a>
-            <a href="#botoes">Botoes</a>
-            <a href="#navbar">Navbar</a>
-            <a href="#passos">Passos</a>
+            <a href="#forms">Forms</a>
             <a href="#balloons">Balloons</a>
-            <a href="#modal">Modal</a>
-            <a href="#social">Social</a>
-            <a href="#textos">Textos</a>
+            <a href="#navbar-demo">Navbar</a>
+            <a href="#paleta">Paleta</a>
             <a href="#icones">Icones</a>
         </div>
-        <a href="/editor.html" class="editor-btn">Editor de Variaveis</a>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- GRID - 12 COLUNAS                         -->
-    <!-- ========================================= -->
-    <div class="section" id="grid">
-        <div class="section-title">Sistema de Grid (12 Colunas)</div>
-        <div class="section-desc">Formato: <code>D{n}T{n}M{n}</code> — Desktop (12 cols), Tablet (12 cols), Mobile (6 cols). Valor 0 = oculto no breakpoint.</div>
-
-        <span class="demo-label">12 colunas unitarias - D1T1M1</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D1T1M1">1</div><div class="panel D1T1M1">2</div><div class="panel D1T1M1">3</div>
-            <div class="panel D1T1M1">4</div><div class="panel D1T1M1">5</div><div class="panel D1T1M1">6</div>
-            <div class="panel D1T1M1">7</div><div class="panel D1T1M1">8</div><div class="panel D1T1M1">9</div>
-            <div class="panel D1T1M1">10</div><div class="panel D1T1M1">11</div><div class="panel D1T1M1">12</div>
+        <div class="nav-actions">
+            <span id="customBadge" class="custom-badge" title="Esta tela esta com variaveis customizadas aplicadas">Customizado</span>
+            <button id="btnClearOverrides" class="btn-clear" onclick="clearFrameworkOverrides()" title="Remove todas as customizacoes e volta ao framework padrao">Limpar</button>
+            <a href="/editor.html" class="editor-btn">Editor de Variaveis</a>
+            <button class="editor-btn" onclick="openEditorWindow()" title="Abre o editor em uma janela separada e mantem este showcase em tela cheia">Editor em Janela</button>
         </div>
-
-        <span class="demo-label">Full width - D12T12M6</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D12T12M6">D12T12M6 — Largura total</div>
-        </div>
-
-        <span class="demo-label">Metade - D6T6M3</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D6T6M3">D6T6M3</div>
-            <div class="panel D6T6M3">D6T6M3</div>
-        </div>
-
-        <span class="demo-label">Tercos - D4T4M2</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D4T4M2">D4T4M2</div>
-            <div class="panel D4T4M2">D4T4M2</div>
-            <div class="panel D4T4M2">D4T4M2</div>
-        </div>
-
-        <span class="demo-label">Quartos - D3T3M3</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D3T3M3">D3</div>
-            <div class="panel D3T3M3">D3</div>
-            <div class="panel D3T3M3">D3</div>
-            <div class="panel D3T3M3">D3</div>
-        </div>
-
-        <span class="demo-label">Colunas mistas - D8+D4, D3+D6+D3</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D8T8M4">D8 (2/3)</div>
-            <div class="panel D4T4M2">D4 (1/3)</div>
-        </div>
-        <div class="linhaDoGrid grid-demo" style="margin-top:4px">
-            <div class="panel D3T3M1">D3</div>
-            <div class="panel D6T6M4">D6 (centro)</div>
-            <div class="panel D3T3M1">D3</div>
-        </div>
-
-        <div class="code-block">&lt;div class="linhaDoGrid"&gt;
-    &lt;div class="panel D8T8M4"&gt;2/3 da largura&lt;/div&gt;
-    &lt;div class="panel D4T4M2"&gt;1/3 da largura&lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- RESPONSIVO - OCULTAR COLUNAS              -->
-    <!-- ========================================= -->
-    <div class="section" id="responsivo">
-        <div class="section-title">Visibilidade Responsiva</div>
-        <div class="section-desc">Use <code>T0</code> ou <code>M0</code> para ocultar em tablet/mobile. <code>D0</code> oculta em desktop.</div>
-
-        <span class="demo-label">Colunas ocultas progressivamente</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D1T1M1">1</div><div class="panel D1T1M1">2</div><div class="panel D1T1M1">3</div>
-            <div class="panel D1T1M1">4</div><div class="panel D1T1M1">5</div><div class="panel D1T1M1">6</div>
-            <div class="panel D1T1M0" style="opacity:0.7">7 (M0)</div>
-            <div class="panel D1T1M0" style="opacity:0.7">8 (M0)</div>
-            <div class="panel D1T1M0" style="opacity:0.7">9 (M0)</div>
-            <div class="panel D1T0M0" style="opacity:0.5">10 (T0)</div>
-            <div class="panel D1T0M0" style="opacity:0.5">11 (T0)</div>
-            <div class="panel D1T0M0" style="opacity:0.5">12 (T0)</div>
-        </div>
-
-        <span class="demo-label">Sidebar visivel apenas em Desktop (D4T0M0)</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D4T0M0" style="background:rgba(135,35,0,0.15)">Sidebar (D4T0M0)</div>
-            <div class="panel D8T12M6">Conteudo principal</div>
-        </div>
-
-        <span class="demo-label">Colunas duplas em Desktop, simples em mobile</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D2T2M6">D2T2M6</div>
-            <div class="panel D2T2M6">D2T2M6</div>
-            <div class="panel D2T2M6">D2T2M6</div>
-            <div class="panel D2T2M6">D2T2M6</div>
-            <div class="panel D2T2M6">D2T2M6</div>
-            <div class="panel D2T2M6">D2T2M6</div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- DESLOCAMENTO (OFFSET)                     -->
-    <!-- ========================================= -->
-    <div class="section" id="deslocamento">
-        <div class="section-title">Deslocamento (Offset)</div>
-        <div class="section-desc">Classes <code>desloc-D{n}T{n}M{n}</code> empurram o elemento horizontalmente, criando espacamento ou centralizacao.</div>
-
-        <span class="demo-label">Offset de 1 coluna - desloc-D1T1M1</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D4T4M2 desloc-D1T1M1">desloc-D1</div>
-            <div class="panel D4T4M2">Normal</div>
-        </div>
-
-        <span class="demo-label">Offset de 3 colunas - desloc-D3T2M1</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D6T8M4 desloc-D3T2M1">Centralizado com offset</div>
-        </div>
-
-        <span class="demo-label">Dois elementos com offsets diferentes</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D3T4M2 desloc-D1T1M0">Offset D1</div>
-            <div class="panel D3T4M2 desloc-D2T1M0">Offset D2</div>
-        </div>
-
-        <div class="code-block">&lt;div class="linhaDoGrid"&gt;
-    &lt;div class="panel D6T8M4 desloc-D3T2M1"&gt;Centralizado&lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- ORDENACAO                                 -->
-    <!-- ========================================= -->
-    <div class="section" id="ordenacao">
-        <div class="section-title">Ordenacao (item-N)</div>
-        <div class="section-desc">Classes <code>item-1</code> a <code>item-30</code> reordenam elementos via flex order, sem alterar o HTML.</div>
-
-        <span class="demo-label">HTML: A(item-3), B(item-1), C(item-2)</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D4T4M2 item-3" style="background:rgba(204,77,51,0.2)">A (item-3) → 3o</div>
-            <div class="panel D4T4M2 item-1" style="background:rgba(51,204,154,0.2)">B (item-1) → 1o</div>
-            <div class="panel D4T4M2 item-2" style="background:rgba(0,188,212,0.2)">C (item-2) → 2o</div>
-        </div>
-
-        <div class="code-block">&lt;div class="panel D4T4M2 item-3"&gt;Aparece 3o&lt;/div&gt;
-&lt;div class="panel D4T4M2 item-1"&gt;Aparece 1o&lt;/div&gt;
-&lt;div class="panel D4T4M2 item-2"&gt;Aparece 2o&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- CONTAINERS (COLUNA + LINHA)               -->
-    <!-- ========================================= -->
-    <div class="section" id="containers">
-        <div class="section-title">Containers (Coluna e Linha)</div>
-        <div class="section-desc"><code>.containerEmColuna</code> empilha verticalmente. <code>.containerEmLinha</code> distribui horizontalmente dentro de uma coluna. <code>.nowrap</code> / <code>.D-nowrap</code> / <code>.T-nowrap</code> / <code>.M-nowrap</code> impedem quebra de linha.</div>
-
-        <span class="demo-label">Duas colunas: esquerda com sub-items em coluna, direita com sub-items em linha</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel containerEmColuna D6T6M3">
-                <div class="panel">Coluna item 1</div>
-                <div class="panel">Coluna item 2</div>
-                <div class="panel">Coluna item 3</div>
-                <div class="panel">Coluna item 4</div>
-            </div>
-            <div class="containerEmColuna D6T6M3">
-                <div class="panel">Item topo</div>
-                <div class="containerEmLinha">
-                    <div class="panel D4T4M3">Linha 1</div>
-                    <div class="panel D4T4M3">Linha 2</div>
-                    <div class="panel D4T4M3">Linha 3</div>
-                </div>
-                <div class="panel">Item base</div>
-            </div>
-        </div>
-
-        <span class="demo-label">containerEmLinha com nowrap — itens NAO quebram linha</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="containerEmColuna D12T12M6">
-                <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
-                    <div class="panel D4T4M2">No wrap 1</div>
-                    <div class="panel D4T4M2">No wrap 2</div>
-                    <div class="panel D4T4M2">No wrap 3</div>
-                </div>
-            </div>
-        </div>
-
-        <span class="demo-label">Layout complexo: sidebar + conteudo com sub-grid</span>
-        <div class="linhaDoGrid grid-demo">
-            <div class="panel D1T1M1">S1</div>
-            <div class="panel D1T1M0">S2</div>
-            <div class="panel D1T0M0">S3</div>
-            <div class="D3T3M2 containerEmColuna">
-                <div class="panel">Sub 1</div>
-                <div class="panel">Sub 2</div>
-                <div class="panel">Sub 3</div>
-            </div>
-            <div class="panel D1T1M1">M1</div>
-            <div class="panel D1T1M0">M2</div>
-            <div class="panel D1T0M0">M3</div>
-            <div class="D3T3M2 containerEmColuna">
-                <div class="panel">Sub A</div>
-                <div class="panel">Sub B</div>
-                <div class="panel">Sub C</div>
-            </div>
-        </div>
-
-        <div class="code-block">&lt;div class="panel containerEmColuna D6T6M3"&gt;
-    &lt;div class="panel"&gt;Vertical 1&lt;/div&gt;
-    &lt;div class="containerEmLinha D-nowrap"&gt;
-        &lt;div class="panel D4T4M2"&gt;Horizontal&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- PANELS                                    -->
-    <!-- ========================================= -->
-    <div class="section" id="panels">
-        <div class="section-title">Panels</div>
-        <div class="section-desc">Classe <code>.panel</code> aplica sombra, borda arredondada e padding responsivos. Variantes: <code>.arredondadaSuperior</code>, <code>.arredondadaInferior</code>.</div>
-
-        <div class="linhaDoGrid">
-            <div class="panel D4T4M2">Panel padrao</div>
-            <div class="panel D4T4M2 arredondadaSuperior">arredondadaSuperior</div>
-            <div class="panel D4T4M2 arredondadaInferior">arredondadaInferior</div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- CORES                                     -->
-    <!-- ========================================= -->
-    <div class="section" id="cores">
-        <div class="section-title">Cores</div>
-        <div class="section-desc">Classes de background: <code>.primaria</code>, <code>.secundaria</code>, <code>.terciaria</code>, <code>.corAtencao</code>, <code>.corNegacao</code>, <code>.corPositivacao</code></div>
-
-        <div class="linhaDoGrid">
-            <div class="D4T4M3 containerEmColuna" style="gap:4px">
-                <div class="primaria" style="padding:12px;color:#fff">Primaria rgb(0,188,212)</div>
-                <div class="secundaria" style="padding:12px;color:#fff">Secundaria rgb(135,35,0)</div>
-                <div class="terciaria" style="padding:12px">Terciaria rgb(204,204,204)</div>
-            </div>
-            <div class="D4T4M3 containerEmColuna" style="gap:4px">
-                <div class="corAtencao" style="padding:12px">Atencao rgb(251,140,0)</div>
-                <div class="corNegacao" style="padding:12px;color:#fff">Negacao rgb(204,77,51)</div>
-                <div class="corPositivacao" style="padding:12px;color:#fff">Positivacao rgb(51,204,154)</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- PALETA                                    -->
-    <!-- ========================================= -->
-    <div class="section" id="paleta">
-        <div class="section-title">Paleta de Cores</div>
-        <div class="section-desc">5 eixos de variacao da cor primaria, 10 niveis cada: Fade (1-N), Saturacao (2-N), Desaturacao (3-N), Clarificacao (4-N), Obscurecencia (5-N)</div>
-
-        <span class="demo-label">Fade (paleta-1-1 a 1-10)</span>
-        <div class="linhaDoGrid">
-            <div class="panel paleta-1-1 D1T1M1" style="font-size:10px">100%</div>
-            <div class="panel paleta-1-2 D1T1M1" style="font-size:10px">90%</div>
-            <div class="panel paleta-1-3 D1T1M1" style="font-size:10px">80%</div>
-            <div class="panel paleta-1-4 D1T1M1" style="font-size:10px">70%</div>
-            <div class="panel paleta-1-5 D1T1M1" style="font-size:10px">60%</div>
-            <div class="panel paleta-1-6 D1T1M1" style="font-size:10px">50%</div>
-            <div class="panel paleta-1-7 D1T1M1" style="font-size:10px">40%</div>
-            <div class="panel paleta-1-8 D1T1M1" style="font-size:10px">30%</div>
-            <div class="panel paleta-1-9 D1T1M1" style="font-size:10px">20%</div>
-            <div class="panel paleta-1-10 D1T1M1" style="font-size:10px">10%</div>
-        </div>
-        <span class="demo-label">Saturacao (paleta-2-1 a 2-10)</span>
-        <div class="linhaDoGrid">
-            <div class="panel paleta-2-1 D1T1M1" style="font-size:10px">10%</div>
-            <div class="panel paleta-2-3 D1T1M1" style="font-size:10px">30%</div>
-            <div class="panel paleta-2-5 D1T1M1" style="font-size:10px">50%</div>
-            <div class="panel paleta-2-7 D1T1M1" style="font-size:10px">70%</div>
-            <div class="panel paleta-2-10 D1T1M1" style="font-size:10px">100%</div>
-        </div>
-        <span class="demo-label">Desaturacao (paleta-3-1 a 3-10)</span>
-        <div class="linhaDoGrid">
-            <div class="panel paleta-3-1 D1T1M1" style="font-size:10px">10%</div>
-            <div class="panel paleta-3-3 D1T1M1" style="font-size:10px">30%</div>
-            <div class="panel paleta-3-5 D1T1M1" style="font-size:10px">50%</div>
-            <div class="panel paleta-3-7 D1T1M1" style="font-size:10px">70%</div>
-            <div class="panel paleta-3-10 D1T1M1" style="font-size:10px">100%</div>
-        </div>
-        <span class="demo-label">Clarificacao (paleta-4-1 a 4-10)</span>
-        <div class="linhaDoGrid">
-            <div class="panel paleta-4-1 D1T1M1" style="font-size:10px">10%</div>
-            <div class="panel paleta-4-3 D1T1M1" style="font-size:10px">30%</div>
-            <div class="panel paleta-4-5 D1T1M1" style="font-size:10px">50%</div>
-            <div class="panel paleta-4-7 D1T1M1" style="font-size:10px">70%</div>
-            <div class="panel paleta-4-10 D1T1M1" style="font-size:10px">100%</div>
-        </div>
-        <span class="demo-label">Obscurecencia (paleta-5-1 a 5-10)</span>
-        <div class="linhaDoGrid">
-            <div class="panel paleta-5-1 D1T1M1" style="font-size:10px">10%</div>
-            <div class="panel paleta-5-3 D1T1M1" style="font-size:10px">30%</div>
-            <div class="panel paleta-5-5 D1T1M1" style="font-size:10px">50%</div>
-            <div class="panel paleta-5-7 D1T1M1" style="font-size:10px">70%</div>
-            <div class="panel paleta-5-10 D1T1M1" style="font-size:10px">100%</div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- FORMULARIOS                               -->
-    <!-- ========================================= -->
-    <div class="section" id="formularios">
-        <div class="section-title">Formularios</div>
-        <div class="section-desc">Classes: <code>.itemForm</code> (dimensoes), <code>.input</code> (cores/placeholder), <code>.containerItemFormComIcone</code> (icone SVG dentro), <code>.tituloForm</code> (barra de titulo com gradiente)</div>
-
-        <div class="linhaDoGrid">
-            <div class="D8T10M6 containerEmColuna desloc-D2T1M0">
-                <div class="tituloForm arredondadaSuperior">Dados de Acesso</div>
-                <div class="panel containerEmColuna arredondadaInferior">
-                    <div class="containerItemFormComIcone">
-                        <input type="text" class="itemForm input" placeholder="E-mail">
-                        <img src="/icones/mail.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
-                    </div>
-                    <div class="containerItemFormComIcone">
-                        <input type="password" class="itemForm input" placeholder="Senha">
-                        <img src="/icones/lock.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
-                    </div>
-                    <div class="containerItemFormComIcone">
-                        <input type="text" class="itemForm input" placeholder="Nome completo">
-                        <img src="/icones/user.svg" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);height:20px;width:20px;opacity:0.3;display:block">
-                    </div>
-                    <input type="text" class="itemForm input" placeholder="Campo sem icone">
-                </div>
-            </div>
-        </div>
-        <div class="code-block">&lt;div class="tituloForm arredondadaSuperior"&gt;Titulo&lt;/div&gt;
-&lt;div class="panel containerEmColuna arredondadaInferior"&gt;
-    &lt;div class="containerItemFormComIcone"&gt;
-        &lt;input class="itemForm input" placeholder="E-mail"&gt;
-        &lt;!-- SVG icone inline (mail.svg) --&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- BOTOES                                    -->
-    <!-- ========================================= -->
-    <div class="section" id="botoes">
-        <div class="section-title">Botoes</div>
-        <div class="section-desc">Classe <code>.bt</code> aplica cor de fundo terciaria, cor de texto preta e hover com gradiente.</div>
-
-        <div class="linhaDoGrid">
-            <div class="D4T6M3 containerEmColuna" style="gap:6px">
-                <input type="button" class="itemForm bt" value="Botao Padrao (.bt)">
-                <input type="button" class="itemForm bt" value="Outro Botao">
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- NAVBAR                                    -->
-    <!-- ========================================= -->
-    <div class="section" id="navbar">
-        <div class="section-title">Navbar</div>
-        <div class="section-desc">Estrutura: <code>.navbar</code> &gt; <code>.hamburgerCheckbox</code> + <code>.hamburgerDisplayButton</code> + <code>.menusContainer</code> &gt; <code>.menu</code>/<code>.menuSecundario</code> &gt; <code>.menuItem</code>/<code>.menuItemInativo</code>/<code>.menuItemtitulo</code> &gt; <code>.subMenu</code> &gt; <code>.subMenuItem</code></div>
-
-        <div class="linhaDoGrid navbar" style="position:relative;z-index:100">
-            <input type="checkbox" class="hamburgerCheckbox" id="showcaseHamburger">
-            <div class="hamburgerDisplayButton">
-                <label for="showcaseHamburger" class="hamburgerDisplayLines">
-                    <span></span><span></span><span></span>
-                </label>
-            </div>
-            <div class="menusContainer">
-                <div class="menu">
-                    <div class="menuItem paginaAtual"><a href="#" style="color:inherit;text-decoration:none">Home</a></div>
-                    <div class="menuItem">
-                        <a href="#" style="color:inherit;text-decoration:none">Produtos</a>
-                        <div class="subMenu">
-                            <div class="subMenuItemtitulo">Categorias</div>
-                            <div class="subMenuItem"><a href="#" style="color:inherit;text-decoration:none">Produto A</a></div>
-                            <div class="subMenuItem"><a href="#" style="color:inherit;text-decoration:none">Produto B</a></div>
-                            <div class="subMenuItemInativo">Indisponivel</div>
-                        </div>
-                    </div>
-                    <div class="menuItem"><a href="#" style="color:inherit;text-decoration:none">Contato</a></div>
-                    <div class="menuItemInativo">Desabilitado</div>
-                </div>
-                <div class="menu menuSecundario">
-                    <div class="menuItem"><a href="#" style="color:inherit;text-decoration:none">Login</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="code-block">&lt;div class="linhaDoGrid navbar"&gt;
-    &lt;input type="checkbox" class="hamburgerCheckbox" id="h1"&gt;
-    &lt;div class="hamburgerDisplayButton"&gt;
-        &lt;label for="h1" class="hamburgerDisplayLines"&gt;
-            &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
-        &lt;/label&gt;
-    &lt;/div&gt;
-    &lt;div class="menusContainer"&gt;
-        &lt;div class="menu"&gt;
-            &lt;div class="menuItem paginaAtual"&gt;Home&lt;/div&gt;
-            &lt;div class="menuItem"&gt;Produtos
-                &lt;div class="subMenu"&gt;
-                    &lt;div class="subMenuItemtitulo"&gt;Categorias&lt;/div&gt;
-                    &lt;div class="subMenuItem"&gt;Produto A&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="menu menuSecundario"&gt;
-            &lt;div class="menuItem"&gt;Login&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- PASSOS (WIZARD)                           -->
-    <!-- ========================================= -->
-    <div class="section" id="passos">
-        <div class="section-title">Passos (Wizard)</div>
-        <div class="section-desc">Container <code>.passos</code>. Cada passo e um div filho. Variantes: <code>.passoCompleto</code> (check), <code>.passoFuturo</code> (cinza).</div>
-
-        <div class="linhaDoGrid">
-            <div class="D8T10M6 desloc-D2T1M0 containerEmLinha passos">
-                <p>Etapas do cadastro</p>
-                <div class="passoCompleto">
-                    <div>1</div>
-                    <div><img src="/icones/check.svg" style="width:150%;height:150%;position:absolute;left:5%;top:-20%;display:block"></div>
-                </div>
-                <div>
-                    <div>2</div>
-                    <div></div>
-                </div>
-                <div class="passoFuturo">
-                    <div>3</div>
-                    <div></div>
-                </div>
-                <div class="passoFuturo">
-                    <div>4</div>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- MESSAGE BALLOONS                          -->
-    <!-- ========================================= -->
-    <div class="section" id="balloons">
-        <div class="section-title">Message Balloons</div>
-        <div class="section-desc">Tipos: <code>balloonType-Help</code>, <code>balloonType-Atencao</code>, <code>balloonType-Erro</code>. Posicoes: <code>balloonPosition-All-{Left|Right|Top|Bottom|TopLeft|TopRight|BottomLeft|BottomRight}</code>. Trigger: <code>.balloonTrigger</code> (JS clique)</div>
-
-        <div class="linhaDoGrid">
-            <div class="D8T10M6 containerEmColuna desloc-D2T1M0" style="gap:10px">
-                <span class="demo-label">Clique nos elementos abaixo</span>
-                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
-                    Help Balloon (direita)
-                    <div class="balloonPosition-All-Right balloonType-Help D3T3M2">Esta e uma mensagem de ajuda que aparece ao clicar.</div>
-                </div>
-                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
-                    Atencao Balloon (abaixo)
-                    <div class="balloonPosition-All-Bottom balloonType-Atencao D4T4M4">Atencao! Verifique os dados antes de prosseguir.</div>
-                </div>
-                <div class="balloonTrigger" style="cursor:pointer;padding:10px;background:#eee;border-radius:4px;position:relative">
-                    Erro Balloon (esquerda)
-                    <div class="balloonPosition-All-Left balloonType-Erro D4T4M4">Erro! Campo obrigatorio nao preenchido.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- MODAL                                     -->
-    <!-- ========================================= -->
-    <div class="section" id="modal">
-        <div class="section-title">Modal</div>
-        <div class="section-desc">Classes: <code>.modalBackground</code> (overlay escuro), <code>.modalBox</code> (caixa branca centralizada), <code>.modalLoader</code> (indicador de loading)</div>
-
-        <button onclick="document.getElementById('demoModal').style.display='flex'" style="padding:10px 20px;background:#00bcd4;color:#fff;border:none;border-radius:4px;cursor:pointer;display:inline-block;width:fit-content">Abrir Modal</button>
-        <div id="demoModal" style="display:none;position:fixed;z-index:50000;height:100vh;width:100vw;top:0;left:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center" onclick="this.style.display='none'">
-            <div style="background:#fff;padding:40px;border-radius:8px;text-align:center;flex-direction:column;gap:10px;max-width:400px" onclick="event.stopPropagation()">
-                <h2 style="margin:0">Modal Box</h2>
-                <p>Conteudo do modal usando .modalBox</p>
-                <button onclick="document.getElementById('demoModal').style.display='none'" style="padding:8px 16px;background:#cc4d33;color:#fff;border:none;border-radius:4px;cursor:pointer">Fechar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- SOCIAL LOGIN (UserControls)               -->
-    <!-- ========================================= -->
-    <div class="section" id="social">
-        <div class="section-title">Login Social (UserControls)</div>
-        <div class="section-desc">Componentes de UserControls: <code>.containerbtFacebook</code>, <code>.containerbtGoogle</code>, <code>.LoginMenu</code> com submenu de login contendo inputs + botoes sociais</div>
-
-        <span class="demo-label">Botoes de Login Social</span>
-        <div class="linhaDoGrid">
-            <div class="D4T6M6 containerEmColuna" style="gap:6px">
-                <div class="containerItemFormComIcone containerbtFacebook" style="position:relative;min-width:200px;cursor:pointer">
-                    <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
-                    <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center">Login com Facebook</div>
-                </div>
-                <div class="containerItemFormComIcone containerbtGoogle" style="position:relative;min-width:200px;cursor:pointer">
-                    <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
-                    <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.54)">Login com Google</div>
-                </div>
-            </div>
-        </div>
-
-        <span class="demo-label">Menu Login Completo (UserControl LoginMenu.ascx)</span>
-        <div class="linhaDoGrid">
-            <div class="D6T8M6 containerEmColuna panel desloc-D3T2M0">
-                <div class="tituloForm arredondadaSuperior">Login via social</div>
-                <div class="containerEmLinha" style="gap:6px;padding:8px">
-                    <div class="containerItemFormComIcone containerbtFacebook" style="position:relative;min-width:140px;cursor:pointer;flex:1">
-                        <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
-                        <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;font-size:12px">Facebook</div>
-                    </div>
-                    <div class="containerItemFormComIcone containerbtGoogle" style="position:relative;min-width:140px;cursor:pointer;flex:1">
-                        <input type="button" class="itemForm bt" value="" style="background:transparent;border:0;width:100%;height:100%;position:relative;z-index:2">
-                        <div style="position:absolute;top:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,0.54);font-size:12px">Google</div>
-                    </div>
-                </div>
-                <div style="padding:4px 8px;font-weight:600;font-size:13px;color:#666">Login via email e senha</div>
-                <div class="containerItemFormComIcone" style="padding:0 8px">
-                    <input type="text" class="itemForm input" placeholder="E-mail" style="width:100%">
-                    <img src="/icones/mail.svg" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);height:18px;width:18px;opacity:0.3;display:block">
-                </div>
-                <div class="containerItemFormComIcone" style="padding:0 8px">
-                    <input type="password" class="itemForm input" placeholder="Senha" style="width:100%">
-                    <img src="/icones/lock.svg" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);height:18px;width:18px;opacity:0.3;display:block">
-                </div>
-                <div class="containerEmLinha" style="gap:6px;padding:8px">
-                    <div style="flex:1;font-size:12px;color:#00bcd4;cursor:pointer;display:flex;align-items:center">Esqueci minha senha</div>
-                    <input type="button" class="itemForm bt" value="Entrar" style="flex:0 0 auto;width:auto;padding:0 20px">
-                </div>
-                <div style="padding:4px 8px 12px;font-size:12px;color:#00bcd4;cursor:pointer">Criar nova conta</div>
-            </div>
-        </div>
-
-        <div class="code-block">&lt;!-- UserControl: LoginMenu.ascx --&gt;
-&lt;div class="menuItem"&gt;
-    Login
-    &lt;div class="subMenu"&gt;
-        &lt;div class="subMenuItem containerExternoBotoesSubmenu"&gt;
-            &lt;div class="containerbtFacebook"&gt;...&lt;/div&gt;
-            &lt;div class="containerbtGoogle"&gt;...&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class="subMenuItem"&gt;
-            &lt;div class="containerItemFormComIcone"&gt;
-                &lt;input class="itemForm input" placeholder="E-mail"&gt;
-                &lt;!-- mail.svg --&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- TEXTOS POR BREAKPOINT                     -->
-    <!-- ========================================= -->
-    <div class="section" id="textos">
-        <div class="section-title">Textos por Breakpoint</div>
-        <div class="section-desc">Classes <code>.spanDesktop</code>, <code>.spanTablet</code>, <code>.spanMobile</code> exibem texto diferente conforme a resolucao.</div>
-
-        <div class="linhaDoGrid">
-            <div class="panel D12T12M6">
-                Voce esta vendo:
-                <span class="spanDesktop" style="font-weight:700;color:#00bcd4"> DESKTOP (>992px)</span>
-                <span class="spanTablet" style="font-weight:700;color:#fb8c00"> TABLET (768-992px)</span>
-                <span class="spanMobile" style="font-weight:700;color:#cc4d33"> MOBILE (&lt;768px)</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================= -->
-    <!-- ICONES SVG                                -->
-    <!-- ========================================= -->
-    <div class="section" id="icones">
-        <div class="section-title">Icones SVG</div>
-        <div class="section-desc">80 icones SVG disponiveis em <code>/icones/{nome}.svg</code></div>
-        <div id="iconsGrid" class="linhaDoGrid" style="gap:4px;flex-wrap:wrap"></div>
-    </div>
-
-    <div style="padding:40px;text-align:center;color:#999;font-size:12px;flex-direction:column;align-items:center">
-        <p>Framework CSS Padrao - Showcase e Documentacao</p>
     </div>
 
     <script>
-    // Load icons grid
+    // ------------------------------------------------------------------
+    // Integracao com frameworkOverrides.js
+    // ------------------------------------------------------------------
+    // Ao carregar a pagina:
+    //  1. Aplica customizacoes persistidas (se houver).
+    //  2. Escuta mudancas em tempo real vindas do editor (outra aba/janela).
+    //  3. Atualiza badge "Customizado" e botao "Limpar" conforme o estado.
+    (function () {
+        function updateBadge(hasOverrides) {
+            var badge = document.getElementById('customBadge');
+            var btn = document.getElementById('btnClearOverrides');
+            if (badge) badge.classList.toggle('active', hasOverrides);
+            if (btn) btn.classList.toggle('active', hasOverrides);
+        }
+
+        // Carrega estado persistido e ja injeta <style> no documento.
+        var initial = FrameworkOverrides.load();
+        updateBadge(!!(initial && initial.css));
+
+        // Escuta atualizacoes vindas de outras janelas/abas.
+        FrameworkOverrides.listen(function (state) {
+            updateBadge(!!(state && state.css));
+        });
+    })();
+
+    // Abre a janela destacada do editor (modo standalone). Mantem este
+    // showcase em sua posicao atual (tela cheia neste navegador).
+    function openEditorWindow() {
+        var features = 'width=460,height=900,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes';
+        var win = window.open('/editor.html?standalone=1', 'frameworkCssEditor', features);
+        if (!win) {
+            alert('Nao foi possivel abrir a janela do editor.\nVerifique se o bloqueador de pop-ups esta desativado para este site.');
+        }
+    }
+
+    // Limpa customizacoes: pede confirmacao, remove localStorage + <style>,
+    // e transmite o sinal para outras janelas do editor/showcase.
+    function clearFrameworkOverrides() {
+        if (!confirm('Remover todas as customizacoes e voltar ao framework padrao?')) return;
+        FrameworkOverrides.clear();
+        document.getElementById('customBadge').classList.remove('active');
+        document.getElementById('btnClearOverrides').classList.remove('active');
+    }
+    </script>
+
+
+    <!-- ============================================================ -->
+    <!-- GRID 18 COLUNAS                                              -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="grid">
+        <div class="section-title">Sistema de Grid</div>
+        <div class="section-desc">Grid: Desktop 18 colunas (>992px), Tablet 12 colunas (768-992px), Mobile 6 colunas (&lt;768px). Classe: <code>D{n}T{n}M{n}</code>. Container de linha: <code>.linhaDoGrid</code>.</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D18T12M6">
+            <b>Configuracoes do GRID:</b><br />
+            - Desktop - 18 Colunas<br />
+            - Tablet - 12 Colunas<br />
+            - Mobile - 6 Colunas
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Estrutura base do grid responsivo:</span>
+        <ul>
+            <li><strong>linhaDoGrid</strong> e o container externo de UMA linha do grid. Define a largura total disponivel (calc(100vw - scrollbar)) e ja inclui as margens/gutters do breakpoint atual. NUNCA pode ser aninhado dentro de outro <strong>linhaDoGrid</strong>.</li>
+            <li><strong>panel</strong> aplica caixa com borda arredondada, padding interno e fundo do componente. Use em qualquer filho do grid que precisar de visual de "cartao".</li>
+            <li><strong>D{n}T{n}M{n}</strong> define quantas colunas o elemento ocupa em cada breakpoint: D=Desktop (18 cols), T=Tablet (12 cols), M=Mobile (6 cols). Aqui <strong>D18T12M6</strong> ocupa 100% em todos os breakpoints.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D18T12M6"&gt;
+        &lt;b&gt;Configuracoes do GRID:&lt;/b&gt;&lt;br /&gt;
+        - Desktop - 18 Colunas&lt;br /&gt;
+        - Tablet - 12 Colunas&lt;br /&gt;
+        - Mobile - 6 Colunas
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">18 colunas em todas as resolucoes — D1T1M1</span>
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M1">6</div>
+        <div class="panel D1T1M1">7</div>
+        <div class="panel D1T1M1">8</div>
+        <div class="panel D1T1M1">9</div>
+        <div class="panel D1T1M1">10</div>
+        <div class="panel D1T1M1">11</div>
+        <div class="panel D1T1M1">12</div>
+        <div class="panel D1T1M1">13</div>
+        <div class="panel D1T1M1">14</div>
+        <div class="panel D1T1M1">15</div>
+        <div class="panel D1T1M1">16</div>
+        <div class="panel D1T1M1">17</div>
+        <div class="panel D1T1M1">18</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">18 colunas em todas as resolucoes:</span>
+        <ul>
+            <li>Cada filho com <strong>D1T1M1</strong> ocupa 1 coluna em qualquer breakpoint. Como Desktop tem 18 colunas, cabem 18 elementos. No Tablet (12 cols) eles QUEBRAM em 2 linhas (12 + 6). No Mobile (6 cols) quebram em 3 linhas (6 + 6 + 6).</li>
+            <li>O numero apos D, T ou M define quantas colunas. <strong>D1</strong> = 1/18 do desktop. <strong>T1</strong> = 1/12 do tablet. <strong>M1</strong> = 1/6 do mobile.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D1T1M1"&gt;1&lt;/div&gt;
+    &lt;div class="panel D1T1M1"&gt;2&lt;/div&gt;
+    &lt;div class="panel D1T1M1"&gt;3&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M1"&gt;18&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- OCULTAR COLUNAS                                              -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="ocultar">
+        <div class="section-title">Ocultar Colunas por Viewport</div>
+        <div class="section-desc">Use <code>T0</code> para ocultar no Tablet, <code>M0</code> para ocultar no Mobile, <code>D0</code> para ocultar no Desktop. Valor 0 = <code>display:none</code> naquele breakpoint.</div>
+    </div>
+
+    <span class="demo-label">Colunas 7-12: D1T1M0 (ocultas no mobile) — Colunas 13-18: D1T0M0 (ocultas no tablet e mobile)</span>
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M1">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T1M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D1T0M0">18</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Ocultar colunas por viewport:</span>
+        <ul>
+            <li>Valor <strong>0</strong> em qualquer dimensao significa <code>display: none</code> naquele breakpoint. Use para esconder elementos em telas menores.</li>
+            <li><strong>D1T1M0</strong>: visivel no Desktop e Tablet, oculto no Mobile.</li>
+            <li><strong>D1T0M0</strong>: visivel apenas no Desktop, oculto no Tablet e Mobile.</li>
+            <li><strong>D0T1M1</strong>: oculto no Desktop, visivel no Tablet e Mobile.</li>
+            <li>Util para layouts onde algumas colunas extras so fazem sentido em telas grandes.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D1T1M1"&gt;1&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M1"&gt;6&lt;/div&gt;
+    &lt;div class="panel D1T1M0"&gt;7&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M0"&gt;12&lt;/div&gt;
+    &lt;div class="panel D1T0M0"&gt;13&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T0M0"&gt;18&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- COLUNAS DUPLAS                                               -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="duplas">
+        <div class="section-title">Colunas Multiplas</div>
+        <div class="section-desc">O numero na classe indica quantas colunas do grid o elemento ocupa. <code>D2</code> = 2 colunas no Desktop. Combine com ocultacao: <code>D2T2M0</code> = 2 cols em Desktop/Tablet, oculto no Mobile.</div>
+    </div>
+
+    <span class="demo-label">Colunas Duplas — D2T2M2 / D2T2M0 / D2T0M0</span>
+    <div class="linhaDoGrid">
+        <div class="panel D2T2M2">panel Duplo 1</div>
+        <div class="panel D2T2M2">panel Duplo 2</div>
+        <div class="panel D2T2M2">panel Duplo 3</div>
+        <div class="panel D2T2M0">panel Duplo 4</div>
+        <div class="panel D2T2M0">panel Duplo 5</div>
+        <div class="panel D2T2M0">panel Duplo 6</div>
+        <div class="panel D2T0M0">panel Duplo 7</div>
+        <div class="panel D2T0M0">panel Duplo 8</div>
+        <div class="panel D2T0M0">panel Duplo 9</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Colunas com largura multipla:</span>
+        <ul>
+            <li>Aumente o numero apos D, T ou M para ocupar mais colunas. <strong>D2T2M2</strong> = 2 colunas em todos os breakpoints.</li>
+            <li>No Desktop, 9 elementos D2 ocupam 18/2 = 9 espacos (cabe tudo em 1 linha). No Tablet, 6 elementos T2 = 12/2 (1 linha de 6, depois quebra). No Mobile, 3 elementos M2 = 6/2 (3 por linha).</li>
+            <li>Combine com <strong>0</strong> para ocultar progressivamente: <strong>D2T2M0</strong> esconde no mobile, <strong>D2T0M0</strong> esconde no tablet e mobile.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D2T2M2"&gt;panel Duplo 1&lt;/div&gt;
+    &lt;div class="panel D2T2M2"&gt;panel Duplo 2&lt;/div&gt;
+    &lt;div class="panel D2T2M2"&gt;panel Duplo 3&lt;/div&gt;
+    &lt;div class="panel D2T2M0"&gt;panel Duplo 4&lt;/div&gt;
+    &lt;div class="panel D2T2M0"&gt;panel Duplo 5&lt;/div&gt;
+    &lt;div class="panel D2T2M0"&gt;panel Duplo 6&lt;/div&gt;
+    &lt;div class="panel D2T0M0"&gt;panel Duplo 7&lt;/div&gt;
+    &lt;div class="panel D2T0M0"&gt;panel Duplo 8&lt;/div&gt;
+    &lt;div class="panel D2T0M0"&gt;panel Duplo 9&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- OFFSET / DESLOCAMENTO                                        -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="offset">
+        <div class="section-title">Deslocamento (Offset)</div>
+        <div class="section-desc">Classe <code>desloc-D{n}T{n}M{n}</code> empurra o elemento para a direita, pulando N colunas. Funciona por breakpoint independente.</div>
+    </div>
+
+    <span class="demo-label">Pulando a primeira coluna — desloc-D1T1M1</span>
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1 desloc-D1T1M1">1</div>
+        <div class="panel D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M0">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T0M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D0T0M0">18</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Deslocamento (offset) na 1a coluna:</span>
+        <ul>
+            <li><strong>desloc-D{n}T{n}M{n}</strong> empurra o elemento N colunas para a direita, criando um espaco vazio antes dele. Funciona como margin-left de N colunas.</li>
+            <li>Aplique como classe ADICIONAL ao mesmo elemento que ja tem D{n}T{n}M{n}.</li>
+            <li>Como o offset ocupa espaco no grid, e preciso REMOVER um elemento do final para nao quebrar a linha. Por isso o ultimo aqui usa <strong>D0T0M0</strong> (display none em todos breakpoints).</li>
+            <li>Cada breakpoint tem seu offset independente: <strong>desloc-D2T1M0</strong> empurra 2 cols no Desktop, 1 col no Tablet e nada no Mobile.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D1T1M1 desloc-D1T1M1"&gt;1&lt;/div&gt;
+    &lt;div class="panel D1T1M1"&gt;2&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M1"&gt;5&lt;/div&gt;
+    &lt;div class="panel D1T1M0"&gt;6&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M0"&gt;11&lt;/div&gt;
+    &lt;div class="panel D1T0M0"&gt;12&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T0M0"&gt;17&lt;/div&gt;
+    &lt;div class="panel D0T0M0"&gt;18&lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Pulando a segunda coluna — desloc-D1T1M1 no segundo elemento</span>
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">1</div>
+        <div class="panel D1T1M1 desloc-D1T1M1">2</div>
+        <div class="panel D1T1M1">3</div>
+        <div class="panel D1T1M1">4</div>
+        <div class="panel D1T1M1">5</div>
+        <div class="panel D1T1M0">6</div>
+        <div class="panel D1T1M0">7</div>
+        <div class="panel D1T1M0">8</div>
+        <div class="panel D1T1M0">9</div>
+        <div class="panel D1T1M0">10</div>
+        <div class="panel D1T1M0">11</div>
+        <div class="panel D1T0M0">12</div>
+        <div class="panel D1T0M0">13</div>
+        <div class="panel D1T0M0">14</div>
+        <div class="panel D1T0M0">15</div>
+        <div class="panel D1T0M0">16</div>
+        <div class="panel D1T0M0">17</div>
+        <div class="panel D0T0M0">18</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Offset aplicado em qualquer posicao:</span>
+        <ul>
+            <li>O <strong>desloc-D{n}T{n}M{n}</strong> nao precisa ser no primeiro elemento. Aplique em qualquer filho do grid e o framework vai inserir o espaco vazio ANTES dele.</li>
+            <li>Util para criar gaps entre grupos de elementos sem precisar de divs intermediarias vazias.</li>
+            <li>Mesma regra de compensacao: ao usar offset, remova um elemento equivalente do final para a linha nao quebrar (aqui o 18 com <strong>D0T0M0</strong>).</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D1T1M1"&gt;1&lt;/div&gt;
+    &lt;div class="panel D1T1M1 desloc-D1T1M1"&gt;2&lt;/div&gt;
+    &lt;div class="panel D1T1M1"&gt;3&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M1"&gt;5&lt;/div&gt;
+    &lt;div class="panel D1T1M0"&gt;6&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T1M0"&gt;11&lt;/div&gt;
+    &lt;div class="panel D1T0M0"&gt;12&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T0M0"&gt;17&lt;/div&gt;
+    &lt;div class="panel D0T0M0"&gt;18&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- ORDENACAO                                                    -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="ordem">
+        <div class="section-title">Ordenacao (item-N)</div>
+        <div class="section-desc">Classes <code>item-1</code> a <code>item-30</code> reordenam os elementos via CSS flex order, sem alterar a ordem no HTML.</div>
+    </div>
+
+    <span class="demo-label">HTML: div1(item-2), div2(item-3), div3(item-1) — Visual: 3, 1, 2</span>
+    <div class="linhaDoGrid">
+        <div class="panel D6T4M2 item-2">1</div>
+        <div class="panel D6T4M2 item-3">2</div>
+        <div class="panel D6T4M2 item-1">3</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Reordenacao visual sem alterar o HTML:</span>
+        <ul>
+            <li><strong>item-N</strong> (de <strong>item-1</strong> ate <strong>item-30</strong>) define a posicao visual de exibicao via flex order. O HTML mantem sua ordem original (importante para acessibilidade e SEO) mas o usuario ve em outra ordem.</li>
+            <li>Quanto MENOR o numero, mais a esquerda (ou para cima). <strong>item-1</strong> aparece primeiro, <strong>item-30</strong> aparece por ultimo.</li>
+            <li>Util para mover elementos importantes para o topo no mobile sem reescrever o HTML.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D6T4M2 item-2"&gt;1&lt;/div&gt;
+    &lt;div class="panel D6T4M2 item-3"&gt;2&lt;/div&gt;
+    &lt;div class="panel D6T4M2 item-1"&gt;3&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- CONTAINERS (COLUNA + LINHA)                                  -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="containers">
+        <div class="section-title">Containers (Coluna e Linha)</div>
+        <div class="section-desc"><code>.containerEmColuna</code> empilha filhos verticalmente. <code>.containerEmLinha</code> distribui em linha. <code>.nowrap</code> / <code>.D-nowrap</code> / <code>.T-nowrap</code> / <code>.M-nowrap</code> impedem quebra de linha.</div>
+    </div>
+
+    <span class="demo-label">containerEmColuna com containerEmLinha aninhado (nowrap e wrap)</span>
+    <div class="linhaDoGrid">
+        <div class="panel containerEmColuna D9T6M3">
+            <div class="panel">Col1 1</div>
+            <div class="panel">Col1 2</div>
+            <div class="panel">Col1 3</div>
+            <div class="panel">Col1 4</div>
+            <div class="panel">Col1 5</div>
+            <div class="panel">Col1 6</div>
+            <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
+                <div class="panel D9T6M3">Col1 7 no wrap</div>
+                <div class="panel D9T6M3">Col1 8 no wrap</div>
+                <div class="panel D9T6M3">Col1 9 no wrap</div>
+            </div>
+        </div>
+        <div class="containerEmColuna D9T6M3">
+            <div class="panel">Col2 1</div>
+            <div class="containerEmLinha">
+                <div class="panel D3T6M3">Col2 2 wrap</div>
+                <div class="panel D3T6M3">Col2 3 wrap</div>
+                <div class="panel D3T6M3">Col2 4 wrap</div>
+            </div>
+            <div class="panel">Col2 5</div>
+            <div class="panel">Col2 6</div>
+            <div class="panel">Col2 7</div>
+            <div class="panel">Col2 8</div>
+            <div class="panel">Col2 9</div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Containers de coluna e linha (sub-layouts):</span>
+        <ul>
+            <li><strong>containerEmColuna</strong> empilha seus filhos verticalmente. Recebe a classe de grid <strong>D{n}T{n}M{n}</strong> para definir sua propria largura no grid pai.</li>
+            <li><strong>containerEmLinha</strong> distribui filhos horizontalmente como sub-grid (com margens negativas compensatorias). Pode ser aninhado dentro de <strong>containerEmColuna</strong>.</li>
+            <li><strong>D-nowrap</strong>, <strong>T-nowrap</strong>, <strong>M-nowrap</strong> impedem quebra de linha naquele breakpoint. Quando o conteudo nao cabe, gera scroll horizontal interno.</li>
+            <li><strong>nowrap</strong> aplica nowrap em todos os breakpoints de uma vez.</li>
+            <li>Use estas classes para criar sub-layouts dentro de uma <strong>linhaDoGrid</strong> sem precisar aninhar outra <strong>linhaDoGrid</strong> (proibido).</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel containerEmColuna D9T6M3"&gt;
+        &lt;div class="panel"&gt;Col1 1&lt;/div&gt;
+        &lt;div class="panel"&gt;Col1 2&lt;/div&gt;
+        ...
+        &lt;div class="panel"&gt;Col1 6&lt;/div&gt;
+        &lt;div class="containerEmLinha D-nowrap T-nowrap M-nowrap"&gt;
+            &lt;div class="panel D9T6M3"&gt;Col1 7 no wrap&lt;/div&gt;
+            &lt;div class="panel D9T6M3"&gt;Col1 8 no wrap&lt;/div&gt;
+            &lt;div class="panel D9T6M3"&gt;Col1 9 no wrap&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="containerEmColuna D9T6M3"&gt;
+        &lt;div class="panel"&gt;Col2 1&lt;/div&gt;
+        &lt;div class="containerEmLinha"&gt;
+            &lt;div class="panel D3T6M3"&gt;Col2 2 wrap&lt;/div&gt;
+            &lt;div class="panel D3T6M3"&gt;Col2 3 wrap&lt;/div&gt;
+            &lt;div class="panel D3T6M3"&gt;Col2 4 wrap&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="panel"&gt;Col2 5&lt;/div&gt;
+        ...
+        &lt;div class="panel"&gt;Col2 9&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Grid misto: colunas unitarias + containerEmColuna intercalados</span>
+    <div class="linhaDoGrid">
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="D3T2M1 containerEmColuna">
+            <div class="panel D3T2M1">DIV 1</div>
+            <div class="panel D3T2M1">DIV 2</div>
+            <div class="panel D3T2M1">DIV 3</div>
+        </div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+        <div class="D3T2M1 containerEmColuna">
+            <div class="panel D3T2M1">DIV 1</div>
+            <div class="panel D3T2M1">DIV 2</div>
+            <div class="panel D3T2M1">DIV 3</div>
+        </div>
+        <div class="panel D1T1M1">T1</div>
+        <div class="panel D1T1M0">T1</div>
+        <div class="panel D1T0M0">T1</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Mistura de filhos diretos com containerEmColuna:</span>
+        <ul>
+            <li>Dentro de uma mesma <strong>linhaDoGrid</strong> voce pode misturar livremente filhos diretos com classes <strong>D{n}T{n}M{n}</strong> e subcontainers <strong>containerEmColuna</strong> que tambem recebem classe de coluna.</li>
+            <li>O <strong>containerEmColuna</strong> ocupa o mesmo espaco que ocuparia um panel simples, mas internamente empilha varios elementos verticalmente — util para criar grupos de cards alinhados.</li>
+            <li><strong>NUNCA aninhar linhaDoGrid dentro de outro linhaDoGrid</strong> — isso quebra o calculo de largura e gera scroll lateral. Para sub-grids use <strong>containerEmColuna</strong> ou <strong>containerEmLinha</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D1T1M1"&gt;T1&lt;/div&gt;
+    &lt;div class="panel D1T1M0"&gt;T1&lt;/div&gt;
+    &lt;div class="panel D1T0M0"&gt;T1&lt;/div&gt;
+    &lt;div class="D3T2M1 containerEmColuna"&gt;
+        &lt;div class="panel D3T2M1"&gt;DIV 1&lt;/div&gt;
+        &lt;div class="panel D3T2M1"&gt;DIV 2&lt;/div&gt;
+        &lt;div class="panel D3T2M1"&gt;DIV 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="panel D1T1M1"&gt;T1&lt;/div&gt;
+    ...
+    &lt;div class="panel D1T0M0"&gt;T1&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- CORES                                                        -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="cores">
+        <div class="section-title">Cores</div>
+        <div class="section-desc">Classes de background: <code>.primaria</code>, <code>.secundaria</code>, <code>.terciaria</code>, <code>.corAtencao</code>, <code>.corNegacao</code>, <code>.corPositivacao</code></div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="D6T3M2 containerEmColuna">
+            <div class="primaria">Cor primaria</div>
+            <div class="secundaria">Cor secundaria</div>
+            <div class="terciaria">Cor terciaria</div>
+        </div>
+        <div class="D6T3M2 containerEmColuna">
+            <div class="D12T6M2 corNegacao">Cor Negacao</div>
+            <div class="D12T6M2 corAtencao">Cor Atencao</div>
+            <div class="D12T6M2 corPositivacao">Cor Positivacao</div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Classes de cores semanticas:</span>
+        <ul>
+            <li><strong>primaria</strong> / <strong>secundaria</strong> / <strong>terciaria</strong>: cores neutras de marca, derivadas de <strong>@CorPrimaria</strong>, <strong>@CorSecundaria</strong> e <strong>@CorTerciaria</strong> nas variaveis LESS.</li>
+            <li><strong>corAtencao</strong> (laranja), <strong>corNegacao</strong> (vermelho), <strong>corPositivacao</strong> (verde): cores de feedback semantico para alertas, erros e sucessos.</li>
+            <li>Aplicam <strong>background-color</strong> e <strong>color</strong> de texto contrastante automatico. Customize via variaveis LESS no editor.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="D6T3M2 containerEmColuna"&gt;
+        &lt;div class="primaria"&gt;Cor primaria&lt;/div&gt;
+        &lt;div class="secundaria"&gt;Cor secundaria&lt;/div&gt;
+        &lt;div class="terciaria"&gt;Cor terciaria&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="D6T3M2 containerEmColuna"&gt;
+        &lt;div class="D12T6M2 corNegacao"&gt;Cor Negacao&lt;/div&gt;
+        &lt;div class="D12T6M2 corAtencao"&gt;Cor Atencao&lt;/div&gt;
+        &lt;div class="D12T6M2 corPositivacao"&gt;Cor Positivacao&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- FORMULARIOS                                                  -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="forms">
+        <div class="section-title">Formularios</div>
+        <div class="section-desc">Classes: <code>.itemForm</code> (dimensoes responsivas), <code>.input</code> (placeholder/focus), <code>.containerItemFormComIcone</code> (com icone SVG), <code>.bt</code> (botao), <code>.tituloForm</code> (barra titulo com gradiente), <code>.arredondadaSuperior</code> / <code>.arredondadaInferior</code></div>
+    </div>
+
+    <span class="demo-label">Campos com icone — containerItemFormComIcone</span>
+    <div class="linhaDoGrid">
+        <div class="D6T3M2 containerEmColuna">
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                <span data-icon="user"></span>
+            </div>
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                <span data-icon="user"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Inputs com icone interno:</span>
+        <ul>
+            <li><strong>containerItemFormComIcone</strong> e o wrapper que cria o contexto <code>position: relative</code> para o icone ser posicionado em cima do input. Aplica padding-left no input para o texto nao sobrepor o icone.</li>
+            <li><strong>itemForm</strong> da dimensoes responsivas (altura, padding, font-size por breakpoint) ao input/botao.</li>
+            <li><strong>input</strong> aplica estilos de placeholder, focus e borda padronizados.</li>
+            <li><strong>span data-icon="nome"</strong> e injetado via JS pelo script ao final da pagina, que faz fetch de <code>/icones/{nome}.svg</code>. Use sempre nomes que existam em <code>/icones/</code>.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="D6T3M2 containerEmColuna"&gt;
+        &lt;div class="containerItemFormComIcone"&gt;
+            &lt;input type="text" class="itemForm input" placeholder="E-mail" /&gt;
+            &lt;span data-icon="user"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Formulario completo com passos, titulo e balloons</span>
+
+    <div class="D12T10M6 desloc-D3T1M0 containerEmLinha passos">
+        <p>Passos para criacao de usuario</p>
+        <div class="passoCompleto">
+            <div>1</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+        <div class="balloonTrigger">
+            <div>2</div>
+            <div><span data-icon="check"></span></div>
+            <div class="balloonPosition-All-Right balloonType-Help D3T1M1">Whatevs</div>
+        </div>
+        <div class="passoFuturo">
+            <div>3</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+        <div class="passoFuturo">
+            <div>4</div>
+            <div><span data-icon="check"></span></div>
+        </div>
+    </div>
+
+    <div class="D12T10M6 desloc-D3T1M0 tituloForm arredondadaSuperior">Dados para acesso</div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D12T10M6 desloc-D3T1M0 containerEmColuna arredondadaInferior">
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Left balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Left balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-BottomLeft balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-BottomLeft balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Bottom balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Bottom balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-BottomRight balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-BottomRight balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Right balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Right balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-TopRight balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-TopRight balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-Top balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-Top balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+            <div class="containerHelpIcon">
+                <div class="containerItemFormComIcone">
+                    <input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" />
+                    <span data-icon="mail"></span>
+                    <div class="balloonPosition-All-TopLeft balloonType-Help D3T2M1">
+                        Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />
+                    </div>
+                </div>
+                <div class="help-icon balloonTrigger">
+                    <span>?</span>
+                    <span class="balloonPosition-All-TopLeft balloonType-Help D3T2M1">Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br />Whatevs<br /></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Formulario completo: passos, titulo, balloons:</span>
+        <ul>
+            <li><strong>passos</strong> e <strong>passoCompleto</strong> / <strong>passoFuturo</strong>: indicador visual de etapas do formulario, com check/numeracao. O passo atual (sem modificador) recebe destaque automatico.</li>
+            <li><strong>tituloForm</strong>: barra de titulo com gradiente da cor primaria, padronizada. Use <strong>arredondadaSuperior</strong> em conjunto com <strong>arredondadaInferior</strong> no panel abaixo para fechar visualmente o conjunto.</li>
+            <li><strong>panel containerEmColuna</strong>: agrupa varios campos verticalmente sob o titulo.</li>
+            <li><strong>containerHelpIcon</strong>: wrapper externo que alinha o input + um botao de ajuda (<strong>help-icon</strong>) ao lado direito.</li>
+            <li><strong>containerItemFormComIcone</strong>: <code>position: relative</code> que serve de referencia tanto para o icone quanto para o balao com <strong>position: absolute</strong>.</li>
+            <li><strong>balloonTrigger</strong>: marcador para o JS escutar o click e abrir/fechar o balao via classe <strong>balloonStatus-Ativo</strong>.</li>
+            <li>O balao e <strong>filho direto</strong> de containerItemFormComIcone (ou irmao do trigger). O balao DEVE ter as classes <strong>balloonPosition-All-{Left|Right|Top|Bottom|TopLeft|TopRight|BottomLeft|BottomRight}</strong>, <strong>balloonType-{Help|Atencao|Erro}</strong> e <strong>D{n}T{n}M{n}</strong> (define a largura).</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="D12T10M6 desloc-D3T1M0 containerEmLinha passos"&gt;
+    &lt;p&gt;Passos para criacao de usuario&lt;/p&gt;
+    &lt;div class="passoCompleto"&gt;
+        &lt;div&gt;1&lt;/div&gt;
+        &lt;div&gt;&lt;span data-icon="check"&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="balloonTrigger"&gt;
+        &lt;div&gt;2&lt;/div&gt;
+        &lt;div&gt;&lt;span data-icon="check"&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="balloonPosition-All-Right balloonType-Help D3T1M1"&gt;Whatevs&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="passoFuturo"&gt;
+        &lt;div&gt;3&lt;/div&gt;
+        &lt;div&gt;&lt;span data-icon="check"&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="passoFuturo"&gt;
+        &lt;div&gt;4&lt;/div&gt;
+        &lt;div&gt;&lt;span data-icon="check"&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="D12T10M6 desloc-D3T1M0 tituloForm arredondadaSuperior"&gt;Dados para acesso&lt;/div&gt;
+
+&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D12T10M6 desloc-D3T1M0 containerEmColuna arredondadaInferior"&gt;
+        &lt;div class="containerHelpIcon"&gt;
+            &lt;div class="containerItemFormComIcone"&gt;
+                &lt;input type="text" class="itemForm input balloonTrigger" placeholder="E-mail" autocomplete="on" /&gt;
+                &lt;span data-icon="mail"&gt;&lt;/span&gt;
+                &lt;div class="balloonPosition-All-Left balloonType-Help D3T2M1"&gt;
+                    Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;Whatevs&lt;br /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="help-icon balloonTrigger"&gt;
+                &lt;span&gt;?&lt;/span&gt;
+                &lt;span class="balloonPosition-All-Left balloonType-Help D3T2M1"&gt;Whatevs&lt;br /&gt;...&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="containerHelpIcon"&gt;
+            &lt;!-- mesmo padrao com balloonPosition-All-BottomLeft --&gt;
+            ...
+        &lt;/div&gt;
+        &lt;!-- demais containerHelpIcon: Bottom, BottomRight, Right, TopRight, Top, TopLeft --&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- BALLOONS                                                     -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="balloons">
+        <div class="section-title">Message Balloons</div>
+        <div class="section-desc">Tipos: <code>balloonType-Help</code>, <code>balloonType-Atencao</code>, <code>balloonType-Erro</code>. Posicoes: <code>balloonPosition-All-{Left|Right|Top|Bottom|TopLeft|TopRight|BottomLeft|BottomRight}</code>. Ativados via clique com <code>.balloonTrigger</code> (JS).</div>
+    </div>
+
+    <span class="demo-label">3 tipos de balao — clique nos campos para abrir/fechar</span>
+
+    <div class="linhaDoGrid" style="min-height: 200px;">
+        <div class="containerHelpIcon D6T4M2">
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input balloonTrigger" placeholder="balloonType-Help (clique)" readonly />
+                <span data-icon="info"></span>
+                <div class="balloonPosition-All-Bottom balloonType-Help D3T2M1">
+                    Mensagem de ajuda em fundo cinza com borda preta clara. Usado para dicas contextuais.
+                </div>
+            </div>
+        </div>
+        <div class="containerHelpIcon D6T4M2">
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input balloonTrigger" placeholder="balloonType-Atencao (clique)" readonly />
+                <span data-icon="warning"></span>
+                <div class="balloonPosition-All-Bottom balloonType-Atencao D3T2M1">
+                    Mensagem de atencao em fundo laranja (@CorAtencao). Usado para avisos.
+                </div>
+            </div>
+        </div>
+        <div class="containerHelpIcon D6T4M2">
+            <div class="containerItemFormComIcone">
+                <input type="text" class="itemForm input balloonTrigger" placeholder="balloonType-Erro (clique)" readonly />
+                <span data-icon="cross"></span>
+                <div class="balloonPosition-All-Bottom balloonType-Erro D3T2M1">
+                    Mensagem de erro em fundo vermelho (@CorNegacao). Usado para erros e bloqueios.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">3 tipos de balao com cores semanticas:</span>
+        <ul>
+            <li><strong>balloonType-Help</strong>: fundo cinza claro com borda preta, para dicas contextuais e instrucoes neutras.</li>
+            <li><strong>balloonType-Atencao</strong>: fundo laranja (<strong>@CorAtencao</strong>) para alertas e avisos importantes ao usuario.</li>
+            <li><strong>balloonType-Erro</strong>: fundo vermelho (<strong>@CorNegacao</strong>) para mensagens de erro de validacao e bloqueios.</li>
+            <li>Cada balao usa um triangulo CSS (via <code>:before</code>/<code>:after</code> com border colorido) que se ajusta automaticamente conforme a <strong>balloonPosition-All-*</strong> para apontar para o input/icone de origem.</li>
+            <li>O <strong>readonly</strong> nos inputs aqui e so para a demo (impede o teclado abrir). Em uso real, omita.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="containerHelpIcon D6T4M2"&gt;
+        &lt;div class="containerItemFormComIcone"&gt;
+            &lt;input type="text" class="itemForm input balloonTrigger" placeholder="Click me" /&gt;
+            &lt;span data-icon="info"&gt;&lt;/span&gt;
+            &lt;!-- Tipo: balloonType-Help | balloonType-Atencao | balloonType-Erro --&gt;
+            &lt;div class="balloonPosition-All-Bottom balloonType-Help D3T2M1"&gt;
+                Texto do balao
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">8 posicoes do balao — clique nos icones para visualizar cada posicao</span>
+
+    <div class="linhaDoGrid" style="min-height: 350px; padding: 100px 0; align-items: center;">
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>TL</span>
+                <span class="balloonPosition-All-TopLeft balloonType-Help D3T2M1">balloonPosition-All-TopLeft</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>T</span>
+                <span class="balloonPosition-All-Top balloonType-Help D3T2M1">balloonPosition-All-Top</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>TR</span>
+                <span class="balloonPosition-All-TopRight balloonType-Help D3T2M1">balloonPosition-All-TopRight</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>L</span>
+                <span class="balloonPosition-All-Left balloonType-Help D3T2M1">balloonPosition-All-Left</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>R</span>
+                <span class="balloonPosition-All-Right balloonType-Help D3T2M1">balloonPosition-All-Right</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>BL</span>
+                <span class="balloonPosition-All-BottomLeft balloonType-Help D3T2M1">balloonPosition-All-BottomLeft</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>B</span>
+                <span class="balloonPosition-All-Bottom balloonType-Help D3T2M1">balloonPosition-All-Bottom</span>
+            </div>
+        </div>
+        <div class="D2T1M1" style="text-align: center;">
+            <div class="help-icon balloonTrigger" style="display: inline-flex;">
+                <span>BR</span>
+                <span class="balloonPosition-All-BottomRight balloonType-Help D3T2M1">balloonPosition-All-BottomRight</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">8 posicoes possiveis do balao:</span>
+        <ul>
+            <li><strong>balloonPosition-All-{Posicao}</strong> define a direcao em que o balao aparece em relacao ao trigger. As 8 posicoes sao: <strong>Top</strong>, <strong>Bottom</strong>, <strong>Left</strong>, <strong>Right</strong>, <strong>TopLeft</strong>, <strong>TopRight</strong>, <strong>BottomLeft</strong>, <strong>BottomRight</strong>.</li>
+            <li><strong>All</strong> aplica em todos os breakpoints. Para alterar por breakpoint use <strong>balloonPosition-Desktop-*</strong>, <strong>balloonPosition-Tablet-*</strong> ou <strong>balloonPosition-Mobile-*</strong>.</li>
+            <li><strong>help-icon</strong>: botao circular pequeno (semelhante ao "?" de ajuda) que ja vem com <code>position: relative</code> e padding correto para servir de ancora ao balao.</li>
+            <li>O balao deve ser <strong>filho direto</strong> do elemento ancora (help-icon ou containerItemFormComIcone), nunca solto na pagina.</li>
+            <li>O triangulo aponta sempre para a borda do trigger oposta a direcao em que o balao aparece (ex: Bottom -> triangulo no topo).</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="D2T1M1"&gt;
+        &lt;div class="help-icon balloonTrigger"&gt;
+            &lt;span&gt;TL&lt;/span&gt;
+            &lt;span class="balloonPosition-All-TopLeft balloonType-Help D3T2M1"&gt;balloonPosition-All-TopLeft&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="D2T1M1"&gt;
+        &lt;div class="help-icon balloonTrigger"&gt;
+            &lt;span&gt;T&lt;/span&gt;
+            &lt;span class="balloonPosition-All-Top balloonType-Help D3T2M1"&gt;balloonPosition-All-Top&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Mesma estrutura para TR, L, R, BL, B, BR --&gt;
+    ...
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- NAVBAR                                                       -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="navbar-demo">
+        <div class="section-title">Navbar</div>
+        <div class="section-desc">Estrutura: <code>.linhaDoGrid.navbar</code> &gt; <code>.hamburgerCheckbox</code> + <code>.hamburgerDisplayButton</code> &gt; <code>.menusContainer</code> &gt; <code>.menu.menuPrincipal</code> / <code>.menu.menuSecundario</code> &gt; <code>.menuItem</code> (+ modificador <code>.inativo</code> / <code>.paginaAtual</code>) &gt; <code>.subMenu</code> &gt; <code>.subMenuItem</code> (+ modificador <code>.inativo</code> / <code>.paginaAtual</code>). Login social: <code>.containerbtFacebook</code>, <code>.containerbtGoogle</code>.</div>
+    </div>
+
+    <div class="linhaDoGrid navbar">
+        <input type="checkbox" class="hamburgerCheckbox" id="Hamburger1"/>
+        <div class="hamburgerDisplayButton">
+            <label for="Hamburger1" class="hamburgerDisplayLines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <div class="menusContainer">
+            <div class="menu menuPrincipal D12T9M6">
+                <div class="menuItem">
+                    <a href="#"><span class="iconMenu" data-icon="home"></span> Home</a>
+                </div>
+                <div class="menuItem">
+                    Jobs
+                    <div class="subMenu">
+                        <div class="subMenuItem titulo">Ultimos jobs acessados</div>
+                        <div class="subMenuItem"><a href="#">Job 1</a></div>
+                        <div class="subMenuItem"><a href="#">Job 2</a></div>
+                        <div class="subMenuItem paginaAtual"><a href="#">Job 3</a></div>
+                        <div class="subMenuItem"><a href="#">Job 4</a></div>
+                        <div class="subMenuItem inativo"><a href="#">Job 5</a></div>
+                        <div class="subMenuItem"><a href="#">Job 6</a></div>
+                    </div>
+                </div>
+                <div class="menuItem inativo">Timesheet</div>
+                <div class="menuItem inativo">Financeiro</div>
+                <div class="menuItem inativo">Admin</div>
+            </div>
+            <div class="menu menuSecundario D6T3M6">
+                <div class="menuItem">
+                    <a href="#">Meus Dados</a>
+                    <div class="subMenu">
+                        <div class="subMenuItem titulo">Login via social</div>
+                        <div class="subMenuItem containerExternoBotoesSubmenu">
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="containerItemFormComIcone containerbtFacebook">
+                                    <input type="button" class="itemForm bt" value="" />
+                                    <div>Login com Facebook</div>
+                                    <span data-icon="facebookbutton"></span>
+                                </div>
+                            </div>
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="containerItemFormComIcone containerbtGoogle">
+                                    <input type="button" class="itemForm bt" value="" />
+                                    <div>Login com Google</div>
+                                    <span data-icon="googlebutton"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subMenuItem titulo">Login via email e senha</div>
+                        <div class="subMenuItem">
+                            <div class="containerItemFormComIcone">
+                                <input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" />
+                                <span data-icon="mail"></span>
+                            </div>
+                        </div>
+                        <div class="subMenuItem">
+                            <div class="containerItemFormComIcone">
+                                <input type="password" class="itemForm input" placeholder="Password" autocomplete="off" />
+                                <span data-icon="lock"></span>
+                            </div>
+                        </div>
+                        <div class="subMenuItem containerExternoBotoesSubmenu">
+                            <div class="containerInternoBotoesSubmenu">
+                                <div class="itemForm esqueciSenha"><a href="#">Esqueci minha senha</a></div>
+                            </div>
+                            <div class="containerInternoBotoesSubmenu">
+                                <input type="button" class="itemForm bt btEntrar" value="entrar" />
+                            </div>
+                        </div>
+                        <div><a href="#">Criar nova conta</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Estrutura completa da navbar:</span>
+        <ul>
+            <li><strong>linhaDoGrid navbar</strong>: combina o container do grid com a classe especial <strong>navbar</strong>, que aplica o gradiente de fundo, sombra e altura padronizada da barra.</li>
+            <li><strong>hamburgerCheckbox</strong> + <strong>hamburgerDisplayButton</strong> + <strong>hamburgerDisplayLines</strong>: menu hamburguer 100% CSS (sem JS), via input checkbox oculto. Aparece automaticamente apenas em breakpoints menores.</li>
+            <li><strong>menusContainer</strong>: wrapper que agrupa <strong>menuPrincipal</strong> e <strong>menuSecundario</strong> e controla a visibilidade quando o hamburger e clicado.</li>
+            <li><strong>menu menuPrincipal</strong>: menu da esquerda com itens principais. <strong>menu menuSecundario</strong>: menu da direita (geralmente login/perfil), recebe cor secundaria.</li>
+            <li><strong>menuItem</strong>: cada item do menu. Modificadores: <strong>inativo</strong> (cinza, sem cursor pointer), <strong>paginaAtual</strong> (destaque visual da pagina atual).</li>
+            <li><strong>iconMenu data-icon="nome"</strong>: span dentro do <code>&lt;a&gt;</code> que renderiza um icone SVG inline ao lado do texto do item (puxado de <code>/icones/{nome}.svg</code>).</li>
+            <li><strong>subMenu</strong>: dropdown que aparece ao passar o mouse no menuItem (Desktop) ou ao tocar (Tablet/Mobile). Contem <strong>subMenuItem</strong> (item normal) e <strong>subMenuItem titulo</strong> (cabecalho de secao, nao clicavel).</li>
+            <li><strong>containerExternoBotoesSubmenu</strong> + <strong>containerInternoBotoesSubmenu</strong>: layout para botoes lado a lado dentro do submenu.</li>
+            <li><strong>containerbtFacebook</strong> / <strong>containerbtGoogle</strong>: estilos prontos de botoes de login social com cor de marca correta.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid navbar"&gt;
+    &lt;input type="checkbox" class="hamburgerCheckbox" id="Hamburger1"/&gt;
+    &lt;div class="hamburgerDisplayButton"&gt;
+        &lt;label for="Hamburger1" class="hamburgerDisplayLines"&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class="menusContainer"&gt;
+        &lt;div class="menu menuPrincipal D12T9M6"&gt;
+            &lt;div class="menuItem"&gt;
+                &lt;a href="#"&gt;&lt;span class="iconMenu" data-icon="home"&gt;&lt;/span&gt; Home&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="menuItem"&gt;
+                Jobs
+                &lt;div class="subMenu"&gt;
+                    &lt;div class="subMenuItem titulo"&gt;Ultimos jobs acessados&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;&lt;a href="#"&gt;Job 1&lt;/a&gt;&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;&lt;a href="#"&gt;Job 2&lt;/a&gt;&lt;/div&gt;
+                    &lt;div class="subMenuItem paginaAtual"&gt;&lt;a href="#"&gt;Job 3&lt;/a&gt;&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;&lt;a href="#"&gt;Job 4&lt;/a&gt;&lt;/div&gt;
+                    &lt;div class="subMenuItem inativo"&gt;&lt;a href="#"&gt;Job 5&lt;/a&gt;&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;&lt;a href="#"&gt;Job 6&lt;/a&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="menuItem inativo"&gt;Timesheet&lt;/div&gt;
+            &lt;div class="menuItem inativo"&gt;Financeiro&lt;/div&gt;
+            &lt;div class="menuItem inativo"&gt;Admin&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="menu menuSecundario D6T3M6"&gt;
+            &lt;div class="menuItem"&gt;
+                &lt;a href="#"&gt;Meus Dados&lt;/a&gt;
+                &lt;div class="subMenu"&gt;
+                    &lt;div class="subMenuItem titulo"&gt;Login via social&lt;/div&gt;
+                    &lt;div class="subMenuItem containerExternoBotoesSubmenu"&gt;
+                        &lt;div class="containerInternoBotoesSubmenu"&gt;
+                            &lt;div class="containerItemFormComIcone containerbtFacebook"&gt;
+                                &lt;input type="button" class="itemForm bt" value="" /&gt;
+                                &lt;div&gt;Login com Facebook&lt;/div&gt;
+                                &lt;span data-icon="facebookbutton"&gt;&lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="containerInternoBotoesSubmenu"&gt;
+                            &lt;div class="containerItemFormComIcone containerbtGoogle"&gt;
+                                ...
+                                &lt;span data-icon="googlebutton"&gt;&lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="subMenuItem titulo"&gt;Login via email e senha&lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;
+                        &lt;div class="containerItemFormComIcone"&gt;
+                            &lt;input type="text" class="itemForm input" placeholder="E-mail" autocomplete="on" /&gt;
+                            &lt;span data-icon="mail"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="subMenuItem"&gt;
+                        &lt;div class="containerItemFormComIcone"&gt;
+                            &lt;input type="password" class="itemForm input" placeholder="Password" autocomplete="off" /&gt;
+                            &lt;span data-icon="lock"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="subMenuItem containerExternoBotoesSubmenu"&gt;
+                        &lt;div class="containerInternoBotoesSubmenu"&gt;
+                            &lt;div class="itemForm esqueciSenha"&gt;&lt;a href="#"&gt;Esqueci minha senha&lt;/a&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="containerInternoBotoesSubmenu"&gt;
+                            &lt;input type="button" class="itemForm bt btEntrar" value="entrar" /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div&gt;&lt;a href="#"&gt;Criar nova conta&lt;/a&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- PALETA                                                       -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="paleta">
+        <div class="section-title">Paleta de Cores</div>
+        <div class="section-desc">5 eixos de variacao da <code>@CorPrimaria</code>, 10 niveis cada. Classes: <code>.paleta-{eixo}-{nivel}</code>. Eixos: 1=Fade, 2=Saturacao, 3=Desaturacao, 4=Clarificacao, 5=Obscurecencia.</div>
+    </div>
+
+    <span class="demo-label">Fade (paleta-1-1 a paleta-1-10)</span>
+    <div class="linhaDoGrid">
+        <div class="panel paleta-1-1 D1T1M1">Fade 100%<br />Sat 0%<br />Desat 0%<br />Clar 0%<br />Obsc 0%</div>
+        <div class="panel paleta-1-2 D1T1M1">Fade 90%</div>
+        <div class="panel paleta-1-3 D1T1M1">Fade 80%</div>
+        <div class="panel paleta-1-4 D1T1M1">Fade 70%</div>
+        <div class="panel paleta-1-5 D1T1M1">Fade 60%</div>
+        <div class="panel paleta-1-6 D1T1M1">Fade 50%</div>
+        <div class="panel paleta-1-7 D1T1M1">Fade 40%</div>
+        <div class="panel paleta-1-8 D1T1M1">Fade 30%</div>
+        <div class="panel paleta-1-9 D1T1M1">Fade 20%</div>
+        <div class="panel paleta-1-10 D1T1M1">Fade 10%</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Eixo 1 — Fade (transparencia):</span>
+        <ul>
+            <li><strong>paleta-1-N</strong> aplica a <strong>@CorPrimaria</strong> com nivel de opacidade variavel. <strong>paleta-1-1</strong> = 100% opaca, <strong>paleta-1-10</strong> = 10% opaca (quase transparente).</li>
+            <li>Ideal para criar fundos discretos, hovers suaves ou overlays sem alterar o tom da cor.</li>
+            <li>Use em conjunto com <strong>panel</strong> para preencher a caixa com a tonalidade desejada.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel paleta-1-1 D1T1M1"&gt;Fade 100%&lt;/div&gt;
+    &lt;div class="panel paleta-1-2 D1T1M1"&gt;Fade 90%&lt;/div&gt;
+    ...
+    &lt;div class="panel paleta-1-10 D1T1M1"&gt;Fade 10%&lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Saturacao (paleta-2-1 a paleta-2-10)</span>
+    <div class="linhaDoGrid">
+        <div class="panel paleta-2-1 D1T1M1">Sat 10%</div>
+        <div class="panel paleta-2-2 D1T1M1">Sat 20%</div>
+        <div class="panel paleta-2-3 D1T1M1">Sat 30%</div>
+        <div class="panel paleta-2-4 D1T1M1">Sat 40%</div>
+        <div class="panel paleta-2-5 D1T1M1">Sat 50%</div>
+        <div class="panel paleta-2-6 D1T1M1">Sat 60%</div>
+        <div class="panel paleta-2-7 D1T1M1">Sat 70%</div>
+        <div class="panel paleta-2-8 D1T1M1">Sat 80%</div>
+        <div class="panel paleta-2-9 D1T1M1">Sat 90%</div>
+        <div class="panel paleta-2-10 D1T1M1">Sat 100%</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Eixo 2 — Saturacao (intensidade da cor):</span>
+        <ul>
+            <li><strong>paleta-2-N</strong> aumenta a saturacao de <strong>@CorPrimaria</strong> em passos de 10%. <strong>paleta-2-1</strong> = +10%, <strong>paleta-2-10</strong> = +100% (cor mais vibrante e pura).</li>
+            <li>Use para destacar elementos primarios, CTA buttons ou highlights que precisam chamar atencao.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel paleta-2-1 D1T1M1"&gt;Sat 10%&lt;/div&gt;
+    &lt;div class="panel paleta-2-2 D1T1M1"&gt;Sat 20%&lt;/div&gt;
+    ...
+    &lt;div class="panel paleta-2-10 D1T1M1"&gt;Sat 100%&lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Desaturacao (paleta-3-1 a paleta-3-10)</span>
+    <div class="linhaDoGrid">
+        <div class="panel paleta-3-1 D1T1M1">Desat 10%</div>
+        <div class="panel paleta-3-2 D1T1M1">Desat 20%</div>
+        <div class="panel paleta-3-3 D1T1M1">Desat 30%</div>
+        <div class="panel paleta-3-4 D1T1M1">Desat 40%</div>
+        <div class="panel paleta-3-5 D1T1M1">Desat 50%</div>
+        <div class="panel paleta-3-6 D1T1M1">Desat 60%</div>
+        <div class="panel paleta-3-7 D1T1M1">Desat 70%</div>
+        <div class="panel paleta-3-8 D1T1M1">Desat 80%</div>
+        <div class="panel paleta-3-9 D1T1M1">Desat 90%</div>
+        <div class="panel paleta-3-10 D1T1M1">Desat 100%</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Eixo 3 — Desaturacao (cor mais cinza):</span>
+        <ul>
+            <li><strong>paleta-3-N</strong> remove saturacao de <strong>@CorPrimaria</strong> em passos de 10%. <strong>paleta-3-1</strong> = -10%, <strong>paleta-3-10</strong> = -100% (totalmente neutralizada para cinza).</li>
+            <li>Use para estados desabilitados, elementos secundarios ou para criar uma escala de cinza coerente com a cor primaria do projeto.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel paleta-3-1 D1T1M1"&gt;Desat 10%&lt;/div&gt;
+    &lt;div class="panel paleta-3-2 D1T1M1"&gt;Desat 20%&lt;/div&gt;
+    ...
+    &lt;div class="panel paleta-3-10 D1T1M1"&gt;Desat 100%&lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Clarificacao (paleta-4-1 a paleta-4-10)</span>
+    <div class="linhaDoGrid">
+        <div class="panel paleta-4-1 D1T1M1">Clar 10%</div>
+        <div class="panel paleta-4-2 D1T1M1">Clar 20%</div>
+        <div class="panel paleta-4-3 D1T1M1">Clar 30%</div>
+        <div class="panel paleta-4-4 D1T1M1">Clar 40%</div>
+        <div class="panel paleta-4-5 D1T1M1">Clar 50%</div>
+        <div class="panel paleta-4-6 D1T1M1">Clar 60%</div>
+        <div class="panel paleta-4-7 D1T1M1">Clar 70%</div>
+        <div class="panel paleta-4-8 D1T1M1">Clar 80%</div>
+        <div class="panel paleta-4-9 D1T1M1">Clar 90%</div>
+        <div class="panel paleta-4-10 D1T1M1">Clar 100%</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Eixo 4 — Clarificacao (cor mais clara):</span>
+        <ul>
+            <li><strong>paleta-4-N</strong> mistura branco em <strong>@CorPrimaria</strong> em passos de 10%, deixando a cor progressivamente mais clara. <strong>paleta-4-10</strong> tende quase ao branco.</li>
+            <li>Use para fundos delicados, hover states suaves ou para criar uma hierarquia visual onde o foco e em outro elemento.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel paleta-4-1 D1T1M1"&gt;Clar 10%&lt;/div&gt;
+    &lt;div class="panel paleta-4-2 D1T1M1"&gt;Clar 20%&lt;/div&gt;
+    ...
+    &lt;div class="panel paleta-4-10 D1T1M1"&gt;Clar 100%&lt;/div&gt;
+&lt;/div&gt;</div>
+
+    <span class="demo-label">Obscurecencia (paleta-5-1 a paleta-5-10)</span>
+    <div class="linhaDoGrid">
+        <div class="panel paleta-5-1 D1T1M1">Obsc 10%</div>
+        <div class="panel paleta-5-2 D1T1M1">Obsc 20%</div>
+        <div class="panel paleta-5-3 D1T1M1">Obsc 30%</div>
+        <div class="panel paleta-5-4 D1T1M1">Obsc 40%</div>
+        <div class="panel paleta-5-5 D1T1M1">Obsc 50%</div>
+        <div class="panel paleta-5-6 D1T1M1">Obsc 60%</div>
+        <div class="panel paleta-5-7 D1T1M1">Obsc 70%</div>
+        <div class="panel paleta-5-8 D1T1M1">Obsc 80%</div>
+        <div class="panel paleta-5-9 D1T1M1">Obsc 90%</div>
+        <div class="panel paleta-5-10 D1T1M1">Obsc 100%</div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Eixo 5 — Obscurecencia (cor mais escura):</span>
+        <ul>
+            <li><strong>paleta-5-N</strong> mistura preto em <strong>@CorPrimaria</strong> em passos de 10%, deixando a cor progressivamente mais escura. <strong>paleta-5-10</strong> tende quase ao preto.</li>
+            <li>Use para hover states intensos, sombras temáticas, headers/footers ou areas que precisam de mais "peso" visual.</li>
+            <li><strong>Combine os 5 eixos</strong> aplicando varias classes ao mesmo elemento (ex: <code>paleta-1-3 paleta-3-2</code>) para chegar exatamente ao tom desejado mantendo coerencia com a cor primaria do projeto.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel paleta-5-1 D1T1M1"&gt;Obsc 10%&lt;/div&gt;
+    &lt;div class="panel paleta-5-2 D1T1M1"&gt;Obsc 20%&lt;/div&gt;
+    ...
+    &lt;div class="panel paleta-5-10 D1T1M1"&gt;Obsc 100%&lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- TEXTOS POR BREAKPOINT                                        -->
+    <!-- ============================================================ -->
+    <div class="section-header">
+        <div class="section-title">Textos por Breakpoint</div>
+        <div class="section-desc">Classes <code>.spanDesktop</code>, <code>.spanTablet</code>, <code>.spanMobile</code> exibem conteudo distinto por resolucao.</div>
+    </div>
+
+    <div class="linhaDoGrid">
+        <div class="panel D18T12M6">
+            Voce esta vendo:
+            <span class="spanDesktop"><b> DESKTOP (&gt;992px)</b></span>
+            <span class="spanTablet"><b> TABLET (768-992px)</b></span>
+            <span class="spanMobile"><b> MOBILE (&lt;768px)</b></span>
+        </div>
+    </div>
+
+    <div class="description-block">
+        <span class="desc-title">Conteudo de texto diferente por breakpoint:</span>
+        <ul>
+            <li><strong>spanDesktop</strong>: visivel apenas no Desktop (>992px), oculto via <code>display: none</code> nos demais.</li>
+            <li><strong>spanTablet</strong>: visivel apenas no Tablet (768-992px).</li>
+            <li><strong>spanMobile</strong>: visivel apenas no Mobile (<768px).</li>
+            <li>Util quando o texto precisa ser DIFERENTE por viewport (nao apenas o tamanho da fonte). Ex: "Adicionar ao carrinho" no desktop vs "+ Carrinho" no mobile.</li>
+            <li>Os 3 spans coexistem no HTML — apenas um e visivel por vez. Para SEO, todos os textos sao indexados.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;div class="linhaDoGrid"&gt;
+    &lt;div class="panel D18T12M6"&gt;
+        Voce esta vendo:
+        &lt;span class="spanDesktop"&gt;&lt;b&gt; DESKTOP (&gt;992px)&lt;/b&gt;&lt;/span&gt;
+        &lt;span class="spanTablet"&gt;&lt;b&gt; TABLET (768-992px)&lt;/b&gt;&lt;/span&gt;
+        &lt;span class="spanMobile"&gt;&lt;b&gt; MOBILE (&lt;768px)&lt;/b&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</div>
+
+
+    <!-- ============================================================ -->
+    <!-- ICONES SVG                                                   -->
+    <!-- ============================================================ -->
+    <div class="section-header" id="icones">
+        <div class="section-title">Icones SVG</div>
+        <div class="section-desc">80 icones em <code>/icones/{nome}.svg</code>. Uso no framework: inline via <code>&lt;!--#include virtual="~/App_Themes/icones/nome.svg"--&gt;</code> ou <code>&lt;img src="/icones/nome.svg"&gt;</code>.</div>
+    </div>
+    <div id="iconsGrid" class="linhaDoGrid" style="flex-wrap:wrap;gap:4px;padding:0 6px"></div>
+
+    <div class="description-block">
+        <span class="desc-title">Biblioteca de icones SVG do framework:</span>
+        <ul>
+            <li>Todos os icones SVG ficam em <code>/icones/{nome}.svg</code> (cerca de 80 disponiveis). Cada arquivo e um SVG monocromatico que respeita as cores aplicadas via CSS (<code>fill</code>, <code>stroke</code>).</li>
+            <li><strong>Uso inline (recomendado)</strong>: <code>&lt;span data-icon="user"&gt;&lt;/span&gt;</code> mais um script global que faz <code>fetch</code> e injeta o SVG. Permite estilizar via CSS (mudar cor, tamanho, hover).</li>
+            <li><strong>Uso direto via &lt;img&gt;</strong>: <code>&lt;img src="/icones/user.svg"&gt;</code>. Mais simples, mas o SVG nao herda <code>currentColor</code> nem responde a CSS externo.</li>
+            <li>O grid acima e populado em runtime pelo endpoint <code>GET /api/icons</code> do servidor — em uso normal voce escolhe os icones que quer e referencia individualmente.</li>
+        </ul>
+    </div>
+
+    <div class="code-block">&lt;!-- Grid populado dinamicamente via JS a partir de /api/icons --&gt;
+&lt;div id="iconsGrid" class="linhaDoGrid" style="flex-wrap:wrap;gap:4px;padding:0 6px"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  fetch('/api/icons')
+    .then(function(r) { return r.json(); })
+    .then(function(icons) {
+      var grid = document.getElementById('iconsGrid');
+      icons.forEach(function(icon) {
+        var div = document.createElement('div');
+        div.innerHTML = '&lt;img src="/icones/' + icon + '.svg" /&gt;&lt;small&gt;' + icon + '&lt;/small&gt;';
+        grid.appendChild(div);
+      });
+    });
+&lt;/script&gt;
+
+&lt;!-- Uso individual num projeto: --&gt;
+&lt;img src="/icones/user.svg" alt="user" /&gt;
+&lt;!-- Ou inline (estilizavel via CSS fill/stroke): --&gt;
+&lt;span data-icon="user"&gt;&lt;/span&gt;</div>
+
+
+    <!-- Inject SVG icons -->
+    <script>
+    document.querySelectorAll('[data-icon]').forEach(function(el) {
+        var icon = el.getAttribute('data-icon');
+        fetch('/icones/' + icon + '.svg')
+            .then(function(r) { return r.text(); })
+            .then(function(svg) { el.innerHTML = svg; });
+    });
+
     fetch('/api/icons')
-        .then(r => r.json())
-        .then(icons => {
-            const grid = document.getElementById('iconsGrid');
-            icons.forEach(icon => {
-                const div = document.createElement('div');
-                div.style.cssText = 'display:flex;flex-direction:column;align-items:center;padding:8px;background:#fff;border:1px solid #eee;border-radius:4px;min-width:70px;gap:4px';
-                div.innerHTML = '<img src="/icones/' + icon + '.svg" style="width:24px;height:24px;display:block"><small style="font-size:9px;color:#666">' + icon + '</small>';
+        .then(function(r) { return r.json(); })
+        .then(function(icons) {
+            var grid = document.getElementById('iconsGrid');
+            icons.forEach(function(icon) {
+                var div = document.createElement('div');
+                div.style.cssText = 'flex-direction:column;align-items:center;padding:8px;background:#fff;border:1px solid #eee;border-radius:4px;min-width:70px;gap:4px';
+                div.innerHTML = '<img src="/icones/' + icon + '.svg" style="width:24px;height:24px"><small style="font-size:9px;color:#666;display:block;text-align:center">' + icon + '</small>';
                 grid.appendChild(div);
             });
         });
     </script>
-</div>
+
 </body>
 </html>
