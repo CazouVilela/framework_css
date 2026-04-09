@@ -44333,6 +44333,18 @@
 .semPadding {
   padding: 0 !important;
 }
+.text_left {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+.text_center {
+  text-align: center !important;
+  justify-content: center !important;
+}
+.text_right {
+  text-align: right !important;
+  justify-content: flex-end !important;
+}
 /*<div class="containerItemFormComIcone">
     <asp:TextBox ID="passwordTXT" CssClass="itemForm input " placeholder="Senha" TextMode="Password" runat="server" autocomplete="off"></asp:TextBox>
     <!--#include virtual="~/App_Themes/icones/lock.svg"-->
