@@ -1,0 +1,57 @@
+//LOADER - Indicador de carregamento (spinner circular CSS puro)
+//Uso: <div class="loaderContainer"><span class="loader"></span> Carregando...</div>
+//O .loader e o spinner. O .loaderContainer centraliza e adiciona padding.
+
+    @keyframes loaderSpin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loader {
+        display:        inline-block;
+        border-style:   solid;
+        border-color:   @CorTercearia;
+        border-top-color: @LoaderCor;
+        border-radius:  50%;
+        animation:      loaderSpin @LoaderVelocidade linear infinite;
+        flex-shrink:    0;
+        border-width:   @LoaderEspessura;
+
+        @media (min-width: @Res_Desktop) {
+            width:  @LoaderTamanho_Desktop;
+            height: @LoaderTamanho_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            width:  @LoaderTamanho_Tablet;
+            height: @LoaderTamanho_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            width:  @LoaderTamanho_Mobile;
+            height: @LoaderTamanho_Mobile;
+        }
+    }
+
+    .loaderContainer {
+        display:            flex;
+        align-items:        center;
+        justify-content:    center;
+        width:              100%;
+        .color(@CorFontePadrao; 60%);
+
+        @media (min-width: @Res_Desktop) {
+            padding:    @LoaderContainerPadding_Desktop;
+            font-size:  @LoaderTextoFontSize_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            padding:    @LoaderContainerPadding_Tablet;
+            font-size:  @LoaderTextoFontSize_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            padding:    @LoaderContainerPadding_Mobile;
+            font-size:  @LoaderTextoFontSize_Mobile;
+        }
+    }
+
+    .loaderContainer .loader {
+        margin-right: @LoaderTextoMargemEsquerda;
+    }

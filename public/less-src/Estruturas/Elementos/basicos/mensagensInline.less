@@ -1,0 +1,56 @@
+//MENSAGENS INLINE - Barras horizontais de feedback
+//Diferente dos balloons (posicionados via trigger). Sao barras fixas no fluxo do layout.
+//Uso: <div class="mensagemInline mensagemPositiva">Texto de sucesso</div>
+//Variantes: mensagemPositiva, mensagemNegativa, mensagemAtencao, mensagemInfo
+
+    .mensagemInline {
+        display:            flex;
+        align-items:        center;
+        width:              100%;
+        font-family:        @FontFamilyPadrao;
+        border-style:       @EstiloDaBorda_Padrao;
+        border-width:       @MensagemInlineBorderWidth;
+
+        @media (min-width: @Res_Desktop) {
+            padding:        @MensagemInlinePaddingTop_Desktop @MensagemInlinePaddingRight_Desktop @MensagemInlinePaddingBottom_Desktop @MensagemInlinePaddingLeft_Desktop;
+            font-size:      @MensagemInlineFontSize_Desktop;
+            border-radius:  @MensagemInlineBorderRadius_Desktop;
+            margin-bottom:  @MensagemInlineMarginBottom_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            padding:        @MensagemInlinePaddingTop_Tablet @MensagemInlinePaddingRight_Tablet @MensagemInlinePaddingBottom_Tablet @MensagemInlinePaddingLeft_Tablet;
+            font-size:      @MensagemInlineFontSize_Tablet;
+            border-radius:  @MensagemInlineBorderRadius_Tablet;
+            margin-bottom:  @MensagemInlineMarginBottom_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            padding:        @MensagemInlinePaddingTop_Mobile @MensagemInlinePaddingRight_Mobile @MensagemInlinePaddingBottom_Mobile @MensagemInlinePaddingLeft_Mobile;
+            font-size:      @MensagemInlineFontSize_Mobile;
+            border-radius:  @MensagemInlineBorderRadius_Mobile;
+            margin-bottom:  @MensagemInlineMarginBottom_Mobile;
+        }
+    }
+
+    .mensagemInline.mensagemPositiva {
+        .backgroundColor(@CorPositivacao; 20%);
+        .borderColor(@CorPositivacao; 40%);
+        .color(@CorPositivacao; 100%; 0%; 0%; 0%; 40%);
+    }
+
+    .mensagemInline.mensagemNegativa {
+        .backgroundColor(@CorNegacao; 20%);
+        .borderColor(@CorNegacao; 40%);
+        .color(@CorNegacao; 100%; 0%; 0%; 0%; 30%);
+    }
+
+    .mensagemInline.mensagemAtencao {
+        .backgroundColor(@CorAtencao; 20%);
+        .borderColor(@CorAtencao; 40%);
+        .color(@CorAtencao; 100%; 0%; 0%; 0%; 40%);
+    }
+
+    .mensagemInline.mensagemInfo {
+        .backgroundColor(@CorPrimaria; 15%);
+        .borderColor(@CorPrimaria; 30%);
+        .color(@CorPrimaria; 100%; 0%; 0%; 0%; 40%);
+    }

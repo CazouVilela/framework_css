@@ -1,0 +1,53 @@
+//BADGES - Pilulas coloridas para status, tags, categorias
+//Uso: <span class="badge">Texto</span>
+//Variantes: badgePrimario, badgePositivo, badgeNegativo, badgeAtencao, badgeInfo
+
+    .badge {
+        display:        inline-flex;
+        align-items:    center;
+        font-weight:    @BadgeFontWeight;
+        white-space:    nowrap;
+        .backgroundColor(@BadgeCorFundo);
+        .color(@BadgeCorFonte);
+
+        @media (min-width: @Res_Desktop) {
+            padding:        @BadgePadding_Desktop;
+            font-size:      @BadgeFontSize_Desktop;
+            border-radius:  @BadgeBorderRadius_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            padding:        @BadgePadding_Tablet;
+            font-size:      @BadgeFontSize_Tablet;
+            border-radius:  @BadgeBorderRadius_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            padding:        @BadgePadding_Mobile;
+            font-size:      @BadgeFontSize_Mobile;
+            border-radius:  @BadgeBorderRadius_Mobile;
+        }
+    }
+
+    .badge.badgePrimario {
+        .backgroundColor(@CorPrimaria);
+        .color(@Branco);
+    }
+
+    .badge.badgePositivo {
+        .backgroundColor(@CorPositivacao; 100%; 0%; 0%; 10%; 0%);
+        .color(@Branco);
+    }
+
+    .badge.badgeNegativo {
+        .backgroundColor(@CorNegacao; 100%; 0%; 0%; 10%; 0%);
+        .color(@Branco);
+    }
+
+    .badge.badgeAtencao {
+        .backgroundColor(@CorAtencao; 100%; 0%; 0%; 10%; 0%);
+        .color(@Preto; 80%);
+    }
+
+    .badge.badgeInfo {
+        .backgroundColor(@CorPrimaria; 100%; 0%; 0%; 20%; 0%);
+        .color(@Preto; 80%);
+    }

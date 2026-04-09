@@ -1,0 +1,51 @@
+//SUBTITULOS DO TITULO FORM
+//Usados como spans dentro de .tituloForm para texto secundario
+//Tres niveis: _subTitulo_1 (grande), _subTitulo_2 (medio), _subTitulo_3 (pequeno)
+
+    .tituloForm_subTitulo_1 {
+        font-weight:    @FontWeightSubTitulo1;
+        opacity:        @OpacidadeSubTitulo1;
+        margin-left:    @MargemEsquerdaSubTitulo1;
+
+        @media (min-width: @Res_Desktop) {
+            font-size: @TamanhoSubTitulo1_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo1_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo1_Mobile;
+        }
+    }
+
+    .tituloForm_subTitulo_2 {
+        font-weight:    @FontWeightSubTitulo2;
+        opacity:        @OpacidadeSubTitulo2;
+        margin-left:    @MargemEsquerdaSubTitulo2;
+
+        @media (min-width: @Res_Desktop) {
+            font-size: @TamanhoSubTitulo2_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo2_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo2_Mobile;
+        }
+    }
+
+    .tituloForm_subTitulo_3 {
+        font-weight:    @FontWeightSubTitulo3;
+        opacity:        @OpacidadeSubTitulo3;
+        margin-left:    @MargemEsquerdaSubTitulo3;
+
+        @media (min-width: @Res_Desktop) {
+            font-size: @TamanhoSubTitulo3_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo3_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            font-size: @TamanhoSubTitulo3_Mobile;
+        }
+    }
