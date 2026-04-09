@@ -1,0 +1,56 @@
+//LABELS E HINTS PARA FORMULARIOS
+//Label: rotulo de campo de formulario
+//Hint: texto auxiliar abaixo do campo (dica, regra, formato esperado)
+
+//VARIAVEIS
+    @LabelFontSize_Desktop:     (@TamanhoPadraoTexto_Desktop * 0.8);
+    @LabelFontSize_Tablet:      (@TamanhoPadraoTexto_Tablet * 0.8);
+    @LabelFontSize_Mobile:      (@TamanhoPadraoTexto_Mobile * 0.8);
+    @LabelFontWeight:           bold;
+    @LabelCorFonte:             @CorFontePadrao;
+    @LabelOpacidade:            0.7;
+    @LabelMargemSuperior:       6px;
+    @LabelMargemInferior:       2px;
+
+    @HintFontSize_Desktop:      (@TamanhoPadraoTexto_Desktop * 0.7);
+    @HintFontSize_Tablet:       (@TamanhoPadraoTexto_Tablet * 0.7);
+    @HintFontSize_Mobile:       (@TamanhoPadraoTexto_Mobile * 0.7);
+    @HintCorFonte:              @CorFontePadrao;
+    @HintOpacidade:             0.55;
+    @HintMargemSuperior:        2px;
+
+//CLASSES
+    .label {
+        display:        block;
+        width:          100%;
+        font-weight:    @LabelFontWeight;
+        margin-top:     @LabelMargemSuperior;
+        margin-bottom:  @LabelMargemInferior;
+        .color(@LabelCorFonte; @LabelOpacidade);
+
+        @media (min-width: @Res_Desktop) {
+            font-size: @LabelFontSize_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            font-size: @LabelFontSize_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            font-size: @LabelFontSize_Mobile;
+        }
+    }
+
+    .hint {
+        display:        block;
+        margin-top:     @HintMargemSuperior;
+        .color(@HintCorFonte; @HintOpacidade);
+
+        @media (min-width: @Res_Desktop) {
+            font-size: @HintFontSize_Desktop;
+        }
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            font-size: @HintFontSize_Tablet;
+        }
+        @media (max-width: @Res_Tablet) {
+            font-size: @HintFontSize_Mobile;
+        }
+    }

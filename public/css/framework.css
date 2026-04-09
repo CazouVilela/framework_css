@@ -44804,6 +44804,51 @@
     font-size: 7.2px;
   }
 }
+.label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  color: rgba(0, 0, 0, 0.007);
+  fill: rgba(0, 0, 0, 0.007);
+}
+@media (min-width: 992px) {
+  .label {
+    font-size: 12.8px;
+  }
+}
+@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+  .label {
+    font-size: 11.2px;
+  }
+}
+@media (max-width: 768px) {
+  .label {
+    font-size: 9.6px;
+  }
+}
+.hint {
+  display: block;
+  margin-top: 2px;
+  color: rgba(0, 0, 0, 0.0055);
+  fill: rgba(0, 0, 0, 0.0055);
+}
+@media (min-width: 992px) {
+  .hint {
+    font-size: 11.2px;
+  }
+}
+@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+  .hint {
+    font-size: 9.8px;
+  }
+}
+@media (max-width: 768px) {
+  .hint {
+    font-size: 8.4px;
+  }
+}
 .hamburgerCheckbox {
   display: none;
 }
