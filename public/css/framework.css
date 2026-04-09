@@ -138,6 +138,15 @@
     flex-wrap: nowrap;
   }
 }
+.centralizadorVertical {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+  min-height: 100vh;
+}
 .item-1 {
   -webkit-order: 1;
   -ms-flex-order: 1;
@@ -45015,6 +45024,8 @@
 }
 .navbar {
   /*display: flex !important;*/
+  position: relative;
+  z-index: 10000;
 }
 @media (min-width: 992px) {
   .navbar {
@@ -45554,6 +45565,36 @@
 .menuSecundario .subMenuItem.inativo:hover {
   background: repeating-linear-gradient(45deg, #ed3d00, #ed3d00 4px, #d33700 4px, #d33700 8px);
 }
+.logoHomeNavbarContainer {
+  z-index: 10001;
+}
+@media (max-width: 768px) {
+  .logoHomeNavbarContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.logoHomeNavbar {
+  display: block;
+  object-fit: contain;
+  margin: auto;
+}
+@media (min-width: 992px) {
+  .logoHomeNavbar {
+    max-height: 70px;
+  }
+}
+@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+  .logoHomeNavbar {
+    max-height: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .logoHomeNavbar {
+    max-height: 36px;
+  }
+}
 /*
         <div class="containerItemFormComIcone containerbtFacebook">
             <asp:Button class="itemForm bt" runat="server" Text="" />
@@ -45727,23 +45768,22 @@
   background-image: none !important;
 }
 .containerbtGoogle div {
-  /*display:            -webkit-flex;
-                    display:            -ms-flexbox;
-                    display:            flex;*/
-  /*-webkit-align-items:center;
-                    -ms-flex-item-align:center;
-                    align-items:        center;
-                    -webkit-justify-content:center;
-                    justify-content:    center;*/
-  position: absolute;
-  top: 0px;
-  height: 100%;
-  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: center;
   -ms-flex-item-align: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+  gap: 8px;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
 }
 .containerbtGoogle svg path:nth-of-type(1) {
   fill: #FBBC05 !important;
@@ -45757,34 +45797,27 @@
 .containerbtGoogle svg path:nth-of-type(4) {
   fill: #4285F4 !important;
 }
+.containerbtGoogle div svg {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+}
 @media (min-width: 992px) {
-  .containerbtGoogle div {
-    margin-left: 15px;
-  }
-  .containerbtGoogle svg {
-    left: 6px;
-    top: 5.5px;
+  .containerbtGoogle div svg {
     width: 24px;
+    height: 24px;
   }
 }
 @media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
-  .containerbtGoogle div {
-    margin-left: 17px;
-  }
-  .containerbtGoogle svg {
-    left: 5px;
-    top: 4px;
+  .containerbtGoogle div svg {
     width: 24px;
+    height: 24px;
   }
 }
 @media (max-width: 768px) {
-  .containerbtGoogle div {
-    margin-left: 17px;
-  }
-  .containerbtGoogle svg {
-    left: 4px;
-    top: 2.5px;
+  .containerbtGoogle div svg {
     width: 26px;
+    height: 26px;
   }
 }
 @media (min-width: 992px) {

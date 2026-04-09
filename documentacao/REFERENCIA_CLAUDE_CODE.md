@@ -1998,6 +1998,6 @@ time para gerar o CSS com cores do projeto.
 **Ultima validacao contra codigo-fonte**: 2026-04-09
 **Ultima validacao visual contra showcase ao vivo**: 2026-04-08 (22 demos, 3 viewports)
 **Total de screenshots de referencia gerados**: 15 (ver `/home/cazouvilela/projetos/framework_css/print_screens/doc-*.png`)
-**Total de componentes catalogados**: 18 (panel, navbar, itemForm, input, containerItemFormComIcone, tituloForm, tituloForm_subTitulo, bt, passos, balloon, modal, login social, spans responsivos, icones, badge, mensagemInline, loader, semPadding)
+**Total de componentes catalogados**: 21 (panel, navbar, itemForm, input, containerItemFormComIcone, tituloForm, tituloForm_subTitulo, bt, passos, balloon, modal, login social, spans responsivos, icones, badge, mensagemInline, loader, semPadding, centralizadorVertical, logoHomeNavbar/Container)
 **Total de variaveis LESS expostas**: ~380 em 47 categorias
 **Total de classes de grid geradas**: ~1729 `D{n}T{n}M{n}` + ~1729 `desloc-*` + 30 `item-*`

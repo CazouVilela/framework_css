@@ -172,28 +172,27 @@
                         background-image: none !important;
                     }
 
-        //Conteiner GOOGLE TEXTO BOTAO
+        //Conteiner GOOGLE TEXTO + ICONE (flex centralizado como grupo)
                 .containerbtGoogle div {
-                    /*display:            -webkit-flex;
+                    display:            -webkit-flex;
                     display:            -ms-flexbox;
-                    display:            flex;*/
-                    /*-webkit-align-items:center;
-                    -ms-flex-item-align:center;
-                    align-items:        center;
-                    -webkit-justify-content:center;
-                    justify-content:    center;*/
+                    display:            flex;
+                    -webkit-flex-direction:  row;
+                    -ms-flex-direction:      row;
+                    flex-direction:          row;
+                    -webkit-align-items:     center;
+                    -ms-flex-item-align:     center;
+                    align-items:             center;
+                    -webkit-justify-content: center;
+                    justify-content:         center;
+                    gap:                     8px;
                     position:           absolute;
                     top:                0px;
                     height:             100%;
                     width:              100%;
-                    -webkit-align-items: center;
-                    -ms-flex-item-align: center;
-                    align-items:                center;
-                    -webkit-justify-content:    center;
-                    justify-content:            center;
                 }
 
-                //ICONE SVG dentro do conteiner GOOGLE
+                //ICONE SVG dentro do conteiner GOOGLE (cores oficiais)
                         .containerbtGoogle svg path:nth-of-type(1) {
                             fill: #FBBC05 !important;
                         }
@@ -207,41 +206,29 @@
                             fill: #4285F4 !important;
                         }
 
+                //ICONE SVG dentro do div: flow normal (sobrescreve containerItemFormComIcone svg absolute)
+                        .containerbtGoogle div svg {
+                            position:   static !important;
+                            left:       auto !important;
+                            top:        auto !important;
+                        }
 
-                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE DESKTOP
                             @media (min-width: @Res_Desktop) {
-                                .containerbtGoogle div {
-                                    margin-left: ((@tamanhoIcone_Desktop / 2) + (@PaddingLeftInput_Desktop / 2));
-                                }
-
-                                .containerbtGoogle svg {
-                                    left:   @PaddingLeftInput_Desktop;
-                                    top:    (@topIcone_Desktop / 2);
+                                .containerbtGoogle div svg {
                                     width:  @tamanhoIcone_Desktop;
+                                    height: @tamanhoIcone_Desktop;
                                 }
                             }
-                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE TABLET
                             @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
-                                .containerbtGoogle div {
-                                    margin-left: ((@tamanhoIcone_Tablet / 2) + @PaddingLeftInput_Tablet);
-                                }
-
-                                .containerbtGoogle svg {
-                                    left:   @PaddingLeftInput_Tablet;
-                                    top:    (@topIcone_Tablet / 2);
+                                .containerbtGoogle div svg {
                                     width:  @tamanhoIcone_Tablet;
+                                    height: @tamanhoIcone_Tablet;
                                 }
                             }
-                    //ICONE SVG e TEXTO BOTAO dentro do conteiner GOOGLE MOBILE
                             @media (max-width:@Res_Tablet) {
-                                .containerbtGoogle div {
-                                    margin-left: (@tamanhoIcone_Mobile / 2) + @PaddingLeftInput_Mobile;
-                                }
-
-                                .containerbtGoogle svg {
-                                    left:   @PaddingLeftInput_Mobile;
-                                    top:    (@topIcone_Mobile / 2);
+                                .containerbtGoogle div svg {
                                     width:  @tamanhoIcone_Mobile;
+                                    height: @tamanhoIcone_Mobile;
                                 }
                             }
         

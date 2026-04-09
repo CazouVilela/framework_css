@@ -229,6 +229,8 @@
 //NAVBAR
     .navbar {
         /*display: flex !important;*/
+        position:   relative;
+        z-index:    10000;
 
             @media (min-width: @Res_Desktop) {
                 margin-top:     @MargemSuperiorNavbar_Desktop;
@@ -777,5 +779,42 @@
                                         );
                                     }
 
-            
-                                                                    
+
+
+    //LOGO HOME NAVBAR — container + imagem do logo ao lado da navbar
+        .logoHomeNavbarContainer {
+            z-index:    10001;
+        }
+
+            @media (max-width: @Res_Tablet) {
+                .logoHomeNavbarContainer {
+                    position:   absolute;
+                    left:       0;
+                    top:        0;
+                }
+            }
+
+        .logoHomeNavbar {
+            display:        block;
+            object-fit:     contain;
+            margin:         auto;
+        }
+
+            @media (min-width: @Res_Desktop) {
+                .logoHomeNavbar {
+                    max-height: (@AlturaLinhaNavbar_Desktop + @MargemSuperiorNavbar_Desktop + @MargemInferiorNavbar_Desktop);
+                }
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                .logoHomeNavbar {
+                    max-height: (@AlturaLinhaNavbar_Tablet + @MargemSuperiorNavbar_Tablet + @MargemInferiorNavbar_Tablet);
+                }
+            }
+
+            @media (max-width: @Res_Tablet) {
+                .logoHomeNavbar {
+                    max-height: @AlturaLinhaNavbar_Mobile;
+                }
+            }
+

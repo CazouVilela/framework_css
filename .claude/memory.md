@@ -93,7 +93,34 @@ framework_css/
 - Grid programatico via LESS loops: D{n}T{n}M{n} (Desktop/Tablet/Mobile)
 - Breakpoints: Desktop >992px (18 cols original), Tablet 768-992px (12 cols), Mobile <768px (6 cols)
 - Mixins: .padding(), .corVariante(), .color(), .backgroundColor(), .borderColor(), .gradiente(), .sombreamento(), .bordaArredondada(), .margin()
-- Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile
+- Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile, .centralizadorVertical, .logoHomeNavbar, .logoHomeNavbarContainer
+
+### Novas Classes (2026-04-09)
+
+- **`.centralizadorVertical`** (`grid.less`): Modificador de `.linhaDoGrid` para telas de login/landing. Aplica `flex-direction: column; justify-content: center !important; min-height: 100vh`. Uso: `<div class="linhaDoGrid centralizadorVertical">`.
+
+- **`.logoHomeNavbar`** + **`.logoHomeNavbarContainer`** (`Navbar.less`): Logo do sistema ao lado da navbar.
+  - `.logoHomeNavbarContainer`: wrapper do logo. `z-index: 10001` (acima do navbar). No mobile: `position: absolute; left: 0; top: 0` (sobrepoe a barra do hamburger na coluna 1).
+  - `.logoHomeNavbar`: aplicar na `<img>`. `display: block; object-fit: contain; margin: auto` (centralizado). `max-height` responsivo: Desktop = `@AlturaLinhaNavbar_Desktop + margens` (70px), Tablet = idem (60px), Mobile = `@AlturaLinhaNavbar_Mobile` somente (36px, sem margens).
+  - Estrutura HTML:
+    ```html
+    <div class="linhaDoGrid" style="position: relative">
+      <div class="D1T1M1 logoHomeNavbarContainer">
+        <a href="/home"><img class="logoHomeNavbar" alt="Logo" src="/logo.png" /></a>
+      </div>
+      <div class="navbar D17T11M6">...</div>
+    </div>
+    ```
+
+- **`.containerbtGoogle div`** refatorado (`Botoes_LoginSocial.less`): Agora usa `display: flex; justify-content: center; align-items: center; gap: 8px`. SVG deve ficar DENTRO do `<div>` (nao em `<span>` separado). `position: static !important` no SVG para sobrescrever o absoluto do `containerItemFormComIcone`. Novo padrao HTML:
+  ```html
+  <div class="containerItemFormComIcone containerbtGoogle">
+    <input type="button" class="itemForm bt" value="" />
+    <div><svg>...</svg> Google</div>
+  </div>
+  ```
+
+- **`.navbar`** atualizado (`Navbar.less`): Adicionado `position: relative; z-index: 10000` em todos os viewports. Garante que dropdowns/submenus fiquem acima de todo o conteudo da pagina.
 
 ### Regras Criticas de Uso do Grid (OBRIGATORIO em TODO projeto que usar o framework)
 

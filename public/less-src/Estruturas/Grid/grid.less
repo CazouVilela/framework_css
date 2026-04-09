@@ -154,6 +154,18 @@
                     }
                 }
 
+    //CENTRALIZADOR VERTICAL (tela cheia centralizada)
+        .centralizadorVertical {
+            -webkit-flex-direction: column;
+            -ms-flex-direction:     column;
+            flex-direction:         column;
+            -webkit-justify-content: center !important;
+            -ms-flex-pack:           center !important;
+            justify-content:         center !important;
+            min-height:              100vh;
+        }
+
+
     //ORDENADOR DO ITEM DENTRO DA GRID
             //Função para criação das classes ordenadoras
                 .ordenadores(@n, @i: 1) when (@i =< @n){
