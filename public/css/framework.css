@@ -44345,6 +44345,9 @@
   text-align: right !important;
   justify-content: flex-end !important;
 }
+.semMargem {
+  margin: 0 !important;
+}
 /*<div class="containerItemFormComIcone">
     <asp:TextBox ID="passwordTXT" CssClass="itemForm input " placeholder="Senha" TextMode="Password" runat="server" autocomplete="off"></asp:TextBox>
     <!--#include virtual="~/App_Themes/icones/lock.svg"-->
