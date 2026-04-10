@@ -93,7 +93,7 @@ framework_css/
 - Grid programatico via LESS loops: D{n}T{n}M{n} (Desktop/Tablet/Mobile)
 - Breakpoints: Desktop >992px (18 cols original), Tablet 768-992px (12 cols), Mobile <768px (6 cols)
 - Mixins: .padding(), .corVariante(), .color(), .backgroundColor(), .borderColor(), .gradiente(), .sombreamento(), .bordaArredondada(), .margin()
-- Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile, .centralizadorVertical, .logoHomeNavbar, .logoHomeNavbarContainer
+- Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile, .centralizadorVertical, .logoHomeNavbar, .logoHomeNavbarContainer, .sectionTitle, .cardButton
 
 ### Novas Classes (2026-04-09)
 
@@ -121,6 +121,23 @@ framework_css/
   ```
 
 - **`.navbar`** atualizado (`Navbar.less`): Adicionado `position: relative; z-index: 10000` em todos os viewports. Garante que dropdowns/submenus fiquem acima de todo o conteudo da pagina.
+
+- **`.sectionTitle`** (`titulos.less`): Titulo de secao com linha inferior na cor primaria, alinhado a esquerda. Variaveis: `@TamanhoTextoSectionTitle_Desktop/Tablet/Mobile` (18/16/14px), `@linhaSectionTitle_*` (3/2/1px), `@MargemSuperiorSectionTitle_*` (20/16/12px), `@MargemInferiorSectionTitle_*` (idem). Uso: `<div class="sectionTitle D18T12M6">Titulo</div>`.
+
+- **`.cardButton`** (`cardButton.less`): Cartao clicavel com icone+texto+subtexto. `display: flex !important; flex-direction: column; justify-content: center; height: 3 × @AlturaLinhaPadrao`. Hover: `fade(@CorPrimaria, 10%)`. Estrutura HTML:
+  ```html
+  <div class="panel DnTnMn cardButton" role="button">
+    <div class="cardButton-main">
+      <div class="cardButton-icone">icone</div>
+      <div class="cardButton-texto">Titulo</div>
+    </div>
+    <div class="cardButton-subtexto">Descricao opcional</div>
+  </div>
+  ```
+  - `.cardButton-main`: flex row, gap 8px (icone e texto na mesma linha)
+  - `.cardButton-icone`: font-size = `@TamanhoTextoNavbar * 1.4`
+  - `.cardButton-texto`: font-size/weight = navbar
+  - `.cardButton-subtexto`: cor primaria, tamanho padrao. Sem subtexto, main centraliza sozinho.
 
 ### Regras Criticas de Uso do Grid (OBRIGATORIO em TODO projeto que usar o framework)
 

@@ -1,0 +1,118 @@
+//CARD BUTTON — cartao clicavel com icone, texto e subtexto opcional
+//
+//  Estrutura HTML:
+//      <div class="panel DnTnMn cardButton" role="button">
+//          <div class="cardButton-main">
+//              <div class="cardButton-icone">icone</div>
+//              <div class="cardButton-texto">Titulo</div>
+//          </div>
+//          <div class="cardButton-subtexto">Descricao opcional</div>
+//      </div>
+//
+//  Altura total: 3 x @AlturaLinhaPadrao por breakpoint
+//  Icone + texto: mesma linha, centralizados (ou no card inteiro sem subtexto)
+//  Subtexto: ancorado na parte inferior, tamanho padrao, cor primaria
+//  Hover: cursor pointer, fundo com fade da cor primaria
+
+    .cardButton {
+        display:                 flex !important;
+        -webkit-flex-direction:  column !important;
+        -ms-flex-direction:      column !important;
+        flex-direction:          column !important;
+        -webkit-align-items:     center;
+        -ms-flex-item-align:     center;
+        align-items:             center;
+        -webkit-justify-content: center !important;
+        justify-content:         center !important;
+        text-align:              center;
+        cursor:                  pointer;
+        background-color:        @Branco;
+        -webkit-transition:      background-color 0.2s ease;
+        transition:              background-color 0.2s ease;
+
+            @media (min-width: @Res_Desktop) {
+                min-height: (@AlturaLinhaPadrao_Desktop * 4);
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                min-height: (@AlturaLinhaPadrao_Tablet * 3.5);
+            }
+
+            @media (max-width:@Res_Tablet) {
+                min-height: (@AlturaLinhaPadrao_Mobile * 3);
+            }
+    }
+
+    .cardButton:hover {
+        background-color: fade(@CorPrimaria, 10%) !important;
+    }
+
+    //LINHA ICONE + TEXTO (mesma linha, centralizada)
+    .cardButton-main {
+        display:                 flex;
+        -webkit-flex-direction:  row;
+        -ms-flex-direction:      row;
+        flex-direction:          row;
+        -webkit-align-items:     center;
+        -ms-flex-item-align:     center;
+        align-items:             center;
+        -webkit-justify-content: center;
+        justify-content:         center;
+        gap:                     12px;
+    }
+
+    //ICONE
+        .cardButton-icone {
+            display:    block;
+            line-height: 1;
+
+                @media (min-width: @Res_Desktop) {
+                    font-size: (@TamanhoTextoNavbar_Desktop * 3.5);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    font-size: (@TamanhoTextoNavbar_Tablet * 2.5);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    font-size: (@TamanhoTextoNavbar_Mobile * 2.0);
+                }
+        }
+
+    //TEXTO
+        .cardButton-texto {
+            display:        block;
+            font-family:    @FontFamilyNavbar;
+            font-weight:    @FontWeightNavbar;
+
+                @media (min-width: @Res_Desktop) {
+                    font-size: (@TamanhoTextoNavbar_Desktop * 1.6);
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    font-size: (@TamanhoTextoNavbar_Tablet * 1.3);
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    font-size: (@TamanhoTextoNavbar_Mobile * 1.1);
+                }
+        }
+
+    //SUBTEXTO
+        .cardButton-subtexto {
+            display:        block;
+            color:          fade(@Preto, 45%);
+            font-weight:    normal;
+
+                @media (min-width: @Res_Desktop) {
+                    font-size:      @TamanhoPadraoTexto_Desktop;
+                }
+
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                    font-size:      @TamanhoPadraoTexto_Tablet;
+                }
+
+                @media (max-width:@Res_Tablet) {
+                    font-size:      @TamanhoPadraoTexto_Mobile;
+                }
+        }

@@ -1,4 +1,46 @@
-﻿//LINHA TITULO PARA FORMULARIOS
+﻿//SECTION TITLE — titulo de secao com linha inferior
+    .sectionTitle {
+        display:            block;
+        font-family:        @FontFamilyNavbar;
+        font-weight:        700;
+        color:              @CorFonteSectionTitle;
+        text-align:         left;
+        width:              100%;
+        border-width:       0px !important;
+        border-bottom-style: solid;
+        border-bottom-color: @CorLinhaSectionTitle;
+        padding-bottom:     4px;
+
+            @media (min-width: @Res_Desktop) {
+                font-size:              @TamanhoTextoSectionTitle_Desktop;
+                border-bottom-width:    @linhaSectionTitle_Desktop !important;
+                margin-top:             @MargemSuperiorSectionTitle_Desktop;
+                margin-bottom:          @MargemInferiorSectionTitle_Desktop;
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                font-size:              @TamanhoTextoSectionTitle_Tablet;
+                border-bottom-width:    @linhaSectionTitle_Tablet !important;
+                margin-top:             @MargemSuperiorSectionTitle_Tablet;
+                margin-bottom:          @MargemInferiorSectionTitle_Tablet;
+            }
+
+            @media (max-width:@Res_Tablet) {
+                font-size:              @TamanhoTextoSectionTitle_Mobile;
+                border-bottom-width:    @linhaSectionTitle_Mobile !important;
+                margin-top:             @MargemSuperiorSectionTitle_Mobile;
+                margin-bottom:          @MargemInferiorSectionTitle_Mobile;
+            }
+    }
+
+    //SECTION TITLE — variante com cor secundaria
+    .sectionTitle.secundaria {
+        color:                  @CorSecundaria;
+        border-bottom-color:    @CorSecundaria;
+        background-color:       transparent;
+    }
+
+//LINHA TITULO PARA FORMULARIOS
     .tituloForm {
         color:              @CorFonteNavbar;
         font-family:        @FontFamilyNavbar;
