@@ -1,0 +1,59 @@
+//TABLE — estilo para linhas de tabela dentro de containerEmColuna
+//
+//  Estrutura HTML:
+//      <div class="linhaDoGrid">
+//          <div class="D18T12M6 tituloForm arredondadaSuperior">
+//              <div class="D2T1M0">Coluna 1</div>
+//              <div class="D4T3M3">Coluna 2</div>
+//              ...
+//          </div>
+//      </div>
+//      <div class="linhaDoGrid">
+//          <div class="panel D18T12M6 containerEmColuna arredondadaInferior tableGrid">
+//              <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
+//                  <div class="D2T1M0">dado 1</div>
+//                  <div class="D4T3M3">dado 2</div>
+//                  ...
+//              </div>
+//          </div>
+//      </div>
+//
+//  A classe .epica-table aplica:
+//    - Linhas separadoras entre rows (border-bottom)
+//    - Conteudo centralizado verticalmente em cada celula
+//    - Hover na linha
+
+    .tableGrid {
+
+        // Cada containerEmLinha dentro da table e uma row
+        > .containerEmLinha {
+            -webkit-align-items:    center;
+            -ms-flex-item-align:    center;
+            align-items:            center;
+
+            @media (min-width: @Res_Desktop) {
+                min-height:     @AlturaLinhaPadrao_Desktop;
+                border-bottom:  1px solid fade(@Preto, 8%);
+            }
+
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                min-height:     @AlturaLinhaPadrao_Tablet;
+                border-bottom:  1px solid fade(@Preto, 8%);
+            }
+
+            @media (max-width:@Res_Tablet) {
+                min-height:     @AlturaLinhaPadrao_Mobile;
+                border-bottom:  1px solid fade(@Preto, 8%);
+            }
+        }
+
+        // Ultima row sem borda inferior
+        > .containerEmLinha:last-child {
+            border-bottom: none;
+        }
+
+        // Hover na row
+        > .containerEmLinha:hover {
+            background-color: fade(@CorPrimaria, 4%);
+        }
+    }
