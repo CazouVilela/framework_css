@@ -1,32 +1,31 @@
-//TABLE — estilo para linhas de tabela dentro de containerEmColuna
+//TABLE — estilo para linhas de tabela
 //
 //  Estrutura HTML:
 //      <div class="linhaDoGrid">
 //          <div class="D18T12M6 tituloForm arredondadaSuperior">
 //              <div class="D2T1M0">Coluna 1</div>
 //              <div class="D4T3M3">Coluna 2</div>
-//              ...
 //          </div>
 //      </div>
 //      <div class="linhaDoGrid">
-//          <div class="panel D18T12M6 containerEmColuna arredondadaInferior tableGrid">
-//              <div class="containerEmLinha D-nowrap T-nowrap M-nowrap">
+//          <div class="panel D18T12M6 arredondadaInferior tableGrid">
+//              <div class="D-nowrap T-nowrap M-nowrap">
 //                  <div class="D2T1M0">dado 1</div>
 //                  <div class="D4T3M3">dado 2</div>
-//                  ...
 //              </div>
 //          </div>
 //      </div>
 //
-//  A classe .epica-table aplica:
-//    - Linhas separadoras entre rows (border-bottom)
-//    - Conteudo centralizado verticalmente em cada celula
+//  .tableGrid aplica em cada div filha direta (row):
+//    - Alinhamento vertical centralizado
+//    - Linhas separadoras (border-bottom)
+//    - Min-height por viewport
 //    - Hover na linha
 
     .tableGrid {
 
-        // Cada containerEmLinha dentro da table e uma row
-        > .containerEmLinha {
+        // Cada div filha direta e uma row
+        > div {
             -webkit-align-items:    center;
             -ms-flex-item-align:    center;
             align-items:            center;
@@ -36,7 +35,7 @@
                 border-bottom:  1px solid fade(@Preto, 8%);
             }
 
-            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+            @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
                 min-height:     @AlturaLinhaPadrao_Tablet;
                 border-bottom:  1px solid fade(@Preto, 8%);
             }
@@ -48,12 +47,12 @@
         }
 
         // Ultima row sem borda inferior
-        > .containerEmLinha:last-child {
+        > div:last-child {
             border-bottom: none;
         }
 
         // Hover na row
-        > .containerEmLinha:hover {
+        > div:hover {
             background-color: fade(@CorPrimaria, 4%);
         }
     }

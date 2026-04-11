@@ -45,26 +45,33 @@ framework_css/
 │   │   ├── normalize.css
 │   │   └── paleta.css
 │   ├── js/
-│   │   └── messageBalloons.js  # JS dos balloons (trigger/toggle)
+│   │   ├── messageBalloons.js  # Interacao touch/click dos balloons (pointerdown + event delegation)
+│   │   └── frameworkOverrides.js # So para o showcase/editor; NAO incluir em projetos
 │   ├── icones/                 # ~80 SVGs
 │   ├── images/                 # baloon.svg, bicoBallon.svg, loader.gif
 │   └── less-src/               # Fontes LESS completas
 │       ├── framework.less      # Entry point (importa tudo)
 │       ├── Variaveis/
-│       │   ├── Variaveis.less  # TODAS as variaveis
+│       │   ├── Variaveis.less  # TODAS as 405 variaveis LESS
 │       │   ├── breakpoints.less
-│       │   └── Mixing.less     # Mixins reutilizaveis
+│       │   ├── Mixing.less     # Mixins reutilizaveis
+│       │   └── CustomProperties.less # GERADO automaticamente pelo script - NAO editar
 │       ├── Estruturas/
 │       │   ├── Grid/grid.less  # Sistema de grid D{n}T{n}M{n}
-│       │   └── Elementos/      # Componentes (panels, forms, navbar, etc)
+│       │   └── Elementos/      # Componentes (panels, forms, navbar, messageBalloon, paleta, etc)
 │       └── Especificos/
 ├── arquivos_auxiliares/
 │   └── FrameworkPadrao/        # Fonte original (ZIP extraido)
 ├── documentacao/
-│   ├── FRAMEWORK_COMPLETO.md   # Documentacao detalhada
-│   ├── VARIAVEIS_REFERENCIA.md # Referencia de variaveis
-│   └── GUIA_IMPLANTACAO.md     # Guia de uso em outros projetos
+│   ├── REFERENCIA_CLAUDE_CODE.md # CANONICO — leitura obrigatoria para Claude Code
+│   ├── FRAMEWORK_COMPLETO.md   # Documentacao detalhada (legado)
+│   ├── VARIAVEIS_REFERENCIA.md # Referencia de variaveis (legado)
+│   ├── GUIA_IMPLANTACAO.md     # Guia de uso em outros projetos (legado)
+│   └── README.md               # Indice e ordem de precedencia
 ├── scripts/
+│   ├── generate-custom-properties.js # Gera CustomProperties.less a partir de Variaveis.less
+│   ├── backup-prod-db.sh
+│   └── load-env.sh
 ├── backups/
 └── package.json
 ```
@@ -94,6 +101,50 @@ framework_css/
 - Breakpoints: Desktop >992px (18 cols original), Tablet 768-992px (12 cols), Mobile <768px (6 cols)
 - Mixins: .padding(), .corVariante(), .color(), .backgroundColor(), .borderColor(), .gradiente(), .sombreamento(), .bordaArredondada(), .margin()
 - Componentes: .panel, .navbar, .menuItem, .subMenu, .hamburger, .itemForm, .input, .bt, .tituloForm, .passos, .balloonTrigger, .balloonType-Help/Atencao/Erro, .modalBackground/Box, .containerbtFacebook/Google, .spanDesktop/Tablet/Mobile, .centralizadorVertical, .logoHomeNavbar, .logoHomeNavbarContainer, .sectionTitle, .cardButton
+
+### Mudancas 2026-04-11
+
+- **CSS Custom Properties (`var(--*)`) geradas automaticamente** (`scripts/generate-custom-properties.js` + `public/less-src/Variaveis/CustomProperties.less`):
+  - Novo script `scripts/generate-custom-properties.js` le todas as 405 variaveis `@Nome` de `Variaveis.less` e gera `public/less-src/Variaveis/CustomProperties.less`.
+  - Para cada variavel: expoe `:root { --Nome: @Nome; }` (valor canonico fixo).
+  - Para cada trio `_Desktop/_Tablet/_Mobile` (89 bases responsivas): gera tambem `--NomeBase` "ativa" via `@media`, mudando automaticamente por breakpoint.
+  - O arquivo gerado e importado em `framework.less` logo apos `Mixing.less`.
+  - NAO editar `CustomProperties.less` a mao — regenerar via `node scripts/generate-custom-properties.js` apos qualquer mudanca em `Variaveis.less`.
+  - Permite que projetos consumidores usem `var(--EntreColuna)` em CSS puro, sem precisar de LESS, com resposta automatica ao breakpoint.
+
+- **Mixin `.corPaleta()` em `paleta.less`** (`public/less-src/Estruturas/Elementos/basicos/paleta.less:23-35`):
+  - Substitui a aplicacao direta de `.backgroundColor()` nas 56 classes de paleta (`.primaria`, `.secundaria`, `.terciaria`, `.corAtencao`, `.corNegacao`, `.corPositivacao`, `.paleta-1-1` a `.paleta-5-10`).
+  - Alem do `background-color` no elemento, aplica `border-color` no pseudo-elemento `:after`.
+  - Proposito: colorir automaticamente o PREENCHIMENTO do triangulo de balloons ao aplicar classe de paleta, sem tocar no `:before` (contorno), que mantem a cor original do `.balloonType-*`.
+  - E seguro aplicar em qualquer elemento — sem pseudo-elementos o `:after` simplesmente nao produz efeito.
+
+- **Containers de balloon** (`public/less-src/Estruturas/Elementos/basicos/messageBalloon.less:42-59`):
+  - Novas classes: `.containerComBalloon` (inline-flex, encolhe ao conteudo) e `.containerItemFormComBalloon` (flex, width 100%).
+  - Ambas tem `position: relative` (positioning context para balloons `position: absolute`).
+  - Separacao de responsabilidades com `.containerItemFormComIcone` (classe antiga, para ICONE dentro do input, nao para balloons). As 3 classes sao complementares e podem ser combinadas.
+  - Regra:
+    - Botao/icone/link (tamanho variavel) -> `.containerComBalloon`
+    - Input/itemForm que ocupa coluna inteira -> `.containerItemFormComBalloon`
+    - Input com icone DENTRO e balloon -> `.containerItemFormComBalloon containerItemFormComIcone` (combinadas)
+
+- **messageBalloon.less — fixes e refatoracoes**:
+  - `line-height` responsivo adicionado em cada @media dos 3 tipos (`.balloonType-Help/Atencao/Erro`) usando `@AlturaLinhaPadrao_*`.
+  - Bug `, or (hover: none)` em media queries (sintaxe invalida em CSS, descartada por Chrome/Safari) corrigido via sed global em 21 arquivos. Substituido por `, (hover: none)` (virgula sozinha ja e OR logico).
+  - Mixin `.balloonAtivoTransforms()` extraido (linha 1707) com as transformacoes de balloon visivel, reutilizado em `:focus`, `.balloonStatus-Ativo` e `:hover`.
+  - `:hover` movido para `@media (min-width: @Res_Desktop) and (hover: hover)` — so aplica em devices com mouse real. Tablets touch em landscape nao disparam mais balloons "sticky" via hover.
+  - `pointer-events: none` aplicado por default no mixin `.balloon` (linha 77). Balloons fechados nao interceptam mais taps acidentais em touch devices.
+  - `.balloonStatus-Ativo { pointer-events: auto !important }` restaura a interatividade quando visivel. `!important` obrigatorio por causa da cascata dos `.balloonPosition-*` que re-aplicam `.balloon`.
+
+- **messageBalloons.js — REESCRITA COMPLETA** (`public/js/messageBalloons.js`, 181 linhas):
+  - Event delegation a partir do `document` (antes: listener em cada `.balloonTrigger` no load). Funciona com DOM dinamico (React/Vue/etc) sem reescaneamento.
+  - Pointer Events API (`pointerdown`) em vez de `click`. Unificado para mouse/touch/pen, sem atraso de 300ms do click sintetico em touch.
+  - Fallback `touchstart` + `mousedown` para browsers antigos sem `PointerEvent`.
+  - Dedup de eventos sinteticos: janela de 250ms por target evita cascata touch -> mouse -> click abrir+fechar no mesmo tap.
+  - ESC fecha todos os balloons (handler de keydown).
+  - Click fora do trigger fecha todos via `closeAll()`.
+  - Apenas um balloon aberto por vez (`closeAll(trigger)` antes de abrir outro).
+  - API global `window.MessageBalloons.toggle(trigger)` + `.closeAll()`.
+  - Flag `window.__messageBalloonsInstalled` previne instalacao dupla.
 
 ### Novas Classes (2026-04-09)
 
@@ -200,6 +251,10 @@ Documentacao completa:
 - **Bug seletor com espaco antes de pseudo-elemento (RESOLVIDO 2026-04-08)**: `.balloonType-Atencao :before` (com espaco) era interpretado como combinador descendente, mirando `*::before` em filhos. **Sintoma**: balloon Atencao e Erro sem triangulo (Help funcionava porque usava `&:before` no LESS). **Fix**: removidos espacos em `messageBalloon.less:1550, 1554, 1591, 1595` (`.balloonType-Atencao:before`, `.balloonType-Erro:before`, etc.).
 - **Bug `text-align` no `.menuItem` (RESOLVIDO 2026-04-08)**: `normalize.less` aplica `div { display: flex; justify-content: flex-start; align-items: flex-start; }` globalmente. Isso transforma `.menuItem` em flex container, e `text-align` deixa de afetar o alinhamento do conteudo (texto direto ou `<a>`), ignorando `@AlinhamentoTextoMenuItem_*`. **Fix**: adicionado `display: block` em `.menuItem` (`Navbar.less:303`) para sobrescrever o normalize global. SubMenu funciona porque o `<a>` interno tem `display: block !important; width: 100%` e herda `text-align`.
 - **Override do showcase (`frameworkCssOverrides`)**: O `public/js/frameworkOverrides.js` armazena CSS compilado no `localStorage` e injeta em uma `<style id="custom-framework-css">` ao carregar `index.html`/`editor.html`. Isso significa que mudancas no `framework.css` estatico podem nao aparecer enquanto houver override antigo no navegador do usuario. Solucao: clicar em "Limpar" no showcase ou clicar em "Compilar LESS" no editor (regenera com o LESS atual).
+- **Bug `, or (hover: none)` em media queries (RESOLVIDO 2026-04-11)**: Media queries CSS NAO aceitam `or` como operador — o operador OR e a virgula. Algumas regras do framework tinham sintaxe `, or (hover: none)` que Chrome/Safari descartavam silenciosamente. Fix: sed global em 21 arquivos substituindo `, or (hover: none)` por `, (hover: none)`. O unico lugar que ainda tem e o backup `messageBalloon - Cópia .less` que nao e importado.
+- **Bug balloons fechados interceptando taps em touch (RESOLVIDO 2026-04-11)**: Balloons com `transform: scaleY(0.001)` continuam ocupando largura no DOM e sua area pode ser arredondada pelo hit-test do dedo, abrindo-os por acidente. Fix: `.balloon { pointer-events: none }` por default + `.balloonStatus-Ativo { pointer-events: auto !important }`. O `!important` e necessario porque cada `.balloonPosition-*` re-aplica o mixin com mesma specificity.
+- **Bug `:hover` sticky em tablets landscape (RESOLVIDO 2026-04-11)**: Tablets em landscape (>=992px) com touch mantinham `:hover` "grudado" apos tap, abrindo balloons inesperadamente. Fix: `:hover` em balloons movido para `@media (min-width: @Res_Desktop) and (hover: hover)` — so aplica em devices com mouse real.
+- **Regeneracao de CustomProperties.less**: Apos qualquer edicao em `Variaveis.less` (adicionar/renomear/remover variavel), rodar `node scripts/generate-custom-properties.js` para atualizar `CustomProperties.less`. Depois recompilar `framework.css`: `node_modules/.bin/lessc --math=always public/less-src/framework.less public/css/framework.css`.
 
 ## Showcase (`public/index.html`)
 
@@ -245,6 +300,6 @@ Secao de balloons (`#balloons`) tem estrutura padronizada para que o triangulo a
 
 ---
 
-**Ultima Atualizacao**: 2026-04-08
+**Ultima Atualizacao**: 2026-04-11
 **Versao**: 1.0.0
 **Status**: Em producao

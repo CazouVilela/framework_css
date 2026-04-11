@@ -1,4 +1,4 @@
-﻿
+
 
 @CorTestada: @CorPrimaria;
 
@@ -12,66 +12,89 @@
 */
 
 
-.primaria       {.backgroundColor(@CorPrimaria);}
-.secundaria     {.backgroundColor(@CorSecundaria);}
-.terciaria      {.backgroundColor(@CorTercearia);}
-.corAtencao     {.backgroundColor(@CorAtencao);}
-.corNegacao     {.backgroundColor(@CorNegacao);}
-.corPositivacao {.backgroundColor(@CorPositivacao);}
+// Mixin que aplica a cor como background-color no elemento e como
+// border-color no pseudo-elemento :after. Isto garante que elementos
+// com "setinha" via borders transparentes (ex: balloons do messageBalloon)
+// tenham o PREENCHIMENTO do triangulo colorido conforme a paleta, sem
+// tocar no :before (que define o CONTORNO da setinha e deve permanecer
+// com a cor original da borda do componente).
+// A regra e segura: em elementos sem pseudo-elementos o border-color
+// simplesmente nao produz efeito visual.
+.corPaleta(
+        @Cor;
+        @PercentualFade:            @PercentualFade_Padrao;
+        @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+        @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+        @PercentualClarificacao:    @PercentualClarificacao_Padrao;
+        @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+    ) {
+        .backgroundColor(@Cor; @PercentualFade; @PercentualSaturacao; @PercentualDesaturacao; @PercentualClarificacao; @PercentualObscurecencia;);
+        &:after {
+            .borderColor(@Cor; @PercentualFade; @PercentualSaturacao; @PercentualDesaturacao; @PercentualClarificacao; @PercentualObscurecencia;);
+        }
+    }
 
 
-.paleta-1-1     {.backgroundColor(@CorTestada; 100%; 0%; 0%; 0%; 0%;);}
-.paleta-1-2     {.backgroundColor(@CorTestada; 90%;  0%; 0%; 0%; 0%;);}
-.paleta-1-3     {.backgroundColor(@CorTestada; 80%;  0%; 0%; 0%; 0%;);}
-.paleta-1-4     {.backgroundColor(@CorTestada; 70%;  0%; 0%; 0%; 0%;);}
-.paleta-1-5     {.backgroundColor(@CorTestada; 60%;  0%; 0%; 0%; 0%;);}
-.paleta-1-6     {.backgroundColor(@CorTestada; 50%;  0%; 0%; 0%; 0%;);}
-.paleta-1-7     {.backgroundColor(@CorTestada; 40%;  0%; 0%; 0%; 0%;);}
-.paleta-1-8     {.backgroundColor(@CorTestada; 30%;  0%; 0%; 0%; 0%;);}
-.paleta-1-9     {.backgroundColor(@CorTestada; 20%;  0%; 0%; 0%; 0%;);}
-.paleta-1-10    {.backgroundColor(@CorTestada; 10%;  0%; 0%; 0%; 0%;);}
+.primaria       { .corPaleta(@CorPrimaria); }
+.secundaria     { .corPaleta(@CorSecundaria); }
+.terciaria      { .corPaleta(@CorTercearia); }
+.corAtencao     { .corPaleta(@CorAtencao); }
+.corNegacao     { .corPaleta(@CorNegacao); }
+.corPositivacao { .corPaleta(@CorPositivacao); }
 
 
-.paleta-2-1     {.backgroundColor(@CorTestada; 100%;  10%; 0%; 0%; 0%;);}
-.paleta-2-2     {.backgroundColor(@CorTestada; 100%;  20%; 0%; 0%; 0%;);}
-.paleta-2-3     {.backgroundColor(@CorTestada; 100%;  30%; 0%; 0%; 0%;);}
-.paleta-2-4     {.backgroundColor(@CorTestada; 100%;  40%; 0%; 0%; 0%;);}
-.paleta-2-5     {.backgroundColor(@CorTestada; 100%;  50%; 0%; 0%; 0%;);}
-.paleta-2-6     {.backgroundColor(@CorTestada; 100%;  60%; 0%; 0%; 0%;);}
-.paleta-2-7     {.backgroundColor(@CorTestada; 100%;  70%; 0%; 0%; 0%;);}
-.paleta-2-8     {.backgroundColor(@CorTestada; 100%;  80%; 0%; 0%; 0%;);}
-.paleta-2-9     {.backgroundColor(@CorTestada; 100%;  90%; 0%; 0%; 0%;);}
-.paleta-2-10    {.backgroundColor(@CorTestada; 100%;  100%; 0%; 0%; 0%;);}
+.paleta-1-1     { .corPaleta(@CorTestada; 100%; 0%; 0%; 0%; 0%;); }
+.paleta-1-2     { .corPaleta(@CorTestada; 90%;  0%; 0%; 0%; 0%;); }
+.paleta-1-3     { .corPaleta(@CorTestada; 80%;  0%; 0%; 0%; 0%;); }
+.paleta-1-4     { .corPaleta(@CorTestada; 70%;  0%; 0%; 0%; 0%;); }
+.paleta-1-5     { .corPaleta(@CorTestada; 60%;  0%; 0%; 0%; 0%;); }
+.paleta-1-6     { .corPaleta(@CorTestada; 50%;  0%; 0%; 0%; 0%;); }
+.paleta-1-7     { .corPaleta(@CorTestada; 40%;  0%; 0%; 0%; 0%;); }
+.paleta-1-8     { .corPaleta(@CorTestada; 30%;  0%; 0%; 0%; 0%;); }
+.paleta-1-9     { .corPaleta(@CorTestada; 20%;  0%; 0%; 0%; 0%;); }
+.paleta-1-10    { .corPaleta(@CorTestada; 10%;  0%; 0%; 0%; 0%;); }
 
-.paleta-3-1     {.backgroundColor(@CorTestada; 100%;  0%; 10%; 0%; 0%;);}
-.paleta-3-2     {.backgroundColor(@CorTestada; 100%;  0%; 20%; 0%; 0%;);}
-.paleta-3-3     {.backgroundColor(@CorTestada; 100%;  0%; 30%; 0%; 0%;);}
-.paleta-3-4     {.backgroundColor(@CorTestada; 100%;  0%; 40%; 0%; 0%;);}
-.paleta-3-5     {.backgroundColor(@CorTestada; 100%;  0%; 50%; 0%; 0%;);}
-.paleta-3-6     {.backgroundColor(@CorTestada; 100%;  0%; 60%; 0%; 0%;);}
-.paleta-3-7     {.backgroundColor(@CorTestada; 100%;  0%; 70%; 0%; 0%;);}
-.paleta-3-8     {.backgroundColor(@CorTestada; 100%;  0%; 80%; 0%; 0%;);}
-.paleta-3-9     {.backgroundColor(@CorTestada; 100%;  0%; 90%; 0%; 0%;);}
-.paleta-3-10    {.backgroundColor(@CorTestada; 100%;  0%; 100%; 0%; 0%;);}
 
-.paleta-4-1     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 10%; 0%;);}
-.paleta-4-2     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 20%; 0%;);}
-.paleta-4-3     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 30%; 0%;);}
-.paleta-4-4     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 40%; 0%;);}
-.paleta-4-5     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 50%; 0%;);}
-.paleta-4-6     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 60%; 0%;);}
-.paleta-4-7     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 70%; 0%;);}
-.paleta-4-8     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 80%; 0%;);}
-.paleta-4-9     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 90%; 0%;);}
-.paleta-4-10    {.backgroundColor(@CorTestada; 100%;  0%; 0%; 100%; 0%;);}
+.paleta-2-1     { .corPaleta(@CorTestada; 100%;  10%; 0%; 0%; 0%;); }
+.paleta-2-2     { .corPaleta(@CorTestada; 100%;  20%; 0%; 0%; 0%;); }
+.paleta-2-3     { .corPaleta(@CorTestada; 100%;  30%; 0%; 0%; 0%;); }
+.paleta-2-4     { .corPaleta(@CorTestada; 100%;  40%; 0%; 0%; 0%;); }
+.paleta-2-5     { .corPaleta(@CorTestada; 100%;  50%; 0%; 0%; 0%;); }
+.paleta-2-6     { .corPaleta(@CorTestada; 100%;  60%; 0%; 0%; 0%;); }
+.paleta-2-7     { .corPaleta(@CorTestada; 100%;  70%; 0%; 0%; 0%;); }
+.paleta-2-8     { .corPaleta(@CorTestada; 100%;  80%; 0%; 0%; 0%;); }
+.paleta-2-9     { .corPaleta(@CorTestada; 100%;  90%; 0%; 0%; 0%;); }
+.paleta-2-10    { .corPaleta(@CorTestada; 100%;  100%; 0%; 0%; 0%;); }
 
-.paleta-5-1     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 10%;);}
-.paleta-5-2     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 20%;);}
-.paleta-5-3     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 30%;);}
-.paleta-5-4     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 40%;);}
-.paleta-5-5     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 50%;);}
-.paleta-5-6     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 60%;);}
-.paleta-5-7     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 70%;);}
-.paleta-5-8     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 80%;);}
-.paleta-5-9     {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 90%;);}
-.paleta-5-10    {.backgroundColor(@CorTestada; 100%;  0%; 0%; 0%; 100%;);}
+.paleta-3-1     { .corPaleta(@CorTestada; 100%;  0%; 10%; 0%; 0%;); }
+.paleta-3-2     { .corPaleta(@CorTestada; 100%;  0%; 20%; 0%; 0%;); }
+.paleta-3-3     { .corPaleta(@CorTestada; 100%;  0%; 30%; 0%; 0%;); }
+.paleta-3-4     { .corPaleta(@CorTestada; 100%;  0%; 40%; 0%; 0%;); }
+.paleta-3-5     { .corPaleta(@CorTestada; 100%;  0%; 50%; 0%; 0%;); }
+.paleta-3-6     { .corPaleta(@CorTestada; 100%;  0%; 60%; 0%; 0%;); }
+.paleta-3-7     { .corPaleta(@CorTestada; 100%;  0%; 70%; 0%; 0%;); }
+.paleta-3-8     { .corPaleta(@CorTestada; 100%;  0%; 80%; 0%; 0%;); }
+.paleta-3-9     { .corPaleta(@CorTestada; 100%;  0%; 90%; 0%; 0%;); }
+.paleta-3-10    { .corPaleta(@CorTestada; 100%;  0%; 100%; 0%; 0%;); }
+
+.paleta-4-1     { .corPaleta(@CorTestada; 100%;  0%; 0%; 10%; 0%;); }
+.paleta-4-2     { .corPaleta(@CorTestada; 100%;  0%; 0%; 20%; 0%;); }
+.paleta-4-3     { .corPaleta(@CorTestada; 100%;  0%; 0%; 30%; 0%;); }
+.paleta-4-4     { .corPaleta(@CorTestada; 100%;  0%; 0%; 40%; 0%;); }
+.paleta-4-5     { .corPaleta(@CorTestada; 100%;  0%; 0%; 50%; 0%;); }
+.paleta-4-6     { .corPaleta(@CorTestada; 100%;  0%; 0%; 60%; 0%;); }
+.paleta-4-7     { .corPaleta(@CorTestada; 100%;  0%; 0%; 70%; 0%;); }
+.paleta-4-8     { .corPaleta(@CorTestada; 100%;  0%; 0%; 80%; 0%;); }
+.paleta-4-9     { .corPaleta(@CorTestada; 100%;  0%; 0%; 90%; 0%;); }
+.paleta-4-10    { .corPaleta(@CorTestada; 100%;  0%; 0%; 100%; 0%;); }
+
+.paleta-5-1     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 10%;); }
+.paleta-5-2     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 20%;); }
+.paleta-5-3     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 30%;); }
+.paleta-5-4     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 40%;); }
+.paleta-5-5     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 50%;); }
+.paleta-5-6     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 60%;); }
+.paleta-5-7     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 70%;); }
+.paleta-5-8     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 80%;); }
+.paleta-5-9     { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 90%;); }
+.paleta-5-10    { .corPaleta(@CorTestada; 100%;  0%; 0%; 0%; 100%;); }

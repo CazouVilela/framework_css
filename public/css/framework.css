@@ -1,6 +1,688 @@
 /*@CorPrimaria:               rgb( 51, 178, 204);*/
 /*@CorSecundaria:             rgb( 255,127,80);*/
 /*@CorSecundaria:             rgb( 140, 18, 18);*/
+:root {
+  --SlotsOrdenadores: 30;
+  --PercentualFadeDaBorda_Padrao: 100%;
+  --PercentualSaturacaoDaBorda_Padrao: 0%;
+  --PercentualDesaturacaoDaBorda_Padrao: 0%;
+  --PercentualClarificacaoDaBorda_Padrao: 0%;
+  --PercentualObscurecenciaDaBorda_Padrao: 0%;
+  --EstiloDaBorda_Padrao: solid;
+  --FontFamilyPadrao: Raleway, sans-serif, Arial, Helvetica;
+  --FontWeightPadrao: normal;
+  --Preto: #000000;
+  --Branco: #ffffff;
+  --CorFundo: #f5f5f5;
+  --CorPrimaria: #00bcd4;
+  --CorSecundaria: #872300;
+  --CorTercearia: #cccccc;
+  --CorAtencao: #fb8c00;
+  --CorNegacao: #cc4d33;
+  --CorPositivacao: #33cc9a;
+  --PercentualFade_Padrao: 100%;
+  --PercentualSaturacao_Padrao: 0%;
+  --PercentualDesaturacao_Padrao: 0%;
+  --PercentualClarificacao_Padrao: 0%;
+  --PercentualObscurecencia_Padrao: 0%;
+  --CorGradiente: #333333;
+  --PercentualFadeGradiente_Padrao: 100%;
+  --PercentualSaturacaoGradiente_Padrao: 0%;
+  --PercentualDesaturacaoGradiente_Padrao: 0%;
+  --PercentualClarificacaoGradiente_Padrao: 0%;
+  --PercentualObscurecenciaGradiente_Padrao: 0%;
+  --ProfundidadeCorGradiente_Padrao: 170%;
+  --AnguloPattern_Padrao: 45deg;
+  --Faixa1Pattern_Padrao: 4px;
+  --Faixa2Pattern_Padrao: 4px;
+  --CorFontePadrao: #000000;
+  --CorSombreamento_Padrao: #000000;
+  --PercentualFadeDoSombreamento_Padrao: 50%;
+  --PercentualSaturacaoDoSombreamento_Padrao: 0%;
+  --PercentualDesaturacaoDoSombreamento_Padrao: 0%;
+  --PercentualClarificacaoDoSombreamento_Padrao: 0%;
+  --PercentualObscurecenciaDoSombreamento_Padrao: 0%;
+  --CorDaBorda_Padrao: #000000;
+  --CorFonteSectionTitle: #00bcd4;
+  --CorLinhaSectionTitle: #00bcd4;
+  --FontFamilyNavbar: Raleway, sans-serif, Arial, Helvetica;
+  --FontWeightNavbar: bold;
+  --FontWeightNavbarSub: normal;
+  --CorFonteNavbar: #ffffff;
+  --VelocidadeTransicaoItemMenu: 0.5s;
+  --TipoTransicaoItemMenu: ease;
+  --CorIconeMenuitem: #ffffff;
+  --PaddingTop_Hamburger: 0px;
+  --PaddingRight_Hamburger: 6px;
+  --PaddingBottom_Hamburger: 0px;
+  --PaddingLeft_Hamburger: 6px;
+  --LinesHamburger_Height: 36px;
+  --LinesHamburger_Width: 24px;
+  --LinesHamburger_Espessura: 1.8px;
+  --LinesHamburger_Espassamento: 6px;
+  --PercentualObscurecencia_BotaoHamburger: 20%;
+  --CorBordaMessageballoonHelp: #000000;
+  --FadeCorBordaMessageballoonHelp: 100%;
+  --SaturacaoCorBordaMessageballoonHelp: 0%;
+  --DesaturacaoCorBordaMessageballoonHelp: 0%;
+  --ClarificacaoCorBordaMessageballoonHelp: 30%;
+  --ObscurecenciaCorBordaMessageballoonHelp: 0%;
+  --CorFundoMessageballoonHelp: #cccccc;
+  --FadeCorFundoMessageballoonHelp: 99%;
+  --SaturacaoCorFundoMessageballoonHelp: 0%;
+  --DesaturacaoCorFundoMessageballoonHelp: 0%;
+  --ClarificacaoCorFundoMessageballoonHelp: 0%;
+  --ObscurecenciaCorFundoMessageballoonHelp: 0%;
+  --CorFonteMessageballoonHelp: #000000;
+  --FadeCorFonteMessageballoonHelp: 100%;
+  --SaturacaoCorFonteMessageballoonHelp: 0%;
+  --DesaturacaoCorFonteMessageballoonHelp: 0%;
+  --ClarificacaoCorFonteMessageballoonHelp: 30%;
+  --ObscurecenciaCorFonteMessageballoonHelp: 0%;
+  --FontFamilyMessageballoonHelp: Raleway, sans-serif, Arial, Helvetica;
+  --FontWeightMessageballoonHelp: normal;
+  --CorBordaMessageballoonAtencao: #000000;
+  --FadeCorBordaMessageballoonAtencao: 100%;
+  --SaturacaoCorBordaMessageballoonAtencao: 0%;
+  --DesaturacaoCorBordaMessageballoonAtencao: 0%;
+  --ClarificacaoCorBordaMessageballoonAtencao: 0%;
+  --ObscurecenciaCorBordaMessageballoonAtencao: 0%;
+  --CorFundoMessageballoonAtencao: #fb8c00;
+  --FadeCorFundoMessageballoonAtencao: 99%;
+  --SaturacaoCorFundoMessageballoonAtencao: 0%;
+  --DesaturacaoCorFundoMessageballoonAtencao: 0%;
+  --ClarificacaoCorFundoMessageballoonAtencao: 0%;
+  --ObscurecenciaCorFundoMessageballoonAtencao: 0%;
+  --CorFonteMessageballoonAtencao: #000000;
+  --FadeCorFonteMessageballoonAtencao: 100%;
+  --SaturacaoCorFonteMessageballoonAtencao: 0%;
+  --DesaturacaoCorFonteMessageballoonAtencao: 0%;
+  --ClarificacaoCorFonteMessageballoonAtencao: 0%;
+  --ObscurecenciaCorFonteMessageballoonAtencao: 0%;
+  --FontFamilyMessageballoonAtencao: Raleway, sans-serif, Arial, Helvetica;
+  --FontWeightMessageballoonAtencao: normal;
+  --CorBordaMessageballoonErro: #000000;
+  --FadeCorBordaMessageballoonErro: 100%;
+  --SaturacaoCorBordaMessageballoonErro: 0%;
+  --DesaturacaoCorBordaMessageballoonErro: 0%;
+  --ClarificacaoCorBordaMessageballoonErro: 0%;
+  --ObscurecenciaCorBordaMessageballoonErro: 0%;
+  --CorFundoMessageballoonErro: #cc4d33;
+  --FadeCorFundoMessageballoonErro: 99%;
+  --SaturacaoCorFundoMessageballoonErro: 0%;
+  --DesaturacaoCorFundoMessageballoonErro: 0%;
+  --ClarificacaoCorFundoMessageballoonErro: 0%;
+  --ObscurecenciaCorFundoMessageballoonErro: 0%;
+  --CorFonteMessageballoonErro: #000000;
+  --FadeCorFonteMessageballoonErro: 100%;
+  --SaturacaoCorFonteMessageballoonErro: 0%;
+  --DesaturacaoCorFonteMessageballoonErro: 0%;
+  --ClarificacaoCorFonteMessageballoonErro: 0%;
+  --ObscurecenciaCorFonteMessageballoonErro: 0%;
+  --FontFamilyMessageballoonErro: Raleway, sans-serif, Arial, Helvetica;
+  --FontWeightMessageballoonErro: normal;
+  --FontWeightSubTitulo1: normal;
+  --OpacidadeSubTitulo1: 0.85;
+  --MargemEsquerdaSubTitulo1: 10px;
+  --FontWeightSubTitulo2: 300;
+  --OpacidadeSubTitulo2: 0.75;
+  --MargemEsquerdaSubTitulo2: 8px;
+  --FontWeightSubTitulo3: 300;
+  --OpacidadeSubTitulo3: 0.65;
+  --MargemEsquerdaSubTitulo3: 6px;
+  --BadgeFontWeight: 600;
+  --BadgeCorFundo: #cccccc;
+  --BadgeCorFonte: #000000;
+  --MensagemInlineBorderWidth: 1px;
+  --LoaderEspessura: 3px;
+  --LoaderCor: #00bcd4;
+  --LoaderVelocidade: 0.8s;
+  --LoaderTextoMargemEsquerda: 12px;
+  --Res_Desktop: 992px;
+  --Res_Tablet: 768px;
+  --NumeroDecolunas_Desktop: 18;
+  --NumeroDecolunas_Tablet: 12;
+  --NumeroDecolunas_Mobile: 6;
+  --EntreColuna_Desktop: 12px;
+  --EntreColuna_Tablet: 10px;
+  --EntreColuna_Mobile: 8px;
+  --ScrollBar_Desktop: 20px;
+  --ScrollBar_Tablet: 20px;
+  --ScrollBar_Mobile: 1px;
+  --AlturaLinhaPadrao_Desktop: 46px;
+  --AlturaLinhaPadrao_Tablet: 40px;
+  --AlturaLinhaPadrao_Mobile: 36px;
+  --PaddingTop_Desktop: 4px;
+  --PaddingTop_Tablet: 3px;
+  --PaddingTop_Mobile: 1px;
+  --PaddingRight_Desktop: 6px;
+  --PaddingRight_Tablet: 5px;
+  --PaddingRight_Mobile: 4px;
+  --PaddingBottom_Desktop: 4px;
+  --PaddingBottom_Tablet: 3px;
+  --PaddingBottom_Mobile: 1px;
+  --PaddingLeft_Desktop: 6px;
+  --PaddingLeft_Tablet: 5px;
+  --PaddingLeft_Mobile: 4px;
+  --RaioBordaEsquerdaSuperior_Desktop: 5px;
+  --RaioBordaEsquerdaSuperior_Tablet: 4px;
+  --RaioBordaEsquerdaSuperior_Mobile: 3px;
+  --RaioBordaDireitaSuperior_Desktop: 5px;
+  --RaioBordaDireitaSuperior_Tablet: 4px;
+  --RaioBordaDireitaSuperior_Mobile: 3px;
+  --RaioBordaDireitaInferior_Desktop: 5px;
+  --RaioBordaDireitaInferior_Tablet: 4px;
+  --RaioBordaDireitaInferior_Mobile: 3px;
+  --RaioBordaEsquerdaInferior_Desktop: 5px;
+  --RaioBordaEsquerdaInferior_Tablet: 4px;
+  --RaioBordaEsquerdaInferior_Mobile: 3px;
+  --EspessuraDaBorda_Desktop: 1px;
+  --EspessuraDaBorda_Tablet: 1px;
+  --EspessuraDaBorda_Mobile: 1px;
+  --TamanhoPadraoTexto_Desktop: 16px;
+  --TamanhoPadraoTexto_Tablet: 14px;
+  --TamanhoPadraoTexto_Mobile: 12px;
+  --SombraHorizontal_Desktop: 2px;
+  --SombraHorizontal_Tablet: 1px;
+  --SombraHorizontal_Mobile: 1px;
+  --SombraVertical_Desktop: 2px;
+  --SombraVertical_Tablet: 1px;
+  --SombraVertical_Mobile: 1px;
+  --BlurSombra_Desktop: 3px;
+  --BlurSombra_Tablet: 2px;
+  --BlurSombra_Mobile: 1px;
+  --SpreadSombra_Desktop: 0px;
+  --SpreadSombra_Tablet: 0px;
+  --SpreadSombra_Mobile: 0px;
+  --MarginBottomSombra_Desktop: 5px;
+  --MarginBottomSombra_Tablet: 4px;
+  --MarginBottomSombra_Mobile: 3px;
+  --TamanhoTextoSectionTitle_Desktop: 18px;
+  --TamanhoTextoSectionTitle_Tablet: 16px;
+  --TamanhoTextoSectionTitle_Mobile: 14px;
+  --linhaSectionTitle_Desktop: 3px;
+  --linhaSectionTitle_Tablet: 2px;
+  --linhaSectionTitle_Mobile: 1px;
+  --MargemSuperiorSectionTitle_Desktop: 20px;
+  --MargemSuperiorSectionTitle_Tablet: 16px;
+  --MargemSuperiorSectionTitle_Mobile: 12px;
+  --MargemInferiorSectionTitle_Desktop: 20px;
+  --MargemInferiorSectionTitle_Tablet: 16px;
+  --MargemInferiorSectionTitle_Mobile: 12px;
+  --AlturaLinhaNavbar_Desktop: 48px;
+  --AlturaLinhaNavbar_Tablet: 42px;
+  --AlturaLinhaNavbar_Mobile: 36px;
+  --MargemSuperiorNavbar_Desktop: 10px;
+  --MargemSuperiorNavbar_Tablet: 8px;
+  --MargemSuperiorNavbar_Mobile: 0px;
+  --MargemInferiorNavbar_Desktop: 12px;
+  --MargemInferiorNavbar_Tablet: 10px;
+  --MargemInferiorNavbar_Mobile: 3px;
+  --TamanhoTextoNavbar_Desktop: 20px;
+  --TamanhoTextoNavbar_Tablet: 18px;
+  --TamanhoTextoNavbar_Mobile: 16px;
+  --TamanhoTextoSubNavbar_Desktop: 16px;
+  --TamanhoTextoSubNavbar_Tablet: 14px;
+  --TamanhoTextoSubNavbar_Mobile: 12px;
+  --PaddingBottomSubmenu_Desktop: 5px;
+  --PaddingBottomSubmenu_Tablet: 4px;
+  --PaddingBottomSubmenu_Mobile: 0px;
+  --PaddingTopMenuItem_Desktop: 0px;
+  --PaddingTopMenuItem_Tablet: 0px;
+  --PaddingTopMenuItem_Mobile: 0px;
+  --PaddingRightMenuItem_Desktop: 10px;
+  --PaddingRightMenuItem_Tablet: 9px;
+  --PaddingRightMenuItem_Mobile: 8px;
+  --PaddingBottomMenuItem_Desktop: 0px;
+  --PaddingBottomMenuItem_Tablet: 0px;
+  --PaddingBottomMenuItem_Mobile: 0px;
+  --PaddingLeftMenuItem_Desktop: 10px;
+  --PaddingLeftMenuItem_Tablet: 9px;
+  --PaddingLeftMenuItem_Mobile: 8px;
+  --MinWidthMenuItem_Desktop: 1px;
+  --MinWidthMenuItem_Tablet: 1px;
+  --MinWidthMenuItem_Mobile: 1px;
+  --MinimaLinhatituloSubMenuItem_Desktop: 40px;
+  --MinimaLinhatituloSubMenuItem_Tablet: 35px;
+  --MinimaLinhatituloSubMenuItem_Mobile: 30px;
+  --AlinhamentoTextoMenuItem_Desktop: center;
+  --AlinhamentoTextoMenuItem_Tablet: center;
+  --AlinhamentoTextoMenuItem_Mobile: right;
+  --AlinhamentoTextoSubMenuItem_Desktop: left;
+  --AlinhamentoTextoSubMenuItem_Tablet: left;
+  --AlinhamentoTextoSubMenuItem_Mobile: left;
+  --TamanhoIconeMenuitem_Desktop: 17px;
+  --TamanhoIconeMenuitem_Tablet: 15.5px;
+  --TamanhoIconeMenuitem_Mobile: 14px;
+  --margemTop_ItemForm_Desktop: 3px;
+  --margemTop_ItemForm_Tablet: 2px;
+  --margemTop_ItemForm_Mobile: 1px;
+  --margemRight_ItemForm_Desktop: 0px;
+  --margemRight_ItemForm_Tablet: 0px;
+  --margemRight_ItemForm_Mobile: 0px;
+  --margemBottom_ItemForm_Desktop: 3px;
+  --margemBottom_ItemForm_Tablet: 2px;
+  --margemBottom_ItemForm_Mobile: 1px;
+  --margemLeft_ItemForm_Desktop: 0px;
+  --margemLeft_ItemForm_Tablet: 0px;
+  --margemLeft_ItemForm_Mobile: 0px;
+  --WidthItemForm_Desktop: calc(100% - (0px + 0px));
+  --WidthItemForm_Tablet: calc(100% - (0px + 0px));
+  --WidthItemForm_Mobile: calc(100% - (0px + 0px));
+  --HeightItemForm_Desktop: 40px;
+  --HeightItemForm_Tablet: 36px;
+  --HeightItemForm_Mobile: 34px;
+  --PaddingTopInput_Desktop: 0px;
+  --PaddingTopInput_Tablet: 0px;
+  --PaddingTopInput_Mobile: 0px;
+  --PaddingRightInput_Desktop: 6px;
+  --PaddingRightInput_Tablet: 5px;
+  --PaddingRightInput_Mobile: 4px;
+  --PaddingBottomInput_Desktop: 0px;
+  --PaddingBottomInput_Tablet: 0px;
+  --PaddingBottomInput_Mobile: 0px;
+  --PaddingLeftInput_Desktop: 6px;
+  --PaddingLeftInput_Tablet: 5px;
+  --PaddingLeftInput_Mobile: 4px;
+  --PaddingTopInputIcone_Desktop: 0px;
+  --PaddingTopInputIcone_Tablet: 0px;
+  --PaddingTopInputIcone_Mobile: 0px;
+  --PaddingRightInputIcone_Desktop: 6px;
+  --PaddingRightInputIcone_Tablet: 5px;
+  --PaddingRightInputIcone_Mobile: 4px;
+  --PaddingBottomInputIcone_Desktop: 0px;
+  --PaddingBottomInputIcone_Tablet: 0px;
+  --PaddingBottomInputIcone_Mobile: 0px;
+  --PaddingLeftInputIcone_Desktop: 36px;
+  --PaddingLeftInputIcone_Tablet: 34px;
+  --PaddingLeftInputIcone_Mobile: 32px;
+  --tamanhoIcone_Desktop: 24px;
+  --tamanhoIcone_Tablet: 24px;
+  --tamanhoIcone_Mobile: 26px;
+  --topIcone_Desktop: 11px;
+  --topIcone_Tablet: 8px;
+  --topIcone_Mobile: 5px;
+  --EspessuraDaBordaMessageballoon_Desktop: 1px;
+  --EspessuraDaBordaMessageballoon_Tablet: 1px;
+  --EspessuraDaBordaMessageballoon_Mobile: 1px;
+  --RaioBordaMessageballoonHelp_Desktop: 5px;
+  --RaioBordaMessageballoonHelp_Tablet: 4px;
+  --RaioBordaMessageballoonHelp_Mobile: 3px;
+  --PaddingTopMessageballoonHelp_Desktop: 4px;
+  --PaddingTopMessageballoonHelp_Tablet: 3px;
+  --PaddingTopMessageballoonHelp_Mobile: 1px;
+  --PaddingRightMessageballoonHelp_Desktop: 6px;
+  --PaddingRightMessageballoonHelp_Tablet: 5px;
+  --PaddingRightMessageballoonHelp_Mobile: 4px;
+  --PaddingBottomMessageballoonHelp_Desktop: 4px;
+  --PaddingBottomMessageballoonHelp_Tablet: 3px;
+  --PaddingBottomMessageballoonHelp_Mobile: 1px;
+  --PaddingLeftMessageballoonHelp_Desktop: 6px;
+  --PaddingLeftMessageballoonHelp_Tablet: 5px;
+  --PaddingLeftMessageballoonHelp_Mobile: 4px;
+  --TamanhoTextoHelp_Desktop: 16px;
+  --TamanhoTextoHelp_Tablet: 14px;
+  --TamanhoTextoHelp_Mobile: 12px;
+  --RaioBordaMessageballoonAtencao_Desktop: 5px;
+  --RaioBordaMessageballoonAtencao_Tablet: 4px;
+  --RaioBordaMessageballoonAtencao_Mobile: 3px;
+  --PaddingTopMessageballoonAtencao_Desktop: 4px;
+  --PaddingTopMessageballoonAtencao_Tablet: 3px;
+  --PaddingTopMessageballoonAtencao_Mobile: 1px;
+  --PaddingRightMessageballoonAtencao_Desktop: 6px;
+  --PaddingRightMessageballoonAtencao_Tablet: 5px;
+  --PaddingRightMessageballoonAtencao_Mobile: 4px;
+  --PaddingBottomMessageballoonAtencao_Desktop: 4px;
+  --PaddingBottomMessageballoonAtencao_Tablet: 3px;
+  --PaddingBottomMessageballoonAtencao_Mobile: 1px;
+  --PaddingLeftMessageballoonAtencao_Desktop: 6px;
+  --PaddingLeftMessageballoonAtencao_Tablet: 5px;
+  --PaddingLeftMessageballoonAtencao_Mobile: 4px;
+  --TamanhoTextoAtencao_Desktop: 16px;
+  --TamanhoTextoAtencao_Tablet: 14px;
+  --TamanhoTextoAtencao_Mobile: 12px;
+  --RaioBordaMessageballoonErro_Desktop: 5px;
+  --RaioBordaMessageballoonErro_Tablet: 4px;
+  --RaioBordaMessageballoonErro_Mobile: 3px;
+  --PaddingTopMessageballoonErro_Desktop: 4px;
+  --PaddingTopMessageballoonErro_Tablet: 3px;
+  --PaddingTopMessageballoonErro_Mobile: 1px;
+  --PaddingRightMessageballoonErro_Desktop: 6px;
+  --PaddingRightMessageballoonErro_Tablet: 5px;
+  --PaddingRightMessageballoonErro_Mobile: 4px;
+  --PaddingBottomMessageballoonErro_Desktop: 4px;
+  --PaddingBottomMessageballoonErro_Tablet: 3px;
+  --PaddingBottomMessageballoonErro_Mobile: 1px;
+  --PaddingLeftMessageballoonErro_Desktop: 6px;
+  --PaddingLeftMessageballoonErro_Tablet: 5px;
+  --PaddingLeftMessageballoonErro_Mobile: 4px;
+  --TamanhoTextoErro_Desktop: 16px;
+  --TamanhoTextoErro_Tablet: 14px;
+  --TamanhoTextoErro_Mobile: 12px;
+  --TamanhoSubTitulo1_Desktop: 13px;
+  --TamanhoSubTitulo1_Tablet: 11.7px;
+  --TamanhoSubTitulo1_Mobile: 10.4px;
+  --TamanhoSubTitulo2_Desktop: 11px;
+  --TamanhoSubTitulo2_Tablet: 9.9px;
+  --TamanhoSubTitulo2_Mobile: 8.8px;
+  --TamanhoSubTitulo3_Desktop: 9px;
+  --TamanhoSubTitulo3_Tablet: 8.1px;
+  --TamanhoSubTitulo3_Mobile: 7.2px;
+  --BadgePadding_Desktop: 2px 8px;
+  --BadgePadding_Tablet: 2px 7px;
+  --BadgePadding_Mobile: 1px 6px;
+  --BadgeFontSize_Desktop: 12px;
+  --BadgeFontSize_Tablet: 10.5px;
+  --BadgeFontSize_Mobile: 9px;
+  --BadgeBorderRadius_Desktop: 5px;
+  --BadgeBorderRadius_Tablet: 4px;
+  --BadgeBorderRadius_Mobile: 3px;
+  --MensagemInlinePaddingTop_Desktop: 8px;
+  --MensagemInlinePaddingTop_Tablet: 6px;
+  --MensagemInlinePaddingTop_Mobile: 4px;
+  --MensagemInlinePaddingRight_Desktop: 12px;
+  --MensagemInlinePaddingRight_Tablet: 10px;
+  --MensagemInlinePaddingRight_Mobile: 8px;
+  --MensagemInlinePaddingBottom_Desktop: 8px;
+  --MensagemInlinePaddingBottom_Tablet: 6px;
+  --MensagemInlinePaddingBottom_Mobile: 4px;
+  --MensagemInlinePaddingLeft_Desktop: 12px;
+  --MensagemInlinePaddingLeft_Tablet: 10px;
+  --MensagemInlinePaddingLeft_Mobile: 8px;
+  --MensagemInlineFontSize_Desktop: 16px;
+  --MensagemInlineFontSize_Tablet: 14px;
+  --MensagemInlineFontSize_Mobile: 12px;
+  --MensagemInlineBorderRadius_Desktop: 5px;
+  --MensagemInlineBorderRadius_Tablet: 4px;
+  --MensagemInlineBorderRadius_Mobile: 3px;
+  --MensagemInlineMarginBottom_Desktop: 5px;
+  --MensagemInlineMarginBottom_Tablet: 4px;
+  --MensagemInlineMarginBottom_Mobile: 3px;
+  --LoaderTamanho_Desktop: 32px;
+  --LoaderTamanho_Tablet: 28px;
+  --LoaderTamanho_Mobile: 24px;
+  --LoaderTextoFontSize_Desktop: 16px;
+  --LoaderTextoFontSize_Tablet: 14px;
+  --LoaderTextoFontSize_Mobile: 12px;
+  --LoaderContainerPadding_Desktop: 24px;
+  --LoaderContainerPadding_Tablet: 20px;
+  --LoaderContainerPadding_Mobile: 16px;
+  --NumeroDecolunas: 18;
+  --EntreColuna: 12px;
+  --ScrollBar: 20px;
+  --AlturaLinhaPadrao: 46px;
+  --PaddingTop: 4px;
+  --PaddingRight: 6px;
+  --PaddingBottom: 4px;
+  --PaddingLeft: 6px;
+  --RaioBordaEsquerdaSuperior: 5px;
+  --RaioBordaDireitaSuperior: 5px;
+  --RaioBordaDireitaInferior: 5px;
+  --RaioBordaEsquerdaInferior: 5px;
+  --EspessuraDaBorda: 1px;
+  --TamanhoPadraoTexto: 16px;
+  --SombraHorizontal: 2px;
+  --SombraVertical: 2px;
+  --BlurSombra: 3px;
+  --SpreadSombra: 0px;
+  --MarginBottomSombra: 5px;
+  --TamanhoTextoSectionTitle: 18px;
+  --linhaSectionTitle: 3px;
+  --MargemSuperiorSectionTitle: 20px;
+  --MargemInferiorSectionTitle: 20px;
+  --AlturaLinhaNavbar: 48px;
+  --MargemSuperiorNavbar: 10px;
+  --MargemInferiorNavbar: 12px;
+  --TamanhoTextoNavbar: 20px;
+  --TamanhoTextoSubNavbar: 16px;
+  --PaddingBottomSubmenu: 5px;
+  --PaddingTopMenuItem: 0px;
+  --PaddingRightMenuItem: 10px;
+  --PaddingBottomMenuItem: 0px;
+  --PaddingLeftMenuItem: 10px;
+  --MinWidthMenuItem: 1px;
+  --MinimaLinhatituloSubMenuItem: 40px;
+  --AlinhamentoTextoMenuItem: center;
+  --AlinhamentoTextoSubMenuItem: left;
+  --TamanhoIconeMenuitem: 17px;
+  --margemTop_ItemForm: 3px;
+  --margemRight_ItemForm: 0px;
+  --margemBottom_ItemForm: 3px;
+  --margemLeft_ItemForm: 0px;
+  --WidthItemForm: calc(100% - (0px + 0px));
+  --HeightItemForm: 40px;
+  --PaddingTopInput: 0px;
+  --PaddingRightInput: 6px;
+  --PaddingBottomInput: 0px;
+  --PaddingLeftInput: 6px;
+  --PaddingTopInputIcone: 0px;
+  --PaddingRightInputIcone: 6px;
+  --PaddingBottomInputIcone: 0px;
+  --PaddingLeftInputIcone: 36px;
+  --tamanhoIcone: 24px;
+  --topIcone: 11px;
+  --EspessuraDaBordaMessageballoon: 1px;
+  --RaioBordaMessageballoonHelp: 5px;
+  --PaddingTopMessageballoonHelp: 4px;
+  --PaddingRightMessageballoonHelp: 6px;
+  --PaddingBottomMessageballoonHelp: 4px;
+  --PaddingLeftMessageballoonHelp: 6px;
+  --TamanhoTextoHelp: 16px;
+  --RaioBordaMessageballoonAtencao: 5px;
+  --PaddingTopMessageballoonAtencao: 4px;
+  --PaddingRightMessageballoonAtencao: 6px;
+  --PaddingBottomMessageballoonAtencao: 4px;
+  --PaddingLeftMessageballoonAtencao: 6px;
+  --TamanhoTextoAtencao: 16px;
+  --RaioBordaMessageballoonErro: 5px;
+  --PaddingTopMessageballoonErro: 4px;
+  --PaddingRightMessageballoonErro: 6px;
+  --PaddingBottomMessageballoonErro: 4px;
+  --PaddingLeftMessageballoonErro: 6px;
+  --TamanhoTextoErro: 16px;
+  --TamanhoSubTitulo1: 13px;
+  --TamanhoSubTitulo2: 11px;
+  --TamanhoSubTitulo3: 9px;
+  --BadgePadding: 2px 8px;
+  --BadgeFontSize: 12px;
+  --BadgeBorderRadius: 5px;
+  --MensagemInlinePaddingTop: 8px;
+  --MensagemInlinePaddingRight: 12px;
+  --MensagemInlinePaddingBottom: 8px;
+  --MensagemInlinePaddingLeft: 12px;
+  --MensagemInlineFontSize: 16px;
+  --MensagemInlineBorderRadius: 5px;
+  --MensagemInlineMarginBottom: 5px;
+  --LoaderTamanho: 32px;
+  --LoaderTextoFontSize: 16px;
+  --LoaderContainerPadding: 24px;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  :root {
+    --NumeroDecolunas: 12;
+    --EntreColuna: 10px;
+    --ScrollBar: 20px;
+    --AlturaLinhaPadrao: 40px;
+    --PaddingTop: 3px;
+    --PaddingRight: 5px;
+    --PaddingBottom: 3px;
+    --PaddingLeft: 5px;
+    --RaioBordaEsquerdaSuperior: 4px;
+    --RaioBordaDireitaSuperior: 4px;
+    --RaioBordaDireitaInferior: 4px;
+    --RaioBordaEsquerdaInferior: 4px;
+    --EspessuraDaBorda: 1px;
+    --TamanhoPadraoTexto: 14px;
+    --SombraHorizontal: 1px;
+    --SombraVertical: 1px;
+    --BlurSombra: 2px;
+    --SpreadSombra: 0px;
+    --MarginBottomSombra: 4px;
+    --TamanhoTextoSectionTitle: 16px;
+    --linhaSectionTitle: 2px;
+    --MargemSuperiorSectionTitle: 16px;
+    --MargemInferiorSectionTitle: 16px;
+    --AlturaLinhaNavbar: 42px;
+    --MargemSuperiorNavbar: 8px;
+    --MargemInferiorNavbar: 10px;
+    --TamanhoTextoNavbar: 18px;
+    --TamanhoTextoSubNavbar: 14px;
+    --PaddingBottomSubmenu: 4px;
+    --PaddingTopMenuItem: 0px;
+    --PaddingRightMenuItem: 9px;
+    --PaddingBottomMenuItem: 0px;
+    --PaddingLeftMenuItem: 9px;
+    --MinWidthMenuItem: 1px;
+    --MinimaLinhatituloSubMenuItem: 35px;
+    --AlinhamentoTextoMenuItem: center;
+    --AlinhamentoTextoSubMenuItem: left;
+    --TamanhoIconeMenuitem: 15.5px;
+    --margemTop_ItemForm: 2px;
+    --margemRight_ItemForm: 0px;
+    --margemBottom_ItemForm: 2px;
+    --margemLeft_ItemForm: 0px;
+    --WidthItemForm: calc(100% - (0px + 0px));
+    --HeightItemForm: 36px;
+    --PaddingTopInput: 0px;
+    --PaddingRightInput: 5px;
+    --PaddingBottomInput: 0px;
+    --PaddingLeftInput: 5px;
+    --PaddingTopInputIcone: 0px;
+    --PaddingRightInputIcone: 5px;
+    --PaddingBottomInputIcone: 0px;
+    --PaddingLeftInputIcone: 34px;
+    --tamanhoIcone: 24px;
+    --topIcone: 8px;
+    --EspessuraDaBordaMessageballoon: 1px;
+    --RaioBordaMessageballoonHelp: 4px;
+    --PaddingTopMessageballoonHelp: 3px;
+    --PaddingRightMessageballoonHelp: 5px;
+    --PaddingBottomMessageballoonHelp: 3px;
+    --PaddingLeftMessageballoonHelp: 5px;
+    --TamanhoTextoHelp: 14px;
+    --RaioBordaMessageballoonAtencao: 4px;
+    --PaddingTopMessageballoonAtencao: 3px;
+    --PaddingRightMessageballoonAtencao: 5px;
+    --PaddingBottomMessageballoonAtencao: 3px;
+    --PaddingLeftMessageballoonAtencao: 5px;
+    --TamanhoTextoAtencao: 14px;
+    --RaioBordaMessageballoonErro: 4px;
+    --PaddingTopMessageballoonErro: 3px;
+    --PaddingRightMessageballoonErro: 5px;
+    --PaddingBottomMessageballoonErro: 3px;
+    --PaddingLeftMessageballoonErro: 5px;
+    --TamanhoTextoErro: 14px;
+    --TamanhoSubTitulo1: 11.7px;
+    --TamanhoSubTitulo2: 9.9px;
+    --TamanhoSubTitulo3: 8.1px;
+    --BadgePadding: 2px 7px;
+    --BadgeFontSize: 10.5px;
+    --BadgeBorderRadius: 4px;
+    --MensagemInlinePaddingTop: 6px;
+    --MensagemInlinePaddingRight: 10px;
+    --MensagemInlinePaddingBottom: 6px;
+    --MensagemInlinePaddingLeft: 10px;
+    --MensagemInlineFontSize: 14px;
+    --MensagemInlineBorderRadius: 4px;
+    --MensagemInlineMarginBottom: 4px;
+    --LoaderTamanho: 28px;
+    --LoaderTextoFontSize: 14px;
+    --LoaderContainerPadding: 20px;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --NumeroDecolunas: 6;
+    --EntreColuna: 8px;
+    --ScrollBar: 1px;
+    --AlturaLinhaPadrao: 36px;
+    --PaddingTop: 1px;
+    --PaddingRight: 4px;
+    --PaddingBottom: 1px;
+    --PaddingLeft: 4px;
+    --RaioBordaEsquerdaSuperior: 3px;
+    --RaioBordaDireitaSuperior: 3px;
+    --RaioBordaDireitaInferior: 3px;
+    --RaioBordaEsquerdaInferior: 3px;
+    --EspessuraDaBorda: 1px;
+    --TamanhoPadraoTexto: 12px;
+    --SombraHorizontal: 1px;
+    --SombraVertical: 1px;
+    --BlurSombra: 1px;
+    --SpreadSombra: 0px;
+    --MarginBottomSombra: 3px;
+    --TamanhoTextoSectionTitle: 14px;
+    --linhaSectionTitle: 1px;
+    --MargemSuperiorSectionTitle: 12px;
+    --MargemInferiorSectionTitle: 12px;
+    --AlturaLinhaNavbar: 36px;
+    --MargemSuperiorNavbar: 0px;
+    --MargemInferiorNavbar: 3px;
+    --TamanhoTextoNavbar: 16px;
+    --TamanhoTextoSubNavbar: 12px;
+    --PaddingBottomSubmenu: 0px;
+    --PaddingTopMenuItem: 0px;
+    --PaddingRightMenuItem: 8px;
+    --PaddingBottomMenuItem: 0px;
+    --PaddingLeftMenuItem: 8px;
+    --MinWidthMenuItem: 1px;
+    --MinimaLinhatituloSubMenuItem: 30px;
+    --AlinhamentoTextoMenuItem: right;
+    --AlinhamentoTextoSubMenuItem: left;
+    --TamanhoIconeMenuitem: 14px;
+    --margemTop_ItemForm: 1px;
+    --margemRight_ItemForm: 0px;
+    --margemBottom_ItemForm: 1px;
+    --margemLeft_ItemForm: 0px;
+    --WidthItemForm: calc(100% - (0px + 0px));
+    --HeightItemForm: 34px;
+    --PaddingTopInput: 0px;
+    --PaddingRightInput: 4px;
+    --PaddingBottomInput: 0px;
+    --PaddingLeftInput: 4px;
+    --PaddingTopInputIcone: 0px;
+    --PaddingRightInputIcone: 4px;
+    --PaddingBottomInputIcone: 0px;
+    --PaddingLeftInputIcone: 32px;
+    --tamanhoIcone: 26px;
+    --topIcone: 5px;
+    --EspessuraDaBordaMessageballoon: 1px;
+    --RaioBordaMessageballoonHelp: 3px;
+    --PaddingTopMessageballoonHelp: 1px;
+    --PaddingRightMessageballoonHelp: 4px;
+    --PaddingBottomMessageballoonHelp: 1px;
+    --PaddingLeftMessageballoonHelp: 4px;
+    --TamanhoTextoHelp: 12px;
+    --RaioBordaMessageballoonAtencao: 3px;
+    --PaddingTopMessageballoonAtencao: 1px;
+    --PaddingRightMessageballoonAtencao: 4px;
+    --PaddingBottomMessageballoonAtencao: 1px;
+    --PaddingLeftMessageballoonAtencao: 4px;
+    --TamanhoTextoAtencao: 12px;
+    --RaioBordaMessageballoonErro: 3px;
+    --PaddingTopMessageballoonErro: 1px;
+    --PaddingRightMessageballoonErro: 4px;
+    --PaddingBottomMessageballoonErro: 1px;
+    --PaddingLeftMessageballoonErro: 4px;
+    --TamanhoTextoErro: 12px;
+    --TamanhoSubTitulo1: 10.4px;
+    --TamanhoSubTitulo2: 8.8px;
+    --TamanhoSubTitulo3: 7.2px;
+    --BadgePadding: 1px 6px;
+    --BadgeFontSize: 9px;
+    --BadgeBorderRadius: 3px;
+    --MensagemInlinePaddingTop: 4px;
+    --MensagemInlinePaddingRight: 8px;
+    --MensagemInlinePaddingBottom: 4px;
+    --MensagemInlinePaddingLeft: 8px;
+    --MensagemInlineFontSize: 12px;
+    --MensagemInlineBorderRadius: 3px;
+    --MensagemInlineMarginBottom: 3px;
+    --LoaderTamanho: 24px;
+    --LoaderTextoFontSize: 12px;
+    --LoaderContainerPadding: 16px;
+  }
+}
 /*<div class="linha">
         <div class="Cols-D1T1M1">Teste bloco1</div>
     </div>
@@ -35,7 +717,7 @@
     width: calc(100vw - 20px + 3px);
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .linhaDoGrid {
     width: calc(100vw - 20px);
   }
@@ -82,7 +764,7 @@
                     }*/
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerEmLinha {
     margin-left: -6.25px !important;
     margin-right: -6.25px !important;
@@ -100,7 +782,7 @@
     margin-right: 6px !important;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerEmLinha * {
     margin-left: 6px !important;
     margin-right: 6px !important;
@@ -124,7 +806,7 @@
     flex-wrap: nowrap;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .T-nowrap {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
@@ -14072,7 +14754,7 @@
     margin-left: calc((((100vw - 20px) - (12px / 2)) / 18) * 1 + (12px / 2));
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .D18T12M6 {
     display: block;
     width: calc((((100vw - 20px) - (10px / 2)) / 12) * 12 - 10px);
@@ -40503,7 +41185,7 @@
     padding: 4px 6px 4px 6px;
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .panel {
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
@@ -40543,7 +41225,7 @@
     display: inline;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .spanTablet {
     display: inline;
   }
@@ -40569,6 +41251,23 @@
   -moz-border-radius-topright: 0px!important;
   border-top-right-radius: 0px!important;
 }
+.containerComBalloon {
+  position: relative;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -ms-flex-item-align: center;
+  align-items: center;
+}
+.containerItemFormComBalloon {
+  position: relative;
+  display: flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -ms-flex-item-align: center;
+  align-items: center;
+}
 .balloon {
   position: absolute;
   display: flex;
@@ -40577,6 +41276,7 @@
   margin-left: 0px!important;
   margin-top: 0px!important;
   margin-bottom: 0px!important;
+  pointer-events: none;
 }
 .balloon:before,
 .balloon:after {
@@ -40584,6 +41284,9 @@
   content: '';
   width: 0;
   height: 0;
+}
+.balloonStatus-Ativo {
+  pointer-events: auto !important;
 }
 @media (min-width: 992px) {
   .balloonPosition-Desktop-Right {
@@ -40594,6 +41297,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -40640,6 +41344,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -40686,6 +41391,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -40732,6 +41438,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -40778,6 +41485,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -40824,6 +41532,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -40870,6 +41579,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -40917,6 +41627,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -40955,7 +41666,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-Right {
     position: absolute;
     display: flex;
@@ -40964,6 +41675,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41001,7 +41713,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-Left {
     position: absolute;
     display: flex;
@@ -41010,6 +41722,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41047,7 +41760,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-TopRight {
     position: absolute;
     display: flex;
@@ -41056,6 +41769,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41093,7 +41807,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-BottomRight {
     position: absolute;
     display: flex;
@@ -41102,6 +41816,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41139,7 +41854,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-TopLeft {
     position: absolute;
     display: flex;
@@ -41148,6 +41863,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41185,7 +41901,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-BottomLeft {
     position: absolute;
     display: flex;
@@ -41194,6 +41910,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41231,7 +41948,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-Top {
     position: absolute;
     display: flex;
@@ -41240,6 +41957,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41278,7 +41996,7 @@
     border: 5px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-Tablet-Bottom {
     position: absolute;
     display: flex;
@@ -41287,6 +42005,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41334,6 +42053,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41380,6 +42100,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41426,6 +42147,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41472,6 +42194,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41518,6 +42241,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41564,6 +42288,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41610,6 +42335,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41657,6 +42383,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -41718,6 +42445,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41755,7 +42483,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Right {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -41769,7 +42497,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Right {
     position: absolute;
     display: flex;
@@ -41778,6 +42506,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41838,6 +42567,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -41898,6 +42628,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -41935,7 +42666,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-TopRight {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -41949,7 +42680,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-TopRight {
     position: absolute;
     display: flex;
@@ -41958,6 +42689,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42018,6 +42750,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42078,6 +42811,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42115,7 +42849,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-BottomRight {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -42129,7 +42863,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-BottomRight {
     position: absolute;
     display: flex;
@@ -42138,6 +42872,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42198,6 +42933,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42259,6 +42995,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -42296,7 +43033,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Left {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -42310,7 +43047,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Left {
     position: absolute;
     display: flex;
@@ -42319,6 +43056,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -42379,6 +43117,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     -webkit-align-items: center;
     -ms-flex-item-align: center;
     align-items: center;
@@ -42439,6 +43178,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42476,7 +43216,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-TopLeft {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -42490,7 +43230,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-TopLeft {
     position: absolute;
     display: flex;
@@ -42499,6 +43239,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42559,6 +43300,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42619,6 +43361,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42656,7 +43399,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-BottomLeft {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -42670,7 +43413,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-BottomLeft {
     position: absolute;
     display: flex;
@@ -42679,6 +43422,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42739,6 +43483,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -42799,6 +43544,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42837,7 +43583,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Top {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -42851,7 +43597,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Top {
     position: absolute;
     display: flex;
@@ -42860,6 +43606,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42921,6 +43668,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-start;
     -webkit-align-items: flex-end;
     -ms-flex-item-align: end;
@@ -42982,6 +43730,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -43020,7 +43769,7 @@
     border: 6px solid transparent;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Bottom {
     filter: alpha(opacity=0);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -43034,7 +43783,7 @@
     transition: all 0.3s ease-in 0.1s;
   }
 }
-@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and or (hover: none) and (min-width: 768px), or (hover: none) and (min-width: 768px) and or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) and (max-width: 992px) and (min-width: 768px), (max-width: 992px) and (min-width: 768px) and (hover: none) and (min-width: 768px), (hover: none) and (min-width: 768px) and (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Bottom {
     position: absolute;
     display: flex;
@@ -43043,6 +43792,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -43104,6 +43854,7 @@
     margin-left: 0px!important;
     margin-top: 0px!important;
     margin-bottom: 0px!important;
+    pointer-events: none;
     align-self: flex-end;
     -webkit-align-items: flex-start;
     -ms-flex-item-align: start;
@@ -43259,7 +44010,7 @@
     transform-origin: top;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonPosition-All-Right,
   .balloonPosition-All-Right:before,
   .balloonPosition-All-Right:after,
@@ -43424,17 +44175,17 @@
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  background-image: -moz-linear-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: -webkit-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: -o-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: linear-gradient(to bottom, #646464, #1e1e1e 400%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: -webkit-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: -o-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: linear-gradient(to bottom, #00bcd4, #333333 400%);
 }
 @media (min-width: 992px) {
   .help-icon {
     margin: 9.6px !important;
-    border-radius: 49.6px;
-    width: 31px;
-    height: 31px;
+    border-radius: 38.4px;
+    width: 24px;
+    height: 24px;
     font-size: 12.8px;
     -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
@@ -43470,12 +44221,12 @@
     top: calc(100% + (12px / 2));
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .help-icon {
     margin: 8px !important;
-    border-radius: 44.8px;
-    width: 28px;
-    height: 28px;
+    border-radius: 33.6px;
+    width: 21px;
+    height: 21px;
     font-size: 11.2px;
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
@@ -43514,9 +44265,9 @@
 @media (max-width: 768px) {
   .help-icon {
     margin: 6.4px !important;
-    border-radius: 38.4px;
-    width: 24px;
-    height: 24px;
+    border-radius: 28.8px;
+    width: 18px;
+    height: 18px;
     font-size: 9.6px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
@@ -43557,7 +44308,7 @@
   font-family: Raleway, sans-serif, Arial, Helvetica;
   font-weight: normal;
   border-color: #4d4d4d;
-  background-color: rgba(141, 110, 83, 0.99);
+  background-color: rgba(204, 204, 204, 0.99);
   color: #4d4d4d;
   fill: #4d4d4d;
 }
@@ -43567,18 +44318,20 @@
     padding: 4px 6px 4px 6px;
     border-width: 1px;
     font-size: 12.8px;
+    line-height: 46px;
     -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     margin-bottom: 5px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonType-Help {
     border-radius: 4px;
     padding: 3px 5px 3px 5px;
     border-width: 1px;
     font-size: 11.2px;
+    line-height: 40px;
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
@@ -43591,6 +44344,7 @@
     padding: 1px 4px 1px 4px;
     border-width: 1px;
     font-size: 9.6px;
+    line-height: 36px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
@@ -43601,7 +44355,7 @@
   border-color: #4d4d4d;
 }
 .balloonType-Help:after {
-  border-color: rgba(141, 110, 83, 0.99);
+  border-color: rgba(204, 204, 204, 0.99);
 }
 .balloonType-Atencao {
   border: solid;
@@ -43618,14 +44372,16 @@
     padding: 4px 6px 4px 6px;
     border-width: 1px;
     font-size: 16px;
+    line-height: 46px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonType-Atencao {
     border-radius: 4px;
     padding: 3px 5px 3px 5px;
     border-width: 1px;
     font-size: 14px;
+    line-height: 40px;
   }
 }
 @media (max-width: 768px) {
@@ -43634,6 +44390,7 @@
     padding: 1px 4px 1px 4px;
     border-width: 1px;
     font-size: 12px;
+    line-height: 36px;
   }
 }
 .balloonType-Atencao:before {
@@ -43657,14 +44414,16 @@
     padding: 4px 6px 4px 6px;
     border-width: 1px;
     font-size: 16px;
+    line-height: 46px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .balloonType-Erro {
     border-radius: 4px;
     padding: 3px 5px 3px 5px;
     border-width: 1px;
     font-size: 14px;
+    line-height: 40px;
   }
 }
 @media (max-width: 768px) {
@@ -43673,6 +44432,7 @@
     padding: 1px 4px 1px 4px;
     border-width: 1px;
     font-size: 12px;
+    line-height: 36px;
   }
 }
 .balloonType-Erro:before {
@@ -43700,8 +44460,6 @@
         }
     }*/
 @media (min-width: 992px) {
-  .balloonTrigger:hover ~ .balloonType-Help,
-  .balloonTrigger:hover > .balloonType-Help,
   .balloonTrigger:focus ~ .balloonType-Help,
   .balloonTrigger:focus ~ .balloonType-Atencao,
   .balloonTrigger:focus ~ .balloonType-Erro,
@@ -43712,26 +44470,18 @@
     -khtml-opacity: 0.95;
     opacity: 0.95;
   }
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Right,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Right,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-Right,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-Right,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-Right,
   .balloonStatus-Ativo.balloonPosition-All-Right,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Right,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Right,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-Right,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-Right,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-Right,
   .balloonStatus-Ativo.balloonPosition-Desktop-Right,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Right,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Right,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-Right,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-Right,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-Right,
   .balloonStatus-Ativo.balloonPosition-Tablet-Right,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Right,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Right,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-Right,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-Right,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-Right,
@@ -43741,26 +44491,18 @@
     -ms-transform: translate(100%) scaleX(1);
     transform: translate(100%) scaleX(1);
   }
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Left,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Left,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-Left,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-Left,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-Left,
   .balloonStatus-Ativo.balloonPosition-All-Left,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Left,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Left,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-Left,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-Left,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-Left,
   .balloonStatus-Ativo.balloonPosition-Desktop-Left,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Left,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Left,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-Left,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-Left,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-Left,
   .balloonStatus-Ativo.balloonPosition-Tablet-Left,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Left,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Left,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-Left,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-Left,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-Left,
@@ -43770,98 +44512,66 @@
     -ms-transform: translate(-100%) scaleX(1);
     transform: translate(-100%) scaleX(1);
   }
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-TopRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-TopRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-TopRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-TopRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-TopRight,
   .balloonStatus-Ativo.balloonPosition-All-TopRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-BottomRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-BottomRight,
   .balloonStatus-Ativo.balloonPosition-All-BottomRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-TopLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-TopLeft,
   .balloonStatus-Ativo.balloonPosition-All-TopLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-BottomLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-BottomLeft,
   .balloonStatus-Ativo.balloonPosition-All-BottomLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-TopRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-TopRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-TopRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-TopRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-TopRight,
   .balloonStatus-Ativo.balloonPosition-Desktop-TopRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-BottomRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-BottomRight,
   .balloonStatus-Ativo.balloonPosition-Desktop-BottomRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-TopLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-TopLeft,
   .balloonStatus-Ativo.balloonPosition-Desktop-TopLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-BottomLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-BottomLeft,
   .balloonStatus-Ativo.balloonPosition-Desktop-BottomLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-TopRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-TopRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-TopRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-TopRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-TopRight,
   .balloonStatus-Ativo.balloonPosition-Tablet-TopRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-BottomRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-BottomRight,
   .balloonStatus-Ativo.balloonPosition-Tablet-BottomRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-TopLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-TopLeft,
   .balloonStatus-Ativo.balloonPosition-Tablet-TopLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-BottomLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-BottomLeft,
   .balloonStatus-Ativo.balloonPosition-Tablet-BottomLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-TopRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-TopRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-TopRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-TopRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-TopRight,
   .balloonStatus-Ativo.balloonPosition-Mobile-TopRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-BottomRight,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-BottomRight,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-BottomRight,
   .balloonStatus-Ativo.balloonPosition-Mobile-BottomRight,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-TopLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-TopLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-TopLeft,
   .balloonStatus-Ativo.balloonPosition-Mobile-TopLeft,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-BottomLeft,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-BottomLeft,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-BottomLeft,
@@ -43871,50 +44581,34 @@
     -ms-transform: translate(0, 0) scaleY(1);
     transform: translate(0, 0) scaleY(1);
   }
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Top,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Top,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-Top,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-Top,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-Top,
   .balloonStatus-Ativo.balloonPosition-All-Top,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Bottom,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Bottom,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-All-Bottom,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-All-Bottom,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-All-Bottom,
   .balloonStatus-Ativo.balloonPosition-All-Bottom,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Top,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Top,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-Top,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-Top,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-Top,
   .balloonStatus-Ativo.balloonPosition-Desktop-Top,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Bottom,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Bottom,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Desktop-Bottom,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Desktop-Bottom,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Desktop-Bottom,
   .balloonStatus-Ativo.balloonPosition-Desktop-Bottom,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Top,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Top,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-Top,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-Top,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-Top,
   .balloonStatus-Ativo.balloonPosition-Tablet-Top,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Bottom,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Bottom,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Tablet-Bottom,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Tablet-Bottom,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Tablet-Bottom,
   .balloonStatus-Ativo.balloonPosition-Tablet-Bottom,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Top,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Top,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-Top,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-Top,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-Top,
   .balloonStatus-Ativo.balloonPosition-Mobile-Top,
-  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Bottom,
-  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Bottom,
   .balloonTrigger:focus ~ .balloonType-Help.balloonPosition-Mobile-Bottom,
   .balloonTrigger:focus ~ .balloonType-Atencao.balloonPosition-Mobile-Bottom,
   .balloonTrigger:focus ~ .balloonType-Erro.balloonPosition-Mobile-Bottom,
@@ -43925,8 +44619,102 @@
     transform: translate(-50%, 0) scaleY(1);
   }
 }
+@media (min-width: 992px) and (hover: hover) {
+  .balloonTrigger:hover ~ .balloonType-Help,
+  .balloonTrigger:hover > .balloonType-Help {
+    filter: alpha(opacity=95);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+    -moz-opacity: 0.95;
+    -khtml-opacity: 0.95;
+    opacity: 0.95;
+  }
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Right,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Right,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Right,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Right,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Right,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Right,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Right,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Right {
+    -webkit-transform: translate(100%) scaleX(1);
+    -moz-transform: translate(100%) scaleX(1);
+    -ms-transform: translate(100%) scaleX(1);
+    transform: translate(100%) scaleX(1);
+  }
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Left,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Left,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Left,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Left,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Left,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Left,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Left,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Left {
+    -webkit-transform: translate(-100%) scaleX(1);
+    -moz-transform: translate(-100%) scaleX(1);
+    -ms-transform: translate(-100%) scaleX(1);
+    transform: translate(-100%) scaleX(1);
+  }
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-TopRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-TopRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-BottomRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-BottomRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-TopLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-TopLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-BottomLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-BottomLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-TopRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-TopRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-BottomRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-BottomRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-TopLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-TopLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-BottomLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-BottomLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-TopRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-TopRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-BottomRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-BottomRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-TopLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-TopLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-BottomLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-BottomLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-TopRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-TopRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-BottomRight,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-BottomRight,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-TopLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-TopLeft,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-BottomLeft,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-BottomLeft {
+    -webkit-transform: translate(0, 0) scaleY(1);
+    -moz-transform: translate(0, 0) scaleY(1);
+    -ms-transform: translate(0, 0) scaleY(1);
+    transform: translate(0, 0) scaleY(1);
+  }
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Top,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Top,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-All-Bottom,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-All-Bottom,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Top,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Top,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Desktop-Bottom,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Desktop-Bottom,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Top,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Top,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Tablet-Bottom,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Tablet-Bottom,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Top,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Top,
+  .balloonTrigger:hover ~ .balloonType-Help.balloonPosition-Mobile-Bottom,
+  .balloonTrigger:hover > .balloonType-Help.balloonPosition-Mobile-Bottom {
+    -webkit-transform: translate(-50%, 0) scaleY(1);
+    -moz-transform: translate(-50%, 0) scaleY(1);
+    -ms-transform: translate(-50%, 0) scaleY(1);
+    transform: translate(-50%, 0) scaleY(1);
+  }
+}
 /*TABLET output MOBILE*/
-@media (max-width: 992px), or (hover: none) {
+@media (max-width: 992px), (hover: none) {
   .balloonStatus-Ativo {
     filter: alpha(opacity=95);
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
@@ -43996,179 +44784,347 @@
     Obscurecencia
 */
 .primaria {
-  background-color: #646464;
+  background-color: #00bcd4;
+}
+.primaria:after {
+  border-color: #00bcd4;
 }
 .secundaria {
-  background-color: #99182e;
+  background-color: #872300;
+}
+.secundaria:after {
+  border-color: #872300;
 }
 .terciaria {
-  background-color: #8d6e53;
+  background-color: #cccccc;
+}
+.terciaria:after {
+  border-color: #cccccc;
 }
 .corAtencao {
   background-color: #fb8c00;
 }
+.corAtencao:after {
+  border-color: #fb8c00;
+}
 .corNegacao {
   background-color: #cc4d33;
+}
+.corNegacao:after {
+  border-color: #cc4d33;
 }
 .corPositivacao {
   background-color: #33cc9a;
 }
+.corPositivacao:after {
+  border-color: #33cc9a;
+}
 .paleta-1-1 {
-  background-color: #646464;
+  background-color: #00bcd4;
+}
+.paleta-1-1:after {
+  border-color: #00bcd4;
 }
 .paleta-1-2 {
-  background-color: rgba(100, 100, 100, 0.9);
+  background-color: rgba(0, 188, 212, 0.9);
+}
+.paleta-1-2:after {
+  border-color: rgba(0, 188, 212, 0.9);
 }
 .paleta-1-3 {
-  background-color: rgba(100, 100, 100, 0.8);
+  background-color: rgba(0, 188, 212, 0.8);
+}
+.paleta-1-3:after {
+  border-color: rgba(0, 188, 212, 0.8);
 }
 .paleta-1-4 {
-  background-color: rgba(100, 100, 100, 0.7);
+  background-color: rgba(0, 188, 212, 0.7);
+}
+.paleta-1-4:after {
+  border-color: rgba(0, 188, 212, 0.7);
 }
 .paleta-1-5 {
-  background-color: rgba(100, 100, 100, 0.6);
+  background-color: rgba(0, 188, 212, 0.6);
+}
+.paleta-1-5:after {
+  border-color: rgba(0, 188, 212, 0.6);
 }
 .paleta-1-6 {
-  background-color: rgba(100, 100, 100, 0.5);
+  background-color: rgba(0, 188, 212, 0.5);
+}
+.paleta-1-6:after {
+  border-color: rgba(0, 188, 212, 0.5);
 }
 .paleta-1-7 {
-  background-color: rgba(100, 100, 100, 0.4);
+  background-color: rgba(0, 188, 212, 0.4);
+}
+.paleta-1-7:after {
+  border-color: rgba(0, 188, 212, 0.4);
 }
 .paleta-1-8 {
-  background-color: rgba(100, 100, 100, 0.3);
+  background-color: rgba(0, 188, 212, 0.3);
+}
+.paleta-1-8:after {
+  border-color: rgba(0, 188, 212, 0.3);
 }
 .paleta-1-9 {
-  background-color: rgba(100, 100, 100, 0.2);
+  background-color: rgba(0, 188, 212, 0.2);
+}
+.paleta-1-9:after {
+  border-color: rgba(0, 188, 212, 0.2);
 }
 .paleta-1-10 {
-  background-color: rgba(100, 100, 100, 0.1);
+  background-color: rgba(0, 188, 212, 0.1);
+}
+.paleta-1-10:after {
+  border-color: rgba(0, 188, 212, 0.1);
 }
 .paleta-2-1 {
-  background-color: #6e5a5a;
+  background-color: #00bcd4;
+}
+.paleta-2-1:after {
+  border-color: #00bcd4;
 }
 .paleta-2-2 {
-  background-color: #785050;
+  background-color: #00bcd4;
+}
+.paleta-2-2:after {
+  border-color: #00bcd4;
 }
 .paleta-2-3 {
-  background-color: #824646;
+  background-color: #00bcd4;
+}
+.paleta-2-3:after {
+  border-color: #00bcd4;
 }
 .paleta-2-4 {
-  background-color: #8c3c3c;
+  background-color: #00bcd4;
+}
+.paleta-2-4:after {
+  border-color: #00bcd4;
 }
 .paleta-2-5 {
-  background-color: #963232;
+  background-color: #00bcd4;
+}
+.paleta-2-5:after {
+  border-color: #00bcd4;
 }
 .paleta-2-6 {
-  background-color: #a02828;
+  background-color: #00bcd4;
+}
+.paleta-2-6:after {
+  border-color: #00bcd4;
 }
 .paleta-2-7 {
-  background-color: #aa1e1e;
+  background-color: #00bcd4;
+}
+.paleta-2-7:after {
+  border-color: #00bcd4;
 }
 .paleta-2-8 {
-  background-color: #b41414;
+  background-color: #00bcd4;
+}
+.paleta-2-8:after {
+  border-color: #00bcd4;
 }
 .paleta-2-9 {
-  background-color: #be0a0a;
+  background-color: #00bcd4;
+}
+.paleta-2-9:after {
+  border-color: #00bcd4;
 }
 .paleta-2-10 {
-  background-color: #c80000;
+  background-color: #00bcd4;
+}
+.paleta-2-10:after {
+  border-color: #00bcd4;
 }
 .paleta-3-1 {
-  background-color: #646464;
+  background-color: #0bb4c9;
+}
+.paleta-3-1:after {
+  border-color: #0bb4c9;
 }
 .paleta-3-2 {
-  background-color: #646464;
+  background-color: #15acbf;
+}
+.paleta-3-2:after {
+  border-color: #15acbf;
 }
 .paleta-3-3 {
-  background-color: #646464;
+  background-color: #20a3b4;
+}
+.paleta-3-3:after {
+  border-color: #20a3b4;
 }
 .paleta-3-4 {
-  background-color: #646464;
+  background-color: #2a9baa;
+}
+.paleta-3-4:after {
+  border-color: #2a9baa;
 }
 .paleta-3-5 {
-  background-color: #646464;
+  background-color: #35939f;
+}
+.paleta-3-5:after {
+  border-color: #35939f;
 }
 .paleta-3-6 {
-  background-color: #646464;
+  background-color: #408b94;
+}
+.paleta-3-6:after {
+  border-color: #408b94;
 }
 .paleta-3-7 {
-  background-color: #646464;
+  background-color: #4a838a;
+}
+.paleta-3-7:after {
+  border-color: #4a838a;
 }
 .paleta-3-8 {
-  background-color: #646464;
+  background-color: #557a7f;
+}
+.paleta-3-8:after {
+  border-color: #557a7f;
 }
 .paleta-3-9 {
-  background-color: #646464;
+  background-color: #5f7275;
+}
+.paleta-3-9:after {
+  border-color: #5f7275;
 }
 .paleta-3-10 {
-  background-color: #646464;
+  background-color: #6a6a6a;
+}
+.paleta-3-10:after {
+  border-color: #6a6a6a;
 }
 .paleta-4-1 {
-  background-color: #7e7e7e;
+  background-color: #08e3ff;
+}
+.paleta-4-1:after {
+  border-color: #08e3ff;
 }
 .paleta-4-2 {
-  background-color: #979797;
+  background-color: #3be9ff;
+}
+.paleta-4-2:after {
+  border-color: #3be9ff;
 }
 .paleta-4-3 {
-  background-color: #b1b1b1;
+  background-color: #6eefff;
+}
+.paleta-4-3:after {
+  border-color: #6eefff;
 }
 .paleta-4-4 {
-  background-color: #cacaca;
+  background-color: #a1f4ff;
+}
+.paleta-4-4:after {
+  border-color: #a1f4ff;
 }
 .paleta-4-5 {
-  background-color: #e3e3e3;
+  background-color: #d4faff;
+}
+.paleta-4-5:after {
+  border-color: #d4faff;
 }
 .paleta-4-6 {
-  background-color: #fdfdfd;
+  background-color: #ffffff;
+}
+.paleta-4-6:after {
+  border-color: #ffffff;
 }
 .paleta-4-7 {
   background-color: #ffffff;
 }
+.paleta-4-7:after {
+  border-color: #ffffff;
+}
 .paleta-4-8 {
   background-color: #ffffff;
+}
+.paleta-4-8:after {
+  border-color: #ffffff;
 }
 .paleta-4-9 {
   background-color: #ffffff;
 }
+.paleta-4-9:after {
+  border-color: #ffffff;
+}
 .paleta-4-10 {
   background-color: #ffffff;
 }
+.paleta-4-10:after {
+  border-color: #ffffff;
+}
 .paleta-5-1 {
-  background-color: #4a4a4a;
+  background-color: #008fa1;
+}
+.paleta-5-1:after {
+  border-color: #008fa1;
 }
 .paleta-5-2 {
-  background-color: #313131;
+  background-color: #00626e;
+}
+.paleta-5-2:after {
+  border-color: #00626e;
 }
 .paleta-5-3 {
-  background-color: #181818;
+  background-color: #00343b;
+}
+.paleta-5-3:after {
+  border-color: #00343b;
 }
 .paleta-5-4 {
-  background-color: #000000;
+  background-color: #000708;
+}
+.paleta-5-4:after {
+  border-color: #000708;
 }
 .paleta-5-5 {
   background-color: #000000;
 }
+.paleta-5-5:after {
+  border-color: #000000;
+}
 .paleta-5-6 {
   background-color: #000000;
+}
+.paleta-5-6:after {
+  border-color: #000000;
 }
 .paleta-5-7 {
   background-color: #000000;
 }
+.paleta-5-7:after {
+  border-color: #000000;
+}
 .paleta-5-8 {
   background-color: #000000;
+}
+.paleta-5-8:after {
+  border-color: #000000;
 }
 .paleta-5-9 {
   background-color: #000000;
 }
+.paleta-5-9:after {
+  border-color: #000000;
+}
 .paleta-5-10 {
   background-color: #000000;
+}
+.paleta-5-10:after {
+  border-color: #000000;
 }
 .badge {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
   white-space: nowrap;
-  background-color: #8d6e53;
+  background-color: #cccccc;
   color: #000000;
   fill: #000000;
 }
@@ -44179,7 +45135,7 @@
     border-radius: 5px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .badge {
     padding: 2px 7px;
     font-size: 10.5px;
@@ -44194,7 +45150,7 @@
   }
 }
 .badge.badgePrimario {
-  background-color: #646464;
+  background-color: #00bcd4;
   color: #ffffff;
   fill: #ffffff;
 }
@@ -44214,7 +45170,7 @@
   fill: rgba(0, 0, 0, 0.8);
 }
 .badge.badgeInfo {
-  background-color: #979797;
+  background-color: #3be9ff;
   color: rgba(0, 0, 0, 0.8);
   fill: rgba(0, 0, 0, 0.8);
 }
@@ -44234,7 +45190,7 @@
     margin-bottom: 5px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .mensagemInline {
     padding: 6px 10px 6px 10px;
     font-size: 14px;
@@ -44269,10 +45225,10 @@
   fill: #2f1a00;
 }
 .mensagemInline.mensagemInfo {
-  background-color: rgba(100, 100, 100, 0.15);
-  border-color: rgba(100, 100, 100, 0.3);
-  color: #000000;
-  fill: #000000;
+  background-color: rgba(0, 188, 212, 0.15);
+  border-color: rgba(0, 188, 212, 0.3);
+  color: #000708;
+  fill: #000708;
 }
 @keyframes loaderSpin {
   0% {
@@ -44285,8 +45241,8 @@
 .loader {
   display: inline-block;
   border-style: solid;
-  border-color: #8d6e53;
-  border-top-color: #646464;
+  border-color: #cccccc;
+  border-top-color: #00bcd4;
   border-radius: 50%;
   animation: loaderSpin 0.8s linear infinite;
   flex-shrink: 0;
@@ -44298,7 +45254,7 @@
     height: 32px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .loader {
     width: 28px;
     height: 28px;
@@ -44324,7 +45280,7 @@
     font-size: 16px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .loaderContainer {
     padding: 20px;
     font-size: 14px;
@@ -44378,7 +45334,7 @@
     min-height: 184px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .cardButton {
     min-height: 140px;
   }
@@ -44389,7 +45345,7 @@
   }
 }
 .cardButton:hover {
-  background-color: rgba(100, 100, 100, 0.1) !important;
+  background-color: rgba(0, 188, 212, 0.1) !important;
 }
 .cardButton-main {
   display: flex;
@@ -44412,7 +45368,7 @@
     font-size: 70px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .cardButton-icone {
     font-size: 45px;
   }
@@ -44432,7 +45388,7 @@
     font-size: 32px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .cardButton-texto {
     font-size: 23.4px;
   }
@@ -44452,7 +45408,7 @@
     font-size: 16px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .cardButton-subtexto {
     font-size: 14px;
   }
@@ -44462,34 +45418,34 @@
     font-size: 12px;
   }
 }
-.tableGrid > .containerEmLinha {
+.tableGrid > div {
   -webkit-align-items: center;
   -ms-flex-item-align: center;
   align-items: center;
 }
 @media (min-width: 992px) {
-  .tableGrid > .containerEmLinha {
+  .tableGrid > div {
     min-height: 46px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
-  .tableGrid > .containerEmLinha {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
+  .tableGrid > div {
     min-height: 40px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
 @media (max-width: 768px) {
-  .tableGrid > .containerEmLinha {
+  .tableGrid > div {
     min-height: 36px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
-.tableGrid > .containerEmLinha:last-child {
+.tableGrid > div:last-child {
   border-bottom: none;
 }
-.tableGrid > .containerEmLinha:hover {
-  background-color: rgba(100, 100, 100, 0.04);
+.tableGrid > div:hover {
+  background-color: rgba(0, 188, 212, 0.04);
 }
 /*<div class="containerItemFormComIcone">
     <asp:TextBox ID="passwordTXT" CssClass="itemForm input " placeholder="Senha" TextMode="Password" runat="server" autocomplete="off"></asp:TextBox>
@@ -44515,7 +45471,7 @@
     margin-top: 3px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .itemForm {
     -webkit-border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
@@ -44566,7 +45522,7 @@
     height: 24px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerItemFormComIcone svg {
     left: 5px;
     top: 8px;
@@ -44589,7 +45545,7 @@
     padding: 0px 6px 0px 36px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerItemFormComIcone input {
     padding: 0px 5px 0px 34px;
   }
@@ -44603,25 +45559,25 @@
   display: block;
   font-family: Raleway, sans-serif, Arial, Helvetica;
   font-weight: 700;
-  color: #646464;
+  color: #00bcd4;
   text-align: left;
   width: 100%;
   border-width: 0px !important;
   border-bottom-style: solid;
-  border-bottom-color: #646464;
+  border-bottom-color: #00bcd4;
   padding-bottom: 4px;
 }
 @media (min-width: 992px) {
   .sectionTitle {
-    font-size: 24px;
+    font-size: 18px;
     border-bottom-width: 3px !important;
     margin-top: 20px;
     margin-bottom: 20px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .sectionTitle {
-    font-size: 20px;
+    font-size: 16px;
     border-bottom-width: 2px !important;
     margin-top: 16px;
     margin-bottom: 16px;
@@ -44629,15 +45585,15 @@
 }
 @media (max-width: 768px) {
   .sectionTitle {
-    font-size: 18px;
+    font-size: 14px;
     border-bottom-width: 1px !important;
     margin-top: 12px;
     margin-bottom: 12px;
   }
 }
 .sectionTitle.secundaria {
-  color: #99182e;
-  border-bottom-color: #99182e;
+  color: #872300;
+  border-bottom-color: #872300;
   background-color: transparent;
 }
 .tituloForm {
@@ -44657,15 +45613,15 @@
   -webkit-border-bottom-right-radius: 0px!important;
   -moz-border-radius-bottomright: 0px!important;
   border-bottom-right-radius: 0px!important;
-  background-image: -moz-linear-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #646464, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: linear-gradient(to bottom, #00bcd4, #333333 170%);
 }
 @media (min-width: 992px) {
   .tituloForm {
     font-size: 16px;
-    height: 49.6px;
+    height: 38.4px;
     top: 1px;
     -webkit-border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -44679,10 +45635,10 @@
     margin-bottom: 0px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .tituloForm {
     font-size: 14.4px;
-    height: 44.8px;
+    height: 33.6px;
     top: 1px;
     -webkit-border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
@@ -44699,7 +45655,7 @@
 @media (max-width: 768px) {
   .tituloForm {
     font-size: 12.8px;
-    height: 38.4px;
+    height: 28.8px;
     top: 1px;
     -webkit-border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
@@ -44741,29 +45697,29 @@
 }
 @media (min-width: 992px) {
   .passos {
-    margin-bottom: 18.6px;
+    margin-bottom: 14.4px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .passos {
-    margin-bottom: 11.2px;
+    margin-bottom: 8.4px;
   }
 }
 @media (max-width: 768px) {
   .passos {
-    margin-bottom: 4.8px;
+    margin-bottom: 3.6px;
   }
 }
 .passos > p {
-  color: #646464;
-  fill: #646464;
+  color: #00bcd4;
+  fill: #00bcd4;
 }
 @media (min-width: 992px) {
   .passos > p {
     font-size: 16px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .passos > p {
     font-size: 14px;
   }
@@ -44786,18 +45742,18 @@
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  background-image: -moz-linear-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: -webkit-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: -o-linear-gradient(to bottom, #646464, #1e1e1e 400%);
-  background-image: linear-gradient(to bottom, #646464, #1e1e1e 400%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: -webkit-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: -o-linear-gradient(to bottom, #00bcd4, #333333 400%);
+  background-image: linear-gradient(to bottom, #00bcd4, #333333 400%);
 }
 @media (min-width: 992px) {
   .passos > div {
     margin-left: 18px !important;
     margin-right: 18px !important;
-    border-radius: 49.6px;
-    width: 49.6px;
-    height: 49.6px;
+    border-radius: 38.4px;
+    width: 38.4px;
+    height: 38.4px;
     font-size: 16px;
     -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
@@ -44805,13 +45761,13 @@
     margin-bottom: 5px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .passos > div {
     margin-left: 15px !important;
     margin-right: 15px !important;
-    border-radius: 44.8px;
-    width: 44.8px;
-    height: 44.8px;
+    border-radius: 33.6px;
+    width: 33.6px;
+    height: 33.6px;
     font-size: 14px;
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
@@ -44823,9 +45779,9 @@
   .passos > div {
     margin-left: 12px !important;
     margin-right: 12px !important;
-    border-radius: 38.4px;
-    width: 38.4px;
-    height: 38.4px;
+    border-radius: 28.8px;
+    width: 28.8px;
+    height: 28.8px;
     font-size: 12px;
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
@@ -44870,7 +45826,7 @@
     margin-bottom: 5px !important;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .passoFuturo {
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.15) !important;
     -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.15) !important;
@@ -44896,7 +45852,7 @@
     padding: 0px 6px 0px 6px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .input {
     padding: 0px 5px 0px 5px;
   }
@@ -44920,13 +45876,13 @@
 .bt {
   color: #000000;
   fill: #000000;
-  background-color: #8d6e53;
+  background-color: #cccccc;
 }
 .bt:hover {
-  background-image: -moz-linear-linear-gradient(to bottom, #8d6e53, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #8d6e53, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #8d6e53, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #8d6e53, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #cccccc, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #cccccc, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #cccccc, #333333 170%);
+  background-image: linear-gradient(to bottom, #cccccc, #333333 170%);
 }
 .tituloForm_subTitulo_1 {
   font-weight: normal;
@@ -44938,7 +45894,7 @@
     font-size: 13px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .tituloForm_subTitulo_1 {
     font-size: 11.7px;
   }
@@ -44958,7 +45914,7 @@
     font-size: 11px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .tituloForm_subTitulo_2 {
     font-size: 9.9px;
   }
@@ -44978,7 +45934,7 @@
     font-size: 9px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .tituloForm_subTitulo_3 {
     font-size: 8.1px;
   }
@@ -45002,7 +45958,7 @@
     font-size: 12.8px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .label {
     font-size: 11.2px;
   }
@@ -45023,7 +45979,7 @@
     font-size: 11.2px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .hint {
     font-size: 9.8px;
   }
@@ -45044,16 +46000,16 @@
     right: 0px;
     float: right;
     left: inherit;
-    height: 48px;
-    width: 48px;
-    background-color: #313131;
-    padding: 0px 8px 0px 8px;
+    height: 36px;
+    width: 36px;
+    background-color: #00626e;
+    padding: 0px 6px 0px 6px;
   }
   .hamburgerDisplayLines {
     /*display:            inline-block;*/
     position: absolute;
-    height: 48px;
-    width: 32px;
+    height: 36px;
+    width: 24px;
     vertical-align: middle;
   }
   .hamburgerDisplayLines span {
@@ -45062,21 +46018,21 @@
     background: #ffffff;
     position: absolute;
     left: 0px;
-    height: 2.4px;
-    border-radius: 2.4px;
+    height: 1.8px;
+    border-radius: 1.8px;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
   }
   .hamburgerDisplayLines span:nth-child(1) {
-    top: 13.6px;
+    top: 10.2px;
   }
   .hamburgerDisplayLines span:nth-child(2) {
-    top: 21.6px;
+    top: 16.2px;
   }
   .hamburgerDisplayLines span:nth-child(3) {
-    top: 29.6px;
+    top: 22.2px;
   }
   .hamburgerCheckbox:checked ~ .hamburgerDisplayButton > .hamburgerDisplayLines span {
     top: 50%;
@@ -45161,7 +46117,7 @@
     padding-right: 5px !important;
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .containerExternoBotoesSubmenu {
     padding-left: 4.5px !important;
     padding-right: 4.5px !important;
@@ -45183,7 +46139,7 @@
     display: flex;
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .containerInternoBotoesSubmenu {
     padding-left: 4.5px !important;
     padding-right: 4.5px !important;
@@ -45204,14 +46160,14 @@
 }
 @media (min-width: 992px) {
   .navbar {
-    margin-top: 5px;
-    margin-bottom: 6px;
+    margin-top: 10px;
+    margin-bottom: 12px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .navbar {
-    margin-top: 4px;
-    margin-bottom: 5px;
+    margin-top: 8px;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 768px) {
@@ -45219,18 +46175,18 @@
     /*display:        block;*/
     width: 100%;
     padding: 0 0 0 0 !important;
-    height: 48px;
-    line-height: 48px;
+    height: 36px;
+    line-height: 36px;
     margin-top: 0px;
     margin-bottom: 3px;
     margin-left: 0px !important;
     margin-right: 0px !important;
     -webkit-justify-content: center;
     justify-content: flex-end;
-    background-image: -moz-linear-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-    background-image: -webkit-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-    background-image: -o-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-    background-image: linear-gradient(to bottom, #646464, #1e1e1e 170%);
+    background-image: -moz-linear-linear-gradient(to bottom, #00bcd4, #333333 170%);
+    background-image: -webkit-linear-gradient(to bottom, #00bcd4, #333333 170%);
+    background-image: -o-linear-gradient(to bottom, #00bcd4, #333333 170%);
+    background-image: linear-gradient(to bottom, #00bcd4, #333333 170%);
   }
 }
 .menuPrincipal,
@@ -45247,10 +46203,10 @@
   -webkit-align-items: center;
   -ms-flex-item-align: center;
   align-items: center;
-  background-image: -moz-linear-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #646464, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #646464, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #00bcd4, #333333 170%);
+  background-image: linear-gradient(to bottom, #00bcd4, #333333 170%);
   border-width: 0px!important;
 }
 @media (min-width: 992px) {
@@ -45269,7 +46225,7 @@
     border-color: #000000;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .menuPrincipal,
   .menuSecundario {
     padding: 0 13.5px 0 13.5px !important;
@@ -45322,18 +46278,18 @@
 @media (min-width: 992px) {
   .menuItem {
     min-width: 1px;
-    height: 62px;
-    line-height: 62px;
+    height: 48px;
+    line-height: 48px;
     font-size: 20px;
     text-align: center;
     padding: 0px 10px 0px 10px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .menuItem {
     min-width: 1px;
-    height: 56px;
-    line-height: 56px;
+    height: 42px;
+    line-height: 42px;
     font-size: 18px;
     text-align: center;
     padding: 0px 9px 0px 9px;
@@ -45342,8 +46298,8 @@
 @media (max-width: 768px) {
   .menuItem {
     min-width: 1px;
-    height: 48px;
-    line-height: 48px;
+    height: 36px;
+    line-height: 36px;
     font-size: 16px;
     float: none;
     /*justify-content:    flex-end;*/
@@ -45352,7 +46308,7 @@
   }
 }
 .menuItem:hover {
-  background-color: #646464;
+  background-color: #00bcd4;
 }
 @media (min-width: 992px) {
   .menuItem:hover .subMenu {
@@ -45360,24 +46316,24 @@
   }
 }
 .menuItem.paginaAtual {
-  background-image: -moz-linear-linear-gradient(to bottom, #717171, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #717171, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #717171, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #717171, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00d3ee, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #00d3ee, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #00d3ee, #333333 170%);
+  background-image: linear-gradient(to bottom, #00d3ee, #333333 170%);
 }
 .menuItem.paginaAtual:hover {
   background-image: none;
-  background-color: #6c6c6c;
+  background-color: #00cae3;
 }
 .menuItem.inativo {
   color: rgba(0, 0, 0, 0.3);
   fill: rgba(0, 0, 0, 0.3);
   text-decoration: none;
   cursor: default;
-  background-image: -moz-linear-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #575757, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: linear-gradient(to bottom, #00a5bb, #333333 170%);
 }
 .menuItem.inativo:hover {
   background-color: initial!important;
@@ -45406,7 +46362,7 @@
     height: 17px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .menuItem .iconMenu svg {
     height: 16px;
   }
@@ -45448,7 +46404,7 @@
   -moz-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-  background-color: #646464;
+  background-color: #00bcd4;
   margin-top: 0px;
   margin-left: 0px;
   margin-right: 0px;
@@ -45456,7 +46412,7 @@
 }
 @media (min-width: 992px) {
   .subMenu {
-    top: 62px;
+    top: 48px;
     border-width: 0px !important;
     -webkit-border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -45476,9 +46432,9 @@
     margin-bottom: 5px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .subMenu {
-    top: 56px;
+    top: 42px;
     border-width: 0px !important;
     -webkit-border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
@@ -45508,11 +46464,11 @@
 }
 .submenuNaoDinamico {
   font-weight: bold !important;
-  background-color: #717171;
+  background-color: #00d3ee;
 }
 .submenuNaoDinamico a {
-  color: #3e3e3e !important;
-  fill: #3e3e3e !important;
+  color: #007888 !important;
+  fill: #007888 !important;
 }
 .subMenuItem {
   /*display:            block;*/
@@ -45536,18 +46492,18 @@
 }
 @media (min-width: 992px) {
   .subMenuItem {
-    height: 62px;
-    line-height: 62px;
+    height: 48px;
+    line-height: 48px;
     padding-left: 10px;
     padding-right: 10px;
     font-size: 16px;
     text-align: left;
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .subMenuItem {
-    height: 56px;
-    line-height: 56px;
+    height: 42px;
+    line-height: 42px;
     padding-left: 9px;
     padding-right: 9px;
     font-size: 14px;
@@ -45556,15 +46512,15 @@
 }
 @media (max-width: 768px) {
   .subMenuItem {
-    height: 48px;
-    line-height: 48px;
+    height: 36px;
+    line-height: 36px;
     padding-left: 8px;
     padding-right: 8px;
     text-align: left;
   }
 }
 .subMenuItem:hover {
-  background-color: #717171;
+  background-color: #00d3ee;
 }
 .subMenuItem.tituloSubMenuItem {
   font-weight: bold;
@@ -45573,9 +46529,9 @@
   -webkit-justify-content: center!important;
   justify-content: center!important;
   cursor: default;
-  color: #3e3e3e;
-  fill: #3e3e3e;
-  background-color: #646464;
+  color: #007888;
+  fill: #007888;
+  background-color: #10b0c4;
 }
 @media (min-width: 992px) {
   .subMenuItem.tituloSubMenuItem {
@@ -45583,7 +46539,7 @@
     padding-left: 40px;
   }
 }
-@media (min-width: 768px) and (max-width: 992px), or (hover: none) {
+@media (min-width: 768px) and (max-width: 992px), (hover: none) {
   .subMenuItem.tituloSubMenuItem {
     padding-right: 35px;
     padding-left: 35px;
@@ -45605,9 +46561,9 @@
   position: relative;
   vertical-align: middle;
   width: 50%;
-  background-color: #3e3e3e;
-  color: #3e3e3e;
-  fill: #3e3e3e;
+  background-color: #007888;
+  color: #007888;
+  fill: #007888;
 }
 .subMenuItem.tituloSubMenuItem:before,
 .subMenuItem.tituloSubMenuItem::before {
@@ -45620,20 +46576,20 @@
   margin-right: -50%;
 }
 .subMenuItem.paginaAtual {
-  background-color: #6c6c6c;
+  background-color: #00cae3;
 }
 .subMenuItem.paginaAtual:hover {
-  background-color: #717171;
+  background-color: #00d3ee;
 }
 .subMenuItem.inativo {
   text-decoration: none!important;
   cursor: default!important;
   color: rgba(0, 0, 0, 0.3);
   fill: rgba(0, 0, 0, 0.3);
-  background: repeating-linear-gradient(45deg, #b1b1b1, #b1b1b1 4px, #a4a4a4 4px, #a4a4a4 8px);
+  background: repeating-linear-gradient(45deg, #75e9f8, #75e9f8 4px, #5de5f6 4px, #5de5f6 8px);
 }
 .subMenuItem.inativo:hover {
-  background: repeating-linear-gradient(45deg, #979797, #979797 4px, #8a8a8a 4px, #8a8a8a 8px);
+  background: repeating-linear-gradient(45deg, #3be9ff, #3be9ff 4px, #21e6ff 4px, #21e6ff 8px);
 }
 .subMenuItem a {
   display: block!important;
@@ -45654,10 +46610,10 @@
   fill: rgba(0, 0, 0, 0.3);
 }
 .menuSecundario {
-  background-image: -moz-linear-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #99182e, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: linear-gradient(to bottom, #872300, #333333 170%);
 }
 .menuSecundario .menuItem {
   left: inherit;
@@ -45665,37 +46621,37 @@
   width: 100%;
 }
 .menuSecundario .menuItem:hover {
-  background-color: #99182e;
+  background-color: #872300;
 }
 .menuSecundario .menuItem.paginaAtual {
-  background-image: -moz-linear-linear-gradient(to bottom, #af1b35, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #af1b35, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #af1b35, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #af1b35, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #a12a00, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #a12a00, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #a12a00, #333333 170%);
+  background-image: linear-gradient(to bottom, #a12a00, #333333 170%);
 }
 .menuSecundario .menuItem.paginaAtual:hover {
   background-image: none;
-  background-color: #a61a32;
+  background-color: #962700;
 }
 .menuSecundario .menuItem.inativo {
-  background-image: -moz-linear-linear-gradient(to bottom, #831527, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #831527, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #831527, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #831527, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #6e1c00, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #6e1c00, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #6e1c00, #333333 170%);
+  background-image: linear-gradient(to bottom, #6e1c00, #333333 170%);
 }
 .menuSecundario .subMenu {
   left: inherit;
   right: 0px;
   float: right;
-  background-color: #99182e;
+  background-color: #872300;
 }
 .menuSecundario .submenuNaoDinamico {
   font-weight: bold !important;
-  background-color: #af1b35;
+  background-color: #a12a00;
 }
 .menuSecundario .submenuNaoDinamico a {
-  color: #570e1a !important;
-  fill: #570e1a !important;
+  color: #3b0f00 !important;
+  fill: #3b0f00 !important;
 }
 .menuSecundario .subMenuItem {
   left: inherit;
@@ -45705,40 +46661,40 @@
   /*.backgroundColor(@CorSecundaria; 100%; 0%; 0%; 10%; 0%);*/
 }
 .menuSecundario .subMenuItem:hover {
-  background-color: #af1b35;
+  background-color: #a12a00;
 }
 .menuSecundario .subMenuItem.tituloSubMenuItem {
-  color: #570e1a;
-  fill: #570e1a;
-  background-color: #8c2537;
+  color: #3b0f00;
+  fill: #3b0f00;
+  background-color: #7d280a;
 }
 .menuSecundario .subMenuItem.tituloSubMenuItem:before,
 .menuSecundario .subMenuItem.tituloSubMenuItem::before,
 .menuSecundario .subMenuItem.tituloSubMenuItem:after,
 .menuSecundario .subMenuItem.tituloSubMenuItem::after {
-  background-color: #570e1a;
-  color: #570e1a;
-  fill: #570e1a;
+  background-color: #3b0f00;
+  color: #3b0f00;
+  fill: #3b0f00;
 }
 .menuSecundario .subMenuItem.paginaAtual {
-  background-color: #a61a32;
+  background-color: #962700;
 }
 .menuSecundario .subMenuItem.paginaAtual:hover {
-  background-color: #af1b35;
+  background-color: #a12a00;
 }
 .menuSecundario .subMenuItem.inativo {
   text-decoration: none!important;
   cursor: default!important;
   color: rgba(0, 0, 0, 0.3);
   fill: rgba(0, 0, 0, 0.3);
-  background-image: -moz-linear-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #575757, #1e1e1e 170%);
-  background: repeating-linear-gradient(45deg, #de6c80, #de6c80 4px, #d9586e 4px, #d9586e 8px);
+  background-image: -moz-linear-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background-image: linear-gradient(to bottom, #00a5bb, #333333 170%);
+  background: repeating-linear-gradient(45deg, #f4602c, #f4602c 4px, #f34e14 4px, #f34e14 8px);
 }
 .menuSecundario .subMenuItem.inativo:hover {
-  background: repeating-linear-gradient(45deg, #e03754, #e03754 4px, #db2242 4px, #db2242 8px);
+  background: repeating-linear-gradient(45deg, #ed3d00, #ed3d00 4px, #d33700 4px, #d33700 8px);
 }
 .logoHomeNavbarContainer {
   z-index: 10001;
@@ -45757,17 +46713,17 @@
 }
 @media (min-width: 992px) {
   .logoHomeNavbar {
-    max-height: 73px;
+    max-height: 70px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .logoHomeNavbar {
-    max-height: 65px;
+    max-height: 60px;
   }
 }
 @media (max-width: 768px) {
   .logoHomeNavbar {
-    max-height: 48px;
+    max-height: 36px;
   }
 }
 /*
@@ -45794,7 +46750,7 @@
     border-color: #000000;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerbtFacebook {
     /*top:    (@margemTop_ItemForm_Tablet + @EspessuraDaBorda_Tablet);*/
     height: 34px;
@@ -45866,7 +46822,7 @@
     width: 24px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerbtFacebook div {
     margin-left: 14.5px;
   }
@@ -45903,7 +46859,7 @@
     border-color: #000000;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerbtGoogle {
     /*top:    (@margemTop_ItemForm_Tablet + @EspessuraDaBorda_Tablet);*/
     height: 34px;
@@ -45983,7 +46939,7 @@
     height: 24px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   .containerbtGoogle div svg {
     width: 24px;
     height: 24px;
@@ -46000,21 +46956,21 @@
     min-width: 430px;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem:hover {
-    background-color: #c51f3b;
+    background-color: #ba3000;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover {
-    background-color: #af1b35;
+    background-color: #a12a00;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   #menuSecundario_acesso_SubMenu {
     min-width: 0px;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem:hover {
-    background-color: #c51f3b;
+    background-color: #ba3000;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover {
-    background-color: #af1b35;
+    background-color: #a12a00;
   }
 }
 @media (max-width: 768px) {
@@ -46022,26 +46978,26 @@
     min-width: 0px;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem:hover {
-    background-color: #c51f3b;
+    background-color: #ba3000;
   }
   #menuSecundario_acesso_SubMenu .subMenuItem.titulo:hover {
-    background-color: #af1b35;
+    background-color: #a12a00;
   }
 }
 .btEntrar {
   border-color: rgba(0, 0, 0, 0.7);
   color: #ffffff;
   fill: #ffffff;
-  background-image: -moz-linear-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: -webkit-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: -o-linear-gradient(to bottom, #99182e, #1e1e1e 170%);
-  background-image: linear-gradient(to bottom, #99182e, #1e1e1e 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: -webkit-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: -o-linear-gradient(to bottom, #872300, #333333 170%);
+  background-image: linear-gradient(to bottom, #872300, #333333 170%);
 }
 .btEntrar:hover {
-  background-image: -moz-linear-linear-gradient(to bottom, #e7637a, #000000 170%);
-  background-image: -webkit-linear-gradient(to bottom, #e7637a, #000000 170%);
-  background-image: -o-linear-gradient(to bottom, #e7637a, #000000 170%);
-  background-image: linear-gradient(to bottom, #e7637a, #000000 170%);
+  background-image: -moz-linear-linear-gradient(to bottom, #ff5b21, #000000 170%);
+  background-image: -webkit-linear-gradient(to bottom, #ff5b21, #000000 170%);
+  background-image: -o-linear-gradient(to bottom, #ff5b21, #000000 170%);
+  background-image: linear-gradient(to bottom, #ff5b21, #000000 170%);
 }
 .esqueciSenha {
   border-style: none;
@@ -46076,7 +47032,7 @@
     font-size: 20px;
   }
 }
-@media (max-width: 992px) and (min-width: 768px), or (hover: none) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px), (hover: none) and (min-width: 768px) {
   #IDMenu_Secundario_IDitem_acesso_IDsubItem_criarConta {
     font-size: 18px;
   }

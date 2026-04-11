@@ -1,8 +1,11 @@
 # Guia de Implantacao do Framework CSS LESS
 
-**Versao:** 2026-04-05
+**Versao:** 2026-04-11
 
 Este guia descreve como integrar o framework CSS LESS em novos projetos web.
+
+> **Nota de precedencia**: Este guia e complementar a `REFERENCIA_CLAUDE_CODE.md`
+> (canonico). Em caso de conflito, consulte primeiro o REFERENCIA, depois este.
 
 ---
 
@@ -44,8 +47,9 @@ Este guia descreve como integrar o framework CSS LESS em novos projetos web.
 |---------|-----------|
 | `LESS/framework.less` | Arquivo principal que importa tudo |
 | `LESS/normalize.less` | Reset CSS com customizacoes do framework |
-| `LESS/Variaveis/Variaveis.less` | Todas as variaveis |
+| `LESS/Variaveis/Variaveis.less` | Todas as 405 variaveis |
 | `LESS/Variaveis/Mixing.less` | Todos os mixins |
+| `LESS/Variaveis/CustomProperties.less` | CSS custom properties (GERADO - nao editar) |
 | `LESS/Estruturas/Grid/grid.less` | Sistema de grid |
 | `LESS/Estruturas/Elementos/basicos/panels.less` | Componente panel |
 | `LESS/Estruturas/Elementos/basicos/textos_especificos_por_breakpoint.less` | Textos responsivos |
@@ -66,7 +70,7 @@ Este guia descreve como integrar o framework CSS LESS em novos projetos web.
 | Arquivo | Proposito | Quando incluir |
 |---------|-----------|---------------|
 | `LESS/Especificos/Especificos.less` | Estilos da aplicacao demo | Substituir pelo seu proprio arquivo de estilos especificos |
-| `JS/messageBalloons.js` | Controle de balloons | Apenas se usar o sistema de balloons |
+| `JS/messageBalloons.js` | Controle touch/click de balloons (event delegation + Pointer Events) | OBRIGATORIO se usar balloons — sem ele, balloons nao abrem em touch devices |
 | `icones/*.svg` | Biblioteca de icones | Copiar os que precisar |
 
 ### NAO copiar
@@ -193,7 +197,7 @@ lessc --clean-css src/styles/main.less dist/css/framework.min.css
 </head>
 <body>
     <!-- Seu conteudo -->
-    <script src="js/messageBalloons.js"></script> <!-- Se usar balloons -->
+    <script src="js/messageBalloons.js" defer></script> <!-- OBRIGATORIO se usar balloons -->
 </body>
 </html>
 ```
@@ -250,9 +254,43 @@ Em projetos modernos, use uma das alternativas:
 
 ## 6. Customizacao via Variaveis
 
+### Duas formas de customizar
+
+**A) Em build-time (recompilar LESS)** — mudanca permanente no `framework.css`:
+
+Edite `Variaveis.less`, **rode o gerador de CustomProperties** (`node scripts/generate-custom-properties.js`) e **recompile** o LESS com `math: 'always'`.
+
+```bash
+cd framework_css
+# apenas se adicionou/renomeou/removeu variaveis (altera lista de var(--*)):
+node scripts/generate-custom-properties.js
+# sempre:
+node_modules/.bin/lessc --math=always public/less-src/framework.less public/css/framework.css
+```
+
+**B) Em runtime (CSS custom properties `var(--*)`)** — sobrescrita em qualquer escopo CSS, sem recompilar:
+
+Desde 2026-04-11, todas as 405 variaveis LESS sao expostas como CSS custom properties em `:root`. Voce pode sobrescreve-las em qualquer nivel do CSS do seu projeto:
+
+```css
+/* Tema azul aplicado apenas em uma rota/pagina */
+.pagina-azul {
+    --CorPrimaria:   rgb(30, 144, 255);
+    --CorSecundaria: rgb(220, 53, 69);
+}
+
+/* Tema escuro dinamico via JS */
+html[data-theme="dark"] {
+    --CorFundo:        rgb(18, 18, 18);
+    --CorFontePadrao:  rgb(240, 240, 240);
+}
+```
+
+Alem das variaveis fixas, o framework expoe 89 "bases responsivas" sem sufixo (ex: `var(--EntreColuna)`, `var(--AlturaLinhaPadrao)`) que mudam **automaticamente** por breakpoint. Ver secao 7.0 do `REFERENCIA_CLAUDE_CODE.md`.
+
 ### Cores
 
-Para mudar o esquema de cores, edite em `Variaveis.less`:
+Para mudar o esquema de cores em build-time, edite em `Variaveis.less`:
 
 ```less
 // Cores principais
@@ -675,7 +713,7 @@ ocupando `D3T2M1` da linha, com tres paineis empilhados verticalmente dentro).
 | Dependencia | Proposito |
 |------------|-----------|
 | Google Fonts (Raleway) | Fonte padrao do framework |
-| messageBalloons.js | Interatividade dos balloons (apenas se usar) |
+| messageBalloons.js | Interatividade touch/click dos balloons — OBRIGATORIO se usar balloons (sem ele, touch devices nao conseguem abrir balloons). Expoe API global `window.MessageBalloons.toggle()` / `.closeAll()` |
 
 ### Sem dependencias externas de:
 

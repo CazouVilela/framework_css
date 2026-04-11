@@ -37,7 +37,7 @@
                     width: ~"calc(100vw - @{ScrollBar_Desktop} + 3px)";
                 }
 
-                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
                     width: ~"calc(100vw - @{ScrollBar_Tablet})";
                 }
 
@@ -51,13 +51,13 @@
             }
 
 
-    //SUB-CONTEÚDOS EM COLUNAS DENTRO DO BLOCO CONTEÚDO 
+    //SUB-CONTEÚDOS EM COLUNAS DENTRO DO BLOCO CONTEÚDO
         .containerEmColuna{
             /*display:                -webkit-flex;
             display:                -ms-flexbox;
             display:                flex !important;*/
             -webkit-flex-direction: column !important;
-            -ms-flex-direction:     column !important;   
+            -ms-flex-direction:     column !important;
             flex-direction:         column !important;
             -moz-box-sizing:        border-box;
             -webkit-box-sizing:     border-box;
@@ -70,9 +70,9 @@
             }
 
             
-    //SUB-CONTEÚDOS EM LINHAS DENTRO DO BLOCO CONTEÚDO 
+    //SUB-CONTEÚDOS EM LINHAS DENTRO DO BLOCO CONTEÚDO
             .containerEmLinha {
-                
+
                 -webkit-flex-direction: row!important;
                 -ms-flex-direction:     row!important;
                 flex-direction:         row!important;
@@ -94,7 +94,7 @@
                     }*/
                 }
 
-                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
                     margin-left:    -(@EntreColuna_Desktop / 2 + 0.25)!important;
                     margin-right:   -(@EntreColuna_Desktop / 2 + 0.25)!important;
                 }
@@ -113,7 +113,7 @@
                     margin-right:   (@EntreColuna_Desktop / 2)!important;
                 }
 
-                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
                     margin-left:    (@EntreColuna_Desktop / 2)!important;
                     margin-right:   (@EntreColuna_Desktop / 2)!important;
                 }
@@ -138,7 +138,7 @@
                     }
                 }
 
-                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+                @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
                     .T-nowrap {
                         -webkit-flex-wrap:  nowrap;
                         -ms-flex-wrap:      nowrap;
@@ -288,7 +288,7 @@
 
 
                 //COLUNAS DOS CONTEÚDOS PARA TABLET
-                    @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), or (hover: none) {
+                    @media (min-width: @Res_Tablet) and (max-width: @Res_Desktop), (hover: none) {
                         
                         //CRIAR COLUNAS DOS CONTEÚDOS TABLET    
                             //Chamada da função 1 (Loop Desktop) para criação das classes de colunas de conteúdos para tablet

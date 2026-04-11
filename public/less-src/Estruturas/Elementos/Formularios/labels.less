@@ -8,7 +8,7 @@
     @LabelFontSize_Mobile:      (@TamanhoPadraoTexto_Mobile * 0.8);
     @LabelFontWeight:           bold;
     @LabelCorFonte:             @CorFontePadrao;
-    @LabelOpacidade:            0.7;
+    @LabelOpacidade:            70%;
     @LabelMargemSuperior:       6px;
     @LabelMargemInferior:       2px;
 
@@ -16,7 +16,7 @@
     @HintFontSize_Tablet:       (@TamanhoPadraoTexto_Tablet * 0.7);
     @HintFontSize_Mobile:       (@TamanhoPadraoTexto_Mobile * 0.7);
     @HintCorFonte:              @CorFontePadrao;
-    @HintOpacidade:             0.55;
+    @HintOpacidade:             55%;
     @HintMargemSuperior:        2px;
 
 //CLASSES
@@ -31,7 +31,7 @@
         @media (min-width: @Res_Desktop) {
             font-size: @LabelFontSize_Desktop;
         }
-        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
             font-size: @LabelFontSize_Tablet;
         }
         @media (max-width: @Res_Tablet) {
@@ -47,7 +47,7 @@
         @media (min-width: @Res_Desktop) {
             font-size: @HintFontSize_Desktop;
         }
-        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , or (hover: none) and (min-width: @Res_Tablet) {
+        @media (max-width: @Res_Desktop) and (min-width: @Res_Tablet) , (hover: none) and (min-width: @Res_Tablet) {
             font-size: @HintFontSize_Tablet;
         }
         @media (max-width: @Res_Tablet) {

@@ -1,8 +1,12 @@
 # Framework CSS LESS - Documentacao Completa
 
-**Versao:** Baseada em analise do codigo-fonte em 2026-04-05
+**Versao:** Baseada em analise do codigo-fonte em 2026-04-11
 **Preprocessador:** LESS
 **Contexto original:** ASP.NET WebForms (VB.NET) - mas o CSS/LESS e reutilizavel em qualquer projeto web
+
+> **Nota de precedencia**: Este documento e complementar a `REFERENCIA_CLAUDE_CODE.md`
+> (canonico). Em caso de conflito, consulte primeiro o REFERENCIA, depois este, depois
+> o codigo-fonte. Ver `README.md` nesta pasta para a ordem completa.
 
 ---
 
@@ -53,10 +57,11 @@ E um framework CSS construido com LESS que implementa:
 O arquivo `framework.less` importa todos os modulos na seguinte ordem:
 
 ```
-Variaveis/Variaveis.less      --> Todas as variaveis (inclui breakpoints internamente)
-Variaveis/Mixing.less          --> Todos os mixins
+Variaveis/Variaveis.less         --> Todas as 405 variaveis (inclui breakpoints)
+Variaveis/Mixing.less             --> Todos os mixins
+Variaveis/CustomProperties.less   --> GERADO: CSS custom properties var(--*) (NAO editar)
 
-Estruturas/Grid/grid.less      --> Sistema de grid
+Estruturas/Grid/grid.less         --> Sistema de grid
 
 Estruturas/Elementos/basicos/panels.less
 Estruturas/Elementos/basicos/textos_especificos_por_breakpoint.less
@@ -125,7 +130,7 @@ App_Themes/
 
 ## 2. Sistema de Variaveis
 
-Todas as variaveis estao definidas em `Variaveis/Variaveis.less`. Veja o arquivo [VARIAVEIS_REFERENCIA.md](VARIAVEIS_REFERENCIA.md) para a referencia completa com todas as variaveis organizadas por categoria.
+Todas as variaveis estao definidas em `Variaveis/Variaveis.less` (405 no total). Veja o arquivo [VARIAVEIS_REFERENCIA.md](VARIAVEIS_REFERENCIA.md) para a referencia completa com todas as variaveis organizadas por categoria.
 
 ### Categorias de Variaveis
 
@@ -144,6 +149,38 @@ Todas as variaveis estao definidas em `Variaveis/Variaveis.less`. Veja o arquivo
 | Navbar | ~45 | Linhas, margens, fontes, transicoes, hamburger |
 | Formularios | ~55 | Margens, padding, dimensoes, icones |
 | Message Balloon | ~80 | Bordas, padding, cores e fontes para Help, Atencao e Erro |
+
+### CSS Custom Properties (`var(--*)`) — NOVO 2026-04-11
+
+Todas as 405 variaveis LESS sao espelhadas como CSS custom properties em `:root` pelo arquivo gerado `Variaveis/CustomProperties.less`. Isso permite que projetos consumidores usem `var(--Nome)` em CSS puro, sem precisar de pipeline LESS.
+
+**Padroes expostos**:
+
+- **Todas as variaveis** como `--Nome: @Nome;` em `:root` (valor canonico fixo).
+- **Trios `_Desktop/_Tablet/_Mobile` (89 bases)** tambem expostos como `--NomeBase` sem sufixo, que muda automaticamente via `@media` conforme o breakpoint ativo.
+
+**Exemplo em CSS puro**:
+```css
+.meu-card {
+    padding:       var(--PaddingTop) var(--PaddingRight);
+    background:    var(--CorPrimaria);
+    margin:        calc(var(--EntreColuna) / 2);
+    /* EntreColuna muda automaticamente: 12px desktop, 10px tablet, 8px mobile */
+}
+```
+
+**Gerador**: `scripts/generate-custom-properties.js` (executar apos qualquer alteracao em `Variaveis.less`).
+
+```bash
+node scripts/generate-custom-properties.js
+```
+
+Depois recompilar `framework.css`:
+```bash
+node_modules/.bin/lessc --math=always public/less-src/framework.less public/css/framework.css
+```
+
+**NAO editar `CustomProperties.less` a mao** — o conteudo sera sobrescrito na proxima geracao.
 
 ---
 
@@ -816,9 +853,44 @@ Combinar com `.panel` e `.tituloForm` para criar blocos de formulario com titulo
 
 ### Proposito
 
-Gera classes utilitarias de background-color para a paleta do projeto e variacoes sistematicas.
+Gera classes utilitarias de background-color para a paleta do projeto e variacoes sistematicas. Desde 2026-04-11, todas as classes usam o mixin `.corPaleta()` que tambem colore o pseudo-elemento `:after` (preenchimento de setinhas de balloons).
+
+### Mixin `.corPaleta()` (NOVO 2026-04-11)
+
+Definido em `paleta.less:23-35`:
+
+```less
+.corPaleta(
+    @Cor;
+    @PercentualFade:            @PercentualFade_Padrao;
+    @PercentualSaturacao:       @PercentualSaturacao_Padrao;
+    @PercentualDesaturacao:     @PercentualDesaturacao_Padrao;
+    @PercentualClarificacao:    @PercentualClarificacao_Padrao;
+    @PercentualObscurecencia:   @PercentualObscurecencia_Padrao;
+) {
+    .backgroundColor(@Cor; @PercentualFade; @PercentualSaturacao; @PercentualDesaturacao; @PercentualClarificacao; @PercentualObscurecencia;);
+    &:after {
+        .borderColor(@Cor; @PercentualFade; @PercentualSaturacao; @PercentualDesaturacao; @PercentualClarificacao; @PercentualObscurecencia;);
+    }
+}
+```
+
+**Por que aplicar em `:after`**: balloons do framework desenham o triangulo com dois pseudo-elementos — `:before` e o contorno (mantem cor original) e `:after` e o preenchimento interno (deve acompanhar o fundo quando uma classe de paleta e aplicada). O mixin garante que aplicar `.paleta-4-4` em um balloon color o fundo E a setinha em uma unica classe, sem tocar no contorno.
+
+**Em elementos sem pseudo-elementos**, a regra `:after` simplesmente nao produz efeito visual — e seguro aplicar em qualquer elemento.
 
 ### Cores Base
+
+Todas as 6 classes de cor semantica foram reescritas para usar o mixin:
+
+```less
+.primaria       { .corPaleta(@CorPrimaria); }
+.secundaria     { .corPaleta(@CorSecundaria); }
+.terciaria      { .corPaleta(@CorTercearia); }
+.corAtencao     { .corPaleta(@CorAtencao); }
+.corNegacao     { .corPaleta(@CorNegacao); }
+.corPositivacao { .corPaleta(@CorPositivacao); }
+```
 
 | Classe | Cor | Valor padrao |
 |--------|-----|-------------|
@@ -831,7 +903,7 @@ Gera classes utilitarias de background-color para a paleta do projeto e variacoe
 
 ### Variacoes de Paleta
 
-A variavel `@CorTestada` (padrao: `@CorPrimaria`) e usada para gerar 50 variacoes em 5 series:
+A variavel `@CorTestada` (padrao: `@CorPrimaria`) e usada para gerar 50 variacoes em 5 series (todas agora usando o mixin `.corPaleta()`):
 
 | Serie | Parametro variado | Classes |
 |-------|------------------|---------|
@@ -841,9 +913,10 @@ A variavel `@CorTestada` (padrao: `@CorPrimaria`) e usada para gerar 50 variacoe
 | `.paleta-4-{1..10}` | Clarificacao (10% a 100%) | Mais claro progressivamente |
 | `.paleta-5-{1..10}` | Obscurecencia (10% a 100%) | Mais escuro progressivamente |
 
-### Exemplo de Uso (extraido de ModelosFramework.aspx)
+### Exemplo de Uso
 
 ```html
+<!-- Uso tradicional em panels -->
 <div class="D6T3M2 containerEmColuna">
     <div class="primaria">Cor primaria</div>
     <div class="secundaria">Cor secundaria</div>
@@ -854,6 +927,11 @@ A variavel `@CorTestada` (padrao: `@CorPrimaria`) e usada para gerar 50 variacoe
     <div class="corAtencao">Cor Atencao</div>
     <div class="corPositivacao">Cor Positivacao</div>
 </div>
+
+<!-- Aplicado em balloons: colore fundo E setinha, mantendo contorno -->
+<span class="balloonType-Help balloonPosition-All-Top paleta-4-4 D3T2M1">
+    Balloon com fundo verde claro e setinha verde
+</span>
 ```
 
 ---
@@ -1249,7 +1327,7 @@ Dimensoes do hamburger (Mobile):
 
 ## 17. Componente: Message Balloons
 
-### Arquivo: `Estruturas/Elementos/basicos/messageBalloon.less`
+### Arquivo: `Estruturas/Elementos/basicos/messageBalloon.less` (1859 linhas)
 
 ### Proposito
 
@@ -1257,7 +1335,29 @@ Sistema de tooltips/balloons posicionados relativamente a um elemento pai. Supor
 
 ### Mecanismo
 
-Os balloons usam transformacoes CSS (`transform: scaleX(0.001)` ou `scaleY(0.001)`) para ficar ocultos, e a classe `balloonStatus-Ativo` (adicionada via JS) altera para `scale(1)` com opacidade 1.
+Os balloons usam transformacoes CSS (`transform: scaleX(0.001)` ou `scaleY(0.001)`) para ficar ocultos, e a classe `balloonStatus-Ativo` (adicionada via JS) altera para `scale(1)` com opacidade 1. Desde 2026-04-11, essas transformacoes estao extraidas no mixin `.balloonAtivoTransforms()` (linha 1707) e sao reutilizadas em `:focus`, `.balloonStatus-Ativo` e `:hover`.
+
+### Containers de balloon (ATUALIZADO 2026-04-11)
+
+Um balloon e `position: absolute`, portanto precisa de um ancestral com `position: relative` para se posicionar corretamente. O framework fornece TRES classes de container, cada uma com proposito claro:
+
+| Classe                          | `display`     | `width` | Uso                                                                 |
+|--------------------------------|---------------|---------|---------------------------------------------------------------------|
+| `.containerItemFormComIcone`   | (herdado)     | `100%`  | Hospeda ICONE DENTRO do input (uso original). (`iconesForm.less`)  |
+| `.containerComBalloon`         | `inline-flex` | auto    | Hospeda balloon em botao/icone/link (tamanho variavel)              |
+| `.containerItemFormComBalloon` | `flex`        | `100%`  | Hospeda balloon em itemForm que ocupa coluna inteira                |
+
+As duas ultimas foram adicionadas em `messageBalloon.less:42-59`. Todas as 3 aplicam `position: relative`. As classes sao complementares e podem ser combinadas (ex: input com icone DENTRO e balloon: `class="containerItemFormComBalloon containerItemFormComIcone"`).
+
+### pointer-events (CRITICO para touch devices)
+
+Desde 2026-04-11, o mixin `.balloon` aplica `pointer-events: none` por default (linha 77). A regra `.balloonStatus-Ativo { pointer-events: auto !important; }` (linha 92) restaura a interatividade APENAS quando o balloon esta visivel. Isso impede que balloons fechados (que continuam ocupando area no DOM com `transform: scaleY(0.001)`) interceptem taps acidentais em touch devices.
+
+O `!important` e obrigatorio porque cada `.balloonPosition-*` re-aplica `.balloon;` via mixin, gerando regras posteriores com mesma specificity. Sem `!important`, a cascata venceria.
+
+### :hover so em devices com mouse real
+
+Desde 2026-04-11, o `:hover` dos balloons esta em `@media (min-width: @Res_Desktop) and (hover: hover)` (linha 1787). O `(hover: hover)` filtra apenas devices com mouse real. Tablets em landscape touch (viewport >= 992px mas sem mouse) nao disparam mais balloons via hover — so via tap (JS) ou focus (teclado).
 
 ### Classes de Posicao
 
@@ -1455,44 +1555,104 @@ Estilos especificos da aplicacao de demonstracao que NAO fazem parte do framewor
 
 ## 22. JavaScript - messageBalloons.js
 
-### Arquivo: `JS/messageBalloons.js`
+### Arquivo: `public/js/messageBalloons.js` (181 linhas, reescrito 2026-04-11)
 
 ### Proposito
 
-Controla a exibicao/ocultacao dos message balloons via JavaScript.
+Controla a exibicao/ocultacao dos message balloons via JavaScript, funcionando
+uniformemente em mouse/touch/pen e DOM dinamico (React/Vue/jQuery etc).
 
-### Inicializacao
+### Arquitetura
 
-```javascript
-window.addEventListener("load", balloonsTriggerListener);
+IIFE self-contained. Instala handlers globais no `document` via event delegation —
+nao registra listeners em cada `.balloonTrigger` individualmente. Isso permite que
+balloons criados apos o load funcionem automaticamente, sem precisar reescanear o DOM.
+
+### Como incluir
+
+```html
+<script src="/js/messageBalloons.js" defer></script>
 ```
 
-### Funcoes
+O script e **obrigatorio** em todo HTML que usa balloons. Sem ele, em touch devices
+os balloons nunca abrem.
 
-#### `balloonsTriggerListener()`
-Busca todos os elementos com classe `balloonTrigger` e adiciona um event listener de `click`.
+### Eventos capturados
 
-#### `balloonsTriggerClickAction()`
-Quando um `balloonTrigger` e clicado:
-1. Percorre os filhos do elemento clicado
-2. Ignora elementos `<svg>`
-3. Procura filhos que contenham a classe `balloonType` no className
-4. Para cada encontrado, chama `balloonsShowHide()`
+| Evento                                  | Quando                                                           |
+|-----------------------------------------|------------------------------------------------------------------|
+| `pointerdown` (ou fallback)             | Click/tap/pen em qualquer lugar do documento                     |
+| `keydown` com `Escape`                  | Fecha todos os balloons abertos                                  |
 
-#### `balloonsShowHide(element, classeCSS)`
-Alterna (toggle) a classe `balloonStatus-Ativo` no elemento:
-- Se tem a classe: remove
-- Se nao tem: adiciona
+O script usa `pointerdown` em vez de `click` porque:
+1. Unifica mouse/touch/pen numa API so
+2. Dispara imediatamente, sem o atraso de 300ms do click sintetico em touch
+3. Dispara ANTES de transicoes de focus, evitando race conditions
 
-#### `balloonsCloseX()` (DESATIVADA)
-Funcao comentada que adicionaria um botao "X" de fechamento em cada balloon ativo. A chamada `window.addEventListener("load", balloonsCloseX)` esta comentada.
+**Fallback**: se `window.PointerEvent` nao existe (browsers antigos), usa
+`touchstart` (passive) + `mousedown`.
 
-### Fluxo de Funcionamento
+### Dedup de eventos sinteticos
 
-1. Usuario clica em elemento com classe `balloonTrigger`
-2. JS busca filhos com `balloonType` no nome da classe
-3. Toggle da classe `balloonStatus-Ativo`
-4. CSS reage: opacidade 0->1 e transform scale 0.001->1 com transicao de 0.3s
+Em touch, alguns browsers disparam cascata `touchstart -> pointerdown -> mousedown ->
+click` no mesmo target para o mesmo gesto. Sem dedup, um unico tap abriria e fecharia
+o balloon. O script guarda o timestamp e target do ultimo evento processado e ignora
+novos eventos no mesmo target em janela de 250ms.
+
+### Funcoes internas
+
+| Funcao                       | O que faz                                                        |
+|------------------------------|------------------------------------------------------------------|
+| `findTrigger(el)`            | Sobe o DOM ate encontrar elemento com classe `.balloonTrigger`    |
+| `getBalloonsOf(trigger)`     | Retorna balloons filhos diretos OU irmaos do trigger              |
+| `hasBalloonType(el)`         | Checa se className contem "balloonType"                           |
+| `closeAll(exceptTrigger)`    | Remove `.balloonStatus-Ativo` de todos abertos (exceto opcional)  |
+| `toggle(trigger)`            | Alterna estado dos balloons do trigger. Retorna true se abriu.    |
+| `onPointerDown(ev)`          | Handler global do documento                                       |
+| `onKeyDown(ev)`              | Handler de Escape                                                 |
+
+### API global exposta
+
+```javascript
+window.MessageBalloons.toggle(triggerElement);  // Abre/fecha programaticamente
+window.MessageBalloons.closeAll();              // Fecha todos os balloons abertos
+```
+
+Util quando o JS do projeto precisa controlar balloons (ex: abrir balloon de erro
+apos falha de validacao, fechar todos ao submeter form).
+
+### Protecao contra instalacao dupla
+
+Flag `window.__messageBalloonsInstalled`. Se o script for incluido 2x no HTML por
+acidente, a segunda vez e no-op (nao instala listeners duplicados).
+
+### Fluxo de funcionamento
+
+1. Usuario faz tap/click em qualquer lugar da pagina.
+2. Handler global captura o `pointerdown` no `document`.
+3. `findTrigger(ev.target)` sobe a arvore DOM procurando um ancestral com
+   `.balloonTrigger`.
+4. Se encontrou: `toggle(trigger)` -> `closeAll(trigger)` -> adiciona/remove
+   `.balloonStatus-Ativo` nos balloons do trigger.
+5. Se NAO encontrou: `closeAll()` — fecha todos os balloons abertos na pagina.
+6. CSS reage: `.balloonStatus-Ativo` chama `.balloonAtivoTransforms()` que aplica
+   `opacity: 0.95` + `transform: scale(1)` com transicao 0.3s, E restaura
+   `pointer-events: auto` (necessario para o balloon ser clicavel enquanto aberto).
+
+### Mudancas vs. versao antiga (`window.addEventListener("load", ...)`)
+
+A versao anterior registrava um listener de `click` em cada `.balloonTrigger` no
+evento `load`. Problemas:
+
+| Problema antigo                       | Solucao na nova                               |
+|---------------------------------------|-----------------------------------------------|
+| So elementos existentes no load       | Event delegation no document                  |
+| Click sintetico de 300ms em touch     | `pointerdown` dispara imediato                |
+| Nao fechava com ESC                   | Handler de keydown                            |
+| Nao fechava com click fora            | `closeAll()` quando nao achou trigger         |
+| Podia abrir+fechar no mesmo tap       | Dedup de 250ms                                |
+| Sem API externa                       | `window.MessageBalloons.toggle/closeAll`      |
+| Instalacao dupla quebrava             | Flag `__messageBalloonsInstalled`             |
 
 ---
 
