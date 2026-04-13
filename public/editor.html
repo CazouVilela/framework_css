@@ -219,6 +219,11 @@
     let modifiedVars = {};
     let originalValues = {};
 
+    // Base URL da API do framework_css.
+    // Se o editor roda no proprio servidor (porta 4200), usa caminhos relativos.
+    // Se roda embutido em outro projeto (ex: epica_ERP porta 5000), aponta para 127.0.0.1:4200.
+    const API_BASE = window.location.port === '4200' ? '' : 'http://127.0.0.1:4200';
+
     // Detecta modo standalone via query string (?standalone=1).
     // No modo standalone, a sidebar ocupa 100% da janela e o preview interno
     // fica oculto — o showcase e visualizado em uma aba/janela separada.
@@ -243,7 +248,7 @@
 
     // Load variables
     async function loadVariables() {
-        const res = await fetch('/api/variables');
+        const res = await fetch(API_BASE + '/api/variables');
         allVariables = await res.json();
         allVariables.forEach(v => originalValues[v.name] = v.value);
         renderVariables(allVariables);
@@ -413,7 +418,7 @@
         status.className = '';
 
         try {
-            const res = await fetch('/api/compile', {
+            const res = await fetch(API_BASE + '/api/compile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ variables: modifiedVars })

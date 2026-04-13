@@ -17,6 +17,16 @@ const HOST = process.env.FRAMEWORK_CSS_HOST || '127.0.0.1';
 app.set('trust proxy', 1);
 
 app.use(express.json({ limit: '256kb' })); // F-008: limite pequeno
+
+// CORS para editor embutido em outros projetos (ex: epica_ERP porta 5000)
+app.use('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // F-008: rate limit agressivo no endpoint de compile — mitiga DoS
