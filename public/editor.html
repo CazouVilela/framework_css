@@ -305,8 +305,8 @@
         }
     }
 
-    function rgbToHex(rgb) {
-        const match = rgb.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+    function rgbToHex(color) {
+        const match = color.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
         if (!match) return '#000000';
         const r = parseInt(match[1]).toString(16).padStart(2, '0');
         const g = parseInt(match[2]).toString(16).padStart(2, '0');
@@ -314,17 +314,24 @@
         return `#${r}${g}${b}`;
     }
 
-    function hexToRgb(hex) {
+    function parseAlpha(color) {
+        const match = color.match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)/);
+        return match ? parseFloat(match[1]) : 1;
+    }
+
+    function hexToRgba(hex, alpha) {
         const r = parseInt(hex.substr(1, 2), 16);
         const g = parseInt(hex.substr(3, 2), 16);
         const b = parseInt(hex.substr(5, 2), 16);
-        return `rgb(${r},${g},${b})`;
+        const a = alpha != null ? alpha : 1;
+        return `rgba(${r},${g},${b},${a})`;
     }
 
     function updateColorVar(name, hexValue, textInput) {
-        const rgbValue = hexToRgb(hexValue);
-        textInput.value = rgbValue;
-        onVarChange(name, rgbValue, textInput);
+        const currentAlpha = parseAlpha(textInput.value);
+        const rgbaValue = hexToRgba(hexValue, currentAlpha);
+        textInput.value = rgbaValue;
+        onVarChange(name, rgbaValue, textInput);
     }
 
     function onVarChange(name, value, input) {

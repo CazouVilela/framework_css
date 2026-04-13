@@ -4,14 +4,42 @@ const express = require('express');
 const less = require('less');
 const fs = require('fs');
 const path = require('path');
+const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
 
 require('./config/env.config');
 
 const app = express();
 const PORT = parseInt(process.env.FRONTEND_PORT, 10) || 4200;
+// F-008: bind em 127.0.0.1 — LAN direta fica fora, mas Cloudflare tunnel
+// (que conecta via localhost no próprio host) continua funcionando.
+const HOST = process.env.FRAMEWORK_CSS_HOST || '127.0.0.1';
 
-app.use(express.json());
+app.set('trust proxy', 1);
+
+app.use(express.json({ limit: '256kb' })); // F-008: limite pequeno
 app.use(express.static(path.join(__dirname, 'public')));
+
+// F-008: rate limit agressivo no endpoint de compile — mitiga DoS
+const compileLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Muitas compilações. Aguarde 1 minuto.' },
+  keyGenerator: (req) => ipKeyGenerator(req.ip || ''),
+});
+
+// F-008: rejeita payloads LESS suspeitos antes de compilar
+const FORBIDDEN_LESS_TOKENS = [
+  /data-uri\s*\(/i,      // leitura de arquivo do filesystem
+  /@import\s+url\s*\(/i, // import HTTP externo
+  /@import\s+\(reference\)/i,
+  /\/\*.*?\*\//,         // comentários multi-linha podem esconder payloads — não bloquear, só alertar
+];
+function isLessPayloadSafe(payload) {
+  // Bloqueia apenas os primeiros 2 padrões (o regex de comentário é só para log/debug)
+  return !FORBIDDEN_LESS_TOKENS.slice(0, 2).some(re => re.test(payload));
+}
 
 // LESS source path
 const LESS_SRC = path.join(__dirname, 'public', 'less-src');
@@ -44,7 +72,7 @@ function parseLessVariables(content) {
 
       // Determine type
       let type = 'text';
-      if (value.match(/^rgb\(/i) || value.match(/^#[0-9a-f]/i)) type = 'color';
+      if (value.match(/^rgba?\(/i) || value.match(/^#[0-9a-f]/i)) type = 'color';
       else if (value.match(/^\d+(\.\d+)?px$/)) type = 'size';
       else if (value.match(/^\d+(\.\d+)?%$/)) type = 'percent';
       else if (value.match(/^\d+(\.\d+)?deg$/)) type = 'angle';
@@ -70,37 +98,51 @@ app.get('/api/variables', (req, res) => {
 });
 
 // API: Compile LESS with custom variables
-app.post('/api/compile', async (req, res) => {
+// F-008: rate limit + validação de payload + timeout de compilação
+app.post('/api/compile', compileLimiter, async (req, res) => {
   try {
     const customVars = req.body.variables || {};
 
-    // Read framework.less
-    let frameworkLess = fs.readFileSync(FRAMEWORK_LESS, 'utf-8');
+    // Validação: nomes de variáveis só podem ter [a-zA-Z0-9_]; valores são checados via isLessPayloadSafe
+    const VAR_NAME = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
 
     // Build variable overrides
     let overrides = '';
     for (const [name, value] of Object.entries(customVars)) {
+      if (!VAR_NAME.test(name)) {
+        return res.status(400).json({ error: `Nome de variável inválido: ${name}` });
+      }
       if (value && value.trim()) {
+        if (!isLessPayloadSafe(value)) {
+          return res.status(400).json({ error: `Valor inseguro para variável: ${name}` });
+        }
         overrides += `@${name}: ${value};\n`;
       }
     }
 
+    if (overrides.length > 50000) {
+      return res.status(413).json({ error: 'Payload de variáveis muito grande' });
+    }
+
+    // Read framework.less
+    let frameworkLess = fs.readFileSync(FRAMEWORK_LESS, 'utf-8');
+
     // Prepend overrides AFTER variables import but BEFORE everything else
-    // We inject them after the Variaveis import so they override defaults
     frameworkLess = frameworkLess.replace(
       '@import "Variaveis/Variaveis.less";',
       `@import "Variaveis/Variaveis.less";\n${overrides}`
     );
 
-    const output = await less.render(frameworkLess, {
+    // F-008: timeout da compilação (5 segundos) — evita DoS via recursão LESS
+    const renderPromise = less.render(frameworkLess, {
       paths: [LESS_SRC],
       compress: false,
-      // math: 'always' processa todas as divisoes (ex: @{var} / 2 -> 6px).
-      // Sem isto, o LESS 4+ usa parens-division e divisoes sem parenteses
-      // sao deixadas literais (ex: "12px / 2"), gerando CSS invalido.
-      // Bug afetava o triangulo dos balloons (border-width zerado).
       math: 'always'
     });
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Compilação excedeu tempo limite')), 5000)
+    );
+    const output = await Promise.race([renderPromise, timeoutPromise]);
 
     res.json({ css: output.css });
   } catch (err) {
@@ -156,6 +198,6 @@ app.get('/api/icons', (req, res) => {
   res.json(icons);
 });
 
-app.listen(PORT, () => {
-  console.log(`Framework CSS Showcase rodando na porta ${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Framework CSS Showcase rodando em ${HOST}:${PORT}`);
 });
