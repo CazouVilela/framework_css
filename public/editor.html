@@ -81,6 +81,14 @@
             width: 24px; height: 24px; border-radius: 3px; border: 1px solid #333;
             cursor: pointer; flex-shrink: 0;
         }
+        .var-alpha-slider {
+            width: 48px; flex-shrink: 0; cursor: pointer;
+            accent-color: #00bcd4; vertical-align: middle;
+        }
+        .var-alpha-label {
+            font-size: 10px; color: #888; width: 28px; text-align: right; flex-shrink: 0;
+            font-family: 'Courier New', monospace;
+        }
 
         /* ===== STATUS BAR ===== */
         .status-bar {
@@ -277,11 +285,16 @@
                 const currentVal = modifiedVars[v.name] || v.value;
 
                 if (v.type === 'color') {
-                    const hexColor = rgbToHex(v.value);
+                    const hexColor = rgbToHex(currentVal);
+                    const alpha = parseAlpha(currentVal);
                     inputHtml = `
                         <span class="var-name" title="@${v.name}">@${v.name}</span>
                         <input type="color" class="var-color-preview" value="${hexColor}"
-                            onchange="updateColorVar('${v.name}', this.value, this.parentNode.querySelector('.var-input'))">
+                            onchange="updateColorFromPicker('${v.name}', this)">
+                        <input type="range" class="var-alpha-slider" min="0" max="1" step="0.05" value="${alpha}"
+                            oninput="updateAlpha('${v.name}', this)"
+                            title="Opacidade">
+                        <span class="var-alpha-label">${Math.round(alpha * 100)}%</span>
                         <input type="text" class="var-input ${modifiedVars[v.name] ? 'modified' : ''}"
                             value="${currentVal}" data-var="${v.name}" data-original="${v.value}"
                             onchange="onVarChange('${v.name}', this.value, this)">
@@ -327,11 +340,32 @@
         return `rgba(${r},${g},${b},${a})`;
     }
 
-    function updateColorVar(name, hexValue, textInput) {
-        const currentAlpha = parseAlpha(textInput.value);
-        const rgbaValue = hexToRgba(hexValue, currentAlpha);
-        textInput.value = rgbaValue;
-        onVarChange(name, rgbaValue, textInput);
+    function getColorRow(name) {
+        const row = document.querySelector(`.var-item[data-varname="${name}"]`);
+        return {
+            picker: row?.querySelector('.var-color-preview'),
+            slider: row?.querySelector('.var-alpha-slider'),
+            label: row?.querySelector('.var-alpha-label'),
+            input: row?.querySelector('.var-input'),
+        };
+    }
+
+    function updateColorFromPicker(name, pickerEl) {
+        const { slider, label, input } = getColorRow(name);
+        const alpha = parseFloat(slider?.value ?? 1);
+        const rgbaValue = hexToRgba(pickerEl.value, alpha);
+        input.value = rgbaValue;
+        onVarChange(name, rgbaValue, input);
+    }
+
+    function updateAlpha(name, sliderEl) {
+        const { picker, label, input } = getColorRow(name);
+        const alpha = parseFloat(sliderEl.value);
+        label.textContent = Math.round(alpha * 100) + '%';
+        const hex = picker?.value || rgbToHex(input.value);
+        const rgbaValue = hexToRgba(hex, alpha);
+        input.value = rgbaValue;
+        onVarChange(name, rgbaValue, input);
     }
 
     function onVarChange(name, value, input) {
@@ -341,6 +375,14 @@
         } else {
             modifiedVars[name] = value;
             input.classList.add('modified');
+        }
+        // Sincronizar picker e slider se for cor editada via campo de texto
+        const { picker, slider, label } = getColorRow(name);
+        if (picker && value.match(/rgba?\(/i)) {
+            picker.value = rgbToHex(value);
+            const alpha = parseAlpha(value);
+            if (slider) slider.value = alpha;
+            if (label) label.textContent = Math.round(alpha * 100) + '%';
         }
         updateModifiedCount();
     }
